@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Mariana & Filippo | 07.08.2027</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Allura&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+    }
+
+    body {
+      font-family: "Montserrat", sans-serif;
+      overflow: hidden;
+      background: #111;
+    }
+
+    /* =====================================================
+       BACKGROUND
+       ===================================================== */
+
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      height: 100svh;
+
+      background-image:
+        linear-gradient(
+          rgba(8, 12, 8, 0.48),
+          rgba(8, 12, 8, 0.68)
+        ),
+        url("wedding.jpg");
+
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      color: white;
+    }
+
+    /* Extra subtle dark vignette */
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+
+      background:
+        radial-gradient(
+          ellipse at center,
+          rgba(0, 0, 0, 0.00) 35%,
+          rgba(0, 0, 0, 0.38) 100%
+        );
+    }
+
+    /* =====================================================
+       CONTENT
+       ===================================================== */
+
+    .content {
+      position: relative;
+      z-index: 2;
+
+      width: min(1100px, 90%);
+      text-align: center;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      animation: fadeIn 1.6s ease-out both;
+    }
+
+    /* =====================================================
+       NAMES
+       ===================================================== */
+
+    .names {
+      font-family: "Allura", cursive;
+
+      font-size: clamp(5rem, 9vw, 9.5rem);
+      font-weight: 400;
+      line-height: 0.85;
+
+      color: #fff;
+
+      white-space: nowrap;
+
+      text-shadow:
+        0 2px 15px rgba(0, 0, 0, 0.28);
+
+      margin-bottom: 28px;
+    }
+
+    /* =====================================================
+       WHEAT / GOLD SEPARATOR
+       ===================================================== */
+
+    .divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      width: 190px;
+      height: 35px;
+
+      margin-bottom: 22px;
+    }
+
+    .divider-line {
+      height: 1px;
+      width: 45px;
+
+      background: #c8a45d;
+      opacity: 0.9;
+    }
+
+    .wheat {
+      width: 70px;
+      height: 32px;
+
+      margin: 0 8px;
+
+      overflow: visible;
+    }
+
+    .wheat path,
+    .wheat line {
+      fill: none;
+      stroke: #c8a45d;
+      stroke-width: 1.4;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .wheat .leaf {
+      fill: #c8a45d;
+      stroke: none;
+    }
+
+    /* =====================================================
+       DATE
+       ===================================================== */
+
+    .date {
+      font-family: "Montserrat", sans-serif;
+
+      font-size: clamp(0.9rem, 1.4vw, 1.25rem);
+      font-weight: 400;
+
+      letter-spacing: 0.42em;
+
+      color: #fff;
+
+      margin-left: 0.42em;
+
+      text-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.35);
+
+      margin-bottom: 48px;
+    }
+
+    /* =====================================================
+       LANGUAGE BUTTONS
+       ===================================================== */
+
+    .languages {
+      display: flex;
+      gap: 20px;
+
+      width: min(780px, 100%);
+      justify-content: center;
+    }
+
+    .language {
+      position: relative;
+
+      width: 245px;
+      height: 78px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 13px;
+
+      color: white;
+      text-decoration: none;
+
+      font-size: 0.83rem;
+      font-weight: 400;
+
+      letter-spacing: 0.13em;
+
+      border: 1px solid rgba(200, 164, 93, 0.85);
+
+      background: rgba(5, 8, 7, 0.20);
+
+      backdrop-filter: blur(3px);
+      -webkit-backdrop-filter: blur(3px);
+
+      transition:
+        background 0.35s ease,
+        border-color 0.35s ease,
+        transform 0.35s ease;
+    }
+
+    .language:hover {
+      background: rgba(200, 164, 93, 0.14);
+      border-color: #e0bd72;
+
+      transform: translateY(-3px);
+    }
+
+    .flag {
+      font-size: 1.25rem;
+      line-height: 1;
+    }
+
+    /* =====================================================
+       BOTTOM TEXT
+       ===================================================== */
+
+    .welcome {
+      margin-top: 68px;
+
+      font-size: 0.65rem;
+      font-weight: 500;
+
+      letter-spacing: 0.34em;
+
+      color: #c8a45d;
+
+      margin-left: 0.34em;
+
+      text-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.4);
+    }
+
+    .heart {
+      margin-top: 14px;
+
+      font-family: Georgia, serif;
+
+      font-size: 1.55rem;
+
+      color: #c8a45d;
+
+      line-height: 1;
+    }
+
+    /* =====================================================
+       ANIMATION
+       ===================================================== */
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* =====================================================
+       TABLET
+       ===================================================== */
+
+    @media (max-width: 800px) {
+
+      .hero {
+        background-position: center center;
+      }
+
+      .names {
+        font-size: clamp(4rem, 13vw, 6.5rem);
+      }
+
+      .languages {
+        gap: 12px;
+      }
+
+      .language {
+        width: 31%;
+        height: 70px;
+
+        font-size: 0.72rem;
+        letter-spacing: 0.09em;
+      }
+
+      .flag {
+        font-size: 1.05rem;
+      }
+    }
+
+    /* =====================================================
+       MOBILE
+       ===================================================== */
+
+    @media (max-width: 560px) {
+
+      .hero {
+        background-position: 53% center;
+      }
+
+      .content {
+        width: 92%;
+      }
+
+      .names {
+        font-size: clamp(3.7rem, 17vw, 5.2rem);
+        line-height: 0.9;
+
+        white-space: normal;
+
+        margin-bottom: 24px;
+      }
+
+      .divider {
+        width: 170px;
+        margin-bottom: 20px;
+      }
+
+      .divider-line {
+        width: 35px;
+      }
+
+      .wheat {
+        width: 65px;
+      }
+
+      .date {
+        font-size: 0.82rem;
+        letter-spacing: 0.32em;
+        margin-left: 0.32em;
+
+        margin-bottom: 38px;
+      }
+
+      .languages {
+        flex-direction: column;
+        width: 80%;
+
+        gap: 11px;
+      }
+
+      .language {
+        width: 100%;
+        height: 58px;
+
+        font-size: 0.72rem;
+      }
+
+      .welcome {
+        margin-top: 48px;
+
+        font-size: 0.57rem;
+        letter-spacing: 0.25em;
+        margin-left: 0.25em;
+      }
+
+      .heart {
+        font-size: 1.4rem;
+        margin-top: 11px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="hero">
+
+    <div class="content">
+
+      <!-- NAMES -->
+      <h1 class="names">
+        Mariana &amp; Filippo
+      </h1>
+
+
+      <!-- WHEAT DIVIDER -->
+      <div class="divider">
+
+        <span class="divider-line"></span>
+
+        <svg
+          class="wheat"
+          viewBox="0 0 100 40"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+        >
+
+          <!-- central stem -->
+          <path d="M50 36 C50 28, 50 18, 50 4" />
+
+          <!-- left branch -->
+          <path d="M50 28 C43 22, 38 17, 32 13" />
+
+          <!-- right branch -->
+          <path d="M50 28 C57 22, 62 17, 68 13" />
+
+          <!-- left leaves -->
+          <path
+            class="leaf"
+            d="M44 24 C38 24, 34 21, 33 17 C38 18, 42 20, 44 24 Z"
+          />
+
+          <path
+            class="leaf"
+            d="M42 19 C36 19, 32 16, 31 12 C36 13, 40 15, 42 19 Z"
+          />
+
+          <path
+            class="leaf"
+            d="M46 29 C40 29, 36 27, 34 23 C39 24, 43 25, 46 29 Z"
+          />
+
+          <!-- right leaves -->
+          <path
+            class="leaf"
+            d="M56 24 C62 24, 66 21, 67 17 C62 18, 58 20, 56 24 Z"
+          />
+
+          <path
+            class="leaf"
+            d="M58 19 C64 19, 68 16, 69 12 C64 13, 60 15, 58 19 Z"
+          />
+
+          <path
+            class="leaf"
+            d="M54 29 C60 29, 64 27, 66 23 C61 24, 57 25, 54 29 Z"
+          />
+
+          <!-- small central leaves -->
+          <path
+            class="leaf"
+            d="M49 16 C44 15, 42 12, 42 9 C46 10, 48 12, 49 16 Z"
+          />
+
+          <path
+            class="leaf"
+            d="M51 16 C56 15, 58 12, 58 9 C54 10, 52 12, 51 16 Z"
+          />
+
+          <path
+            class="leaf"
+            d="M49 10 C45 9, 44 7, 44 4 C47 5, 49 7, 49 10 Z"
+          />
+
+          <path
+            class="leaf"
+            d="M51 10 C55 9, 56 7, 56 4 C53 5, 51 7, 51 10 Z"
+          />
+
+        </svg>
+
+        <span class="divider-line"></span>
+
+      </div>
+
+
+      <!-- DATE -->
+      <div class="date">
+        07 . 08 . 2027
+      </div>
+
+
+      <!-- LANGUAGE BUTTONS -->
+      <nav class="languages" aria-label="Language selection">
+
+        <!-- PORTUGUESE -->
+        <a
+          class="language"
+          href="#"
+          aria-label="Português"
+        >
+          <span class="flag">🇵🇹</span>
+          <span>PORTUGUÊS</span>
+        </a>
+
+        <!-- ITALIAN -->
+        <a
+          class="language"
+          href="#"
+          aria-label="Italiano"
+        >
+          <span class="flag">🇮🇹</span>
+          <span>ITALIANO</span>
+        </a>
+
+        <!-- ENGLISH -->
+        <a
+          class="language"
+          href="#"
+          aria-label="English"
+        >
+          <span class="flag">🇬🇧</span>
+          <span>ENGLISH</span>
+        </a>
+
+      </nav>
+
+
+      <!-- BOTTOM -->
+      <div class="welcome">
+        WELCOME TO OUR WEDDING
+      </div>
+
+      <div class="heart">
+        ♡
+      </div>
+
+    </div>
+
+  </main>
+
+</body>
+</html>
