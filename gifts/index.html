@@ -13,20 +13,22 @@
             --bg-color: #faf8f5;
             --text-color: #333;
         }
-       body {
+        body {
             font-family: 'Montserrat', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
             margin: 0;
             padding: 0;
             text-align: center;
+            top: 0 !important; /* Evita que o Google Translate empurre a página para baixo */
         }
         header {
             padding: 40px 20px;
             background-color: #fff;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: relative; /* Importante para o seletor de idiomas ficar no sítio certo */
         }
-       h1 {
+        h1 {
             font-size: 3.5em; 
             margin-bottom: 10px;
             font-family: 'Allura', cursive;
@@ -37,15 +39,22 @@
             max-width: 600px;
             margin: 0 auto;
             line-height: 1.6;
+            padding-bottom: 15px;
+        } /* AQUI ESTAVA A FALTAR ESTA CHAVETA! */
 
-        /* Esconde completamente a barra de topo e pop-ups do Google Translate */
-        .goog-te-banner-frame, .skiptranslate {
+        /* --- Ocultar TODO o lixo visual do Google Translate --- */
+        .goog-te-banner-frame, .skiptranslate, #goog-gt-tt {
             display: none !important;
         }
-        body {
-            top: 0 !important;
+        .goog-tooltip, .goog-tooltip:hover {
+            display: none !important;
         }
-        
+        .goog-text-highlight {
+            background-color: transparent !important;
+            box-shadow: none !important;
+        }
+        /* -------------------------------------------------------- */
+
         /* Seletor de Idioma Discreto no Canto Superior Direito */
         .language-selector {
             position: absolute;
@@ -70,7 +79,7 @@
             cursor: pointer;
             outline: none;
         }
-        
+
         /* Grid de Presentes */
         .grid {
             display: grid;
@@ -103,9 +112,9 @@
         .card-content {
             padding: 20px;
         }
-       .card h3 {
+        .card h3 {
             margin: 0 0 10px;
-            font-size: 2.2em; /* Maior para leitura da letra cursiva */
+            font-size: 2.2em;
             font-family: 'Allura', cursive;
             font-weight: normal;
         }
@@ -115,13 +124,13 @@
             margin-bottom: 20px;
             font-size: 1.2em;
         }
-       button {
+        button {
             background-color: var(--primary-color);
             color: #fff;
             border: none;
             padding: 12px 20px;
             font-size: 1em;
-            font-weight: 600; /* Deixa o texto do botão mais forte */
+            font-weight: 600;
             border-radius: 5px;
             cursor: pointer;
             width: 100%;
@@ -228,13 +237,12 @@
             </select>
         </div>
         
-    <h1>O Próximo Capítulo</h1>
-    
-    <p class="subtitle">A vossa presença é, sem dúvida, o presente mais importante que podíamos pedir para celebrar o nosso casamento. Para assinalarem este momento connosco, optámos por não ter a tradicional lista de casamento. Receber o vosso contributo para nos ajudar a construir o nosso futuro será o presente ideal. Temos a certeza de que encontrarão a prenda que mais combina convosco!</p>
-    
-    <p class="subtitle">Para quem não puder estar presente, mas gostaria de marcar presença de alguma forma, apoiar-nos neste próximo passo, ou simplesmente deixar um miminho, deixamos abaixo uma forma simples de o fazer. O vosso carinho, de perto ou de longe, é o que torna tudo isto real.</p>
-
-</header>
+        <h1>O Próximo Capítulo</h1>
+        
+        <p class="subtitle">A vossa presença é, sem dúvida, o presente mais importante que podíamos pedir para celebrar o nosso casamento. Para assinalarem este momento connosco, optámos por não ter a tradicional lista de casamento. Receber o vosso contributo para nos ajudar a construir o nosso futuro será o presente ideal. Temos a certeza de que encontrarão a prenda que mais combina convosco!</p>
+        
+        <p class="subtitle">Para quem não puder estar presente, mas gostaria de marcar presença de alguma forma, apoiar-nos neste próximo passo, ou simplesmente deixar um miminho, deixamos abaixo uma forma simples de o fazer. O vosso carinho, de perto ou de longe, é o que torna tudo isto real.</p>
+    </header>
 
     <div class="grid" id="grid">
         <p>A carregar a lista de experiências...</p>
@@ -294,7 +302,7 @@
         }
 
         // 2. Mostrar os cartões no ecrã
-       function renderGifts(gifts) {
+        function renderGifts(gifts) {
             const grid = document.getElementById('grid');
             grid.innerHTML = '';
             
@@ -352,7 +360,7 @@
         }
 
         // 4. Confirmar Pagamento (Avisar a Base de Dados)
-       async function confirmPayment() {
+        async function confirmPayment() {
             let name = document.getElementById('buyerName').value;
             const isAnon = document.getElementById('isAnonymous').checked;
 
@@ -393,7 +401,7 @@
     </script>
     
    <!-- Elemento invisível obrigatório para o Google Translate funcionar -->
-    <div id="google_translate_element" style="display:none;"></div>
+    <div id="google_translate_element" style="opacity:0; width:0; height:0; position:absolute; left:-9999px;"></div>
 
     <script type="text/javascript">
         function googleTranslateElementInit() {
@@ -444,6 +452,5 @@
     </script>
     <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-    
 </body>
 </html>
