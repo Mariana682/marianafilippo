@@ -190,17 +190,12 @@
 
     <header>
     <h1>O Próximo Capítulo</h1>
+    
     <p class="subtitle">A vossa presença é, sem dúvida, o presente mais importante que podíamos pedir para celebrar o nosso casamento. Para assinalarem este momento connosco, optámos por não ter a tradicional lista de casamento. Receber o vosso contributo para nos ajudar a construir o nosso futuro será o presente ideal. Temos a certeza de que encontrarão a prenda que mais combina convosco!</p>
+    
+    <p class="subtitle">Para quem não puder estar presente, mas gostaria de marcar presença de alguma forma, apoiar-nos neste próximo passo, ou simplesmente deixar um miminho, deixamos abaixo uma forma simples de o fazer. O vosso carinho, de perto ou de longe, é o que torna tudo isto real.</p>
 
-    <!-- Google Translate Widget -->
-    <div id="google_translate_element"></div>
 </header>
-
-<!-- Secção para quem não vai poder estar presente -->
-<section class="mensagem-ausentes">
-    <p>Para quem não puder estar presente, mas gostaria de marcar presença de alguma forma, apoiar-nos neste próximo passo, ou simplesmente deixar um miminho, deixamos aqui uma forma simples de o fazer.</p>
-    <p class="nota-final">O vosso carinho, de perto ou de longe, é o que torna tudo isto real.</p>
-</section>
 
     <div class="grid" id="grid">
         <p>A carregar a lista de experiências...</p>
@@ -240,17 +235,6 @@
         </div>
     </div>
 
-    <!-- Script do Tradutor -->
-    <script type="text/javascript">
-        function googleTranslateElementInit() {
-            new google.translate.TranslateElement({
-                pageLanguage: 'pt',
-                includedLanguages: 'pt,it,en',
-                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-            }, 'google_translate_element');
-        }
-    </script>
-    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
     <!-- Script Lógica da Base de Dados -->
     <script>
@@ -368,5 +352,51 @@
         // Iniciar
         loadGifts();
     </script>
+    
+    <!-- Motor de Tradução Invisível do Google -->
+    <div id="google_translate_element" style="display:none;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'pt',
+                includedLanguages: 'pt,it,en',
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <script>
+        // Função para forçar a tradução automática invisível com base no telemóvel
+        function autoTranslate() {
+            const userLang = navigator.language || navigator.userLanguage; 
+            let targetLang = 'pt'; // Predefinição
+
+            if (userLang.startsWith('it')) {
+                targetLang = 'it';
+            } else if (userLang.startsWith('en')) {
+                targetLang = 'en';
+            }
+
+            // Se a língua do telemóvel não for português, aplica a tradução do Google de forma automática
+            if (targetLang !== 'pt') {
+                const timer = setInterval(function() {
+                    const selectField = document.querySelector('.goog-te-combo');
+                    if (selectField) {
+                        selectField.value = targetLang;
+                        selectField.dispatchEvent(new Event('change'));
+                        clearInterval(timer);
+                    }
+                }, 500);
+            }
+        }
+
+        // Executa assim que o tradutor do Google estiver pronto
+        window.addEventListener('load', function() {
+            setTimeout(autoTranslate, 1000);
+        });
+    </script>
+
+    
 </body>
 </html>
