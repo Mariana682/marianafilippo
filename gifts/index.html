@@ -4,14 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Casamento - Mariana & Filippo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Allura&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-color: #c9a992; /* Cor elegante / bege */
             --bg-color: #faf8f5;
             --text-color: #333;
         }
-        body {
-            font-family: 'Georgia', serif;
+       body {
+            font-family: 'Montserrat', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
             margin: 0;
@@ -23,10 +26,11 @@
             background-color: #fff;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
-        h1 {
-            font-size: 2.5em;
+       h1 {
+            font-size: 3.5em; 
             margin-bottom: 10px;
-            font-family: 'Playfair Display', serif;
+            font-family: 'Allura', cursive;
+            font-weight: normal;
         }
         p.subtitle {
             color: #666;
@@ -70,9 +74,11 @@
         .card-content {
             padding: 20px;
         }
-        .card h3 {
+       .card h3 {
             margin: 0 0 10px;
-            font-size: 1.5em;
+            font-size: 2.2em; /* Maior para leitura da letra cursiva */
+            font-family: 'Allura', cursive;
+            font-weight: normal;
         }
         .card .price {
             font-weight: bold;
@@ -80,16 +86,17 @@
             margin-bottom: 20px;
             font-size: 1.2em;
         }
-        button {
+       button {
             background-color: var(--primary-color);
             color: #fff;
             border: none;
             padding: 12px 20px;
             font-size: 1em;
+            font-weight: 600; /* Deixa o texto do botão mais forte */
             border-radius: 5px;
             cursor: pointer;
             width: 100%;
-            font-family: 'Georgia', serif;
+            font-family: 'Montserrat', sans-serif;
             transition: background 0.3s;
         }
         button:hover {
@@ -118,6 +125,12 @@
             width: 90%;
             text-align: left;
             position: relative;
+        }
+        #modalTitle {
+            font-family: 'Allura', cursive;
+            font-size: 2.5em;
+            margin-top: 0;
+            font-weight: normal;
         }
         .close-btn {
             position: absolute;
@@ -176,12 +189,18 @@
 <body>
 
     <header>
-        <h1>A Nossa Lua de Mel</h1>
-        <p class="subtitle">A vossa presença é o nosso maior presente. No entanto, se nos quiserem mimar, deixamos abaixo algumas experiências que adoraríamos viver na nossa lua de mel.</p>
-        
-        <!-- Google Translate Widget -->
-        <div id="google_translate_element"></div>
-    </header>
+    <h1>O Próximo Capítulo</h1>
+    <p class="subtitle">A vossa presença é, sem dúvida, o presente mais importante que podíamos pedir para celebrar o nosso casamento. Para assinalarem este momento connosco, optámos por não ter a tradicional lista de casamento. Receber o vosso contributo para nos ajudar a construir o nosso futuro será o presente ideal. Temos a certeza de que encontrarão a prenda que mais combina convosco!</p>
+
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element"></div>
+</header>
+
+<!-- Secção para quem não vai poder estar presente -->
+<section class="mensagem-ausentes">
+    <p>Para quem não puder estar presente, mas gostaria de marcar presença de alguma forma, apoiar-nos neste próximo passo, ou simplesmente deixar um miminho, deixamos aqui uma forma simples de o fazer.</p>
+    <p class="nota-final">O vosso carinho, de perto ou de longe, é o que torna tudo isto real.</p>
+</section>
 
     <div class="grid" id="grid">
         <p>A carregar a lista de experiências...</p>
@@ -208,6 +227,12 @@
             <div class="input-group">
                 <label for="buyerName">O vosso nome (para sabermos quem ofereceu!):</label>
                 <input type="text" id="buyerName" placeholder="Ex: Joana e Tiago" required>
+                
+                <!-- Caixa de Anónimo -->
+                <label style="display: flex; align-items: center; margin-top: 10px; font-size: 0.85em; cursor: pointer;">
+                    <input type="checkbox" id="isAnonymous" style="width: auto; margin-right: 8px;">
+                    Quero permanecer anónimo publicamente no site
+                </label>
             </div>
 
             <button onclick="confirmPayment()" id="confirmBtn">Já fiz a transferência!</button>
@@ -246,7 +271,7 @@
         }
 
         // 2. Mostrar os cartões no ecrã
-        function renderGifts(gifts) {
+       function renderGifts(gifts) {
             const grid = document.getElementById('grid');
             grid.innerHTML = '';
             
@@ -255,15 +280,28 @@
                 const card = document.createElement('div');
                 card.className = 'card ' + (isSoldOut ? 'sold-out' : '');
                 
+                let buyerText = '';
+                let isAnon = false; // Começa por assumir que não é anónimo
+                
+                if (gift.buyer) {
+                    buyerText = gift.buyer.trim();
+                    // Se o nome tiver a etiqueta, ativamos o modo anónimo
+                    if (buyerText.includes('(Anónimo)')) {
+                        isAnon = true;
+                    }
+                }
+
+                // Decide que botão mostrar
+                const buttonHtml = isSoldOut ? 
+                    (isAnon ? `<button disabled>Oferecido ❤️</button>` : `<button disabled>Oferecido por ${buyerText} ❤️</button>`) : 
+                    `<button onclick="openModal('${gift.id}', '${gift.title}')">Oferecer Experiência</button>`;
+
                 card.innerHTML = `
                     <img src="${gift.image}" alt="${gift.title}">
                     <div class="card-content">
                         <h3>${gift.title}</h3>
                         <p class="price">${gift.price} €</p>
-                        ${isSoldOut ? 
-                            '<button disabled>Já Oferecido ❤️</button>' : 
-                            `<button onclick="openModal('${gift.id}', '${gift.title}')">Oferecer Experiência</button>`
-                        }
+                        ${buttonHtml}
                     </div>
                 `;
                 grid.appendChild(card);
@@ -291,11 +329,18 @@
         }
 
         // 4. Confirmar Pagamento (Avisar a Base de Dados)
-        async function confirmPayment() {
-            const name = document.getElementById('buyerName').value;
+       async function confirmPayment() {
+            let name = document.getElementById('buyerName').value;
+            const isAnon = document.getElementById('isAnonymous').checked;
+
             if(!name) {
                 alert('Por favor, indique o seu nome!');
                 return;
+            }
+
+            // Se o convidado quiser ser anónimo, adicionamos uma etiqueta secreta
+            if(isAnon) {
+                name = name + ' (Anónimo)';
             }
 
             document.getElementById('confirmBtn').style.display = 'none';
