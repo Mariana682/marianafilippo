@@ -37,9 +37,38 @@
             max-width: 600px;
             margin: 0 auto;
             line-height: 1.6;
+
+        /* Esconde completamente a barra de topo e pop-ups do Google Translate */
+        .goog-te-banner-frame, .skiptranslate {
+            display: none !important;
         }
-        #google_translate_element {
-            margin-top: 20px;
+        body {
+            top: 0 !important;
+        }
+        
+        /* Seletor de Idioma Discreto no Canto Superior Direito */
+        .language-selector {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #fff;
+            padding: 5px 10px;
+            border-radius: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            font-size: 0.85em;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            z-index: 999;
+        }
+        .language-selector select {
+            border: none;
+            background: transparent;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1em;
+            color: #333;
+            cursor: pointer;
+            outline: none;
         }
         
         /* Grid de Presentes */
@@ -189,6 +218,16 @@
 <body>
 
     <header>
+        <!-- Seletor Discreto de Idioma -->
+        <div class="language-selector">
+            <span>🌐</span>
+            <select id="languagePicker" onchange="changeLanguage(this.value)">
+                <option value="pt">PT</option>
+                <option value="it">IT</option>
+                <option value="en">EN</option>
+            </select>
+        </div>
+        
     <h1>O Próximo Capítulo</h1>
     
     <p class="subtitle">A vossa presença é, sem dúvida, o presente mais importante que podíamos pedir para celebrar o nosso casamento. Para assinalarem este momento connosco, optámos por não ter a tradicional lista de casamento. Receber o vosso contributo para nos ajudar a construir o nosso futuro será o presente ideal. Temos a certeza de que encontrarão a prenda que mais combina convosco!</p>
@@ -353,8 +392,9 @@
         loadGifts();
     </script>
     
-    <!-- Motor de Tradução Invisível do Google -->
+   <!-- Elemento invisível obrigatório para o Google Translate funcionar -->
     <div id="google_translate_element" style="display:none;"></div>
+
     <script type="text/javascript">
         function googleTranslateElementInit() {
             new google.translate.TranslateElement({
@@ -362,15 +402,15 @@
                 includedLanguages: 'pt,it,en',
                 autoDisplay: false
             }, 'google_translate_element');
-        }
-    </script>
-    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-    <script>
-        // Função para forçar a tradução automática invisível com base no telemóvel
-        function autoTranslate() {
-            const userLang = navigator.language || navigator.userLanguage; 
-            let targetLang = 'pt'; // Predefinição
+            // Assim que o Google carregar, verifica o idioma do telemóvel
+            detectUserLanguage();
+        }
+
+        // 1. Deteção automática inicial baseada no telemóvel
+        function detectUserLanguage() {
+            const userLang = navigator.language || navigator.userLanguage;
+            let targetLang = 'pt';
 
             if (userLang.startsWith('it')) {
                 targetLang = 'it';
@@ -378,24 +418,31 @@
                 targetLang = 'en';
             }
 
-            // Se a língua do telemóvel não for português, aplica a tradução do Google de forma automática
+            // Se não for português, aplica e atualiza o select visual
             if (targetLang !== 'pt') {
-                const timer = setInterval(function() {
-                    const selectField = document.querySelector('.goog-te-combo');
-                    if (selectField) {
-                        selectField.value = targetLang;
-                        selectField.dispatchEvent(new Event('change'));
-                        clearInterval(timer);
-                    }
-                }, 500);
+                setGoogleLanguage(targetLang);
+                document.getElementById('languagePicker').value = targetLang;
             }
         }
 
-        // Executa assim que o tradutor do Google estiver pronto
-        window.addEventListener('load', function() {
-            setTimeout(autoTranslate, 1000);
-        });
+        // 2. Função acionada quando o utilizador muda manualmente no canto superior direito
+        function changeLanguage(lang) {
+            setGoogleLanguage(lang);
+        }
+
+        // Função interna que comanda o tradutor oculto do Google
+        function setGoogleLanguage(lang) {
+            const interval = setInterval(function() {
+                const selectField = document.querySelector('.goog-te-combo');
+                if (selectField) {
+                    selectField.value = lang;
+                    selectField.dispatchEvent(new Event('change'));
+                    clearInterval(interval);
+                }
+            }, 300);
+        }
     </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
     
 </body>
