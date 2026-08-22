@@ -40,7 +40,7 @@
             margin: 0 auto;
             line-height: 1.6;
             padding-bottom: 15px;
-        } /* AQUI ESTAVA A FALTAR ESTA CHAVETA! */
+        } 
 
         /* --- Ocultar TODO o lixo visual do Google Translate --- */
         .goog-te-banner-frame, .skiptranslate, #goog-gt-tt {
@@ -78,6 +78,40 @@
             color: #333;
             cursor: pointer;
             outline: none;
+        }
+
+        /* Divisória para a Secção Engraçada */
+        .section-divider {
+            text-align: center;
+            margin: 60px auto 20px;
+            padding: 0 20px;
+            max-width: 900px;
+            display: none; /* Só aparece se houver presentes engraçados */
+        }
+        .section-divider h2 {
+            font-family: 'Allura', cursive;
+            font-size: 3em;
+            color: var(--text-color);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            font-weight: normal;
+        }
+        /* Linhas ao lado do título */
+        .section-divider h2::before,
+        .section-divider h2::after {
+            content: "";
+            height: 1px;
+            background-color: var(--primary-color);
+            flex: 1;
+        }
+        .section-divider p {
+            color: #666;
+            font-style: italic;
+            margin: 0;
+            font-size: 0.95em;
         }
 
         /* Grid de Presentes */
@@ -244,8 +278,19 @@
         <p class="subtitle">Para quem não puder estar presente, mas gostaria de marcar presença de alguma forma, apoiar-nos neste próximo passo, ou simplesmente deixar um miminho, deixamos abaixo uma forma simples de o fazer. O vosso carinho, de perto ou de longe, é o que torna tudo isto real.</p>
     </header>
 
-    <div class="grid" id="grid">
+    <!-- Secção Normal -->
+    <div class="grid" id="grid-normal">
         <p>A carregar a lista de experiências...</p>
+    </div>
+
+    <!-- Divisória para Presentes Engraçados -->
+    <div class="section-divider" id="funny-section">
+        <h2>Para os que se querem rir à nossa custa 🥂</h2>
+        <p>Porque nem só de romance se faz a lua de mel. Presentes reservados a amigos com muito sentido de humor!</p>
+    </div>
+
+    <!-- Secção Engraçada -->
+    <div class="grid" id="grid-funny">
     </div>
 
     <!-- Modal de Pagamento -->
@@ -285,7 +330,7 @@
 
     <!-- Script Lógica da Base de Dados -->
     <script>
-        // IMPORTANTE: COLAR AQUI O LINK DO GOOGLE APPS SCRIPT
+        // O TEU LINK DO GOOGLE APPS SCRIPT
         const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx1bzQA6juCMUru-C2L3NOedd2sZs8zif3GcBivau7TfidvGo5NcdTFHrju2cLLm8sW/exec'; 
         
         let currentGiftId = null;
@@ -297,14 +342,20 @@
                 const gifts = await response.json();
                 renderGifts(gifts);
             } catch(e) {
-                document.getElementById('grid').innerHTML = '<p>Erro ao carregar as experiências. Por favor, atualize a página.</p>';
+                document.getElementById('grid-normal').innerHTML = '<p>Erro ao carregar as experiências. Por favor, atualize a página.</p>';
             }
         }
 
-        // 2. Mostrar os cartões no ecrã
+        // 2. Mostrar os cartões no ecrã (COM SEPARAÇÃO)
         function renderGifts(gifts) {
-            const grid = document.getElementById('grid');
-            grid.innerHTML = '';
+            const gridNormal = document.getElementById('grid-normal');
+            const gridFunny = document.getElementById('grid-funny');
+            const funnySection = document.getElementById('funny-section');
+            
+            gridNormal.innerHTML = '';
+            gridFunny.innerHTML = '';
+            
+            let hasFunny = false;
             
             gifts.forEach(gift => {
                 const isSoldOut = gift.status.toLowerCase() === 'esgotado';
@@ -322,10 +373,10 @@
                     }
                 }
 
-                // Decide que botão mostrar
+                // Decide que botão mostrar baseado no teu código
                 const buttonHtml = isSoldOut ? 
-                    (isAnon ? `<button disabled>Oferecido ❤️</button>` : `<button disabled>Oferecido por ${buyerText} ❤️</button>`) : 
-                    `<button onclick="openModal('${gift.id}', '${gift.title}')">Oferecer Experiência</button>`;
+                    (isAnon ? `<button disabled>Oferecido ❤️</button>` : `<button disabled>Oferecido por ${buyerText.replace(' (Anónimo)', '')} ❤️</button>`) : 
+                    `<button onclick="openModal('${gift.id}', '${gift.title.replace(/'/g, "\\'")}')">Oferecer Experiência</button>`;
 
                 card.innerHTML = `
                     <img src="${gift.image}" alt="${gift.title}">
@@ -335,8 +386,22 @@
                         ${buttonHtml}
                     </div>
                 `;
-                grid.appendChild(card);
+                
+                // Distribui o cartão pela grelha certa baseando-se na nova coluna
+                if(gift.category && gift.category.toLowerCase().includes('engraçad')) {
+                    gridFunny.appendChild(card);
+                    hasFunny = true;
+                } else {
+                    gridNormal.appendChild(card);
+                }
             });
+
+            // Mostra o título e o separador apenas se existirem presentes engraçados
+            if(hasFunny) {
+                funnySection.style.display = 'block';
+            } else {
+                funnySection.style.display = 'none';
+            }
         }
 
         // 3. Abrir e Fechar Modal
@@ -349,6 +414,7 @@
         function closeModal() {
             document.getElementById('modalOverlay').style.display = 'none';
             document.getElementById('buyerName').value = '';
+            document.getElementById('isAnonymous').checked = false;
             document.getElementById('loadingMsg').style.display = 'none';
             document.getElementById('confirmBtn').style.display = 'block';
         }
@@ -378,14 +444,14 @@
             document.getElementById('loadingMsg').style.display = 'block';
 
             try {
-                // Enviar pedido ao Google Sheets para marcar como Esgotado
+                // Enviar pedido ao Google Sheets
                 const response = await fetch(`${SCRIPT_URL}?action=buy&id=${currentGiftId}&name=${encodeURIComponent(name)}`);
                 const result = await response.json();
                 
                 if(result.success) {
                     alert('Muito obrigado pela vossa oferta! ❤️');
                     closeModal();
-                    loadGifts(); // Recarrega a página para mostrar o selo de esgotado
+                    loadGifts(); // Recarrega a página
                 } else {
                     alert('Houve um erro. Tente novamente.');
                     closeModal();
