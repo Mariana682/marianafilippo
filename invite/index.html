@@ -42,6 +42,7 @@
            ========================================================= */
 
         #envelope-screen {
+
             position: fixed;
             inset: 0;
 
@@ -49,11 +50,15 @@
             height: 100vh;
 
             z-index: 9999;
+
             cursor: pointer;
 
-            background: #000;
-
-            perspective: 2000px;
+            /*
+             * Branco em vez de preto.
+             * Assim, quando a aba abrir, não aparece um
+             * enorme triângulo preto.
+             */
+            background: #fdfbf7;
 
             overflow: hidden;
 
@@ -61,7 +66,8 @@
             justify-content: center;
             align-items: center;
 
-            /* A saída final é feita pela animação */
+            perspective: 1600px;
+
             opacity: 1;
             visibility: visible;
 
@@ -72,59 +78,36 @@
 
 
         /*
-         * IMPORTANTE:
+         * CORPO + ABA
          *
-         * A PNG original tem bastante transparência à volta
-         * do envelope.
+         * A PNG original tem margens transparentes.
          *
-         * O envelope real começa aproximadamente em:
+         * Estes valores fazem o envelope real ocupar
+         * praticamente todo o ecrã.
          *
-         * X = 175 px
-         * Y = 204 px
-         *
-         * e termina aproximadamente em:
-         *
-         * X = 1360 px
-         * Y = 900 px
-         *
-         * Por isso ampliamos a imagem para que o ENVELOPE,
-         * e não o canvas transparente da PNG, ocupe o ecrã.
+         * É FUNDAMENTAL que os dois tenham exatamente
+         * os mesmos valores.
          */
-
 
         .env-corpo-img,
         .env-aba-img {
 
             position: absolute;
 
-            /*
-             * Ampliação para compensar as margens transparentes
-             * existentes na imagem original.
-             */
             width: 150%;
             height: 150%;
 
-            /*
-             * Reposicionamento correspondente.
-             *
-             * É MUITO importante que corpo e aba tenham
-             * exatamente estes mesmos valores.
-             */
             left: -25%;
             top: -29.9%;
 
-            /*
-             * Mantemos a proporção do canvas original.
-             */
             object-fit: fill;
 
             pointer-events: none;
-
             user-select: none;
         }
 
 
-        /* Corpo do envelope */
+        /* Corpo inferior */
 
         .env-corpo-img {
             z-index: 2;
@@ -132,42 +115,56 @@
 
 
         /*
-         * ABA
-         *
-         * O container tem exatamente a mesma dimensão e posição
-         * visual do corpo.
+         * ABA SUPERIOR
          */
 
         .env-aba-container {
 
             position: absolute;
 
-            left: 0;
-            top: 0;
-
             width: 100%;
             height: 100%;
 
-            z-index: 3;
+            left: 0;
+            top: 0;
+
+            z-index: 4;
 
             /*
-             * A dobra da aba fica aproximadamente no centro
-             * do envelope depois do reposicionamento.
+             * A dobra real fica aproximadamente a meio
+             * depois do reposicionamento da imagem.
              */
             transform-origin: 50% 50%;
 
-            transition:
-                transform 1.15s cubic-bezier(0.22, 0.61, 0.36, 1);
-
             transform-style: preserve-3d;
+
+            /*
+             * Importante:
+             * impede que vejamos a parte traseira da PNG
+             * durante a animação.
+             */
+            backface-visibility: hidden;
+
+            transition:
+                transform 1.05s cubic-bezier(0.25, 0.8, 0.25, 1),
+                opacity 0.45s ease;
+        }
+
+
+        .env-aba-img {
+
+            z-index: 4;
+
+            backface-visibility: hidden;
         }
 
 
         /*
+         * ========================================================
          * SELO
+         * ========================================================
          *
-         * Como agora o envelope ocupa o ecrã, posicionamos
-         * o selo aproximadamente sobre a ponta da aba.
+         * Maior e ligeiramente mais abaixo.
          */
 
         .selo-img {
@@ -175,12 +172,17 @@
             position: absolute;
 
             left: 50%;
-            top: 50%;
 
             /*
-             * Maior que anteriormente.
+             * Antes estava aproximadamente a 50%.
+             * Agora fica mais abaixo.
              */
-            width: clamp(115px, 14vw, 175px);
+            top: 55%;
+
+            /*
+             * BEM maior.
+             */
+            width: clamp(160px, 19vw, 260px);
 
             height: auto;
 
@@ -188,10 +190,10 @@
                 translate(-50%, -50%)
                 scale(1);
 
-            z-index: 5;
+            z-index: 6;
 
             filter:
-                drop-shadow(0 7px 12px rgba(0,0,0,0.45));
+                drop-shadow(0 8px 14px rgba(0,0,0,0.42));
 
             transition:
                 opacity 0.45s ease,
@@ -200,7 +202,7 @@
 
 
         /*
-         * TEXTO "CLIQUE PARA ABRIR"
+         * Texto
          */
 
         .open-hint-text {
@@ -212,7 +214,7 @@
 
             transform: translateX(-50%);
 
-            color: rgba(255,255,255,0.8);
+            color: rgba(255,255,255,0.82);
 
             font-size: 11px;
 
@@ -225,9 +227,9 @@
             animation: pulse 2s infinite;
 
             transition:
-                opacity 0.3s ease;
+                opacity 0.35s ease;
 
-            z-index: 6;
+            z-index: 7;
         }
 
 
@@ -241,17 +243,17 @@
             50% {
                 opacity: 1;
             }
-
         }
 
 
+
         /* =========================================================
-           ABERTURA
+           ABERTURA DO ENVELOPE
            ========================================================= */
 
 
         /*
-         * 1 — O selo desaparece.
+         * 1. SELO DESAPARECE
          */
 
         #envelope-screen.opening .selo-img {
@@ -260,26 +262,33 @@
 
             transform:
                 translate(-50%, -50%)
-                scale(0.25);
+                scale(0.35);
         }
 
 
         /*
-         * 2 — A aba abre para cima.
+         * 2. ABA ABRE PARA CIMA
          *
-         * Não usamos 180deg porque isso fazia a aba
-         * "virar ao contrário".
+         * Em vez de 180 graus, fazemos uma rotação muito
+         * mais curta, como se a aba estivesse a dobrar
+         * para trás.
+         *
+         * O movimento vertical adicional reforça a sensação
+         * de que está a abrir para cima.
          */
 
         #envelope-screen.opening .env-aba-container {
 
             transform:
-                rotateX(-170deg);
+                translateY(-4%)
+                rotateX(72deg);
+
+            opacity: 0.96;
         }
 
 
         /*
-         * 3 — O texto desaparece.
+         * 3. TEXTO DESAPARECE
          */
 
         #envelope-screen.opening .open-hint-text {
@@ -289,23 +298,24 @@
 
 
         /*
-         * 4 — Depois de a aba abrir,
-         * o envelope aproxima-se do utilizador
-         * e desaparece.
+         * 4. ENVELOPE TODO FAZ ZOOM + FADE
+         *
+         * O envelope aproxima-se ligeiramente do utilizador
+         * enquanto desaparece.
          */
 
         #envelope-screen.opening {
 
             animation:
-                envelopeExit 1.25s
+                envelopeZoom 1.25s
                 cubic-bezier(0.4, 0, 0.2, 1)
                 forwards;
 
-            animation-delay: 0.65s;
+            animation-delay: 0.7s;
         }
 
 
-        @keyframes envelopeExit {
+        @keyframes envelopeZoom {
 
             0% {
 
@@ -315,12 +325,12 @@
                     scale(1);
             }
 
-            45% {
+            35% {
 
-                opacity: 0.95;
+                opacity: 1;
 
                 transform:
-                    scale(1.035);
+                    scale(1.025);
             }
 
             100% {
@@ -328,15 +338,10 @@
                 opacity: 0;
 
                 transform:
-                    scale(1.16);
+                    scale(1.14);
             }
-
         }
 
-
-        /*
-         * Estado final.
-         */
 
         #envelope-screen.opened {
 
@@ -346,6 +351,7 @@
 
             pointer-events: none;
         }
+
 
 
         /* =========================================================
@@ -479,7 +485,6 @@
             .names-title {
                 font-size: 86px;
             }
-
         }
 
 
@@ -703,16 +708,12 @@
         }
 
 
+
         /* =========================================================
            MOBILE
            ========================================================= */
 
         @media (max-width: 600px) {
-
-            /*
-             * Em telemóveis precisamos de aumentar um pouco mais
-             * porque o ecrã é muito mais estreito.
-             */
 
             .env-corpo-img,
             .env-aba-img {
@@ -725,9 +726,16 @@
             }
 
 
+            /*
+             * No telemóvel mantemos o selo grande,
+             * mas impedimos que fique gigantesco.
+             */
+
             .selo-img {
 
-                width: 125px;
+                width: clamp(140px, 30vw, 190px);
+
+                top: 55%;
             }
 
 
@@ -750,7 +758,7 @@
 
 
     <!-- =========================================================
-         1. ENVELOPE
+         ENVELOPE
          ========================================================= -->
 
     <div
@@ -758,7 +766,7 @@
         onclick="openEnvelope()"
     >
 
-        <!-- Corpo do envelope -->
+        <!-- Corpo -->
 
         <img
             src="envelope-corpo.png"
@@ -767,7 +775,7 @@
         >
 
 
-        <!-- Aba superior -->
+        <!-- Aba -->
 
         <div class="env-aba-container">
 
@@ -804,7 +812,7 @@
 
 
     <!-- =========================================================
-         2. CONVITE
+         SITE PRINCIPAL
          ========================================================= -->
 
     <div id="main-site">
@@ -958,7 +966,8 @@
 
             pt: {
 
-                hint: "Clique para abrir",
+                hint:
+                    "Clique para abrir",
 
                 phrase:
                     "Com imensa alegria, convidamo-vos a celebrar connosco a união do nosso amor.",
@@ -980,7 +989,6 @@
 
                 copied:
                     "Copiado"
-
             },
 
 
@@ -1009,7 +1017,6 @@
 
                 copied:
                     "Copied"
-
             },
 
 
@@ -1025,7 +1032,7 @@
                     "07 . 08 . 2027",
 
                 location:
-                    "<strong>Quinta dos Sonhos</strong><br>Coimbra, Portogallo",
+                    "<strong>Quinta dei Sogni</strong><br>Coimbra, Portogallo",
 
                 btnSite:
                     "Il Nostro Sito",
@@ -1038,13 +1045,13 @@
 
                 copied:
                     "Copiato"
-
             }
 
         };
 
 
         let currentLang = 'pt';
+
 
 
         /* =========================================================
@@ -1098,13 +1105,13 @@
 
 
             /*
-             * Impede múltiplos cliques enquanto
-             * a animação está a decorrer.
+             * Impede múltiplos cliques.
              */
 
             if (
                 screen.classList.contains('opening')
             ) {
+
                 return;
             }
 
@@ -1113,11 +1120,8 @@
 
 
             /*
-             * A animação total dura aproximadamente
-             * 1.9 segundos.
-             *
-             * O site aparece no final do desaparecimento
-             * do envelope.
+             * A página começa a aparecer enquanto
+             * o envelope termina de desaparecer.
              */
 
             setTimeout(() => {
@@ -1128,7 +1132,7 @@
                     .getElementById('main-site')
                     .classList.add('visible');
 
-            }, 1750);
+            }, 1650);
 
         }
 
@@ -1147,43 +1151,45 @@
 
             document
                 .getElementById('txt-hint')
-                .innerText = t.hint;
+                .innerText =
+                t.hint;
 
 
             document
                 .getElementById('txt-phrase')
-                .innerText = t.phrase;
+                .innerText =
+                t.phrase;
 
 
             document
                 .getElementById('txt-date')
-                .innerText = t.date;
+                .innerText =
+                t.date;
 
 
             document
                 .getElementById('txt-location')
-                .innerHTML = t.location;
+                .innerHTML =
+                t.location;
 
 
             document
                 .getElementById('txt-btn-site')
-                .innerText = t.btnSite;
+                .innerText =
+                t.btnSite;
 
 
             document
                 .getElementById('txt-btn-gifts')
-                .innerText = t.btnGifts;
+                .innerText =
+                t.btnGifts;
 
 
             document
                 .getElementById('txt-copy')
-                .innerText = t.copy;
+                .innerText =
+                t.copy;
 
-
-
-            /*
-             * Atualiza botão de idioma ativo.
-             */
 
             document
                 .querySelectorAll('.lang-btn')
