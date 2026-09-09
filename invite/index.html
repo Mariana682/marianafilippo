@@ -733,43 +733,58 @@
            MOBILE
            ========================================================= */
 
-    @media (max-width: 600px) {
+   @media (max-width: 600px) {
 
     #envelope-screen {
         position: fixed;
         inset: 0;
         width: 100vw;
         height: 100dvh;
+        min-height: 100svh;
         overflow: hidden;
         background: #596B4D;
     }
 
-    /* =========================
-       CORPO
-       ========================= */
+    /* =====================================================
+       CORPO — preenche todo o ecrã
+       ===================================================== */
 
-  .env-corpo-img {
-    position: absolute;
+    .env-corpo-img {
+        position: absolute;
 
-    left: 50%;
-    top: 50%;
+        /*
+         * A área visível real da imagem é aproximadamente:
+         * 1189 × 694 px
+         *
+         * Dimensionamos a PNG para que essa área visível
+         * ocupe exactamente o viewport.
+         */
 
-    width: 100vw;
-    height: 78dvh;
+        width: 129.35vw;
+        height: 147.84dvh;
 
-    max-width: none;
-    max-height: none;
+        max-width: none;
+        max-height: none;
 
-    transform: translate(-50%, -10%);
+        /*
+         * A margem transparente real do PNG é:
+         * esquerda ≈ 175 px
+         * topo ≈ 205 px
+         */
+        left: -14.74vw;
+        top: -29.62dvh;
 
-    object-fit: fill;
-    object-position: center center;
+        transform: none;
 
-    z-index: 2;
-}
-    /* =========================
-       ABA
-       ========================= */
+        object-fit: fill;
+
+        z-index: 2;
+    }
+
+
+    /* =====================================================
+       ABA — mantém proporção original
+       ===================================================== */
 
     .env-aba-container {
         position: absolute;
@@ -786,14 +801,22 @@
     .env-aba-img {
         position: absolute;
 
-        height: 133dvh;
-        width: auto;
+        /*
+         * Área visível real da aba:
+         * 1177 × 577 px
+         *
+         * A largura visível fica igual à largura
+         * do telefone e a proporção original é mantida.
+         */
+
+        width: 130.5vw;
+        height: auto;
 
         max-width: none;
         max-height: none;
 
         left: 50%;
-        top: -15.7dvh;
+        top: -10.0vw;
 
         transform: translateX(-50%);
 
@@ -803,23 +826,23 @@
         z-index: 4;
     }
 
-    /* =========================
+
+    /* =====================================================
        ABERTURA
-       ========================= */
+       ===================================================== */
 
     #envelope-screen.opening .env-aba-container {
         transform: translateY(-110vh);
     }
 
     #envelope-screen.opening .env-corpo-img {
-        transform:
-            translate(-50%, -50%)
-            translateY(110vh);
+        transform: translateY(110vh);
     }
 
-    /* =========================
+
+    /* =====================================================
        SELO
-       ========================= */
+       ===================================================== */
 
     .selo-img {
         width: clamp(130px, 38vw, 180px);
