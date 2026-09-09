@@ -46,7 +46,7 @@
             font-family: 'Montserrat', sans-serif;
             color: var(--text-dark);
             overflow-x: hidden;
-            background-color: #596B4D;
+            background-color: #3A4432;
         }
 
 
@@ -749,38 +749,24 @@
        CORPO — preenche todo o ecrã
        ===================================================== */
 
-    .env-corpo-img {
-        position: absolute;
+  .env-corpo-img {
+    position: absolute;
 
-        /*
-         * A área visível real da imagem é aproximadamente:
-         * 1189 × 694 px
-         *
-         * Dimensionamos a PNG para que essa área visível
-         * ocupe exactamente o viewport.
-         */
+    width: 135vw;
+    height: 147.84dvh;
 
-        width: 129.35vw;
-        height: 147.84dvh;
+    max-width: none;
+    max-height: none;
 
-        max-width: none;
-        max-height: none;
+    left: -17.5vw;
+    top: -29.62dvh;
 
-        /*
-         * A margem transparente real do PNG é:
-         * esquerda ≈ 175 px
-         * topo ≈ 205 px
-         */
-        left: -14.74vw;
-        top: -29.62dvh;
+    transform: none;
 
-        transform: none;
+    object-fit: fill;
 
-        object-fit: fill;
-
-        z-index: 2;
-    }
-
+    z-index: 2;
+}
 
     /* =====================================================
        ABA — mantém proporção original
