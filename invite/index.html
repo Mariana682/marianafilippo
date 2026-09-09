@@ -765,43 +765,32 @@
 
 
             .env-corpo-img,
-            .env-aba-img {
+.env-aba-img {
 
-                position: absolute;
+    position: absolute;
 
-                /*
-                 * ESTE É O VALOR PRINCIPAL
-                 *
-                 * Altera apenas este número para
-                 * aumentar ou diminuir o envelope.
-                 */
+    /* A altura do telefone é a referência */
+    height: 100dvh;
 
-                height: 180dvh;
+    /* A largura é calculada proporcionalmente */
+    width: auto;
 
-                /*
-                 * A largura é calculada automaticamente
-                 * mantendo a proporção original.
-                 */
+    /* Permite que a imagem fique maior que o telefone */
+    max-width: none;
+    max-height: none;
 
-                width: auto;
+    /* Centro do telefone */
+    left: 50%;
+    top: 50%;
 
-                max-width: none;
-                max-height: none;
+    /* Centro da imagem no centro do telefone */
+    transform: translate(-50%, -50%);
 
-                left: 50%;
-                top: 50%;
+    /* Mantém a proporção original */
+    object-fit: contain;
 
-                /*
-                 * Centra a imagem sem a deformar.
-                 */
-
-                transform:
-                    translate(-50%, -50%);
-
-                object-fit: contain;
-
-                object-position: center center;
-            }
+    object-position: center center;
+}
 
 
             /*
