@@ -12,9 +12,9 @@
 
     <style>
         :root {
-            var(--sage-green): #6a7b5e; 
-            --accent-gold: #D4AF37;
+            --sage-green: #6a7b5e; 
             --text-dark: #2C332A;
+            --env-interior: #3b4634; /* Cor verde escura para o interior do envelope */
         }
 
         * {
@@ -30,10 +30,10 @@
             min-height: 100vh;
             width: 100vw;
             overflow-x: hidden;
-            background-color: #F9F6F0;
+            background-color: #121610;
         }
 
-        /* --- 1. ENVELOPE FULLSCREEN REALISTA --- */
+        /* --- 1. ENVELOPE 3D COM IMAGENS REAIS --- */
         #envelope-screen {
             position: fixed;
             top: 0;
@@ -42,117 +42,182 @@
             height: 100vh;
             z-index: 9999;
             cursor: pointer;
-            transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), transform 1.2s ease, visibility 1.2s;
-            background-color: #1a2017;
+            background-color: #161b14;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            perspective: 1500px; /* Profundidade 3D */
+            transition: opacity 0.8s ease 1.5s, visibility 0.8s ease 1.5s;
         }
 
-        #envelope-screen.opened {
-            opacity: 0;
-            transform: scale(1.1);
-            visibility: hidden;
+        .envelope-box {
+            position: relative;
+            width: 90vw;
+            max-width: 540px;
+            transform-style: preserve-3d;
+            border-radius: 4px;
         }
 
-        .paper-texture {
-            background-color: #6a7b5e;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.12'/%3E%3C/svg%3E");
+        /* O interior do envelope (fica atrás de tudo) */
+        .env-interior {
+            position: absolute;
+            top: 5%; 
+            left: 1%; 
+            right: 1%; 
+            bottom: 5%;
+            background-color: var(--env-interior);
+            border-radius: 4px;
+            z-index: 1;
+            box-shadow: inset 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        .env-body {
+        /* O cartão de convite que sobe de dentro */
+        .env-card {
+            position: absolute;
+            top: 8%; 
+            left: 4%; 
+            width: 92%; 
+            height: 85%;
+            background: #FAF8F5;
+            border-radius: 4px;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 -5px 15px rgba(0,0,0,0.2);
+            transition: transform 0.9s cubic-bezier(0.25, 1, 0.5, 1) 0.6s;
+        }
+
+        .card-names {
+            font-family: 'Allura', cursive;
+            font-size: 42px;
+            color: var(--sage-green);
+            line-height: 1;
+        }
+
+        .card-date {
+            font-size: 11px;
+            letter-spacing: 3px;
+            color: #777;
+            margin-top: 10px;
+        }
+
+        /* O Corpo inferior do envelope recortado (Imagem) */
+        .env-corpo-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            position: relative;
+            z-index: 3; /* Fica à frente do cartão */
+            filter: drop-shadow(0 25px 40px rgba(0,0,0,0.5));
+        }
+
+        /* A Aba superior que dobra (Imagem) */
+        .env-aba-container {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 1;
+            z-index: 4; /* Começa à frente de tudo */
+            transform-origin: top center;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.2s, z-index 0s linear 0.6s;
         }
 
-        .env-flap {
-            position: absolute;
-            top: 0;
-            left: 0;
+        .env-aba-img {
             width: 100%;
-            height: 52vh;
-            clip-path: polygon(0 0, 100% 0, 50% 100%);
-            z-index: 2;
-            filter: drop-shadow(0px 12px 15px rgba(0,0,0,0.5));
+            height: auto;
+            display: block;
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.3));
         }
 
-        .env-seal-container {
+        /* Selo de Cera */
+        .selo-img {
             position: absolute;
-            top: 52vh;
+            top: 51%; /* Ajusta ligeiramente se o bico da tua aba for mais acima/abaixo */
             left: 50%;
             transform: translate(-50%, -50%);
-            z-index: 3;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .env-seal-img {
-            width: 110px;
+            width: 90px;
             height: auto;
-            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.6));
-            transition: transform 0.3s ease;
-        }
-
-        .env-seal-container:hover .env-seal-img {
-            transform: scale(1.05);
+            z-index: 5;
+            filter: drop-shadow(0 6px 12px rgba(0,0,0,0.5));
+            transition: transform 0.3s ease, opacity 0.3s ease;
         }
 
         .open-hint-text {
-            margin-top: 15px;
-            color: rgba(255,255,255,0.8);
+            margin-top: 35px;
+            color: rgba(255,255,255,0.7);
             font-size: 10px;
             letter-spacing: 4px;
             text-transform: uppercase;
             animation: pulse 2s infinite;
+            transition: opacity 0.3s ease;
         }
 
         @keyframes pulse {
-            0%, 100% { opacity: 0.4; }
+            0%, 100% { opacity: 0.3; }
             50% { opacity: 1; }
         }
 
-        /* --- 2. SITE PRINCIPAL (COM AGUARELA DE FUNDO) --- */
+        /* --- ANIMAÇÕES DE ABERTURA --- */
+        #envelope-screen.opening .selo-img {
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0.3);
+        }
+
+        #envelope-screen.opening .env-aba-container {
+            transform: rotateX(180deg);
+            z-index: 1; /* Passa a aba para trás do cartão depois de abrir */
+        }
+
+        #envelope-screen.opening .env-card {
+            transform: translateY(-55%); /* Cartão desliza para fora */
+        }
+
+        #envelope-screen.opening .open-hint-text {
+            opacity: 0;
+        }
+
+        #envelope-screen.opened {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        /* --- 2. SITE PRINCIPAL --- */
         #main-site {
             width: 100vw;
             min-height: 100vh;
-            
-            /* A TUA AGUARELA */
             background-image: url('background.jpg');
             background-size: cover;
-            background-position: center bottom; /* Foca a parte inferior da imagem (a quinta) */
-            background-attachment: fixed; /* O fundo fica fixo enquanto fazes scroll */
-            
+            background-position: center bottom;
+            background-attachment: fixed;
             display: flex;
             justify-content: center;
-            align-items: center; /* Centra o cartão no ecrã */
+            align-items: center;
             padding: 40px 20px;
             opacity: 0;
-            transition: opacity 1.5s ease 0.3s;
+            transition: opacity 1.5s ease 0.2s;
         }
 
         #main-site.visible {
             opacity: 1;
         }
 
-        /* --- EFEITO CARTÃO TRANSLÚCIDO (VELLUM) --- */
         .content-wrapper {
             width: 100%;
-            max-width: 600px;
+            max-width: 580px;
             margin: 0 auto;
             text-align: center;
-            
-            /* Fundo quase branco com alguma transparência */
-            background: rgba(253, 251, 247, 0.90);
-            /* Desfoca ligeiramente o que está por trás do cartão */
+            background: rgba(253, 251, 247, 0.92);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
-            
             padding: 50px 30px;
             border-radius: 16px;
             box-shadow: 0 20px 50px rgba(0,0,0,0.15);
-            border: 1px solid rgba(255,255,255,0.6);
+            border: 1px solid rgba(255,255,255,0.7);
         }
 
         .lang-bar {
@@ -165,7 +230,7 @@
         .lang-btn {
             background: none;
             border: none;
-            color: #6a7b5e;
+            color: var(--sage-green);
             font-size: 12px;
             font-weight: 600;
             letter-spacing: 2px;
@@ -177,13 +242,13 @@
 
         .lang-btn.active {
             opacity: 1;
-            border-bottom: 2px solid #6a7b5e;
+            border-bottom: 2px solid var(--sage-green);
         }
 
         .names-title {
             font-family: 'Allura', cursive;
             font-size: 68px;
-            color: #6a7b5e;
+            color: var(--sage-green);
             line-height: 1;
             margin-bottom: 20px;
         }
@@ -200,7 +265,6 @@
             margin-bottom: 45px;
         }
 
-        /* --- MOLDURA FLORAL (ESTILO ETSY) --- */
         .photo-frame-wrapper {
             position: relative;
             width: 260px;
@@ -240,7 +304,7 @@
             font-size: 18px;
             font-weight: 500;
             letter-spacing: 3px;
-            color: #6a7b5e;
+            color: var(--sage-green);
             text-transform: uppercase;
             margin-bottom: 15px;
         }
@@ -257,7 +321,7 @@
             display: flex;
             flex-direction: column;
             gap: 15px;
-            margin-bottom: 45px;
+            margin-bottom: 35px;
             align-items: center;
         }
 
@@ -276,7 +340,7 @@
         }
 
         .btn-site {
-            background-color: #6a7b5e;
+            background-color: var(--sage-green);
             color: #ffffff;
         }
 
@@ -285,51 +349,66 @@
             color: #4a3a0f;
         }
 
-        .iban-footer {
-            padding-top: 25px;
-            border-top: 1px solid rgba(106, 123, 94, 0.2);
-        }
-
-        .iban-pill {
-            display: inline-flex;
+        /* IBAN Minimalista */
+        .iban-container {
+            display: flex;
             align-items: center;
-            gap: 12px;
-            background: rgba(255, 255, 255, 0.8);
-            padding: 10px 20px;
-            border-radius: 30px;
-            border: 1px solid rgba(0,0,0,0.05);
+            justify-content: center;
+            gap: 10px;
             font-family: monospace;
-            font-size: 13px;
-            margin-top: 15px;
+            font-size: 12px;
+            color: var(--text-dark);
+            margin-top: 10px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(106, 123, 94, 0.15);
         }
 
         .copy-link {
             background: none;
             border: none;
-            color: #6a7b5e;
+            color: var(--sage-green);
             font-weight: 600;
             cursor: pointer;
-            font-size: 11px;
+            font-size: 10px;
             text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 2px 6px;
+            transition: opacity 0.2s ease;
+        }
+
+        .copy-link:hover {
+            opacity: 0.7;
         }
     </style>
 </head>
 <body>
 
-    <!-- 1. ENVELOPE FULLSCREEN -->
+    <!-- 1. ENVELOPE 3D COM IMAGENS REAIS -->
     <div id="envelope-screen" onclick="openEnvelope()">
-        <div class="env-body paper-texture"></div>
-        <div class="env-flap paper-texture"></div>
-        
-        <div class="env-seal-container">
-            <img src="selo.png" alt="Selo de Cera" class="env-seal-img" onerror="this.style.display='none';">
-            <p class="open-hint-text" id="txt-hint">Clique para abrir</p>
+        <div class="envelope-box">
+            
+            <div class="env-interior"></div>
+            
+            <div class="env-card">
+                <div class="card-names">Mariana & Filippo</div>
+                <div class="card-date">07 . 08 . 2027</div>
+            </div>
+            
+            <!-- Imagem 1: Corpo inferior (O V invertido fica transparente) -->
+            <img src="envelope-corpo.png" alt="Corpo do Envelope" class="env-corpo-img">
+            
+            <!-- Imagem 2: Aba superior que roda -->
+            <div class="env-aba-container">
+                <img src="envelope-aba.png" alt="Aba do Envelope" class="env-aba-img">
+            </div>
+            
+            <img src="selo.png" alt="Selo de Cera" class="selo-img" onerror="this.style.display='none';">
         </div>
+        <p class="open-hint-text" id="txt-hint">Clique para abrir</p>
     </div>
 
-    <!-- 2. CONVITE -->
+    <!-- 2. CONVITE (SITE) -->
     <div id="main-site">
-        <!-- Cartão Central Translúcido -->
         <div class="content-wrapper">
             
             <div class="lang-bar">
@@ -362,12 +441,9 @@
                 <a href="https://marianafilippo.pt/#presentes" target="_blank" class="action-btn btn-gifts" id="txt-btn-gifts">Lista de Presentes</a>
             </div>
 
-            <div class="iban-footer">
-                <p style="font-size: 12px; color: #666;" id="txt-iban-intro">Para quem deseja mimar-nos de forma direta:</p>
-                <div class="iban-pill">
-                    <span id="iban-code">PT50 0000 0000 0000 0000 0000 0</span>
-                    <button class="copy-link" onclick="copyIBAN()" id="txt-copy">Copiar</button>
-                </div>
+            <div class="iban-container">
+                <span id="iban-code">PT50 0000 0000 0000 0000 0000 0</span>
+                <button class="copy-link" onclick="copyIBAN()" id="txt-copy">Copiar</button>
             </div>
 
         </div>
@@ -382,7 +458,6 @@
                 location: "<strong>Quinta dos Sonhos</strong><br>Coimbra, Portugal",
                 btnSite: "O Nosso Site",
                 btnGifts: "Lista de Presentes",
-                ibanIntro: "Para quem nos perguntou e deseja mimar-nos de forma direta:",
                 copy: "Copiar",
                 copied: "Copiado"
             },
@@ -393,7 +468,6 @@
                 location: "<strong>Quinta dos Sonhos</strong><br>Coimbra, Portugal",
                 btnSite: "Our Website",
                 btnGifts: "Gift Registry",
-                ibanIntro: "For those who kindly asked and wish to gift us directly:",
                 copy: "Copy",
                 copied: "Copied"
             },
@@ -404,7 +478,6 @@
                 location: "<strong>Quinta dos Sonhos</strong><br>Coimbra, Portogallo",
                 btnSite: "Il Nostro Sito",
                 btnGifts: "Lista Nozze",
-                ibanIntro: "Per chi desidera farci un pensiero in modo diretto:",
                 copy: "Copia",
                 copied: "Copiato"
             }
@@ -413,10 +486,14 @@
         let currentLang = 'pt';
 
         function openEnvelope() {
-            document.getElementById('envelope-screen').classList.add('opened');
+            const screen = document.getElementById('envelope-screen');
+            screen.classList.add('opening');
+            
+            // Aguarda o final da animação 3D para revelar o site
             setTimeout(() => {
+                screen.classList.add('opened');
                 document.getElementById('main-site').classList.add('visible');
-            }, 400);
+            }, 1800); 
         }
 
         function setLang(lang) {
@@ -428,7 +505,6 @@
             document.getElementById('txt-location').innerHTML = t.location;
             document.getElementById('txt-btn-site').innerText = t.btnSite;
             document.getElementById('txt-btn-gifts').innerText = t.btnGifts;
-            document.getElementById('txt-iban-intro').innerText = t.ibanIntro;
             document.getElementById('txt-copy').innerText = t.copy;
 
             document.querySelectorAll('.lang-btn').forEach(btn => {
