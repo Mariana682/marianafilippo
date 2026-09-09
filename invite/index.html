@@ -33,7 +33,7 @@
             font-family: 'Montserrat', sans-serif;
             color: var(--text-dark);
             overflow-x: hidden;
-            background-color: #121610;
+            background-color: #fdfbf7;
         }
 
 
@@ -54,39 +54,32 @@
             cursor: pointer;
 
             /*
-             * Branco em vez de preto.
-             * Assim, quando a aba abrir, não aparece um
-             * enorme triângulo preto.
+             * Começamos com branco.
+             * Durante a abertura torna-se transparente para que
+             * o convite apareça por baixo.
              */
-            background: #fdfbf7;
+            background-color: #fdfbf7;
 
             overflow: hidden;
 
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            perspective: 1600px;
-
-            opacity: 1;
-            visibility: visible;
-
             transition:
-                opacity 0.8s ease,
-                visibility 0.8s ease;
+                background-color 1.15s ease,
+                opacity 0.35s ease,
+                visibility 0.35s ease;
         }
 
 
         /*
-         * CORPO + ABA
+         * ========================================================
+         * CORPO E ABA
+         * ========================================================
          *
-         * A PNG original tem margens transparentes.
+         * As duas imagens continuam exatamente sobrepostas.
          *
-         * Estes valores fazem o envelope real ocupar
-         * praticamente todo o ecrã.
+         * Não existe qualquer rotação 3D.
          *
-         * É FUNDAMENTAL que os dois tenham exatamente
-         * os mesmos valores.
+         * A abertura é feita simplesmente separando as duas
+         * partes verticalmente.
          */
 
         .env-corpo-img,
@@ -107,55 +100,51 @@
         }
 
 
-        /* Corpo inferior */
+        /*
+         * CORPO DO ENVELOPE
+         */
 
         .env-corpo-img {
+
             z-index: 2;
+
+            /*
+             * Movimento para baixo durante a abertura.
+             */
+            transform: translateY(0);
+
+            transition:
+                transform 1.15s cubic-bezier(0.65, 0, 0.35, 1);
         }
 
 
         /*
-         * ABA SUPERIOR
+         * ABA DO ENVELOPE
          */
 
         .env-aba-container {
 
             position: absolute;
 
-            width: 100%;
-            height: 100%;
-
-            left: 0;
-            top: 0;
+            inset: 0;
 
             z-index: 4;
 
             /*
-             * A dobra real fica aproximadamente a meio
-             * depois do reposicionamento da imagem.
+             * SEM rotateX.
+             *
+             * A aba simplesmente sobe.
              */
-            transform-origin: 50% 50%;
-
-            transform-style: preserve-3d;
-
-            /*
-             * Importante:
-             * impede que vejamos a parte traseira da PNG
-             * durante a animação.
-             */
-            backface-visibility: hidden;
+            transform: translateY(0);
 
             transition:
-                transform 1.05s cubic-bezier(0.25, 0.8, 0.25, 1),
-                opacity 0.45s ease;
+                transform 1.15s cubic-bezier(0.65, 0, 0.35, 1);
         }
 
 
         .env-aba-img {
 
             z-index: 4;
-
-            backface-visibility: hidden;
         }
 
 
@@ -163,8 +152,6 @@
          * ========================================================
          * SELO
          * ========================================================
-         *
-         * Maior e ligeiramente mais abaixo.
          */
 
         .selo-img {
@@ -174,15 +161,14 @@
             left: 50%;
 
             /*
-             * Antes estava aproximadamente a 50%.
-             * Agora fica mais abaixo.
+             * Mais abaixo do que anteriormente.
              */
             top: 55%;
 
             /*
-             * BEM maior.
+             * Selo bastante maior.
              */
-            width: clamp(160px, 19vw, 260px);
+            width: clamp(160px, 20vw, 270px);
 
             height: auto;
 
@@ -202,7 +188,9 @@
 
 
         /*
-         * Texto
+         * ========================================================
+         * TEXTO "CLIQUE PARA ABRIR"
+         * ========================================================
          */
 
         .open-hint-text {
@@ -227,7 +215,7 @@
             animation: pulse 2s infinite;
 
             transition:
-                opacity 0.35s ease;
+                opacity 0.4s ease;
 
             z-index: 7;
         }
@@ -248,12 +236,59 @@
 
 
         /* =========================================================
-           ABERTURA DO ENVELOPE
+           ABERTURA
            ========================================================= */
 
 
         /*
-         * 1. SELO DESAPARECE
+         * O FUNDO DO ENVELOPE torna-se transparente.
+         *
+         * Isto é importante:
+         * o convite já está a aparecer por baixo enquanto
+         * as peças do envelope se afastam.
+         */
+
+        #envelope-screen.opening {
+
+            background-color: rgba(253, 251, 247, 0);
+
+            cursor: default;
+        }
+
+
+        /*
+         * ABA:
+         *
+         * desliza completamente para cima.
+         *
+         * Não roda.
+         */
+
+        #envelope-screen.opening .env-aba-container {
+
+            transform:
+                translateY(-110vh);
+        }
+
+
+        /*
+         * CORPO:
+         *
+         * desliza completamente para baixo.
+         */
+
+        #envelope-screen.opening .env-corpo-img {
+
+            transform:
+                translateY(110vh);
+        }
+
+
+        /*
+         * SELO:
+         *
+         * desaparece antes de as duas partes
+         * se afastarem completamente.
          */
 
         #envelope-screen.opening .selo-img {
@@ -262,33 +297,12 @@
 
             transform:
                 translate(-50%, -50%)
-                scale(0.35);
+                scale(0.65);
         }
 
 
         /*
-         * 2. ABA ABRE PARA CIMA
-         *
-         * Em vez de 180 graus, fazemos uma rotação muito
-         * mais curta, como se a aba estivesse a dobrar
-         * para trás.
-         *
-         * O movimento vertical adicional reforça a sensação
-         * de que está a abrir para cima.
-         */
-
-        #envelope-screen.opening .env-aba-container {
-
-            transform:
-                translateY(-4%)
-                rotateX(72deg);
-
-            opacity: 0.96;
-        }
-
-
-        /*
-         * 3. TEXTO DESAPARECE
+         * TEXTO desaparece.
          */
 
         #envelope-screen.opening .open-hint-text {
@@ -298,50 +312,8 @@
 
 
         /*
-         * 4. ENVELOPE TODO FAZ ZOOM + FADE
-         *
-         * O envelope aproxima-se ligeiramente do utilizador
-         * enquanto desaparece.
+         * No final já não precisamos do overlay.
          */
-
-        #envelope-screen.opening {
-
-            animation:
-                envelopeZoom 1.25s
-                cubic-bezier(0.4, 0, 0.2, 1)
-                forwards;
-
-            animation-delay: 0.7s;
-        }
-
-
-        @keyframes envelopeZoom {
-
-            0% {
-
-                opacity: 1;
-
-                transform:
-                    scale(1);
-            }
-
-            35% {
-
-                opacity: 1;
-
-                transform:
-                    scale(1.025);
-            }
-
-            100% {
-
-                opacity: 0;
-
-                transform:
-                    scale(1.14);
-            }
-        }
-
 
         #envelope-screen.opened {
 
@@ -359,6 +331,8 @@
            ========================================================= */
 
         #main-site {
+
+            position: relative;
 
             width: 100vw;
             min-height: 100vh;
@@ -378,16 +352,30 @@
 
             padding: 40px 20px;
 
+            /*
+             * Começa escondido.
+             */
+
             opacity: 0;
 
+            transform: scale(0.985);
+
             transition:
-                opacity 1.5s ease;
+                opacity 1.35s ease,
+                transform 1.5s cubic-bezier(0.22, 0.61, 0.36, 1);
         }
 
+
+        /*
+         * O convite começa a aparecer assim que clicamos
+         * no envelope.
+         */
 
         #main-site.visible {
 
             opacity: 1;
+
+            transform: scale(1);
         }
 
 
@@ -726,14 +714,10 @@
             }
 
 
-            /*
-             * No telemóvel mantemos o selo grande,
-             * mas impedimos que fique gigantesco.
-             */
-
             .selo-img {
 
-                width: clamp(140px, 30vw, 190px);
+                width:
+                    clamp(140px, 30vw, 195px);
 
                 top: 55%;
             }
@@ -758,7 +742,7 @@
 
 
     <!-- =========================================================
-         ENVELOPE
+         1. ENVELOPE
          ========================================================= -->
 
     <div
@@ -766,7 +750,7 @@
         onclick="openEnvelope()"
     >
 
-        <!-- Corpo -->
+        <!-- Corpo do envelope -->
 
         <img
             src="envelope-corpo.png"
@@ -775,7 +759,7 @@
         >
 
 
-        <!-- Aba -->
+        <!-- Aba superior -->
 
         <div class="env-aba-container">
 
@@ -812,7 +796,7 @@
 
 
     <!-- =========================================================
-         SITE PRINCIPAL
+         2. CONVITE
          ========================================================= -->
 
     <div id="main-site">
@@ -849,11 +833,9 @@
             </div>
 
 
-
             <h1 class="names-title">
                 Mariana & Filippo
             </h1>
-
 
 
             <p
@@ -862,7 +844,6 @@
             >
                 Com imensa alegria, convidamo-vos a celebrar connosco a união do nosso amor.
             </p>
-
 
 
             <div class="photo-frame-wrapper">
@@ -884,7 +865,6 @@
             </div>
 
 
-
             <div class="event-details">
 
                 <div
@@ -904,7 +884,6 @@
                 </div>
 
             </div>
-
 
 
             <div class="buttons-group">
@@ -929,7 +908,6 @@
                 </a>
 
             </div>
-
 
 
             <div class="iban-container">
@@ -1053,7 +1031,6 @@
         let currentLang = 'pt';
 
 
-
         /* =========================================================
            IDIOMA AUTOMÁTICO
            ========================================================= */
@@ -1103,9 +1080,14 @@
                     'envelope-screen'
                 );
 
+            const mainSite =
+                document.getElementById(
+                    'main-site'
+                );
+
 
             /*
-             * Impede múltiplos cliques.
+             * Impede cliques repetidos.
              */
 
             if (
@@ -1116,23 +1098,32 @@
             }
 
 
+            /*
+             * PRIMEIRO:
+             * começa imediatamente a revelar o site
+             * por trás do envelope.
+             */
+
+            mainSite.classList.add('visible');
+
+
+            /*
+             * Depois começa a separação do envelope.
+             */
+
             screen.classList.add('opening');
 
 
             /*
-             * A página começa a aparecer enquanto
-             * o envelope termina de desaparecer.
+             * Quando a animação terminou,
+             * retiramos completamente o envelope.
              */
 
             setTimeout(() => {
 
                 screen.classList.add('opened');
 
-                document
-                    .getElementById('main-site')
-                    .classList.add('visible');
-
-            }, 1650);
+            }, 1250);
 
         }
 
