@@ -11,8 +11,8 @@
 
     <style>
         :root {
-            /* AJUSTE TÉCNICO: Define a percentagem a partir do topo onde fica a dobra física da aba na tua foto */
-            --linha-da-dobra: 35%;
+            /* Posição real da dobra da aba */
+            --linha-da-dobra: 50%;
             
             --sage-green: #6a7b5e; 
             --text-dark: #2C332A;
@@ -44,22 +44,23 @@
             z-index: 9999;
             cursor: pointer;
             background-color: #000;
-            perspective: 2000px; /* Profundidade 3D intensa para full screen */
-            transition: opacity 1.2s ease 0.8s, visibility 1.2s ease 0.8s;
+            perspective: 2000px;
+            transition: opacity 1.2s ease, visibility 1.2s ease;
             display: flex;
             justify-content: center;
             align-items: center;
             overflow: hidden;
         }
 
-        /* Imagens em Full Screen (Cobrem todo o ecrã) */
-        .env-corpo-img, .env-aba-img {
+        /* Imagens do envelope em fullscreen */
+        .env-corpo-img,
+        .env-aba-img {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover; 
+            object-fit: fill;
             pointer-events: none;
         }
 
@@ -67,7 +68,7 @@
             z-index: 2;
         }
 
-        /* Container da aba que aplica a rotação */
+        /* Container da aba */
         .env-aba-container {
             position: absolute;
             top: 0;
@@ -79,18 +80,27 @@
             transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
+        /* Selo */
         .selo-img {
             position: absolute;
-            /* Ajusta o 'top' para colocar o selo exatamente sobre a ponta da aba */
-            top: var(--linha-da-dobra); 
+
+            /* Posição da ponta da aba */
+            top: 50%;
             left: 50%;
-            transform: translate(-50%, -10%);
-            width: 18vw;
-            min-width: 90px;
-            max-width: 140px;
+
+            transform: translate(-50%, -50%);
+
+            /* Maior */
+            width: 23vw;
+            min-width: 110px;
+            max-width: 180px;
+
             z-index: 4;
             filter: drop-shadow(0 8px 15px rgba(0,0,0,0.6));
-            transition: transform 0.4s ease, opacity 0.4s ease;
+
+            transition:
+                transform 0.5s ease,
+                opacity 0.4s ease;
         }
 
         .open-hint-text {
@@ -111,17 +121,43 @@
         }
 
         /* --- ANIMAÇÃO DE ABERTURA --- */
+
+        /*
+         * Primeiro desaparece o selo.
+         * A aba abre para cima, como num envelope real.
+         */
         #envelope-screen.opening .selo-img {
             opacity: 0;
-            transform: translate(-50%, -10%) scale(0.2);
+            transform: translate(-50%, -50%) scale(0.2);
         }
 
         #envelope-screen.opening .env-aba-container {
-            transform: rotateX(180deg);
+            transform: rotateX(-170deg);
         }
 
         #envelope-screen.opening .open-hint-text {
             opacity: 0;
+        }
+
+        /*
+         * Depois de abrir, o envelope inteiro
+         * aproxima-se e desaparece.
+         */
+        #envelope-screen.opening {
+            animation: envelopeZoomOut 1.4s ease-in forwards;
+            animation-delay: 0.65s;
+        }
+
+        @keyframes envelopeZoomOut {
+            0% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            100% {
+                opacity: 0;
+                transform: scale(1.12);
+            }
         }
 
         #envelope-screen.opened {
@@ -129,6 +165,7 @@
             visibility: hidden;
             pointer-events: none;
         }
+
 
         /* --- 2. SITE PRINCIPAL --- */
         #main-site {
@@ -324,21 +361,29 @@
         }
     </style>
 </head>
+
 <body>
 
     <!-- 1. ENVELOPE FULL SCREEN -->
     <div id="envelope-screen" onclick="openEnvelope()">
-        <!-- Imagem 1: Corpo Inferior -->
+
+        <!-- Corpo Inferior -->
         <img src="envelope-corpo.png" alt="Corpo do Envelope" class="env-corpo-img">
-        
-        <!-- Imagem 2: Aba Superior com eixo de rotação -->
+
+        <!-- Aba Superior -->
         <div class="env-aba-container">
             <img src="envelope-aba.png" alt="Aba do Envelope" class="env-aba-img">
         </div>
-        
-        <img src="selo.png" alt="Selo de Cera" class="selo-img" onerror="this.style.display='none';">
+
+        <!-- Selo -->
+        <img src="selo.png"
+             alt="Selo de Cera"
+             class="selo-img"
+             onerror="this.style.display='none';">
+
         <p class="open-hint-text" id="txt-hint">Clique para abrir</p>
     </div>
+
 
     <!-- 2. CONVITE -->
     <div id="main-site">
@@ -357,12 +402,20 @@
             </p>
 
             <div class="photo-frame-wrapper">
-                <img src="foto-noivos.jpg" alt="Mariana & Filippo" class="couple-photo" onerror="this.src='https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=400&q=80'">
-                <img src="moldura.png" alt="Moldura Floral" class="floral-overlay-img" onerror="this.style.display='none';">
+                <img src="foto-noivos.jpg"
+                     alt="Mariana & Filippo"
+                     class="couple-photo"
+                     onerror="this.src='https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=400&q=80'">
+
+                <img src="moldura.png"
+                     alt="Moldura Floral"
+                     class="floral-overlay-img"
+                     onerror="this.style.display='none';">
             </div>
 
             <div class="event-details">
                 <div class="date-text" id="txt-date">07 . 08 . 2027</div>
+
                 <div class="location-info" id="txt-location">
                     <strong>Quinta dos Sonhos</strong><br>
                     Coimbra, Portugal
@@ -370,20 +423,38 @@
             </div>
 
             <div class="buttons-group">
-                <a href="https://marianafilippo.pt" target="_blank" class="action-btn btn-site" id="txt-btn-site">O Nosso Site</a>
-                <a href="https://marianafilippo.pt/#presentes" target="_blank" class="action-btn btn-gifts" id="txt-btn-gifts">Lista de Presentes</a>
+                <a href="https://marianafilippo.pt"
+                   target="_blank"
+                   class="action-btn btn-site"
+                   id="txt-btn-site">
+                    O Nosso Site
+                </a>
+
+                <a href="https://marianafilippo.pt/#presentes"
+                   target="_blank"
+                   class="action-btn btn-gifts"
+                   id="txt-btn-gifts">
+                    Lista de Presentes
+                </a>
             </div>
 
             <div class="iban-container">
                 <span id="iban-code">PT50 0000 0000 0000 0000 0000 0</span>
-                <button class="copy-link" onclick="copyIBAN()" id="txt-copy">Copiar</button>
+                <button class="copy-link"
+                        onclick="copyIBAN()"
+                        id="txt-copy">
+                    Copiar
+                </button>
             </div>
 
         </div>
     </div>
 
+
     <script>
+
         const texts = {
+
             pt: {
                 hint: "Clique para abrir",
                 phrase: "Com imensa alegria, convidamo-vos a celebrar connosco a união do nosso amor.",
@@ -394,6 +465,7 @@
                 copy: "Copiar",
                 copied: "Copiado"
             },
+
             en: {
                 hint: "Click to open",
                 phrase: "With endless joy, we invite you to celebrate our wedding day with us.",
@@ -404,6 +476,7 @@
                 copy: "Copy",
                 copied: "Copied"
             },
+
             it: {
                 hint: "Clicca per aprire",
                 phrase: "Con immensa gioia, vi invitiamo a festeggiare il nostro matrimonio con noi.",
@@ -414,57 +487,127 @@
                 copy: "Copia",
                 copied: "Copiato"
             }
+
         };
+
 
         let currentLang = 'pt';
 
+
         // Deteção Automática do Idioma no arranque da página
         window.addEventListener('DOMContentLoaded', () => {
-            const browserLang = (navigator.language || navigator.userLanguage).slice(0, 2).toLowerCase();
+
+            const browserLang =
+                (navigator.language || navigator.userLanguage)
+                .slice(0, 2)
+                .toLowerCase();
+
             const supportedLangs = ['pt', 'en', 'it'];
-            
+
             if (supportedLangs.includes(browserLang)) {
                 setLang(browserLang);
             } else {
-                setLang('pt'); // Idioma por defeito caso o browser esteja noutra língua
+                setLang('pt');
             }
+
         });
 
+
         function openEnvelope() {
-            const screen = document.getElementById('envelope-screen');
+
+            const screen =
+                document.getElementById('envelope-screen');
+
+            // Evita clicar várias vezes durante a animação
+            if (screen.classList.contains('opening')) return;
+
             screen.classList.add('opening');
-            
-            // Oculta o ecrã do envelope e revela a página do convite
+
+            /*
+             * A animação começa pela aba.
+             * Depois o envelope desaparece com zoom.
+             * O site aparece no final.
+             */
             setTimeout(() => {
+
                 screen.classList.add('opened');
-                document.getElementById('main-site').classList.add('visible');
-            }, 1000); 
+
+                document
+                    .getElementById('main-site')
+                    .classList.add('visible');
+
+            }, 1850);
+
         }
+
 
         function setLang(lang) {
+
             currentLang = lang;
+
             const t = texts[lang];
-            
+
             document.getElementById('txt-hint').innerText = t.hint;
-            document.getElementById('txt-phrase').innerText = t.phrase;
-            document.getElementById('txt-date').innerText = t.date;
-            document.getElementById('txt-location').innerHTML = t.location;
-            document.getElementById('txt-btn-site').innerText = t.btnSite;
-            document.getElementById('txt-btn-gifts').innerText = t.btnGifts;
-            document.getElementById('txt-copy').innerText = t.copy;
+
+            document.getElementById('txt-phrase').innerText =
+                t.phrase;
+
+            document.getElementById('txt-date').innerText =
+                t.date;
+
+            document.getElementById('txt-location').innerHTML =
+                t.location;
+
+            document.getElementById('txt-btn-site').innerText =
+                t.btnSite;
+
+            document.getElementById('txt-btn-gifts').innerText =
+                t.btnGifts;
+
+            document.getElementById('txt-copy').innerText =
+                t.copy;
+
 
             // Atualiza botões
-            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-            document.getElementById(`btn-${lang}`).classList.add('active');
+            document
+                .querySelectorAll('.lang-btn')
+                .forEach(btn => btn.classList.remove('active'));
+
+            document
+                .getElementById(`btn-${lang}`)
+                .classList.add('active');
+
         }
 
+
         function copyIBAN() {
-            navigator.clipboard.writeText(document.getElementById('iban-code').innerText).then(() => {
-                const btn = document.getElementById('txt-copy');
-                btn.innerText = texts[currentLang].copied;
-                setTimeout(() => btn.innerText = texts[currentLang].copy, 2000);
-            });
+
+            navigator.clipboard
+                .writeText(
+                    document
+                        .getElementById('iban-code')
+                        .innerText
+                )
+                .then(() => {
+
+                    const btn =
+                        document.getElementById('txt-copy');
+
+                    btn.innerText =
+                        texts[currentLang].copied;
+
+                    setTimeout(() => {
+
+                        btn.innerText =
+                            texts[currentLang].copy;
+
+                    }, 2000);
+
+                });
+
         }
+
     </script>
+
 </body>
 </html>
