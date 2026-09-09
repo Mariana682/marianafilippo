@@ -78,22 +78,25 @@
         }
 
 
-        .env-corpo-img,
-        .env-aba-img {
+       .env-corpo-img,
+.env-aba-img {
 
-            position: absolute;
+    position: absolute;
 
-            width: 150%;
-            height: 150%;
+    width: 100vw;
+    height: auto;
 
-            left: -25%;
-            top: -29.9%;
+    max-width: none;
+    max-height: none;
 
-            object-fit: fill;
+    left: 50%;
+    top: 50%;
 
-            pointer-events: none;
-            user-select: none;
-        }
+    transform: translate(-50%, -50%) scale(1.8);
+
+    object-fit: contain;
+    object-position: center center;
+}
 
 
         .env-corpo-img {
