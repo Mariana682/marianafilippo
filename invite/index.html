@@ -733,62 +733,67 @@
            MOBILE
            ========================================================= */
 
-       /* =========================================================
-   MOBILE — ENVELOPE
-   ========================================================= */
-
-@media (max-width: 600px) {
+    @media (max-width: 600px) {
 
     #envelope-screen {
         position: fixed;
         inset: 0;
         width: 100vw;
         height: 100dvh;
-        min-height: 100svh;
         overflow: hidden;
+        background: #596B4D;
     }
 
-
-    /* =====================================================
-       CORPO DO ENVELOPE — ajusta-se ao telefone
-       ===================================================== */
+    /* =========================
+       CORPO
+       ========================= */
 
     .env-corpo-img {
         position: absolute;
 
-        left: 50%;
-        top: 50%;
-
-        width: 100vw;
-        height: 100dvh;
+        height: 148dvh;
+        width: auto;
 
         max-width: none;
         max-height: none;
 
+        left: 50%;
+        top: 50%;
+
         transform: translate(-50%, -50%);
 
-        object-fit: fill;
-        object-position: center center;
+        object-fit: contain;
 
         z-index: 2;
     }
 
+    /* =========================
+       ABA
+       ========================= */
 
-    /* =====================================================
-       ABA — mantém a proporção original
-       ===================================================== */
+    .env-aba-container {
+        position: absolute;
+        inset: 0;
+        z-index: 4;
+        overflow: hidden;
+
+        transform: translateY(0);
+
+        transition:
+            transform 1.15s cubic-bezier(0.65, 0, 0.35, 1);
+    }
 
     .env-aba-img {
         position: absolute;
 
-        left: 50%;
-        top: 0;
-
+        height: 133dvh;
         width: auto;
-        height: 100dvh;
 
         max-width: none;
         max-height: none;
+
+        left: 50%;
+        top: -15.7dvh;
 
         transform: translateX(-50%);
 
@@ -798,20 +803,13 @@
         z-index: 4;
     }
 
+    /* =========================
+       ABERTURA
+       ========================= */
 
-    .env-aba-container {
-        position: absolute;
-        inset: 0;
-        z-index: 4;
-
-        transform: translateY(0);
-
-        transition:
-            transform 1.15s cubic-bezier(0.65, 0, 0.35, 1);
+    #envelope-screen.opening .env-aba-container {
+        transform: translateY(-110vh);
     }
-
-
-    /* abertura */
 
     #envelope-screen.opening .env-corpo-img {
         transform:
@@ -819,18 +817,14 @@
             translateY(110vh);
     }
 
-    #envelope-screen.opening .env-aba-container {
-        transform: translateY(-110vh);
-    }
-
-
-    /* selo */
+    /* =========================
+       SELO
+       ========================= */
 
     .selo-img {
         width: clamp(130px, 38vw, 180px);
         top: 55%;
     }
-
 
     .open-hint-text {
         bottom: 5%;
@@ -838,7 +832,6 @@
         letter-spacing: 3px;
     }
 }
-
             /* =========================================
                SITE NO TELEFONE
                ========================================= */
