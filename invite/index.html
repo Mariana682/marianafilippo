@@ -764,31 +764,26 @@
             }
 
 
-            .env-corpo-img,
+        .env-corpo-img,
 .env-aba-img {
-
     position: absolute;
 
-    /* A altura do telefone é a referência */
-    height: 100dvh;
-
-    /* A largura é calculada proporcionalmente */
+    /*
+     * Aumentamos a imagem com base na altura do telefone.
+     * A largura continua automática para preservar a proporção.
+     */
+    height: 125dvh;
     width: auto;
 
-    /* Permite que a imagem fique maior que o telefone */
     max-width: none;
     max-height: none;
 
-    /* Centro do telefone */
     left: 50%;
     top: 50%;
 
-    /* Centro da imagem no centro do telefone */
     transform: translate(-50%, -50%);
 
-    /* Mantém a proporção original */
     object-fit: contain;
-
     object-position: center center;
 }
 
