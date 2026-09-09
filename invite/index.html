@@ -730,10 +730,21 @@
         @media (max-width: 600px) {
 
             #envelope-screen {
-                width: 100vw;
-                height: 100dvh;
-                min-height: 100svh;
-            }
+        width: 100vw;
+        height: 100dvh;
+        min-height: 100vh;
+        overflow: hidden;
+    }
+
+    #envelope-screen .envelope-corpo,
+    #envelope-screen .envelope-aba {
+        width: 100vw;
+        height: 100dvh;
+        max-width: none;
+        max-height: none;
+        object-fit: cover;
+        object-position: center center;
+    }
 
             #main-site {
                 padding: 20px 12px;
