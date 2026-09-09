@@ -23,7 +23,7 @@
             top: 0 !important; /* Evita que o Google Translate empurre a página para baixo */
         }
         header {
-            padding: 40px 20px;
+            padding: 50px 20px 40px;
             background-color: #fff;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
             position: relative; /* Importante para o seletor de idiomas ficar no sítio certo */
@@ -55,29 +55,45 @@
         }
         /* -------------------------------------------------------- */
 
-        /* Seletor de Idioma Discreto no Canto Superior Direito */
-        .language-selector {
+        /* Novo Seletor de Idioma (Estilo Botões/Pills) */
+        .lang-switch {
             position: absolute;
             top: 20px;
             right: 20px;
-            background: #fff;
-            padding: 5px 10px;
-            border-radius: 20px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            font-size: 0.85em;
             display: flex;
             gap: 8px;
-            align-items: center;
             z-index: 999;
         }
-        .language-selector select {
-            border: none;
+
+        .lang-btn {
             background: transparent;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1em;
-            color: #333;
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 4px 10px;
+            font-size: 0.8em;
+            font-weight: 600;
+            border-radius: 20px;
             cursor: pointer;
-            outline: none;
+            transition: all 0.3s ease;
+            letter-spacing: 1px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .lang-btn.active, .lang-btn:hover {
+            background-color: var(--primary-color);
+            color: #ffffff;
+        }
+
+        /* Adjust para ecrãs pequenos */
+        @media (max-width: 480px) {
+            header {
+                padding-top: 60px;
+            }
+            .lang-switch {
+                top: 15px;
+                right: 50%;
+                transform: translateX(50%); /* Centraliza no topo em telemóveis pequenos */
+            }
         }
 
         /* Divisória para a Secção Engraçada */
@@ -261,14 +277,11 @@
 <body>
 
     <header>
-        <!-- Seletor Discreto de Idioma -->
-        <div class="language-selector">
-            <span>🌐</span>
-            <select id="languagePicker" onchange="changeLanguage(this.value)">
-                <option value="pt">PT</option>
-                <option value="it">IT</option>
-                <option value="en">EN</option>
-            </select>
+        <!-- Novo Seletor de Idioma Estilo Botoes -->
+        <div class="lang-switch">
+            <button class="lang-btn active" data-lang="pt" onclick="changeLanguage('pt')">PT</button>
+            <button class="lang-btn" data-lang="it" onclick="changeLanguage('it')">IT</button>
+            <button class="lang-btn" data-lang="en" onclick="changeLanguage('en')">EN</button>
         </div>
         
         <h1>O Próximo Capítulo</h1>
@@ -286,7 +299,7 @@
     <!-- Divisória para Presentes Engraçados -->
     <div class="section-divider" id="funny-section">
         <h2>Para os que se querem rir connosco 🥂</h2>
-        <p>Porque nem só de romance se o casamento! Presentes reservados a amigos com muito sentido de humor!</p>
+        <p>Porque nem só de romance se faz o casamento! Presentes reservados a amigos com muito sentido de humor!</p>
     </div>
 
     <!-- Secção Engraçada -->
@@ -327,7 +340,6 @@
         </div>
     </div>
 
-
     <!-- Script Lógica da Base de Dados -->
     <script>
         // O TEU LINK DO GOOGLE APPS SCRIPT
@@ -367,13 +379,12 @@
                 
                 if (gift.buyer) {
                     buyerText = gift.buyer.trim();
-                    // Se o nome tiver a etiqueta, ativamos o modo anónimo
                     if (buyerText.includes('(Anónimo)')) {
                         isAnon = true;
                     }
                 }
 
-                // Decide que botão mostrar baseado no teu código
+                // Decide que botão mostrar
                 const buttonHtml = isSoldOut ? 
                     (isAnon ? `<button disabled>Oferecido ❤️</button>` : `<button disabled>Oferecido por ${buyerText.replace(' (Anónimo)', '')} ❤️</button>`) : 
                     `<button onclick="openModal('${gift.id}', '${gift.title.replace(/'/g, "\\'")}')">Oferecer Experiência</button>`;
@@ -387,7 +398,7 @@
                     </div>
                 `;
                 
-                // Distribui o cartão pela grelha certa baseando-se na nova coluna
+                // Distribui o cartão pela grelha certa
                 if(gift.category && gift.category.toLowerCase().includes('engraçad')) {
                     gridFunny.appendChild(card);
                     hasFunny = true;
@@ -396,7 +407,6 @@
                 }
             });
 
-            // Mostra o título e o separador apenas se existirem presentes engraçados
             if(hasFunny) {
                 funnySection.style.display = 'block';
             } else {
@@ -435,7 +445,6 @@
                 return;
             }
 
-            // Se o convidado quiser ser anónimo, adicionamos uma etiqueta secreta
             if(isAnon) {
                 name = name + ' (Anónimo)';
             }
@@ -444,14 +453,13 @@
             document.getElementById('loadingMsg').style.display = 'block';
 
             try {
-                // Enviar pedido ao Google Sheets
                 const response = await fetch(`${SCRIPT_URL}?action=buy&id=${currentGiftId}&name=${encodeURIComponent(name)}`);
                 const result = await response.json();
                 
                 if(result.success) {
                     alert('Muito obrigado pela vossa oferta! ❤️');
                     closeModal();
-                    loadGifts(); // Recarrega a página
+                    loadGifts();
                 } else {
                     alert('Houve um erro. Tente novamente.');
                     closeModal();
@@ -466,7 +474,7 @@
         loadGifts();
     </script>
     
-   <!-- Elemento invisível obrigatório para o Google Translate funcionar -->
+    <!-- Elemento invisível obrigatório para o Google Translate funcionar -->
     <div id="google_translate_element" style="opacity:0; width:0; height:0; position:absolute; left:-9999px;"></div>
 
     <script type="text/javascript">
@@ -477,11 +485,11 @@
                 autoDisplay: false
             }, 'google_translate_element');
 
-            // Assim que o Google carregar, verifica o idioma do telemóvel
+            // Assim que o Google carregar, verifica o idioma do dispositivo
             detectUserLanguage();
         }
 
-        // 1. Deteção automática inicial baseada no telemóvel
+        // 1. Deteção automática do idioma do browser
         function detectUserLanguage() {
             const userLang = navigator.language || navigator.userLanguage;
             let targetLang = 'pt';
@@ -492,16 +500,30 @@
                 targetLang = 'en';
             }
 
-            // Se não for português, aplica e atualiza o select visual
+            // Atualiza o estado ativo dos botões
+            updateActiveButton(targetLang);
+
+            // Se não for português, aciona a tradução no Google Translate
             if (targetLang !== 'pt') {
                 setGoogleLanguage(targetLang);
-                document.getElementById('languagePicker').value = targetLang;
             }
         }
 
-        // 2. Função acionada quando o utilizador muda manualmente no canto superior direito
+        // 2. Ação ao clicar manualmente num dos botões
         function changeLanguage(lang) {
+            updateActiveButton(lang);
             setGoogleLanguage(lang);
+        }
+
+        // Atualiza a classe .active nos botões para destaque visual
+        function updateActiveButton(lang) {
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                if (btn.getAttribute('data-lang') === lang) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
         }
 
         // Função interna que comanda o tradutor oculto do Google
