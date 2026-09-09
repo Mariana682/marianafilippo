@@ -733,136 +733,111 @@
            MOBILE
            ========================================================= */
 
-        @media (max-width: 600px) {
+       /* =========================================================
+   MOBILE — ENVELOPE
+   ========================================================= */
 
-            /*
-             * ENVELOPE
-             *
-             * Aqui a ALTURA é que define o tamanho.
-             *
-             * A largura fica AUTO e é calculada
-             * proporcionalmente pela imagem original.
-             *
-             * NÃO existe scale().
-             */
+@media (max-width: 600px) {
 
-            #envelope-screen {
-
-                position: fixed;
-
-                inset: 0;
-
-                width: 100vw;
-
-                height: 100dvh;
-
-                min-height: 100svh;
-
-                max-height: none;
-
-                overflow: hidden;
-            }
+    #envelope-screen {
+        position: fixed;
+        inset: 0;
+        width: 100vw;
+        height: 100dvh;
+        min-height: 100svh;
+        overflow: hidden;
+    }
 
 
-        .env-corpo-img,
-.env-aba-img {
-    position: absolute;
+    /* =====================================================
+       CORPO DO ENVELOPE — ajusta-se ao telefone
+       ===================================================== */
 
-    /*
-     * Aumentamos a imagem com base na altura do telefone.
-     * A largura continua automática para preservar a proporção.
-     */
-    height: 90dvh;
-    width: auto;
+    .env-corpo-img {
+        position: absolute;
 
-    max-width: none;
-    max-height: none;
+        left: 50%;
+        top: 50%;
 
-    left: 50%;
-    top: 50%;
+        width: 100vw;
+        height: 100dvh;
 
-    transform: translate(-50%, -50%);
+        max-width: none;
+        max-height: none;
 
-    object-fit: contain;
-    object-position: center center;
+        transform: translate(-50%, -50%);
+
+        object-fit: fill;
+        object-position: center center;
+
+        z-index: 2;
+    }
+
+
+    /* =====================================================
+       ABA — mantém a proporção original
+       ===================================================== */
+
+    .env-aba-img {
+        position: absolute;
+
+        left: 50%;
+        top: 0;
+
+        width: auto;
+        height: 100dvh;
+
+        max-width: none;
+        max-height: none;
+
+        transform: translateX(-50%);
+
+        object-fit: contain;
+        object-position: center top;
+
+        z-index: 4;
+    }
+
+
+    .env-aba-container {
+        position: absolute;
+        inset: 0;
+        z-index: 4;
+
+        transform: translateY(0);
+
+        transition:
+            transform 1.15s cubic-bezier(0.65, 0, 0.35, 1);
+    }
+
+
+    /* abertura */
+
+    #envelope-screen.opening .env-corpo-img {
+        transform:
+            translate(-50%, -50%)
+            translateY(110vh);
+    }
+
+    #envelope-screen.opening .env-aba-container {
+        transform: translateY(-110vh);
+    }
+
+
+    /* selo */
+
+    .selo-img {
+        width: clamp(130px, 38vw, 180px);
+        top: 55%;
+    }
+
+
+    .open-hint-text {
+        bottom: 5%;
+        font-size: 9px;
+        letter-spacing: 3px;
+    }
 }
-
-
-            /*
-             * CORPO NO MOBILE
-             *
-             * Mantém o mesmo centro quando fechado.
-             */
-
-            .env-corpo-img {
-
-                z-index: 2;
-
-                transition:
-                    transform 1.15s cubic-bezier(0.65, 0, 0.35, 1);
-            }
-
-
-            /*
-             * ABA NO MOBILE
-             */
-
-            .env-aba-container {
-
-                position: absolute;
-
-                inset: 0;
-
-                z-index: 4;
-
-                transform: translateY(0);
-
-                transition:
-                    transform 1.15s cubic-bezier(0.65, 0, 0.35, 1);
-            }
-
-
-            .env-aba-img {
-
-                z-index: 4;
-            }
-
-
-            /*
-             * Quando abre no telefone,
-             * o corpo mantém o seu centro horizontal
-             * e desloca-se apenas para baixo.
-             */
-
-            #envelope-screen.opening .env-corpo-img {
-
-                transform:
-                    translate(-50%, -50%)
-                    translateY(110vh);
-            }
-
-
-            /*
-             * Selo no telefone.
-             */
-
-            .selo-img {
-
-                width: clamp(130px, 38vw, 180px);
-
-                top: 55%;
-            }
-
-
-            .open-hint-text {
-
-                bottom: 5%;
-
-                font-size: 9px;
-
-                letter-spacing: 3px;
-            }
-
 
             /* =========================================
                SITE NO TELEFONE
