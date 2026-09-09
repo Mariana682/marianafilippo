@@ -798,33 +798,31 @@
             transform 1.15s cubic-bezier(0.65, 0, 0.35, 1);
     }
 
-    .env-aba-img {
-        position: absolute;
+   .env-aba-img {
+    position: absolute;
 
-        /*
-         * Área visível real da aba:
-         * 1177 × 577 px
-         *
-         * A largura visível fica igual à largura
-         * do telefone e a proporção original é mantida.
-         */
+    /* Mantém a proporção original da PNG */
+    height: 180dvh;
+    width: auto;
 
-        width: 130.5vw;
-        height: auto;
+    max-width: none;
+    max-height: none;
 
-        max-width: none;
-        max-height: none;
+    left: 50%;
 
-        left: 50%;
-        top: -10.0vw;
+    /*
+     * Compensa a margem transparente superior
+     * da própria imagem.
+     */
+    top: -18dvh;
 
-        transform: translateX(-50%);
+    transform: translateX(-50%);
 
-        object-fit: contain;
-        object-position: center top;
+    object-fit: contain;
+    object-position: center top;
 
-        z-index: 4;
-    }
+    z-index: 4;
+}
 
 
     /* =====================================================
