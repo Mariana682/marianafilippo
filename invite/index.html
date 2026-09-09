@@ -2,12 +2,20 @@
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    >
 
     <title>Mariana & Filippo — Convite</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
 
     <link
         href="https://fonts.googleapis.com/css2?family=Allura&family=Montserrat:wght@300;400;500;600;700&display=swap"
@@ -16,16 +24,22 @@
 
     <style>
 
+        /* =========================================================
+           CORES
+           ========================================================= */
+
         :root {
             --sage-green: #748B68;
             --text-dark: #2C332A;
-
             --cream: #FAE9C2;
             --gold: #F7D586;
             --blue: #8FB8DE;
-            --sage: #748B68;
         }
 
+
+        /* =========================================================
+           RESET
+           ========================================================= */
 
         * {
             box-sizing: border-box;
@@ -34,92 +48,116 @@
             -webkit-tap-highlight-color: transparent;
         }
 
+        html {
+            width: 100%;
+            min-height: 100%;
+            overflow-x: hidden;
+        }
 
-        html,
         body {
             width: 100%;
             min-height: 100%;
-        }
-
-
-        body {
             font-family: 'Montserrat', sans-serif;
             color: var(--text-dark);
             overflow-x: hidden;
-            background-color: var(--cream);
+            background: #FAE9C2;
         }
 
 
-
         /* =========================================================
-           1. ENVELOPE
+           ENVELOPE
            ========================================================= */
 
         #envelope-screen {
-
             position: fixed;
             inset: 0;
 
             width: 100vw;
             height: 100vh;
+            height: 100dvh;
 
             z-index: 9999;
-
             cursor: pointer;
 
-            background-color: transparent;
+            background: #fdfbf7;
 
             overflow: hidden;
 
             transition:
-                background-color 0.85s ease,
+                background-color 1.15s ease,
                 opacity 0.35s ease,
                 visibility 0.35s ease;
         }
 
 
-        .env-corpo-img,
-.env-aba-img {
-    width: 150vw;
-    height: 150dvh;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    object-fit: cover;
-    object-position: center center;
-}
+        /*
+         * As imagens mantêm sempre a proporção.
+         *
+         * Em vez de alterar width e height independentemente,
+         * usamos object-fit: cover.
+         */
 
+        .env-corpo-img,
+        .env-aba-img {
+            position: absolute;
+
+            width: 150vw;
+            height: 150vh;
+
+            max-width: none;
+            max-height: none;
+
+            left: 50%;
+            top: 50%;
+
+            object-fit: cover;
+            object-position: center center;
+
+            pointer-events: none;
+            user-select: none;
+        }
+
+
+        /* =========================================================
+           CORPO
+           ========================================================= */
 
         .env-corpo-img {
-
             z-index: 2;
 
-            transform: translateY(0);
+            transform:
+                translate(-50%, -50%);
 
             transition:
                 transform 1.15s cubic-bezier(0.65, 0, 0.35, 1);
         }
 
 
+        /* =========================================================
+           ABA
+           ========================================================= */
+
         .env-aba-container {
-
             position: absolute;
-
             inset: 0;
 
             z-index: 4;
 
-            transform: translateY(0);
+            overflow: visible;
+
+            transform:
+                translateY(0);
 
             transition:
                 transform 1.15s cubic-bezier(0.65, 0, 0.35, 1);
         }
 
-
         .env-aba-img {
             z-index: 4;
-        }
 
+            transform:
+                translate(-50%, -50%);
+        }
 
 
         /* =========================================================
@@ -127,13 +165,17 @@
            ========================================================= */
 
         .selo-img {
-
             position: absolute;
 
             left: 50%;
             top: 55%;
 
-            width: clamp(160px, 20vw, 270px);
+            width: clamp(
+                160px,
+                20vw,
+                270px
+            );
+
             height: auto;
 
             transform:
@@ -143,13 +185,20 @@
             z-index: 6;
 
             filter:
-                drop-shadow(0 8px 14px rgba(0,0,0,0.42));
+                drop-shadow(
+                    0 8px 14px rgba(0,0,0,0.42)
+                );
 
             transition:
                 opacity 0.45s ease,
-                transform 0.55s cubic-bezier(0.22, 0.61, 0.36, 1);
+                transform 0.55s
+                cubic-bezier(
+                    0.22,
+                    0.61,
+                    0.36,
+                    1
+                );
         }
-
 
 
         /* =========================================================
@@ -157,25 +206,26 @@
            ========================================================= */
 
         .open-hint-text {
-
             position: absolute;
 
             left: 50%;
             bottom: 7%;
 
-            transform: translateX(-50%);
+            transform:
+                translateX(-50%);
 
-            color: rgba(255,255,255,0.82);
+            color:
+                rgba(255,255,255,0.82);
 
             font-size: 11px;
-
             letter-spacing: 4px;
 
             text-transform: uppercase;
 
             white-space: nowrap;
 
-            animation: pulse 2s infinite;
+            animation:
+                pulse 2s infinite;
 
             transition:
                 opacity 0.4s ease;
@@ -197,34 +247,37 @@
         }
 
 
-
         /* =========================================================
            ABERTURA
            ========================================================= */
 
         #envelope-screen.opening {
-
-            background-color: transparent;
+            background-color:
+                rgba(253,251,247,0);
 
             cursor: default;
         }
 
 
-        #envelope-screen.opening .env-aba-container {
+        #envelope-screen.opening
+        .env-aba-container {
 
             transform:
                 translateY(-110vh);
         }
 
 
-        #envelope-screen.opening .env-corpo-img {
+        #envelope-screen.opening
+        .env-corpo-img {
 
             transform:
+                translate(-50%, -50%)
                 translateY(110vh);
         }
 
 
-        #envelope-screen.opening .selo-img {
+        #envelope-screen.opening
+        .selo-img {
 
             opacity: 0;
 
@@ -234,7 +287,8 @@
         }
 
 
-        #envelope-screen.opening .open-hint-text {
+        #envelope-screen.opening
+        .open-hint-text {
 
             opacity: 0;
         }
@@ -243,50 +297,52 @@
         #envelope-screen.opened {
 
             opacity: 0;
-
             visibility: hidden;
-
             pointer-events: none;
         }
 
 
-
         /* =========================================================
-           2. SITE PRINCIPAL
+           SITE PRINCIPAL
            ========================================================= */
 
         #main-site {
 
             position: relative;
 
-            width: 100vw;
+            width: 100%;
             min-height: 100vh;
+            min-height: 100dvh;
 
-            background-image: url('background.jpg');
+            background-image:
+                url('background.jpg');
 
             background-size: cover;
-
-            background-position: center bottom;
-
-            background-attachment: fixed;
+            background-position: center center;
+            background-repeat: no-repeat;
 
             display: flex;
 
             justify-content: center;
             align-items: center;
 
-            padding: 40px 20px;
+            padding:
+                50px 25px;
 
-            /*
-             * Fica completamente escondido enquanto
-             * o envelope está fechado.
-             */
             opacity: 0;
 
-            transform: scale(1);
+            transform:
+                scale(0.985);
 
             transition:
-                opacity 0.35s ease;
+                opacity 1.35s ease,
+                transform 1.5s
+                cubic-bezier(
+                    0.22,
+                    0.61,
+                    0.36,
+                    1
+                );
         }
 
 
@@ -294,9 +350,9 @@
 
             opacity: 1;
 
-            transform: scale(1);
+            transform:
+                scale(1);
         }
-
 
 
         /* =========================================================
@@ -305,36 +361,57 @@
 
         .content-wrapper {
 
-            width: 100%;
+            position: relative;
 
-            max-width: 680px;
+            width: 100%;
+            max-width: 600px;
 
             margin: 0 auto;
 
             text-align: center;
 
+            /*
+             * Mais transparente:
+             * o background.jpg fica bastante visível.
+             */
+
             background:
-                linear-gradient(
-                    180deg,
-                    rgba(250, 233, 194, 0.97),
-                    rgba(250, 233, 194, 0.93)
+                rgba(
+                    250,
+                    233,
+                    194,
+                    0.58
                 );
 
-            backdrop-filter: blur(8px);
+            backdrop-filter:
+                blur(4px);
 
-            -webkit-backdrop-filter: blur(8px);
+            -webkit-backdrop-filter:
+                blur(4px);
 
-            padding: 55px 38px;
+            padding:
+                52px 34px;
 
             border-radius: 20px;
 
-            box-shadow:
-                0 20px 50px rgba(0,0,0,0.14);
-
             border:
-                1px solid rgba(247, 213, 134, 0.65);
-        }
+                1px solid
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.42
+                );
 
+            box-shadow:
+                0 20px 50px
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.12
+                );
+        }
 
 
         /* =========================================================
@@ -349,7 +426,7 @@
 
             gap: 20px;
 
-            margin-bottom: 35px;
+            margin-bottom: 30px;
         }
 
 
@@ -359,7 +436,12 @@
 
             border: none;
 
-            color: var(--sage-green);
+            color:
+                var(--sage-green);
+
+            font-family:
+                'Montserrat',
+                sans-serif;
 
             font-size: 12px;
 
@@ -383,9 +465,9 @@
             opacity: 1;
 
             border-bottom:
-                2px solid var(--sage-green);
+                2px solid
+                var(--sage-green);
         }
-
 
 
         /* =========================================================
@@ -394,17 +476,18 @@
 
         .names-title {
 
-            font-family: 'Allura', cursive;
+            font-family:
+                'Allura',
+                cursive;
 
-            font-size: 76px;
+            font-size: 86px;
 
-            color: var(--sage-green);
+            color:
+                var(--sage-green);
 
-            line-height: 1;
+            line-height: 0.95;
 
-            margin-bottom: 20px;
-
-            text-align: center;
+            margin-bottom: 24px;
         }
 
 
@@ -413,62 +496,55 @@
         }
 
 
-        @media (min-width: 768px) {
-
-            .names-title {
-                font-size: 96px;
-            }
-        }
-
-
-
         /* =========================================================
            FRASE
            ========================================================= */
 
         .quote-phrase {
 
-            font-family: 'Montserrat', sans-serif;
+            font-family:
+                'Montserrat',
+                sans-serif;
 
             font-size: 16px;
 
             font-weight: 400;
 
-            color: var(--sage-green);
+            color:
+                var(--sage-green);
 
             line-height: 1.7;
-
-            text-align: center;
 
             max-width: 540px;
 
             margin:
-                0 auto 45px;
+                0 auto 34px;
         }
 
 
-
         /* =========================================================
-           FOTO
+           FOTO + MOLDURA
            ========================================================= */
 
         .photo-frame-wrapper {
 
             position: relative;
 
-            width: min(390px, 82vw);
+            width:
+                min(
+                    390px,
+                    82vw
+                );
 
-            aspect-ratio: 0.75 / 1;
-
-            height: auto;
+            aspect-ratio:
+                0.75 / 1;
 
             margin:
-                0 auto 50px;
+                0 auto 40px;
 
             display: flex;
 
             justify-content: center;
-
             align-items: center;
         }
 
@@ -483,12 +559,21 @@
             object-fit: cover;
 
             border-radius:
-                150px 150px 14px 14px;
+                120px
+                120px
+                12px
+                12px;
 
             z-index: 1;
 
             box-shadow:
-                0 10px 25px rgba(0,0,0,0.1);
+                0 10px 25px
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.10
+                );
         }
 
 
@@ -510,14 +595,13 @@
         }
 
 
-
         /* =========================================================
-           DATA E LOCALIZAÇÃO
+           DATA / LOCAL
            ========================================================= */
 
         .event-details {
 
-            margin-bottom: 35px;
+            margin-bottom: 30px;
         }
 
 
@@ -527,13 +611,13 @@
 
             font-weight: 700;
 
-            letter-spacing: 3px;
+            letter-spacing: 2px;
 
-            color: var(--sage-green);
+            color:
+                var(--sage-green);
 
-            text-transform: uppercase;
-
-            margin-bottom: 15px;
+            margin:
+                10px 0 20px;
         }
 
 
@@ -541,62 +625,15 @@
 
             font-size: 14px;
 
-            font-weight: 300;
+            font-weight: 400;
 
             line-height: 1.7;
 
-            color: #3b4239;
+            color:
+                #3b4239;
 
-            margin-bottom: 25px;
+            margin-bottom: 24px;
         }
-
-
-        .location-info strong {
-
-            font-weight: 600;
-        }
-
-
-
-        /* =========================================================
-           MAPA
-           ========================================================= */
-
-        .map-link {
-
-            display: inline-block;
-
-            margin-top: -12px;
-
-            margin-bottom: 30px;
-
-            color: var(--sage-green);
-
-            font-size: 10px;
-
-            font-weight: 600;
-
-            letter-spacing: 1.6px;
-
-            text-transform: uppercase;
-
-            text-decoration: none;
-
-            border-bottom:
-                1px solid rgba(116, 139, 104, 0.45);
-
-            padding-bottom: 3px;
-
-            transition:
-                opacity 0.2s ease;
-        }
-
-
-        .map-link:hover {
-
-            opacity: 0.65;
-        }
-
 
 
         /* =========================================================
@@ -607,13 +644,11 @@
 
             display: flex;
 
-            flex-direction: row;
+            flex-direction: column;
 
-            justify-content: center;
+            gap: 13px;
 
-            gap: 15px;
-
-            margin-bottom: 35px;
+            margin-bottom: 30px;
 
             align-items: center;
         }
@@ -625,46 +660,80 @@
 
             text-decoration: none;
 
+            font-family:
+                'Montserrat',
+                sans-serif;
+
             font-size: 11px;
 
-            font-weight: 500;
+            font-weight: 600;
 
             letter-spacing: 2px;
 
             text-transform: uppercase;
 
-            padding: 16px 32px;
+            padding:
+                15px 28px;
 
             border-radius: 30px;
 
-            width: auto;
+            width: 100%;
 
-            flex: 1 1 0;
-
-            max-width: 280px;
+            max-width: 290px;
 
             transition:
                 all 0.3s ease;
         }
 
 
+        .action-btn:hover {
+
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 7px 15px
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.12
+                );
+        }
+
+
         .btn-site {
 
-            background-color:
-                var(--sage);
+            background:
+                var(--sage-green);
 
-            color: #ffffff;
+            color: white;
         }
 
 
         .btn-gifts {
 
-            background-color:
-                var(--gold);
+            background:
+                #E8D8B0;
 
-            color: #4a3a0f;
+            color:
+                #4a3a0f;
         }
 
+
+        .btn-map {
+
+            background:
+                rgba(
+                    143,
+                    184,
+                    222,
+                    0.78
+                );
+
+            color:
+                #29445d;
+        }
 
 
         /* =========================================================
@@ -679,20 +748,37 @@
 
             justify-content: center;
 
-            gap: 10px;
+            gap: 8px;
 
-            font-family: monospace;
+            font-family:
+                monospace;
 
             font-size: 10px;
 
-            color: var(--text-dark);
+            color:
+                var(--text-dark);
 
             margin-top: 10px;
 
-            padding-top: 20px;
+            padding-top: 18px;
 
             border-top:
-                1px solid rgba(116, 139, 104, 0.22);
+                1px solid
+                rgba(
+                    106,
+                    123,
+                    94,
+                    0.20
+                );
+
+            flex-wrap: wrap;
+        }
+
+
+        #iban-code {
+
+            word-break:
+                break-all;
         }
 
 
@@ -702,7 +788,12 @@
 
             border: none;
 
-            color: var(--sage-green);
+            color:
+                var(--sage-green);
+
+            font-family:
+                'Montserrat',
+                sans-serif;
 
             font-weight: 600;
 
@@ -712,9 +803,10 @@
 
             text-transform: uppercase;
 
-            letter-spacing: 0.8px;
+            letter-spacing: 1px;
 
-            padding: 2px 6px;
+            padding:
+                2px 6px;
 
             transition:
                 opacity 0.2s ease;
@@ -727,6 +819,29 @@
         }
 
 
+        /* =========================================================
+           TABLET / DESKTOP
+           ========================================================= */
+
+        @media (min-width: 768px) {
+
+            .buttons-group {
+
+                flex-direction: row;
+
+                justify-content: center;
+
+                flex-wrap: wrap;
+            }
+
+            .action-btn {
+
+                width: auto;
+
+                min-width: 180px;
+            }
+        }
+
 
         /* =========================================================
            MOBILE
@@ -734,112 +849,90 @@
 
         @media (max-width: 600px) {
 
-            /*
-             * ENVELOPE:
-             * ocupa literalmente todo o viewport.
-             */
+            html,
+            body {
+
+                width: 100%;
+                min-width: 0;
+
+                overflow-x: hidden;
+            }
+
+
+            /* -----------------------------------------------------
+               ENVELOPE MOBILE
+
+               Mantemos a proporção.
+               O envelope é aumentado, mas nunca "achatado".
+               ----------------------------------------------------- */
 
             #envelope-screen {
-
-                position: fixed;
-
-                inset: 0;
 
                 width: 100vw;
 
                 height: 100dvh;
 
-                min-height: 100svh;
-
-                max-height: none;
+                min-height:
+                    100svh;
 
                 overflow: hidden;
             }
 
 
-            /*
-             * As imagens passam a ser MUITO maiores
-             * que o ecrã.
-             *
-             * Isto é intencional:
-             * o envelope ultrapassa os limites do telefone
-             * e as partes exteriores são cortadas.
-             */
-
             .env-corpo-img,
             .env-aba-img {
 
-                position: absolute;
+                width: 150vw;
 
-                width: 180vw;
+                height: 150vw;
 
-                height: 180dvh;
-
-                min-width: 180vw;
-
-                min-height: 180dvh;
+                min-width: 150vw;
+                min-height: 150vw;
 
                 max-width: none;
-
                 max-height: none;
 
                 left: 50%;
-
                 top: 50%;
 
+                object-fit: cover;
+
+                object-position:
+                    center center;
+
                 transform:
-                    translate(-50%, -50%);
-
-                object-fit: fill;
-
-                object-position: center center;
+                    translate(
+                        -50%,
+                        -50%
+                    );
             }
 
 
             /*
-             * Mantém a animação de abertura.
+             * Em telemóveis muito altos,
+             * aumentamos um pouco mais a escala,
+             * mas continuamos a preservar a proporção.
              */
 
-            .env-corpo-img {
+            @media (min-aspect-ratio: 1/1.8) {
 
-                z-index: 2;
+                .env-corpo-img,
+                .env-aba-img {
 
-                transition:
-                    transform 1.15s cubic-bezier(0.65, 0, 0.35, 1);
+                    width: 165vw;
+                    height: 165vw;
+                }
             }
 
-
-            .env-aba-container {
-
-                position: absolute;
-
-                inset: 0;
-
-                z-index: 4;
-
-                transform: translateY(0);
-
-                transition:
-                    transform 1.15s cubic-bezier(0.65, 0, 0.35, 1);
-            }
-
-
-            .env-aba-img {
-
-                z-index: 4;
-
-                transition:
-                    transform 1.15s cubic-bezier(0.65, 0, 0.35, 1);
-            }
-
-
-            /*
-             * Selo no telefone.
-             */
 
             .selo-img {
 
-                width: clamp(130px, 38vw, 180px);
+                width:
+                    clamp(
+                        140px,
+                        31vw,
+                        195px
+                    );
 
                 top: 55%;
             }
@@ -855,70 +948,94 @@
             }
 
 
-
-            /* =========================================
-               SITE NO TELEFONE
-               ========================================= */
+            /* -----------------------------------------------------
+               SITE MOBILE
+               ----------------------------------------------------- */
 
             #main-site {
 
                 min-height: 100dvh;
 
                 padding:
-                    20px 12px;
+                    22px 12px;
 
-                background-attachment: scroll;
+                align-items:
+                    flex-start;
 
-                align-items: center;
+                background-attachment:
+                    scroll;
+
+                background-position:
+                    center center;
             }
 
 
             /*
-             * PAINEL CENTRAL SEMI-TRANSPARENTE
-             *
-             * O background.jpg fica visível através dele.
+             * Painel bastante mais transparente no telemóvel.
+             * A imagem atrás fica claramente visível.
              */
 
             .content-wrapper {
 
                 width: 100%;
 
-                max-width: 100%;
+                max-width:
+                    100%;
 
                 padding:
-                    42px 20px;
+                    40px 20px;
 
                 border-radius: 18px;
 
                 background:
-                    rgba(250, 233, 194, 0.72);
+                    rgba(
+                        250,
+                        233,
+                        194,
+                        0.48
+                    );
 
-                backdrop-filter: blur(7px);
+                backdrop-filter:
+                    blur(3px);
 
-                -webkit-backdrop-filter: blur(7px);
+                -webkit-backdrop-filter:
+                    blur(3px);
 
                 border:
-                    1px solid rgba(255,255,255,0.45);
+                    1px solid
+                    rgba(
+                        255,
+                        255,
+                        255,
+                        0.38
+                    );
 
                 box-shadow:
-                    0 15px 40px rgba(0,0,0,0.12);
+                    0 15px 35px
+                    rgba(
+                        0,
+                        0,
+                        0,
+                        0.10
+                    );
             }
 
 
             .lang-bar {
 
-                margin-bottom: 28px;
-
                 gap: 18px;
+
+                margin-bottom: 24px;
             }
 
 
             .names-title {
 
-                font-size:
-                    clamp(58px, 17vw, 76px);
+                font-size: 65px;
 
-                margin-bottom: 18px;
+                line-height: 0.95;
+
+                margin-bottom: 20px;
             }
 
 
@@ -928,16 +1045,22 @@
 
                 line-height: 1.65;
 
-                margin-bottom: 35px;
+                margin-bottom: 30px;
             }
 
 
             .photo-frame-wrapper {
 
                 width:
-                    min(360px, 88vw);
+                    min(
+                        360px,
+                        88vw
+                    );
 
-                margin-bottom: 45px;
+                aspect-ratio:
+                    0.75 / 1;
+
+                margin-bottom: 32px;
             }
 
 
@@ -961,9 +1084,10 @@
 
                 font-weight: 700;
 
-                letter-spacing: 2.5px;
+                letter-spacing: 1.5px;
 
-                margin-bottom: 13px;
+                margin:
+                    8px 0 17px;
             }
 
 
@@ -971,33 +1095,25 @@
 
                 font-size: 13px;
 
-                line-height: 1.7;
-            }
-
-
-            .map-link {
-
-                font-size: 9px;
-
-                margin-bottom: 28px;
+                line-height: 1.65;
             }
 
 
             .buttons-group {
 
-                flex-direction: column;
+                gap: 11px;
 
-                gap: 12px;
+                margin-bottom: 25px;
             }
 
 
             .action-btn {
 
-                width: 100%;
+                max-width:
+                    290px;
 
-                max-width: 280px;
-
-                flex: none;
+                padding:
+                    14px 22px;
             }
 
 
@@ -1005,9 +1121,9 @@
 
                 font-size: 9px;
 
-                gap: 7px;
+                gap: 5px;
 
-                overflow: hidden;
+                padding-top: 16px;
             }
 
 
@@ -1015,64 +1131,19 @@
 
                 font-size: 8px;
             }
-
         }
 
 
-
-        /*
-         * ECRÃS MUITO ALTOS/ESTREITOS
-         *
-         * Aumenta ainda mais o envelope verticalmente.
-         */
-
-        @media (max-width: 600px) and (min-height: 700px) {
-
-            .env-corpo-img,
-            .env-aba-img {
-
-                width: 180vw;
-
-                height: 200dvh;
-
-                min-width: 180vw;
-
-                min-height: 200dvh;
-
-                left: 50%;
-
-                top: 50%;
-
-                transform:
-                    translate(-50%, -50%);
-            }
-        }
-
-
-
-        /*
-         * ECRÃS MUITO ESTREITOS
-         */
+        /* =========================================================
+           TELEMÓVEIS MUITO PEQUENOS
+           ========================================================= */
 
         @media (max-width: 380px) {
-
-            .env-corpo-img,
-            .env-aba-img {
-
-                width: 195vw;
-
-                height: 210dvh;
-
-                min-width: 195vw;
-
-                min-height: 210dvh;
-            }
-
 
             .content-wrapper {
 
                 padding:
-                    35px 16px;
+                    34px 16px;
             }
 
 
@@ -1082,11 +1153,22 @@
             }
 
 
+            .quote-phrase {
+
+                font-size: 14px;
+            }
+
+
+            .photo-frame-wrapper {
+
+                width: 86vw;
+            }
+
+
             .date-text {
 
                 font-size: 26px;
             }
-
         }
 
     </style>
@@ -1097,7 +1179,7 @@
 
 
     <!-- =========================================================
-         1. ENVELOPE
+         ENVELOPE
          ========================================================= -->
 
     <div
@@ -1143,13 +1225,15 @@
 
 
     <!-- =========================================================
-         2. CONVITE
+         SITE PRINCIPAL
          ========================================================= -->
 
     <div id="main-site">
 
         <div class="content-wrapper">
 
+
+            <!-- IDIOMAS -->
 
             <div class="lang-bar">
 
@@ -1180,10 +1264,13 @@
             </div>
 
 
+
+            <!-- NOMES -->
+
             <h1 class="names-title">
 
                 <span class="name-line">
-                    Mariana &amp;
+                    Mariana &
                 </span>
 
                 <span class="name-line">
@@ -1193,6 +1280,9 @@
             </h1>
 
 
+
+            <!-- FRASE -->
+
             <p
                 class="quote-phrase"
                 id="txt-phrase"
@@ -1201,15 +1291,16 @@
             </p>
 
 
+
+            <!-- FOTO -->
+
             <div class="photo-frame-wrapper">
 
                 <img
                     src="foto-noivos.jpg"
                     alt="Mariana & Filippo"
                     class="couple-photo"
-                    onerror="this.src='https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=400&q=80'"
                 >
-
 
                 <img
                     src="moldura.png"
@@ -1221,8 +1312,10 @@
             </div>
 
 
-            <div class="event-details">
 
+            <!-- DATA / LOCAL -->
+
+            <div class="event-details">
 
                 <div
                     class="date-text"
@@ -1237,53 +1330,54 @@
                     id="txt-location"
                 >
                     <strong>Ca' Salva</strong><br>
-                    Teolo, Itália
+                    Teolo, Italy
                 </div>
+
+            </div>
+
+
+
+            <!-- BOTÕES -->
+
+            <div class="buttons-group">
+
+                <a
+                    href="https://marianafilippo.pt"
+                    target="_blank"
+                    rel="noopener"
+                    class="action-btn btn-site"
+                    id="txt-btn-site"
+                >
+                    O Nosso Site
+                </a>
+
+
+                <a
+                    href="https://marianafilippo.pt/#presentes"
+                    target="_blank"
+                    rel="noopener"
+                    class="action-btn btn-gifts"
+                    id="txt-btn-gifts"
+                >
+                    Lista de Presentes
+                </a>
 
 
                 <a
                     href="https://www.google.com/maps/search/?api=1&query=Ca%27+Salva%2C+Teolo%2C+Italy"
                     target="_blank"
-                    rel="noopener noreferrer"
-                    class="map-link"
-                    id="txt-map"
+                    rel="noopener"
+                    class="action-btn btn-map"
+                    id="txt-btn-map"
                 >
                     Ver no mapa
                 </a>
 
-
             </div>
 
 
 
-            <div class="buttons-group">
-
-
-                <a
-                    href="https://marianafilippo.pt"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="action-btn btn-site"
-                    id="txt-btn-site"
-                >
-                    Website
-                </a>
-
-
-                <a
-                    href="https://marianafilippo.pt/gifts"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="action-btn btn-gifts"
-                    id="txt-btn-gifts"
-                >
-                    Presentes
-                </a>
-
-
-            </div>
-
-
+            <!-- IBAN -->
 
             <div class="iban-container">
 
@@ -1315,7 +1409,6 @@
 
     <script>
 
-
         const texts = {
 
             pt: {
@@ -1330,15 +1423,15 @@
                     "07 . 08 . 2027",
 
                 location:
-                    "<strong>Ca' Salva</strong><br>Teolo, Itália",
+                    "<strong>Ca' Salva</strong><br>Teolo, Italy",
 
                 btnSite:
-                    "Website",
+                    "O Nosso Site",
 
                 btnGifts:
-                    "Presentes",
+                    "Lista de Presentes",
 
-                map:
+                btnMap:
                     "Ver no mapa",
 
                 copy:
@@ -1364,12 +1457,12 @@
                     "<strong>Ca' Salva</strong><br>Teolo, Italy",
 
                 btnSite:
-                    "Website",
+                    "Our Website",
 
                 btnGifts:
                     "Gift Registry",
 
-                map:
+                btnMap:
                     "View on map",
 
                 copy:
@@ -1395,12 +1488,12 @@
                     "<strong>Ca' Salva</strong><br>Teolo, Italia",
 
                 btnSite:
-                    "Il nostro sito",
+                    "Il Nostro Sito",
 
                 btnGifts:
                     "Lista Nozze",
 
-                map:
+                btnMap:
                     "Vedi sulla mappa",
 
                 copy:
@@ -1439,7 +1532,9 @@
 
 
                 if (
-                    supportedLangs.includes(browserLang)
+                    supportedLangs.includes(
+                        browserLang
+                    )
                 ) {
 
                     setLang(browserLang);
@@ -1447,7 +1542,6 @@
                 } else {
 
                     setLang('pt');
-
                 }
 
             }
@@ -1474,7 +1568,9 @@
 
 
             if (
-                screen.classList.contains('opening')
+                screen.classList.contains(
+                    'opening'
+                )
             ) {
 
                 return;
@@ -1482,21 +1578,40 @@
 
 
             /*
-             * O site só aparece quando o envelope
-             * começa efetivamente a abrir.
+             * O site aparece imediatamente
+             * por trás do envelope.
              */
 
-            mainSite.classList.add('visible');
+            mainSite.classList.add(
+                'visible'
+            );
 
 
-            screen.classList.add('opening');
+            /*
+             * Começa a abertura.
+             */
+
+            screen.classList.add(
+                'opening'
+            );
 
 
-            setTimeout(() => {
+            /*
+             * Depois da animação,
+             * retiramos completamente
+             * o envelope.
+             */
 
-                screen.classList.add('opened');
+            setTimeout(
+                () => {
 
-            }, 1250);
+                    screen.classList.add(
+                        'opened'
+                    );
+
+                },
+                1250
+            );
 
         }
 
@@ -1510,68 +1625,93 @@
 
             currentLang = lang;
 
-            const t = texts[lang];
+            const t =
+                texts[lang];
 
 
             document
-                .getElementById('txt-hint')
+                .getElementById(
+                    'txt-hint'
+                )
                 .innerText =
                 t.hint;
 
 
             document
-                .getElementById('txt-phrase')
+                .getElementById(
+                    'txt-phrase'
+                )
                 .innerText =
                 t.phrase;
 
 
             document
-                .getElementById('txt-date')
+                .getElementById(
+                    'txt-date'
+                )
                 .innerText =
                 t.date;
 
 
             document
-                .getElementById('txt-location')
+                .getElementById(
+                    'txt-location'
+                )
                 .innerHTML =
                 t.location;
 
 
             document
-                .getElementById('txt-btn-site')
+                .getElementById(
+                    'txt-btn-site'
+                )
                 .innerText =
                 t.btnSite;
 
 
             document
-                .getElementById('txt-btn-gifts')
+                .getElementById(
+                    'txt-btn-gifts'
+                )
                 .innerText =
                 t.btnGifts;
 
 
             document
-                .getElementById('txt-map')
+                .getElementById(
+                    'txt-btn-map'
+                )
                 .innerText =
-                t.map;
+                t.btnMap;
 
 
             document
-                .getElementById('txt-copy')
+                .getElementById(
+                    'txt-copy'
+                )
                 .innerText =
                 t.copy;
 
 
             document
-                .querySelectorAll('.lang-btn')
+                .querySelectorAll(
+                    '.lang-btn'
+                )
                 .forEach(
                     btn =>
-                        btn.classList.remove('active')
+                        btn.classList.remove(
+                            'active'
+                        )
                 );
 
 
             document
-                .getElementById(`btn-${lang}`)
-                .classList.add('active');
+                .getElementById(
+                    `btn-${lang}`
+                )
+                .classList.add(
+                    'active'
+                );
 
         }
 
@@ -1583,33 +1723,47 @@
 
         function copyIBAN() {
 
+            const iban =
+                document
+                    .getElementById(
+                        'iban-code'
+                    )
+                    .innerText
+                    .trim();
+
+
             navigator.clipboard
-                .writeText(
-                    document
-                        .getElementById('iban-code')
-                        .innerText
-                )
-                .then(() => {
+                .writeText(iban)
+                .then(
+                    () => {
 
-                    const btn =
-                        document
-                            .getElementById(
-                                'txt-copy'
-                            );
+                        const btn =
+                            document
+                                .getElementById(
+                                    'txt-copy'
+                                );
 
-
-                    btn.innerText =
-                        texts[currentLang].copied;
-
-
-                    setTimeout(() => {
 
                         btn.innerText =
-                            texts[currentLang].copy;
+                            texts[
+                                currentLang
+                            ].copied;
 
-                    }, 2000);
 
-                });
+                        setTimeout(
+                            () => {
+
+                                btn.innerText =
+                                    texts[
+                                        currentLang
+                                    ].copy;
+
+                            },
+                            2000
+                        );
+
+                    }
+                );
 
         }
 
