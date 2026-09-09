@@ -2,12 +2,17 @@
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
     <title>Mariana & Filippo — Convite</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Allura&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Allura&family=Montserrat:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
 
     <style>
 
@@ -15,12 +20,12 @@
             --sage-green: #748B68;
             --text-dark: #2C332A;
 
-            /* Paleta do convite */
             --cream: #FAE9C2;
             --gold: #F7D586;
             --blue: #8FB8DE;
             --sage: #748B68;
         }
+
 
         * {
             box-sizing: border-box;
@@ -29,11 +34,13 @@
             -webkit-tap-highlight-color: transparent;
         }
 
+
         html,
         body {
             width: 100%;
             min-height: 100%;
         }
+
 
         body {
             font-family: 'Montserrat', sans-serif;
@@ -41,6 +48,7 @@
             overflow-x: hidden;
             background-color: var(--cream);
         }
+
 
 
         /* =========================================================
@@ -59,11 +67,6 @@
 
             cursor: pointer;
 
-            /*
-             * Começamos com branco.
-             * Durante a abertura torna-se transparente para que
-             * o convite apareça por baixo.
-             */
             background-color: transparent;
 
             overflow: hidden;
@@ -74,19 +77,6 @@
                 visibility 0.35s ease;
         }
 
-
-        /*
-         * ========================================================
-         * CORPO E ABA
-         * ========================================================
-         *
-         * As duas imagens continuam exatamente sobrepostas.
-         *
-         * Não existe qualquer rotação 3D.
-         *
-         * A abertura é feita simplesmente separando as duas
-         * partes verticalmente.
-         */
 
         .env-corpo-img,
         .env-aba-img {
@@ -106,27 +96,16 @@
         }
 
 
-        /*
-         * CORPO DO ENVELOPE
-         */
-
         .env-corpo-img {
 
             z-index: 2;
 
-            /*
-             * Movimento para baixo durante a abertura.
-             */
             transform: translateY(0);
 
             transition:
                 transform 1.15s cubic-bezier(0.65, 0, 0.35, 1);
         }
 
-
-        /*
-         * ABA DO ENVELOPE
-         */
 
         .env-aba-container {
 
@@ -136,11 +115,6 @@
 
             z-index: 4;
 
-            /*
-             * SEM rotateX.
-             *
-             * A aba simplesmente sobe.
-             */
             transform: translateY(0);
 
             transition:
@@ -149,33 +123,23 @@
 
 
         .env-aba-img {
-
             z-index: 4;
         }
 
 
-        /*
-         * ========================================================
-         * SELO
-         * ========================================================
-         */
+
+        /* =========================================================
+           SELO
+           ========================================================= */
 
         .selo-img {
 
             position: absolute;
 
             left: 50%;
-
-            /*
-             * Mais abaixo do que anteriormente.
-             */
             top: 55%;
 
-            /*
-             * Selo bastante maior.
-             */
             width: clamp(160px, 20vw, 270px);
-
             height: auto;
 
             transform:
@@ -193,11 +157,10 @@
         }
 
 
-        /*
-         * ========================================================
-         * TEXTO "CLIQUE PARA ABRIR"
-         * ========================================================
-         */
+
+        /* =========================================================
+           TEXTO DO ENVELOPE
+           ========================================================= */
 
         .open-hint-text {
 
@@ -245,15 +208,6 @@
            ABERTURA
            ========================================================= */
 
-
-        /*
-         * O FUNDO DO ENVELOPE torna-se transparente.
-         *
-         * Isto é importante:
-         * o convite já está a aparecer por baixo enquanto
-         * as peças do envelope se afastam.
-         */
-
         #envelope-screen.opening {
 
             background-color: transparent;
@@ -262,14 +216,6 @@
         }
 
 
-        /*
-         * ABA:
-         *
-         * desliza completamente para cima.
-         *
-         * Não roda.
-         */
-
         #envelope-screen.opening .env-aba-container {
 
             transform:
@@ -277,25 +223,12 @@
         }
 
 
-        /*
-         * CORPO:
-         *
-         * desliza completamente para baixo.
-         */
-
         #envelope-screen.opening .env-corpo-img {
 
             transform:
                 translateY(110vh);
         }
 
-
-        /*
-         * SELO:
-         *
-         * desaparece antes de as duas partes
-         * se afastarem completamente.
-         */
 
         #envelope-screen.opening .selo-img {
 
@@ -307,19 +240,11 @@
         }
 
 
-        /*
-         * TEXTO desaparece.
-         */
-
         #envelope-screen.opening .open-hint-text {
 
             opacity: 0;
         }
 
-
-        /*
-         * No final já não precisamos do overlay.
-         */
 
         #envelope-screen.opened {
 
@@ -359,10 +284,11 @@
             padding: 40px 20px;
 
             /*
-             * O site fica imediatamente disponível por baixo do envelope.
-             * Assim, ao abrir, não existe uma passagem por branco.
+             * Fica completamente escondido enquanto
+             * o envelope está fechado.
              */
             opacity: 0;
+
             transform: scale(1);
 
             transition:
@@ -370,16 +296,18 @@
         }
 
 
-        /*
-         * O convite começa a aparecer assim que clicamos
-         * no envelope.
-         */
-
         #main-site.visible {
+
             opacity: 1;
+
             transform: scale(1);
         }
 
+
+
+        /* =========================================================
+           PAINEL CENTRAL
+           ========================================================= */
 
         .content-wrapper {
 
@@ -391,10 +319,6 @@
 
             text-align: center;
 
-            /*
-             * Centro do convite em creme da paleta, em vez de branco.
-             * A transparência mantém alguma integração com o background.jpg.
-             */
             background:
                 linear-gradient(
                     180deg,
@@ -417,6 +341,11 @@
                 1px solid rgba(247, 213, 134, 0.65);
         }
 
+
+
+        /* =========================================================
+           IDIOMAS
+           ========================================================= */
 
         .lang-bar {
 
@@ -464,6 +393,11 @@
         }
 
 
+
+        /* =========================================================
+           NOMES
+           ========================================================= */
+
         .names-title {
 
             font-family: 'Allura', cursive;
@@ -475,6 +409,13 @@
             line-height: 1;
 
             margin-bottom: 20px;
+
+            text-align: center;
+        }
+
+
+        .name-line {
+            display: block;
         }
 
 
@@ -486,34 +427,49 @@
         }
 
 
+
+        /* =========================================================
+           FRASE
+           ========================================================= */
+
         .quote-phrase {
 
-             font-family: 'Montserrat', sans-serif;
-             font-size: 16px;
-              font-weight: 400;
-    color: var(--sage);
-    line-height: 1.7;
-    text-align: center;
-    max-width: 540px;
-    margin: 0 auto 30px;
+            font-family: 'Montserrat', sans-serif;
+
+            font-size: 16px;
+
+            font-weight: 400;
+
+            color: var(--sage-green);
+
+            line-height: 1.7;
+
+            text-align: center;
+
+            max-width: 540px;
+
+            margin:
+                0 auto 45px;
         }
 
+
+
+        /* =========================================================
+           FOTO
+           ========================================================= */
 
         .photo-frame-wrapper {
 
             position: relative;
 
-            /*
-             * Moldura ampliada para dar muito mais presença à fotografia.
-             * A proporção foi aumentada em conjunto com a área da imagem,
-             * mantendo a moldura alinhada à nova escala.
-             */
             width: min(390px, 82vw);
+
             aspect-ratio: 0.75 / 1;
 
             height: auto;
 
-            margin: 0 auto 50px;
+            margin:
+                0 auto 50px;
 
             display: flex;
 
@@ -560,6 +516,11 @@
         }
 
 
+
+        /* =========================================================
+           DATA E LOCALIZAÇÃO
+           ========================================================= */
+
         .event-details {
 
             margin-bottom: 35px;
@@ -568,11 +529,17 @@
 
         .date-text {
 
-               font-size: 32px;
-    font-weight: 700;
-    color: var(--sage);
-    letter-spacing: 2px;
-    margin: 10px 0 25px;
+            font-size: 32px;
+
+            font-weight: 700;
+
+            letter-spacing: 3px;
+
+            color: var(--sage-green);
+
+            text-transform: uppercase;
+
+            margin-bottom: 15px;
         }
 
 
@@ -590,33 +557,70 @@
         }
 
 
-        .map-link {
-            display: inline-block;
-            margin-top: -12px;
-            margin-bottom: 30px;
-            color: var(--sage-green);
-            font-size: 10px;
+        .location-info strong {
+
             font-weight: 600;
-            letter-spacing: 1.6px;
-            text-transform: uppercase;
-            text-decoration: none;
-            border-bottom: 1px solid rgba(116, 139, 104, 0.45);
-            padding-bottom: 3px;
-            transition: opacity 0.2s ease;
         }
 
+
+
+        /* =========================================================
+           MAPA
+           ========================================================= */
+
+        .map-link {
+
+            display: inline-block;
+
+            margin-top: -12px;
+
+            margin-bottom: 30px;
+
+            color: var(--sage-green);
+
+            font-size: 10px;
+
+            font-weight: 600;
+
+            letter-spacing: 1.6px;
+
+            text-transform: uppercase;
+
+            text-decoration: none;
+
+            border-bottom:
+                1px solid rgba(116, 139, 104, 0.45);
+
+            padding-bottom: 3px;
+
+            transition:
+                opacity 0.2s ease;
+        }
+
+
         .map-link:hover {
+
             opacity: 0.65;
         }
+
+
+
+        /* =========================================================
+           BOTÕES
+           ========================================================= */
 
         .buttons-group {
 
             display: flex;
 
             flex-direction: row;
+
             justify-content: center;
+
             gap: 15px;
+
             margin-bottom: 35px;
+
             align-items: center;
         }
 
@@ -640,7 +644,9 @@
             border-radius: 30px;
 
             width: auto;
+
             flex: 1 1 0;
+
             max-width: 280px;
 
             transition:
@@ -665,6 +671,11 @@
             color: #4a3a0f;
         }
 
+
+
+        /* =========================================================
+           IBAN
+           ========================================================= */
 
         .iban-container {
 
@@ -729,81 +740,112 @@
 
         @media (max-width: 600px) {
 
+            /*
+             * ENVELOPE:
+             * ocupa literalmente todo o viewport.
+             */
+
             #envelope-screen {
-        width: 100vw;
-        height: 100dvh;
-        min-height: 100vh;
-        overflow: hidden;
-    }
 
-    #envelope-screen .envelope-corpo,
-    #envelope-screen .envelope-aba {
-        width: 100vw;
-        height: 100dvh;
-        max-width: none;
-        max-height: none;
-        object-fit: cover;
-        object-position: center center;
-    }
+                position: fixed;
 
-            #main-site {
-                padding: 20px 12px;
+                inset: 0;
+
+                width: 100vw;
+
+                height: 100dvh;
+
+                min-height: 100svh;
+
+                max-height: none;
+
+                overflow: hidden;
             }
 
-            .content-wrapper {
-                max-width: 100%;
-                padding: 42px 20px;
-                border-radius: 18px;
-                background: rgba(250, 233, 194, 0.78);
-                backdrop-filter: blur(7px);
-                -webkit-backdrop-filter: blur(7px);
-            }
 
-            .buttons-group {
-                flex-direction: column;
-                gap: 12px;
-            }
-
-            .action-btn {
-                width: 100%;
-                max-width: 280px;
-                flex: none;
-            }
-
-            .names-title {
-                font-size: clamp(58px, 17vw, 76px);
-            }
-
-            .photo-frame-wrapper {
-                width: min(360px, 88vw);
-                margin-bottom: 45px;
-            }
-
-            .couple-photo {
-                width: 92%;
-                height: 92%;
-            }
-
-            .floral-overlay-img {
-                width: 108%;
-                height: 108%;
-            }
+            /*
+             * As imagens passam a ser MUITO maiores
+             * que o ecrã.
+             *
+             * Isto é intencional:
+             * o envelope ultrapassa os limites do telefone
+             * e as partes exteriores são cortadas.
+             */
 
             .env-corpo-img,
             .env-aba-img {
-                width: 100%;
-                height: 100%;
-                left: 0;
-                top: 0;
-                object-fit: cover;
+
+                position: absolute;
+
+                width: 180vw;
+
+                height: 180dvh;
+
+                min-width: 180vw;
+
+                min-height: 180dvh;
+
+                max-width: none;
+
+                max-height: none;
+
+                left: 50%;
+
+                top: 50%;
+
+                transform:
+                    translate(-50%, -50%);
+
+                object-fit: fill;
+
                 object-position: center center;
             }
 
 
+            /*
+             * Mantém a animação de abertura.
+             */
+
+            .env-corpo-img {
+
+                z-index: 2;
+
+                transition:
+                    transform 1.15s cubic-bezier(0.65, 0, 0.35, 1);
+            }
+
+
+            .env-aba-container {
+
+                position: absolute;
+
+                inset: 0;
+
+                z-index: 4;
+
+                transform: translateY(0);
+
+                transition:
+                    transform 1.15s cubic-bezier(0.65, 0, 0.35, 1);
+            }
+
+
+            .env-aba-img {
+
+                z-index: 4;
+
+                transition:
+                    transform 1.15s cubic-bezier(0.65, 0, 0.35, 1);
+            }
+
+
+            /*
+             * Selo no telefone.
+             */
+
             .selo-img {
 
-                width:
-                    clamp(130px, 38vw, 180px);
+                width: clamp(130px, 38vw, 180px);
 
                 top: 55%;
             }
@@ -816,6 +858,239 @@
                 font-size: 9px;
 
                 letter-spacing: 3px;
+            }
+
+
+
+            /* =========================================
+               SITE NO TELEFONE
+               ========================================= */
+
+            #main-site {
+
+                min-height: 100dvh;
+
+                padding:
+                    20px 12px;
+
+                background-attachment: scroll;
+
+                align-items: center;
+            }
+
+
+            /*
+             * PAINEL CENTRAL SEMI-TRANSPARENTE
+             *
+             * O background.jpg fica visível através dele.
+             */
+
+            .content-wrapper {
+
+                width: 100%;
+
+                max-width: 100%;
+
+                padding:
+                    42px 20px;
+
+                border-radius: 18px;
+
+                background:
+                    rgba(250, 233, 194, 0.72);
+
+                backdrop-filter: blur(7px);
+
+                -webkit-backdrop-filter: blur(7px);
+
+                border:
+                    1px solid rgba(255,255,255,0.45);
+
+                box-shadow:
+                    0 15px 40px rgba(0,0,0,0.12);
+            }
+
+
+            .lang-bar {
+
+                margin-bottom: 28px;
+
+                gap: 18px;
+            }
+
+
+            .names-title {
+
+                font-size:
+                    clamp(58px, 17vw, 76px);
+
+                margin-bottom: 18px;
+            }
+
+
+            .quote-phrase {
+
+                font-size: 15px;
+
+                line-height: 1.65;
+
+                margin-bottom: 35px;
+            }
+
+
+            .photo-frame-wrapper {
+
+                width:
+                    min(360px, 88vw);
+
+                margin-bottom: 45px;
+            }
+
+
+            .couple-photo {
+
+                width: 92%;
+                height: 92%;
+            }
+
+
+            .floral-overlay-img {
+
+                width: 108%;
+                height: 108%;
+            }
+
+
+            .date-text {
+
+                font-size: 29px;
+
+                font-weight: 700;
+
+                letter-spacing: 2.5px;
+
+                margin-bottom: 13px;
+            }
+
+
+            .location-info {
+
+                font-size: 13px;
+
+                line-height: 1.7;
+            }
+
+
+            .map-link {
+
+                font-size: 9px;
+
+                margin-bottom: 28px;
+            }
+
+
+            .buttons-group {
+
+                flex-direction: column;
+
+                gap: 12px;
+            }
+
+
+            .action-btn {
+
+                width: 100%;
+
+                max-width: 280px;
+
+                flex: none;
+            }
+
+
+            .iban-container {
+
+                font-size: 9px;
+
+                gap: 7px;
+
+                overflow: hidden;
+            }
+
+
+            .copy-link {
+
+                font-size: 8px;
+            }
+
+        }
+
+
+
+        /*
+         * ECRÃS MUITO ALTOS/ESTREITOS
+         *
+         * Aumenta ainda mais o envelope verticalmente.
+         */
+
+        @media (max-width: 600px) and (min-height: 700px) {
+
+            .env-corpo-img,
+            .env-aba-img {
+
+                width: 180vw;
+
+                height: 200dvh;
+
+                min-width: 180vw;
+
+                min-height: 200dvh;
+
+                left: 50%;
+
+                top: 50%;
+
+                transform:
+                    translate(-50%, -50%);
+            }
+        }
+
+
+
+        /*
+         * ECRÃS MUITO ESTREITOS
+         */
+
+        @media (max-width: 380px) {
+
+            .env-corpo-img,
+            .env-aba-img {
+
+                width: 195vw;
+
+                height: 210dvh;
+
+                min-width: 195vw;
+
+                min-height: 210dvh;
+            }
+
+
+            .content-wrapper {
+
+                padding:
+                    35px 16px;
+            }
+
+
+            .names-title {
+
+                font-size: 58px;
+            }
+
+
+            .date-text {
+
+                font-size: 26px;
             }
 
         }
@@ -836,16 +1111,12 @@
         onclick="openEnvelope()"
     >
 
-        <!-- Corpo do envelope -->
-
         <img
             src="envelope-corpo.png"
             alt="Corpo do Envelope"
             class="env-corpo-img"
         >
 
-
-        <!-- Aba superior -->
 
         <div class="env-aba-container">
 
@@ -858,8 +1129,6 @@
         </div>
 
 
-        <!-- Selo -->
-
         <img
             src="selo.png"
             alt="Selo de Cera"
@@ -867,8 +1136,6 @@
             onerror="this.style.display='none';"
         >
 
-
-        <!-- Texto -->
 
         <p
             class="open-hint-text"
@@ -920,8 +1187,15 @@
 
 
             <h1 class="names-title">
-                <span class="name-line">Mariana &amp;</span>
-                <span class="name-line">Filippo</span>
+
+                <span class="name-line">
+                    Mariana &amp;
+                </span>
+
+                <span class="name-line">
+                    Filippo
+                </span>
+
             </h1>
 
 
@@ -942,6 +1216,7 @@
                     onerror="this.src='https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=400&q=80'"
                 >
 
+
                 <img
                     src="moldura.png"
                     alt="Moldura Floral"
@@ -953,6 +1228,7 @@
 
 
             <div class="event-details">
+
 
                 <div
                     class="date-text"
@@ -970,6 +1246,7 @@
                     Teolo, Itália
                 </div>
 
+
                 <a
                     href="https://www.google.com/maps/search/?api=1&query=Ca%27+Salva%2C+Teolo%2C+Italy"
                     target="_blank"
@@ -980,38 +1257,46 @@
                     Ver no mapa
                 </a>
 
+
             </div>
+
 
 
             <div class="buttons-group">
 
+
                 <a
                     href="https://marianafilippo.pt"
                     target="_blank"
+                    rel="noopener noreferrer"
                     class="action-btn btn-site"
                     id="txt-btn-site"
                 >
-                    O Nosso Site
+                    Website
                 </a>
 
 
                 <a
-                    href="https://marianafilippo.pt/#presentes"
+                    href="https://marianafilippo.pt/gifts"
                     target="_blank"
+                    rel="noopener noreferrer"
                     class="action-btn btn-gifts"
                     id="txt-btn-gifts"
                 >
-                    Lista de Presentes
+                    Presentes
                 </a>
 
+
             </div>
+
 
 
             <div class="iban-container">
 
                 <span id="iban-code">
-                    PT50 0000 0000 0000 0000 0000 0
+                    PT50003300004572499102105
                 </span>
+
 
                 <button
                     class="copy-link"
@@ -1082,7 +1367,7 @@
                     "07 . 08 . 2027",
 
                 location:
-                    "<strong>Ca' Salva</strong><br>Teolo, Itália",
+                    "<strong>Ca' Salva</strong><br>Teolo, Italy",
 
                 btnSite:
                     "Website",
@@ -1137,6 +1422,7 @@
         let currentLang = 'pt';
 
 
+
         /* =========================================================
            IDIOMA AUTOMÁTICO
            ========================================================= */
@@ -1186,15 +1472,12 @@
                     'envelope-screen'
                 );
 
+
             const mainSite =
                 document.getElementById(
                     'main-site'
                 );
 
-
-            /*
-             * Impede cliques repetidos.
-             */
 
             if (
                 screen.classList.contains('opening')
@@ -1205,30 +1488,15 @@
 
 
             /*
-             * PRIMEIRO:
-             * começa imediatamente a revelar o site
-             * por trás do envelope.
+             * O site só aparece quando o envelope
+             * começa efetivamente a abrir.
              */
 
             mainSite.classList.add('visible');
 
 
-            /*
-             * Depois começa a separação do envelope.
-             */
-
             screen.classList.add('opening');
 
-
-            /*
-             * O convite já está visível por baixo do envelope.
-             * O overlay só desaparece no fim da animação.
-             */ 
-
-            /*
-             * Quando a animação terminou,
-             * retiramos completamente o envelope.
-             */
 
             setTimeout(() => {
 
@@ -1285,6 +1553,7 @@
                 .getElementById('txt-btn-gifts')
                 .innerText =
                 t.btnGifts;
+
 
             document
                 .getElementById('txt-map')
