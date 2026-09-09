@@ -540,83 +540,55 @@
 
     .photo-frame-wrapper {
 
-        position: relative;
+    position: relative;
 
-        /*
-         * ANTES:
-         * 260 x 350
-         *
-         * AGORA:
-         * fotografia significativamente maior.
-         */
+    width: 430px;
+    height: 575px;
 
-        width: 360px;
+    margin: 0 auto 42px;
 
-        height: 480px;
+    display: flex;
 
-        margin: 0 auto 48px;
-
-        display: flex;
-
-        justify-content: center;
-
-        align-items: center;
-    }
+    justify-content: center;
+    align-items: center;
+}
 
 
-    /*
-     * FOTOGRAFIA DOS NOIVOS
-     */
+.couple-photo {
 
-    .couple-photo {
+    position: absolute;
 
-        position: absolute;
+    width: 90%;
+    height: 90%;
 
-        /*
-         * A fotografia ocupa quase toda a moldura.
-         */
+    object-fit: cover;
 
-        width: 88%;
+    border-radius:
+        165px 165px 14px 14px;
 
-        height: 88%;
+    z-index: 1;
 
-        object-fit: cover;
-
-        border-radius:
-            145px 145px 14px 14px;
-
-        z-index: 1;
-
-        box-shadow:
-            0 12px 30px rgba(0,0,0,0.12);
-    }
+    box-shadow:
+        0 12px 30px rgba(0,0,0,0.12);
+}
 
 
-    /*
-     * MOLDURA FLORAL
-     *
-     * A moldura aumenta proporcionalmente
-     * com a nova fotografia.
-     */
+.floral-overlay-img {
 
-    .floral-overlay-img {
+    position: absolute;
 
-        position: absolute;
+    top: -5%;
+    left: -5%;
 
-        top: -5%;
+    width: 110%;
+    height: 110%;
 
-        left: -5%;
+    object-fit: contain;
 
-        width: 110%;
+    z-index: 2;
 
-        height: 110%;
-
-        object-fit: contain;
-
-        z-index: 2;
-
-        pointer-events: none;
-    }
+    pointer-events: none;
+}
 
 
 
@@ -740,6 +712,24 @@
 
         transform: translateY(-2px);
     }
+    .btn-map {
+
+    background-color:
+        #8FB8DE;
+
+    color: #2C332A;
+
+    margin-bottom: 30px;
+}
+
+
+.btn-map:hover {
+
+    background-color:
+        #A9CBE8;
+
+    transform: translateY(-2px);
+}
 
 
 
@@ -875,39 +865,36 @@
          * demasiado a largura do ecrã.
          */
 
-        .photo-frame-wrapper {
+       .photo-frame-wrapper {
 
-            width:
-                min(88vw, 360px);
+    width: 94vw;
 
-            height:
-                min(117vw, 480px);
+    height: 125vw;
 
-            margin-bottom: 42px;
-        }
+    max-height: 575px;
 
-
-        .couple-photo {
-
-            width: 88%;
-
-            height: 88%;
-
-            border-radius:
-                120px 120px 12px 12px;
-        }
+    margin-bottom: 40px;
+}
 
 
-        .floral-overlay-img {
+.couple-photo {
 
-            width: 110%;
+    width: 90%;
+    height: 90%;
 
-            height: 110%;
+    border-radius:
+        135px 135px 12px 12px;
+}
 
-            top: -5%;
 
-            left: -5%;
-        }
+.floral-overlay-img {
+
+    width: 110%;
+    height: 110%;
+
+    top: -5%;
+    left: -5%;
+}
 
 
         .names-title {
@@ -1134,13 +1121,21 @@
                 class="location-info"
                 id="txt-location"
             >
-                <strong>Quinta dos Sonhos</strong><br>
-                Coimbra, Portugal
+                <strong>Ca' Salva</strong><br>
+                Teolo, Italia
             </div>
 
         </div>
 
-
+<a
+    href="https://www.google.com/maps/search/?api=1&query=Quinta+dos+Sonhos+Coimbra+Portugal"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="action-btn btn-map"
+    id="txt-btn-map"
+>
+    Ver localização no mapa
+</a>
 
         <!-- =================================================
              BOTÕES
@@ -1154,17 +1149,17 @@
                 class="action-btn btn-site"
                 id="txt-btn-site"
             >
-                O Nosso Site
+                Website
             </a>
 
 
             <a
-                href="https://marianafilippo.pt/#presentes"
+                href="https://marianafilippo.pt/gifts"
                 target="_blank"
                 class="action-btn btn-gifts"
                 id="txt-btn-gifts"
             >
-                Lista de Presentes
+                Presentes
             </a>
 
         </div>
@@ -1178,7 +1173,7 @@
         <div class="iban-container">
 
             <span id="iban-code">
-                PT50 0000 0000 0000 0000 0000 0
+                PT50003300004572499102105
             </span>
 
             <button
@@ -1223,19 +1218,21 @@
                 "07 . 08 . 2027",
 
             location:
-                "<strong>Quinta dos Sonhos</strong><br>Coimbra, Portugal",
+                "<strong>Ca' Salva</strong><br>Teolo, Italia",
 
             btnSite:
-                "O Nosso Site",
+                "Website",
 
             btnGifts:
-                "Lista de Presentes",
+                "Presentes",
 
             copy:
                 "Copiar",
 
             copied:
                 "Copiado"
+            btnMap:
+    "Ver localização no mapa",
         },
 
 
@@ -1251,10 +1248,10 @@
                 "07 . 08 . 2027",
 
             location:
-                "<strong>Quinta dos Sonhos</strong><br>Coimbra, Portugal",
+                "<strong>Ca' Salva</strong><br>Teolo, Italy",
 
             btnSite:
-                "Our Website",
+                "Website",
 
             btnGifts:
                 "Gift Registry",
@@ -1264,6 +1261,8 @@
 
             copied:
                 "Copied"
+            btnMap:
+    "View location on map",
         },
 
 
@@ -1279,7 +1278,7 @@
                 "07 . 08 . 2027",
 
             location:
-                "<strong>Quinta dei Sogni</strong><br>Coimbra, Portogallo",
+                 "<strong>Ca' Salva</strong><br>Teolo, Italia",
 
             btnSite:
                 "Il Nostro Sito",
@@ -1292,6 +1291,8 @@
 
             copied:
                 "Copiato"
+            btnMap:
+    "Vedi posizione sulla mappa",
         }
 
     };
