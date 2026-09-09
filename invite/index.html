@@ -322,8 +322,8 @@
             background:
                 linear-gradient(
                     180deg,
-                    rgba(250, 233, 194, 0.97),
-                    rgba(250, 233, 194, 0.93)
+                    rgba(250, 233, 194, 0.70),
+                    rgba(250, 233, 194, 0.50)
                 );
 
             backdrop-filter: blur(8px);
@@ -775,30 +775,22 @@
             .env-corpo-img,
             .env-aba-img {
 
-                position: absolute;
+    position: absolute;
 
-                width: 180vw;
+    height: 180dvh;
+    width: auto;
 
-                height: 180dvh;
+    max-width: none;
+    max-height: none;
 
-                min-width: 180vw;
+    left: 50%;
+    top: 50%;
 
-                min-height: 180dvh;
+    transform: translate(-50%, -50%);
 
-                max-width: none;
+    object-fit: contain;
 
-                max-height: none;
-
-                left: 50%;
-
-                top: 50%;
-
-                transform:
-                    translate(-50%, -50%);
-
-                object-fit: fill;
-
-                object-position: center center;
+    object-position: center center;
             }
 
 
@@ -1189,11 +1181,11 @@
             <h1 class="names-title">
 
                 <span class="name-line">
-                    Mariana &amp;
+                    Mariana;
                 </span>
 
                 <span class="name-line">
-                    Filippo
+                    &amp Filippo
                 </span>
 
             </h1>
@@ -1277,7 +1269,7 @@
 
 
                 <a
-                    href="https://marianafilippo.pt/#presentes"
+                    href="https://marianafilippo.pt/gifts"
                     target="_blank"
                     rel="noopener noreferrer"
                     class="action-btn btn-gifts"
