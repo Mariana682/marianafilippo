@@ -4,17 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mariana & Filippo — Convite</title>
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Allura&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 
     <style>
+
         :root {
-            /* Posição real da dobra da aba */
-            --linha-da-dobra: 50%;
-            
-            --sage-green: #6a7b5e; 
+            --sage-green: #6a7b5e;
             --text-dark: #2C332A;
         }
 
@@ -25,467 +23,1022 @@
             -webkit-tap-highlight-color: transparent;
         }
 
+        html,
+        body {
+            width: 100%;
+            min-height: 100%;
+        }
+
         body {
             font-family: 'Montserrat', sans-serif;
             color: var(--text-dark);
-            min-height: 100vh;
-            width: 100vw;
             overflow-x: hidden;
             background-color: #121610;
         }
 
-        /* --- 1. ENVELOPE FULL SCREEN --- */
+
+        /* =========================================================
+           1. ENVELOPE
+           ========================================================= */
+
         #envelope-screen {
             position: fixed;
-            top: 0;
-            left: 0;
+            inset: 0;
+
             width: 100vw;
             height: 100vh;
+
             z-index: 9999;
             cursor: pointer;
-            background-color: #000;
+
+            background: #000;
+
             perspective: 2000px;
-            transition: opacity 1.2s ease, visibility 1.2s ease;
+
+            overflow: hidden;
+
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
+
+            /* A saída final é feita pela animação */
+            opacity: 1;
+            visibility: visible;
+
+            transition:
+                opacity 0.8s ease,
+                visibility 0.8s ease;
         }
 
-        /* Imagens do envelope em fullscreen */
+
+        /*
+         * IMPORTANTE:
+         *
+         * A PNG original tem bastante transparência à volta
+         * do envelope.
+         *
+         * O envelope real começa aproximadamente em:
+         *
+         * X = 175 px
+         * Y = 204 px
+         *
+         * e termina aproximadamente em:
+         *
+         * X = 1360 px
+         * Y = 900 px
+         *
+         * Por isso ampliamos a imagem para que o ENVELOPE,
+         * e não o canvas transparente da PNG, ocupe o ecrã.
+         */
+
+
         .env-corpo-img,
         .env-aba-img {
+
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+
+            /*
+             * Ampliação para compensar as margens transparentes
+             * existentes na imagem original.
+             */
+            width: 150%;
+            height: 150%;
+
+            /*
+             * Reposicionamento correspondente.
+             *
+             * É MUITO importante que corpo e aba tenham
+             * exatamente estes mesmos valores.
+             */
+            left: -25%;
+            top: -29.9%;
+
+            /*
+             * Mantemos a proporção do canvas original.
+             */
             object-fit: fill;
+
             pointer-events: none;
+
+            user-select: none;
         }
+
+
+        /* Corpo do envelope */
 
         .env-corpo-img {
             z-index: 2;
         }
 
-        /* Container da aba */
+
+        /*
+         * ABA
+         *
+         * O container tem exatamente a mesma dimensão e posição
+         * visual do corpo.
+         */
+
         .env-aba-container {
+
             position: absolute;
-            top: 0;
+
             left: 0;
+            top: 0;
+
             width: 100%;
             height: 100%;
+
             z-index: 3;
-            transform-origin: 50% var(--linha-da-dobra);
-            transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-        }
 
-        /* Selo */
-        .selo-img {
-            position: absolute;
-
-            /* Posição da ponta da aba */
-            top: 50%;
-            left: 50%;
-
-            transform: translate(-50%, -50%);
-
-            /* Maior */
-            width: 23vw;
-            min-width: 110px;
-            max-width: 180px;
-
-            z-index: 4;
-            filter: drop-shadow(0 8px 15px rgba(0,0,0,0.6));
+            /*
+             * A dobra da aba fica aproximadamente no centro
+             * do envelope depois do reposicionamento.
+             */
+            transform-origin: 50% 50%;
 
             transition:
-                transform 0.5s ease,
-                opacity 0.4s ease;
+                transform 1.15s cubic-bezier(0.22, 0.61, 0.36, 1);
+
+            transform-style: preserve-3d;
         }
+
+
+        /*
+         * SELO
+         *
+         * Como agora o envelope ocupa o ecrã, posicionamos
+         * o selo aproximadamente sobre a ponta da aba.
+         */
+
+        .selo-img {
+
+            position: absolute;
+
+            left: 50%;
+            top: 50%;
+
+            /*
+             * Maior que anteriormente.
+             */
+            width: clamp(115px, 14vw, 175px);
+
+            height: auto;
+
+            transform:
+                translate(-50%, -50%)
+                scale(1);
+
+            z-index: 5;
+
+            filter:
+                drop-shadow(0 7px 12px rgba(0,0,0,0.45));
+
+            transition:
+                opacity 0.45s ease,
+                transform 0.55s cubic-bezier(0.22, 0.61, 0.36, 1);
+        }
+
+
+        /*
+         * TEXTO "CLIQUE PARA ABRIR"
+         */
 
         .open-hint-text {
+
             position: absolute;
-            bottom: 8%;
+
+            left: 50%;
+            bottom: 7%;
+
+            transform: translateX(-50%);
+
             color: rgba(255,255,255,0.8);
+
             font-size: 11px;
+
             letter-spacing: 4px;
+
             text-transform: uppercase;
+
+            white-space: nowrap;
+
             animation: pulse 2s infinite;
-            transition: opacity 0.3s ease;
-            z-index: 5;
+
+            transition:
+                opacity 0.3s ease;
+
+            z-index: 6;
         }
+
 
         @keyframes pulse {
-            0%, 100% { opacity: 0.4; }
-            50% { opacity: 1; }
+
+            0%,
+            100% {
+                opacity: 0.4;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
         }
 
-        /* --- ANIMAÇÃO DE ABERTURA --- */
+
+        /* =========================================================
+           ABERTURA
+           ========================================================= */
+
 
         /*
-         * Primeiro desaparece o selo.
-         * A aba abre para cima, como num envelope real.
+         * 1 — O selo desaparece.
          */
+
         #envelope-screen.opening .selo-img {
+
             opacity: 0;
-            transform: translate(-50%, -50%) scale(0.2);
+
+            transform:
+                translate(-50%, -50%)
+                scale(0.25);
         }
+
+
+        /*
+         * 2 — A aba abre para cima.
+         *
+         * Não usamos 180deg porque isso fazia a aba
+         * "virar ao contrário".
+         */
 
         #envelope-screen.opening .env-aba-container {
-            transform: rotateX(-170deg);
+
+            transform:
+                rotateX(-170deg);
         }
 
+
+        /*
+         * 3 — O texto desaparece.
+         */
+
         #envelope-screen.opening .open-hint-text {
+
             opacity: 0;
         }
 
+
         /*
-         * Depois de abrir, o envelope inteiro
-         * aproxima-se e desaparece.
+         * 4 — Depois de a aba abrir,
+         * o envelope aproxima-se do utilizador
+         * e desaparece.
          */
+
         #envelope-screen.opening {
-            animation: envelopeZoomOut 1.4s ease-in forwards;
+
+            animation:
+                envelopeExit 1.25s
+                cubic-bezier(0.4, 0, 0.2, 1)
+                forwards;
+
             animation-delay: 0.65s;
         }
 
-        @keyframes envelopeZoomOut {
+
+        @keyframes envelopeExit {
+
             0% {
+
                 opacity: 1;
-                transform: scale(1);
+
+                transform:
+                    scale(1);
+            }
+
+            45% {
+
+                opacity: 0.95;
+
+                transform:
+                    scale(1.035);
             }
 
             100% {
+
                 opacity: 0;
-                transform: scale(1.12);
+
+                transform:
+                    scale(1.16);
             }
+
         }
 
+
+        /*
+         * Estado final.
+         */
+
         #envelope-screen.opened {
+
             opacity: 0;
+
             visibility: hidden;
+
             pointer-events: none;
         }
 
 
-        /* --- 2. SITE PRINCIPAL --- */
+        /* =========================================================
+           2. SITE PRINCIPAL
+           ========================================================= */
+
         #main-site {
+
             width: 100vw;
             min-height: 100vh;
+
             background-image: url('background.jpg');
+
             background-size: cover;
+
             background-position: center bottom;
+
             background-attachment: fixed;
+
             display: flex;
+
             justify-content: center;
             align-items: center;
+
             padding: 40px 20px;
+
             opacity: 0;
-            transition: opacity 1.5s ease;
+
+            transition:
+                opacity 1.5s ease;
         }
 
+
         #main-site.visible {
+
             opacity: 1;
         }
 
+
         .content-wrapper {
+
             width: 100%;
+
             max-width: 580px;
+
             margin: 0 auto;
+
             text-align: center;
-            background: rgba(253, 251, 247, 0.92);
+
+            background:
+                rgba(253, 251, 247, 0.92);
+
             backdrop-filter: blur(8px);
+
             -webkit-backdrop-filter: blur(8px);
+
             padding: 50px 30px;
+
             border-radius: 16px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
-            border: 1px solid rgba(255,255,255,0.7);
+
+            box-shadow:
+                0 20px 50px rgba(0,0,0,0.15);
+
+            border:
+                1px solid rgba(255,255,255,0.7);
         }
 
+
         .lang-bar {
+
             display: flex;
+
             justify-content: center;
+
             gap: 20px;
+
             margin-bottom: 35px;
         }
 
+
         .lang-btn {
+
             background: none;
+
             border: none;
+
             color: var(--sage-green);
+
             font-size: 12px;
+
             font-weight: 600;
+
             letter-spacing: 2px;
+
             cursor: pointer;
+
             opacity: 0.4;
+
             padding-bottom: 4px;
-            transition: all 0.3s ease;
+
+            transition:
+                all 0.3s ease;
         }
+
 
         .lang-btn.active {
+
             opacity: 1;
-            border-bottom: 2px solid var(--sage-green);
+
+            border-bottom:
+                2px solid var(--sage-green);
         }
 
+
         .names-title {
+
             font-family: 'Allura', cursive;
+
             font-size: 68px;
+
             color: var(--sage-green);
+
             line-height: 1;
+
             margin-bottom: 20px;
         }
 
+
         @media (min-width: 768px) {
-            .names-title { font-size: 86px; }
+
+            .names-title {
+                font-size: 86px;
+            }
+
         }
 
+
         .quote-phrase {
+
             font-size: 14px;
+
             font-weight: 300;
+
             color: #4a5247;
+
             line-height: 1.8;
+
             margin-bottom: 45px;
         }
 
+
         .photo-frame-wrapper {
+
             position: relative;
+
             width: 260px;
+
             height: 350px;
+
             margin: 0 auto 45px;
+
             display: flex;
+
             justify-content: center;
+
             align-items: center;
         }
 
+
         .couple-photo {
+
             position: absolute;
+
             width: 85%;
             height: 85%;
+
             object-fit: cover;
-            border-radius: 120px 120px 10px 10px;
+
+            border-radius:
+                120px 120px 10px 10px;
+
             z-index: 1;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+
+            box-shadow:
+                0 10px 25px rgba(0,0,0,0.1);
         }
 
+
         .floral-overlay-img {
+
             position: absolute;
+
             top: -5%;
             left: -5%;
+
             width: 110%;
             height: 110%;
+
             object-fit: contain;
+
             z-index: 2;
+
             pointer-events: none;
         }
 
+
         .event-details {
+
             margin-bottom: 35px;
         }
 
+
         .date-text {
+
             font-size: 18px;
+
             font-weight: 500;
+
             letter-spacing: 3px;
+
             color: var(--sage-green);
+
             text-transform: uppercase;
+
             margin-bottom: 15px;
         }
 
+
         .location-info {
+
             font-size: 14px;
+
             font-weight: 300;
+
             line-height: 1.7;
+
             color: #3b4239;
+
             margin-bottom: 25px;
         }
 
+
         .buttons-group {
+
             display: flex;
+
             flex-direction: column;
+
             gap: 15px;
+
             margin-bottom: 35px;
+
             align-items: center;
         }
 
+
         .action-btn {
+
             display: inline-block;
+
             text-decoration: none;
+
             font-size: 11px;
+
             font-weight: 500;
+
             letter-spacing: 2px;
+
             text-transform: uppercase;
+
             padding: 16px 32px;
+
             border-radius: 30px;
+
             width: 100%;
+
             max-width: 280px;
-            transition: all 0.3s ease;
+
+            transition:
+                all 0.3s ease;
         }
 
+
         .btn-site {
-            background-color: var(--sage-green);
+
+            background-color:
+                var(--sage-green);
+
             color: #ffffff;
         }
 
+
         .btn-gifts {
-            background-color: #E8D8B0;
+
+            background-color:
+                #E8D8B0;
+
             color: #4a3a0f;
         }
 
+
         .iban-container {
+
             display: flex;
+
             align-items: center;
+
             justify-content: center;
+
             gap: 10px;
+
             font-family: monospace;
+
             font-size: 12px;
+
             color: var(--text-dark);
+
             margin-top: 10px;
+
             padding-top: 20px;
-            border-top: 1px solid rgba(106, 123, 94, 0.15);
+
+            border-top:
+                1px solid rgba(106, 123, 94, 0.15);
         }
+
 
         .copy-link {
+
             background: none;
+
             border: none;
+
             color: var(--sage-green);
+
             font-weight: 600;
+
             cursor: pointer;
+
             font-size: 10px;
+
             text-transform: uppercase;
+
             letter-spacing: 1px;
+
             padding: 2px 6px;
-            transition: opacity 0.2s ease;
+
+            transition:
+                opacity 0.2s ease;
         }
 
+
         .copy-link:hover {
+
             opacity: 0.7;
         }
+
+
+        /* =========================================================
+           MOBILE
+           ========================================================= */
+
+        @media (max-width: 600px) {
+
+            /*
+             * Em telemóveis precisamos de aumentar um pouco mais
+             * porque o ecrã é muito mais estreito.
+             */
+
+            .env-corpo-img,
+            .env-aba-img {
+
+                width: 185%;
+                height: 185%;
+
+                left: -42.5%;
+                top: -37%;
+            }
+
+
+            .selo-img {
+
+                width: 125px;
+            }
+
+
+            .open-hint-text {
+
+                bottom: 5%;
+
+                font-size: 9px;
+
+                letter-spacing: 3px;
+            }
+
+        }
+
     </style>
 </head>
 
+
 <body>
 
-    <!-- 1. ENVELOPE FULL SCREEN -->
-    <div id="envelope-screen" onclick="openEnvelope()">
 
-        <!-- Corpo Inferior -->
-        <img src="envelope-corpo.png" alt="Corpo do Envelope" class="env-corpo-img">
+    <!-- =========================================================
+         1. ENVELOPE
+         ========================================================= -->
 
-        <!-- Aba Superior -->
+    <div
+        id="envelope-screen"
+        onclick="openEnvelope()"
+    >
+
+        <!-- Corpo do envelope -->
+
+        <img
+            src="envelope-corpo.png"
+            alt="Corpo do Envelope"
+            class="env-corpo-img"
+        >
+
+
+        <!-- Aba superior -->
+
         <div class="env-aba-container">
-            <img src="envelope-aba.png" alt="Aba do Envelope" class="env-aba-img">
+
+            <img
+                src="envelope-aba.png"
+                alt="Aba do Envelope"
+                class="env-aba-img"
+            >
+
         </div>
 
-        <!-- Selo -->
-        <img src="selo.png"
-             alt="Selo de Cera"
-             class="selo-img"
-             onerror="this.style.display='none';">
 
-        <p class="open-hint-text" id="txt-hint">Clique para abrir</p>
+        <!-- Selo -->
+
+        <img
+            src="selo.png"
+            alt="Selo de Cera"
+            class="selo-img"
+            onerror="this.style.display='none';"
+        >
+
+
+        <!-- Texto -->
+
+        <p
+            class="open-hint-text"
+            id="txt-hint"
+        >
+            Clique para abrir
+        </p>
+
     </div>
 
 
-    <!-- 2. CONVITE -->
+
+    <!-- =========================================================
+         2. CONVITE
+         ========================================================= -->
+
     <div id="main-site">
+
         <div class="content-wrapper">
-            
+
+
             <div class="lang-bar">
-                <button class="lang-btn" onclick="setLang('pt')" id="btn-pt">PT</button>
-                <button class="lang-btn" onclick="setLang('en')" id="btn-en">EN</button>
-                <button class="lang-btn" onclick="setLang('it')" id="btn-it">IT</button>
+
+                <button
+                    class="lang-btn"
+                    onclick="setLang('pt')"
+                    id="btn-pt"
+                >
+                    PT
+                </button>
+
+                <button
+                    class="lang-btn"
+                    onclick="setLang('en')"
+                    id="btn-en"
+                >
+                    EN
+                </button>
+
+                <button
+                    class="lang-btn"
+                    onclick="setLang('it')"
+                    id="btn-it"
+                >
+                    IT
+                </button>
+
             </div>
 
-            <h1 class="names-title">Mariana & Filippo</h1>
 
-            <p class="quote-phrase" id="txt-phrase">
+
+            <h1 class="names-title">
+                Mariana & Filippo
+            </h1>
+
+
+
+            <p
+                class="quote-phrase"
+                id="txt-phrase"
+            >
                 Com imensa alegria, convidamo-vos a celebrar connosco a união do nosso amor.
             </p>
 
-            <div class="photo-frame-wrapper">
-                <img src="foto-noivos.jpg"
-                     alt="Mariana & Filippo"
-                     class="couple-photo"
-                     onerror="this.src='https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=400&q=80'">
 
-                <img src="moldura.png"
-                     alt="Moldura Floral"
-                     class="floral-overlay-img"
-                     onerror="this.style.display='none';">
+
+            <div class="photo-frame-wrapper">
+
+                <img
+                    src="foto-noivos.jpg"
+                    alt="Mariana & Filippo"
+                    class="couple-photo"
+                    onerror="this.src='https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=400&q=80'"
+                >
+
+                <img
+                    src="moldura.png"
+                    alt="Moldura Floral"
+                    class="floral-overlay-img"
+                    onerror="this.style.display='none';"
+                >
+
             </div>
 
-            <div class="event-details">
-                <div class="date-text" id="txt-date">07 . 08 . 2027</div>
 
-                <div class="location-info" id="txt-location">
+
+            <div class="event-details">
+
+                <div
+                    class="date-text"
+                    id="txt-date"
+                >
+                    07 . 08 . 2027
+                </div>
+
+
+                <div
+                    class="location-info"
+                    id="txt-location"
+                >
                     <strong>Quinta dos Sonhos</strong><br>
                     Coimbra, Portugal
                 </div>
+
             </div>
 
+
+
             <div class="buttons-group">
-                <a href="https://marianafilippo.pt"
-                   target="_blank"
-                   class="action-btn btn-site"
-                   id="txt-btn-site">
+
+                <a
+                    href="https://marianafilippo.pt"
+                    target="_blank"
+                    class="action-btn btn-site"
+                    id="txt-btn-site"
+                >
                     O Nosso Site
                 </a>
 
-                <a href="https://marianafilippo.pt/#presentes"
-                   target="_blank"
-                   class="action-btn btn-gifts"
-                   id="txt-btn-gifts">
+
+                <a
+                    href="https://marianafilippo.pt/#presentes"
+                    target="_blank"
+                    class="action-btn btn-gifts"
+                    id="txt-btn-gifts"
+                >
                     Lista de Presentes
                 </a>
+
             </div>
+
+
 
             <div class="iban-container">
-                <span id="iban-code">PT50 0000 0000 0000 0000 0000 0</span>
-                <button class="copy-link"
-                        onclick="copyIBAN()"
-                        id="txt-copy">
+
+                <span id="iban-code">
+                    PT50 0000 0000 0000 0000 0000 0
+                </span>
+
+                <button
+                    class="copy-link"
+                    onclick="copyIBAN()"
+                    id="txt-copy"
+                >
                     Copiar
                 </button>
+
             </div>
 
+
         </div>
+
     </div>
 
 
+
+    <!-- =========================================================
+         JAVASCRIPT
+         ========================================================= -->
+
     <script>
+
 
         const texts = {
 
             pt: {
+
                 hint: "Clique para abrir",
-                phrase: "Com imensa alegria, convidamo-vos a celebrar connosco a união do nosso amor.",
-                date: "07 . 08 . 2027",
-                location: "<strong>Quinta dos Sonhos</strong><br>Coimbra, Portugal",
-                btnSite: "O Nosso Site",
-                btnGifts: "Lista de Presentes",
-                copy: "Copiar",
-                copied: "Copiado"
+
+                phrase:
+                    "Com imensa alegria, convidamo-vos a celebrar connosco a união do nosso amor.",
+
+                date:
+                    "07 . 08 . 2027",
+
+                location:
+                    "<strong>Quinta dos Sonhos</strong><br>Coimbra, Portugal",
+
+                btnSite:
+                    "O Nosso Site",
+
+                btnGifts:
+                    "Lista de Presentes",
+
+                copy:
+                    "Copiar",
+
+                copied:
+                    "Copiado"
+
             },
+
 
             en: {
-                hint: "Click to open",
-                phrase: "With endless joy, we invite you to celebrate our wedding day with us.",
-                date: "07 . 08 . 2027",
-                location: "<strong>Quinta dos Sonhos</strong><br>Coimbra, Portugal",
-                btnSite: "Our Website",
-                btnGifts: "Gift Registry",
-                copy: "Copy",
-                copied: "Copied"
+
+                hint:
+                    "Click to open",
+
+                phrase:
+                    "With endless joy, we invite you to celebrate our wedding day with us.",
+
+                date:
+                    "07 . 08 . 2027",
+
+                location:
+                    "<strong>Quinta dos Sonhos</strong><br>Coimbra, Portugal",
+
+                btnSite:
+                    "Our Website",
+
+                btnGifts:
+                    "Gift Registry",
+
+                copy:
+                    "Copy",
+
+                copied:
+                    "Copied"
+
             },
 
+
             it: {
-                hint: "Clicca per aprire",
-                phrase: "Con immensa gioia, vi invitiamo a festeggiare il nostro matrimonio con noi.",
-                date: "07 . 08 . 2027",
-                location: "<strong>Quinta dos Sonhos</strong><br>Coimbra, Portogallo",
-                btnSite: "Il Nostro Sito",
-                btnGifts: "Lista Nozze",
-                copy: "Copia",
-                copied: "Copiato"
+
+                hint:
+                    "Clicca per aprire",
+
+                phrase:
+                    "Con immensa gioia, vi invitiamo a festeggiare il nostro matrimonio con noi.",
+
+                date:
+                    "07 . 08 . 2027",
+
+                location:
+                    "<strong>Quinta dos Sonhos</strong><br>Coimbra, Portogallo",
+
+                btnSite:
+                    "Il Nostro Sito",
+
+                btnGifts:
+                    "Lista Nozze",
+
+                copy:
+                    "Copia",
+
+                copied:
+                    "Copiato"
+
             }
 
         };
@@ -494,40 +1047,79 @@
         let currentLang = 'pt';
 
 
-        // Deteção Automática do Idioma no arranque da página
-        window.addEventListener('DOMContentLoaded', () => {
+        /* =========================================================
+           IDIOMA AUTOMÁTICO
+           ========================================================= */
 
-            const browserLang =
-                (navigator.language || navigator.userLanguage)
-                .slice(0, 2)
-                .toLowerCase();
+        window.addEventListener(
+            'DOMContentLoaded',
+            () => {
 
-            const supportedLangs = ['pt', 'en', 'it'];
+                const browserLang =
+                    (
+                        navigator.language ||
+                        navigator.userLanguage
+                    )
+                    .slice(0, 2)
+                    .toLowerCase();
 
-            if (supportedLangs.includes(browserLang)) {
-                setLang(browserLang);
-            } else {
-                setLang('pt');
+
+                const supportedLangs =
+                    ['pt', 'en', 'it'];
+
+
+                if (
+                    supportedLangs.includes(browserLang)
+                ) {
+
+                    setLang(browserLang);
+
+                } else {
+
+                    setLang('pt');
+
+                }
+
             }
+        );
 
-        });
 
+
+        /* =========================================================
+           ABRIR ENVELOPE
+           ========================================================= */
 
         function openEnvelope() {
 
             const screen =
-                document.getElementById('envelope-screen');
+                document.getElementById(
+                    'envelope-screen'
+                );
 
-            // Evita clicar várias vezes durante a animação
-            if (screen.classList.contains('opening')) return;
+
+            /*
+             * Impede múltiplos cliques enquanto
+             * a animação está a decorrer.
+             */
+
+            if (
+                screen.classList.contains('opening')
+            ) {
+                return;
+            }
+
 
             screen.classList.add('opening');
 
+
             /*
-             * A animação começa pela aba.
-             * Depois o envelope desaparece com zoom.
-             * O site aparece no final.
+             * A animação total dura aproximadamente
+             * 1.9 segundos.
+             *
+             * O site aparece no final do desaparecimento
+             * do envelope.
              */
+
             setTimeout(() => {
 
                 screen.classList.add('opened');
@@ -536,10 +1128,15 @@
                     .getElementById('main-site')
                     .classList.add('visible');
 
-            }, 1850);
+            }, 1750);
 
         }
 
+
+
+        /* =========================================================
+           IDIOMAS
+           ========================================================= */
 
         function setLang(lang) {
 
@@ -547,31 +1144,54 @@
 
             const t = texts[lang];
 
-            document.getElementById('txt-hint').innerText = t.hint;
 
-            document.getElementById('txt-phrase').innerText =
-                t.phrase;
-
-            document.getElementById('txt-date').innerText =
-                t.date;
-
-            document.getElementById('txt-location').innerHTML =
-                t.location;
-
-            document.getElementById('txt-btn-site').innerText =
-                t.btnSite;
-
-            document.getElementById('txt-btn-gifts').innerText =
-                t.btnGifts;
-
-            document.getElementById('txt-copy').innerText =
-                t.copy;
+            document
+                .getElementById('txt-hint')
+                .innerText = t.hint;
 
 
-            // Atualiza botões
+            document
+                .getElementById('txt-phrase')
+                .innerText = t.phrase;
+
+
+            document
+                .getElementById('txt-date')
+                .innerText = t.date;
+
+
+            document
+                .getElementById('txt-location')
+                .innerHTML = t.location;
+
+
+            document
+                .getElementById('txt-btn-site')
+                .innerText = t.btnSite;
+
+
+            document
+                .getElementById('txt-btn-gifts')
+                .innerText = t.btnGifts;
+
+
+            document
+                .getElementById('txt-copy')
+                .innerText = t.copy;
+
+
+
+            /*
+             * Atualiza botão de idioma ativo.
+             */
+
             document
                 .querySelectorAll('.lang-btn')
-                .forEach(btn => btn.classList.remove('active'));
+                .forEach(
+                    btn =>
+                        btn.classList.remove('active')
+                );
+
 
             document
                 .getElementById(`btn-${lang}`)
@@ -579,6 +1199,11 @@
 
         }
 
+
+
+        /* =========================================================
+           COPIAR IBAN
+           ========================================================= */
 
         function copyIBAN() {
 
@@ -591,10 +1216,15 @@
                 .then(() => {
 
                     const btn =
-                        document.getElementById('txt-copy');
+                        document
+                            .getElementById(
+                                'txt-copy'
+                            );
+
 
                     btn.innerText =
                         texts[currentLang].copied;
+
 
                     setTimeout(() => {
 
