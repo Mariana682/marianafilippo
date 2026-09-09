@@ -5,16 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mariana & Filippo — Convite</title>
     
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Allura&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 
     <style>
         :root {
+            /* AJUSTE TÉCNICO: Define a percentagem a partir do topo onde fica a dobra física da aba na tua foto */
+            --linha-da-dobra: 35%;
+            
             --sage-green: #6a7b5e; 
             --text-dark: #2C332A;
-            --env-interior: #3b4634; /* Cor verde escura para o interior do envelope */
         }
 
         * {
@@ -33,7 +34,7 @@
             background-color: #121610;
         }
 
-        /* --- 1. ENVELOPE 3D COM IMAGENS REAIS --- */
+        /* --- 1. ENVELOPE FULL SCREEN --- */
         #envelope-screen {
             position: fixed;
             top: 0;
@@ -42,138 +43,81 @@
             height: 100vh;
             z-index: 9999;
             cursor: pointer;
-            background-color: #161b14;
+            background-color: #000;
+            perspective: 2000px; /* Profundidade 3D intensa para full screen */
+            transition: opacity 1.2s ease 0.8s, visibility 1.2s ease 0.8s;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            perspective: 1500px; /* Profundidade 3D */
-            transition: opacity 0.8s ease 1.5s, visibility 0.8s ease 1.5s;
+            overflow: hidden;
         }
 
-        .envelope-box {
-            position: relative;
-            width: 90vw;
-            max-width: 540px;
-            transform-style: preserve-3d;
-            border-radius: 4px;
-        }
-
-        /* O interior do envelope (fica atrás de tudo) */
-        .env-interior {
+        /* Imagens em Full Screen (Cobrem todo o ecrã) */
+        .env-corpo-img, .env-aba-img {
             position: absolute;
-            top: 5%; 
-            left: 1%; 
-            right: 1%; 
-            bottom: 5%;
-            background-color: var(--env-interior);
-            border-radius: 4px;
-            z-index: 1;
-            box-shadow: inset 0 10px 30px rgba(0,0,0,0.5);
-        }
-
-        /* O cartão de convite que sobe de dentro */
-        .env-card {
-            position: absolute;
-            top: 8%; 
-            left: 4%; 
-            width: 92%; 
-            height: 85%;
-            background: #FAF8F5;
-            border-radius: 4px;
-            z-index: 2;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 -5px 15px rgba(0,0,0,0.2);
-            transition: transform 0.9s cubic-bezier(0.25, 1, 0.5, 1) 0.6s;
-        }
-
-        .card-names {
-            font-family: 'Allura', cursive;
-            font-size: 42px;
-            color: var(--sage-green);
-            line-height: 1;
-        }
-
-        .card-date {
-            font-size: 11px;
-            letter-spacing: 3px;
-            color: #777;
-            margin-top: 10px;
-        }
-
-        /* O Corpo inferior do envelope recortado (Imagem) */
-        .env-corpo-img {
+            top: 0;
+            left: 0;
             width: 100%;
-            height: auto;
-            display: block;
-            position: relative;
-            z-index: 3; /* Fica à frente do cartão */
-            filter: drop-shadow(0 25px 40px rgba(0,0,0,0.5));
+            height: 100%;
+            object-fit: cover; 
+            pointer-events: none;
         }
 
-        /* A Aba superior que dobra (Imagem) */
+        .env-corpo-img {
+            z-index: 2;
+        }
+
+        /* Container da aba que aplica a rotação */
         .env-aba-container {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 4; /* Começa à frente de tudo */
-            transform-origin: top center;
-            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.2s, z-index 0s linear 0.6s;
+            z-index: 3;
+            transform-origin: 50% var(--linha-da-dobra);
+            transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .env-aba-img {
-            width: 100%;
-            height: auto;
-            display: block;
-            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.3));
-        }
-
-        /* Selo de Cera */
         .selo-img {
             position: absolute;
-            top: 51%; /* Ajusta ligeiramente se o bico da tua aba for mais acima/abaixo */
+            /* Ajusta o 'top' para colocar o selo exatamente sobre a ponta da aba */
+            top: var(--linha-da-dobra); 
             left: 50%;
-            transform: translate(-50%, -50%);
-            width: 90px;
-            height: auto;
-            z-index: 5;
-            filter: drop-shadow(0 6px 12px rgba(0,0,0,0.5));
-            transition: transform 0.3s ease, opacity 0.3s ease;
+            transform: translate(-50%, -10%);
+            width: 18vw;
+            min-width: 90px;
+            max-width: 140px;
+            z-index: 4;
+            filter: drop-shadow(0 8px 15px rgba(0,0,0,0.6));
+            transition: transform 0.4s ease, opacity 0.4s ease;
         }
 
         .open-hint-text {
-            margin-top: 35px;
-            color: rgba(255,255,255,0.7);
-            font-size: 10px;
+            position: absolute;
+            bottom: 8%;
+            color: rgba(255,255,255,0.8);
+            font-size: 11px;
             letter-spacing: 4px;
             text-transform: uppercase;
             animation: pulse 2s infinite;
             transition: opacity 0.3s ease;
+            z-index: 5;
         }
 
         @keyframes pulse {
-            0%, 100% { opacity: 0.3; }
+            0%, 100% { opacity: 0.4; }
             50% { opacity: 1; }
         }
 
-        /* --- ANIMAÇÕES DE ABERTURA --- */
+        /* --- ANIMAÇÃO DE ABERTURA --- */
         #envelope-screen.opening .selo-img {
             opacity: 0;
-            transform: translate(-50%, -50%) scale(0.3);
+            transform: translate(-50%, -10%) scale(0.2);
         }
 
         #envelope-screen.opening .env-aba-container {
             transform: rotateX(180deg);
-            z-index: 1; /* Passa a aba para trás do cartão depois de abrir */
-        }
-
-        #envelope-screen.opening .env-card {
-            transform: translateY(-55%); /* Cartão desliza para fora */
         }
 
         #envelope-screen.opening .open-hint-text {
@@ -199,7 +143,7 @@
             align-items: center;
             padding: 40px 20px;
             opacity: 0;
-            transition: opacity 1.5s ease 0.2s;
+            transition: opacity 1.5s ease;
         }
 
         #main-site.visible {
@@ -349,7 +293,6 @@
             color: #4a3a0f;
         }
 
-        /* IBAN Minimalista */
         .iban-container {
             display: flex;
             align-items: center;
@@ -383,38 +326,28 @@
 </head>
 <body>
 
-    <!-- 1. ENVELOPE 3D COM IMAGENS REAIS -->
+    <!-- 1. ENVELOPE FULL SCREEN -->
     <div id="envelope-screen" onclick="openEnvelope()">
-        <div class="envelope-box">
-            
-            <div class="env-interior"></div>
-            
-            <div class="env-card">
-                <div class="card-names">Mariana & Filippo</div>
-                <div class="card-date">07 . 08 . 2027</div>
-            </div>
-            
-            <!-- Imagem 1: Corpo inferior (O V invertido fica transparente) -->
-            <img src="envelope-corpo.png" alt="Corpo do Envelope" class="env-corpo-img">
-            
-            <!-- Imagem 2: Aba superior que roda -->
-            <div class="env-aba-container">
-                <img src="envelope-aba.png" alt="Aba do Envelope" class="env-aba-img">
-            </div>
-            
-            <img src="selo.png" alt="Selo de Cera" class="selo-img" onerror="this.style.display='none';">
+        <!-- Imagem 1: Corpo Inferior -->
+        <img src="envelope-corpo.png" alt="Corpo do Envelope" class="env-corpo-img">
+        
+        <!-- Imagem 2: Aba Superior com eixo de rotação -->
+        <div class="env-aba-container">
+            <img src="envelope-aba.png" alt="Aba do Envelope" class="env-aba-img">
         </div>
+        
+        <img src="selo.png" alt="Selo de Cera" class="selo-img" onerror="this.style.display='none';">
         <p class="open-hint-text" id="txt-hint">Clique para abrir</p>
     </div>
 
-    <!-- 2. CONVITE (SITE) -->
+    <!-- 2. CONVITE -->
     <div id="main-site">
         <div class="content-wrapper">
             
             <div class="lang-bar">
-                <button class="lang-btn active" onclick="setLang('pt')">PT</button>
-                <button class="lang-btn" onclick="setLang('en')">EN</button>
-                <button class="lang-btn" onclick="setLang('it')">IT</button>
+                <button class="lang-btn" onclick="setLang('pt')" id="btn-pt">PT</button>
+                <button class="lang-btn" onclick="setLang('en')" id="btn-en">EN</button>
+                <button class="lang-btn" onclick="setLang('it')" id="btn-it">IT</button>
             </div>
 
             <h1 class="names-title">Mariana & Filippo</h1>
@@ -485,20 +418,33 @@
 
         let currentLang = 'pt';
 
+        // Deteção Automática do Idioma no arranque da página
+        window.addEventListener('DOMContentLoaded', () => {
+            const browserLang = (navigator.language || navigator.userLanguage).slice(0, 2).toLowerCase();
+            const supportedLangs = ['pt', 'en', 'it'];
+            
+            if (supportedLangs.includes(browserLang)) {
+                setLang(browserLang);
+            } else {
+                setLang('pt'); // Idioma por defeito caso o browser esteja noutra língua
+            }
+        });
+
         function openEnvelope() {
             const screen = document.getElementById('envelope-screen');
             screen.classList.add('opening');
             
-            // Aguarda o final da animação 3D para revelar o site
+            // Oculta o ecrã do envelope e revela a página do convite
             setTimeout(() => {
                 screen.classList.add('opened');
                 document.getElementById('main-site').classList.add('visible');
-            }, 1800); 
+            }, 1000); 
         }
 
         function setLang(lang) {
             currentLang = lang;
             const t = texts[lang];
+            
             document.getElementById('txt-hint').innerText = t.hint;
             document.getElementById('txt-phrase').innerText = t.phrase;
             document.getElementById('txt-date').innerText = t.date;
@@ -507,10 +453,9 @@
             document.getElementById('txt-btn-gifts').innerText = t.btnGifts;
             document.getElementById('txt-copy').innerText = t.copy;
 
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                btn.classList.remove('active');
-                if(btn.innerText.toLowerCase() === lang) btn.classList.add('active');
-            });
+            // Atualiza botões
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(`btn-${lang}`).classList.add('active');
         }
 
         function copyIBAN() {
