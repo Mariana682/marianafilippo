@@ -45,7 +45,7 @@
         }
         
         /* =========================================================
-           1. ENVELOPE (Mantido igual)
+           1. ENVELOPE
            ========================================================= */
 
         #envelope-screen {
@@ -135,7 +135,7 @@
             position: relative;
             width: 100vw;
             min-height: 100vh;
-            background-image: url('background.jpg'); /* Fundo por fora do convite, mantido */
+            background-image: url('background.jpg'); 
             background-size: cover;
             background-position: center bottom;
             background-attachment: fixed;
@@ -153,19 +153,18 @@
         }
 
         /* =========================================================
-           PAINEL CENTRAL (NOVO LOOK FOTOGRÁFICO)
+           PAINEL CENTRAL
            ========================================================= */
 
         .content-wrapper {
             position: relative;
             width: 100%;
-            max-width: 600px;
+            max-width: 850px; /* <--- AUMENTADO DE 600px PARA 850px */
             margin: 0 auto;
             border-radius: 12px;
-            border: 2px solid var(--gold-main); /* Borda Dourada Elegante */
+            border: 2px solid var(--gold-main); 
             box-shadow: 0 25px 60px rgba(0,0,0,0.5);
-            overflow: hidden; /* Garante que a foto não sai dos cantos redondos */
-            /* Altura mínima para ficar comprido e imponente */
+            overflow: hidden; 
             min-height: 85vh; 
             display: flex;
             flex-direction: column;
@@ -203,7 +202,7 @@
             position: relative;
             z-index: 2;
             width: 100%;
-            padding: 70px 32px;
+            padding: 70px 40px; /* Um pouco mais de espaço nas laterais no PC */
             text-align: center;
             display: flex;
             flex-direction: column;
@@ -266,10 +265,10 @@
             color: var(--gold-main);
             line-height: 1.1;
             text-align: center;
-            text-shadow: 2px 4px 10px rgba(0,0,0,0.3); /* Ligeira sombra para sobressair da foto */
+            text-shadow: 2px 4px 10px rgba(0,0,0,0.3); 
         }
 
-        .name-line { display: block; }
+        .name-line { display: inline-block; } /* Pode ficar na mesma linha se o ecrã for muito largo, ou quebrar se preferir 'block' */
 
         .elegant-divider {
             border: none;
@@ -280,7 +279,7 @@
         }
 
         @media (min-width: 768px) {
-            .names-title { font-size: 100px; }
+            .names-title { font-size: 110px; } /* Nomes um pouco maiores no PC já que o convite é mais largo */
         }
 
         /* =========================================================
@@ -292,7 +291,7 @@
             font-weight: 300;
             color: var(--gold-light);
             line-height: 1.8;
-            max-width: 480px;
+            max-width: 650px; /* <--- AUMENTADO PARA ACOMPANHAR A LARGURA DO CARTÃO (Era 480px) */
             margin: 0 auto 60px;
             text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
         }
@@ -361,7 +360,6 @@
             opacity: 0.7;
         }
 
-        /* Ícone Mapa (SVG) */
         .map-icon {
             width: 14px;
             height: 14px;
@@ -373,7 +371,7 @@
         }
 
         /* =========================================================
-           BOTÕES GHOST ELEGANTES (Nova alteração)
+           BOTÕES GHOST
            ========================================================= */
 
         .buttons-group {
@@ -393,12 +391,12 @@
             letter-spacing: 2px;
             text-transform: uppercase;
             padding: 16px 20px;
-            border-radius: 4px; /* Cantos Ligeiramente arredondados (Retangular Elegante) */
+            border-radius: 4px; 
             flex: 1 1 0;
             max-width: 200px;
-            background-color: transparent; /* Efeito Ghost */
-            border: 1px solid var(--gold-main); /* Borda Dourada */
-            color: var(--gold-main); /* Texto Dourado */
+            background-color: transparent; 
+            border: 1px solid var(--gold-main); 
+            color: var(--gold-main); 
             backdrop-filter: blur(2px);
             -webkit-backdrop-filter: blur(2px);
             transition: all 0.4s ease;
@@ -406,7 +404,7 @@
 
         .action-btn:hover {
             background-color: var(--gold-main);
-            color: #1A1A1A; /* Texto escuro ao passar o rato para alto contraste */
+            color: #1A1A1A; 
         }
 
         /* =========================================================
@@ -423,7 +421,7 @@
             color: var(--gold-light);
             margin-top: 20px;
             padding-top: 30px;
-            border-top: 1px solid rgba(212, 175, 55, 0.3); /* Linha divisória suave */
+            border-top: 1px solid rgba(212, 175, 55, 0.3); 
             width: 100%;
         }
 
@@ -452,7 +450,7 @@
 
         @media (max-width: 600px) {
 
-            #envelope-screen { background: #1a1e16; } /* Fundo mais escuro no carregamento mobile */
+            #envelope-screen { background: #1a1e16; } 
             .env-corpo-img { width: 150vw; height: 147.84dvh; max-width: none; max-height: none; left: -25vw; top: -29.2dvh; object-fit: fill; }
             .env-aba-container { overflow: hidden; }
             .env-aba-img { height: 120dvh; width: auto; max-width: none; max-height: none; left: 50%; top: -14.18dvh; transform: translateX(-50%); object-fit: contain; object-position: center top; }
@@ -461,7 +459,7 @@
             #main-site { padding: 15px; }
 
             .content-wrapper {
-                min-height: 90dvh; /* Ocupa quase todo o ecrã */
+                min-height: 90dvh; 
                 border-width: 1px;
             }
 
@@ -472,6 +470,7 @@
             .lang-bar { margin-bottom: 35px; gap: 15px; }
             .welcome-text { font-size: 9px; letter-spacing: 4px; }
             .names-title { font-size: 64px; }
+            .name-line { display: block; } /* Força os nomes a quebrar linha no mobile */
             .quote-phrase { font-size: 14px; margin-bottom: 45px; }
             .date-text { font-size: 28px; }
             .time-text { font-size: 14px; margin-bottom: 25px; }
@@ -526,11 +525,9 @@
             
             <!-- SLIDER DE FOTOS NO FUNDO -->
             <div class="card-bg-slider">
-                <!-- Adiciona aqui as vossas fotos. A class 'active' faz a primeira aparecer -->
-                <img src="foto-praia-1.jpg" alt="Fundo Praia 1" class="bg-photo active" onerror="this.src='https://i.pinimg.com/236x/9b/7c/14/9b7c145e25c4265bbffc61648509b196.jpg'">
-                <img src="foto-praia-2.jpg" alt="Fundo Praia 2" class="bg-photo" onerror="this.src='https://i.pinimg.com/564x/4b/32/38/4b32389176395b4588e30b65f3334ca0.jpg'">
-                <img src="foto-praia-3.jpg" alt="Fundo Praia 3" class="bg-photo" onerror="this.src='https://i.pinimg.com/564x/87/4a/c7/874ac7d2dcf84a3c3e2eb887f54c30c3.jpg'">
-                <!-- Overlay escuro -->
+                <img src="foto1.jpg" alt="Fundo 1" class="bg-photo active" onerror="this.src='https://i.pinimg.com/236x/9b/7c/14/9b7c145e25c4265bbffc61648509b196.jpg'">
+                <img src="foto2.jpg" alt="Fundo 2" class="bg-photo" onerror="this.src='https://i.pinimg.com/564x/4b/32/38/4b32389176395b4588e30b65f3334ca0.jpg'">
+                <img src="foto3.jpg" alt="Fundo 3" class="bg-photo" onerror="this.src='https://i.pinimg.com/564x/87/4a/c7/874ac7d2dcf84a3c3e2eb887f54c30c3.jpg'">
                 <div class="bg-overlay"></div>
             </div>
 
@@ -562,7 +559,6 @@
                     <div class="date-text" id="txt-date">
                         07 . 08 . 2027
                     </div>
-                    <!-- NOVA HORA -->
                     <div class="time-text" id="txt-time">
                         15:00
                     </div>
@@ -572,7 +568,6 @@
                     </div>
 
                     <a href="https://maps.app.goo.gl/WTEPBw1iE51htJrn6" target="_blank" rel="noopener noreferrer" class="map-link">
-                        <!-- Ícone Mapa SVG -->
                         <svg class="map-icon" viewBox="0 0 24 24">
                             <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                             <circle cx="12" cy="10" r="3"></circle>
@@ -656,13 +651,10 @@
                 setLang('pt');
             }
             
-            // Iniciar o novo slider de fotos de fundo
             startBackgroundSlider();
         });
 
-        /* SLIDER DE FOTOS DE FUNDO */
         function startBackgroundSlider() {
-            // A classe mudou para bg-photo para refletir a nova estrutura
             const photos = document.querySelectorAll('.bg-photo'); 
             let currentIndex = 0;
             
@@ -671,7 +663,7 @@
                     photos[currentIndex].classList.remove('active');
                     currentIndex = (currentIndex + 1) % photos.length;
                     photos[currentIndex].classList.add('active');
-                }, 4000); // Mudei para 4 segundos para a transição ser mais calma e chique
+                }, 4000); 
             }
         }
 
