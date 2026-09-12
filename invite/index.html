@@ -15,7 +15,7 @@
             --gold-main: #C8B48D; 
             /* Um creme quase branco para os textos secundários lerem-se bem */
             --gold-light: #F9F6F0; 
-            --dark-overlay: rgba(20, 20, 20, 0.15); /* Ligeiramente mais escuro para destacar o champanhe */
+            --dark-overlay: rgba(20, 20, 20, 0.25); /* Ligeiramente mais escuro para destacar o champanhe */
             --bg-outside: #3A4432;
         }
 
@@ -369,38 +369,7 @@
             color: #1A1A1A; 
         }
 
-        .iban-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-            font-family: monospace;
-            font-size: 15px;
-            color: var(--gold-light);
-            margin-top: 20px;
-            padding-top: 30px;
-            border-top: 1px solid rgba(200, 180, 141, 0.3); /* Linha divisória adaptada à nova cor */
-            width: 100%;
-        }
-
-        .copy-link {
-            background: none;
-            border: 1px solid var(--gold-main);
-            border-radius: 4px;
-            color: var(--gold-main);
-            font-weight: 500;
-            cursor: pointer;
-            font-size: 10px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            padding: 6px 12px;
-            transition: all 0.3s ease;
-        }
-
-        .copy-link:hover {
-            background-color: var(--gold-main);
-            color: #1A1A1A;
-        }
+       
 
         /* AJUSTES PARA TELEMÓVEL */
         @media (max-width: 600px) {
@@ -442,12 +411,6 @@
                 padding: 14px 20px;
             }
 
-            .iban-container {
-                font-size: 12px;
-                flex-direction: column;
-                gap: 10px;
-                padding-top: 25px;
-            }
         }
     </style>
 </head>
@@ -512,10 +475,6 @@
                     <a href="https://marianafilippo.pt/gifts" target="_blank" rel="noopener noreferrer" class="action-btn" id="txt-btn-gifts">Presentes</a>
                 </div>
 
-                <div class="iban-container">
-                    <span id="iban-code">PT50003300004572499102105</span>
-                    <button class="copy-link" onclick="copyIBAN()" id="txt-copy">Copiar</button>
-                </div>
             </div>
         </div>
     </div>
@@ -531,8 +490,6 @@
                 btnSite: "Website",
                 btnGifts: "Presentes",
                 map: "Ver no mapa",
-                copy: "Copiar",
-                copied: "Copiado"
             },
             en: {
                 hint: "Click to open",
@@ -543,8 +500,6 @@
                 btnSite: "Website",
                 btnGifts: "Gift Registry",
                 map: "View on map",
-                copy: "Copy",
-                copied: "Copied"
             },
             it: {
                 hint: "Clicca per aprire",
@@ -555,8 +510,6 @@
                 btnSite: "Il nostro sito",
                 btnGifts: "Lista Nozze",
                 map: "Vedi sulla mappa",
-                copy: "Copia",
-                copied: "Copiato"
             }
         };
 
@@ -604,17 +557,6 @@
 
             document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
             document.getElementById(`btn-${lang}`).classList.add('active');
-        }
-
-        function copyIBAN() {
-            navigator.clipboard.writeText(document.getElementById('iban-code').innerText.trim())
-                .then(() => {
-                    const btn = document.getElementById('txt-copy');
-                    btn.innerText = texts[currentLang].copied;
-                    setTimeout(() => {
-                        btn.innerText = texts[currentLang].copy;
-                    }, 2000);
-                });
         }
     </script>
 </body>
