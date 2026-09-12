@@ -17,11 +17,12 @@
     <style>
 
         :root {
-            --cream: #FAE9C2;
-            --gold: #F7D586;
-            --blue: #8FB8DE;
-            --sage-green: #748B68;
-            --text-dark: #2C332A;
+            /* Novas Cores Elegantes */
+            --gold-main: #D4AF37;      /* Dourado Clássico */
+            --gold-light: #FDF6E3;     /* Creme / Dourado muito claro para textos */
+            --dark-overlay: rgba(15, 15, 15, 0.55); /* Filtro escuro sobre a foto */
+            --sage-green: #748B68;     /* Mantido apenas para o envelope se necessário */
+            --bg-outside: #3A4432;     /* Fundo fora do convite */
         }
 
         * {
@@ -39,14 +40,12 @@
 
         body {
             font-family: 'Montserrat', sans-serif;
-            color: var(--text-dark);
             overflow-x: hidden;
-            background-color: #3A4432;
+            background-color: var(--bg-outside);
         }
-    
-
+        
         /* =========================================================
-           1. ENVELOPE
+           1. ENVELOPE (Mantido igual)
            ========================================================= */
 
         #envelope-screen {
@@ -58,10 +57,7 @@
             cursor: pointer;
             background-color: transparent;
             overflow: hidden;
-            transition:
-                background-color 0.85s ease,
-                opacity 0.35s ease,
-                visibility 0.35s ease;
+            transition: background-color 0.85s ease, opacity 0.35s ease, visibility 0.35s ease;
         }
 
         .env-corpo-img,
@@ -79,8 +75,7 @@
         .env-corpo-img {
             z-index: 2;
             transform: translateY(0);
-            transition:
-                transform 1.15s cubic-bezier(0.65, 0, 0.35, 1);
+            transition: transform 1.15s cubic-bezier(0.65, 0, 0.35, 1);
         }
 
         .env-aba-container {
@@ -88,17 +83,10 @@
             inset: 0;
             z-index: 4;
             transform: translateY(0);
-            transition:
-                transform 1.15s cubic-bezier(0.65, 0, 0.35, 1);
+            transition: transform 1.15s cubic-bezier(0.65, 0, 0.35, 1);
         }
 
-        .env-aba-img {
-            z-index: 4;
-        }
-
-        /* =========================================================
-           SELO
-           ========================================================= */
+        .env-aba-img { z-index: 4; }
 
         .selo-img {
             position: absolute;
@@ -106,20 +94,11 @@
             top: 65%;
             width: clamp(180px, 22vw, 300px);
             height: auto;
-            transform:
-                translate(-50%, -50%)
-                scale(1);
+            transform: translate(-50%, -50%) scale(1);
             z-index: 6;
-            filter:
-                drop-shadow(0 8px 14px rgba(0,0,0,0.42));
-            transition:
-                opacity 0.45s ease,
-                transform 0.55s cubic-bezier(0.22, 0.61, 0.36, 1);
+            filter: drop-shadow(0 8px 14px rgba(0,0,0,0.42));
+            transition: opacity 0.45s ease, transform 0.55s cubic-bezier(0.22, 0.61, 0.36, 1);
         }
-
-        /* =========================================================
-           TEXTO DO ENVELOPE
-           ========================================================= */
 
         .open-hint-text {
             position: absolute;
@@ -141,39 +120,12 @@
             50% { opacity: 1; }
         }
 
-        /* =========================================================
-           ABERTURA
-           ========================================================= */
-
-        #envelope-screen.opening {
-            background-color: transparent;
-            cursor: default;
-        }
-
-        #envelope-screen.opening .env-aba-container {
-            transform: translateY(-110vh);
-        }
-
-        #envelope-screen.opening .env-corpo-img {
-            transform: translateY(110vh);
-        }
-
-        #envelope-screen.opening .selo-img {
-            opacity: 0;
-            transform:
-                translate(-50%, -50%)
-                scale(0.65);
-        }
-
-        #envelope-screen.opening .open-hint-text {
-            opacity: 0;
-        }
-
-        #envelope-screen.opened {
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-        }
+        #envelope-screen.opening { background-color: transparent; cursor: default; }
+        #envelope-screen.opening .env-aba-container { transform: translateY(-110vh); }
+        #envelope-screen.opening .env-corpo-img { transform: translateY(110vh); }
+        #envelope-screen.opening .selo-img { opacity: 0; transform: translate(-50%, -50%) scale(0.65); }
+        #envelope-screen.opening .open-hint-text { opacity: 0; }
+        #envelope-screen.opened { opacity: 0; visibility: hidden; pointer-events: none; }
 
         /* =========================================================
            2. SITE PRINCIPAL
@@ -183,7 +135,7 @@
             position: relative;
             width: 100vw;
             min-height: 100vh;
-            background-image: url('background.jpg');
+            background-image: url('background.jpg'); /* Fundo por fora do convite, mantido */
             background-size: cover;
             background-position: center bottom;
             background-attachment: fixed;
@@ -198,39 +150,65 @@
 
         #main-site.visible {
             opacity: 1;
-            transform: scale(1);
         }
 
         /* =========================================================
-           PAINEL CENTRAL
+           PAINEL CENTRAL (NOVO LOOK FOTOGRÁFICO)
            ========================================================= */
 
         .content-wrapper {
+            position: relative;
             width: 100%;
-            max-width: 680px;
+            max-width: 600px;
             margin: 0 auto;
-            text-align: center;
-            background:
-                linear-gradient(
-                    180deg,
-                    rgba(250, 233, 194, 0.60),
-                    rgba(250, 233, 194, 0.40)
-                );
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            padding: 55px 32px;
-            border-radius: 20px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.14);
-            border: 1px solid rgba(247, 213, 134, 0.65);
+            border-radius: 12px;
+            border: 2px solid var(--gold-main); /* Borda Dourada Elegante */
+            box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+            overflow: hidden; /* Garante que a foto não sai dos cantos redondos */
+            /* Altura mínima para ficar comprido e imponente */
+            min-height: 85vh; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
-        .time-text {
-    font-size: 14px;
-    font-weight: 500;
-    letter-spacing: 4px;
-    color: var(--sage-green);
-    margin-top: -10px;
-    margin-bottom: 25px;
-}
+
+        /* Slider de Fotos no Fundo */
+        .card-bg-slider {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 0;
+        }
+
+        .bg-photo {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover;
+            object-position: center;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+        }
+
+        .bg-photo.active { opacity: 1; }
+
+        /* Filtro escuro para leitura do texto */
+        .bg-overlay {
+            position: absolute;
+            inset: 0;
+            background-color: var(--dark-overlay);
+            z-index: 1;
+        }
+
+        /* Container do Texto que fica por cima da foto */
+        .card-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            padding: 70px 32px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
         /* =========================================================
            IDIOMAS
@@ -240,25 +218,26 @@
             display: flex;
             justify-content: center;
             gap: 20px;
-            margin-bottom: 35px;
+            margin-bottom: 45px;
         }
 
         .lang-btn {
             background: none;
             border: none;
-            color: var(--sage-green);
+            color: var(--gold-light);
             font-size: 12px;
-            font-weight: 600;
+            font-weight: 500;
             letter-spacing: 2px;
             cursor: pointer;
-            opacity: 0.4;
+            opacity: 0.5;
             padding-bottom: 4px;
             transition: all 0.3s ease;
         }
 
         .lang-btn.active {
             opacity: 1;
-            border-bottom: 2px solid var(--sage-green);
+            border-bottom: 1px solid var(--gold-main);
+            color: var(--gold-main);
         }
 
         /* =========================================================
@@ -266,13 +245,11 @@
            ========================================================= */
 
         .welcome-text {
-            font-size: 9px;
-            letter-spacing: 4px;
+            font-size: 10px;
+            letter-spacing: 5px;
             text-transform: uppercase;
-            color: var(--sage-green);
-            margin-bottom: -10px; /* Puxa os nomes um pouco mais para cima */
-            z-index: 2;
-            position: relative;
+            color: var(--gold-light);
+            margin-bottom: 15px;
         }
 
         .names-wrapper {
@@ -282,43 +259,28 @@
             margin-bottom: 10px;
         }
 
-        .watercolor-splash {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 160%;
-            max-width: 450px;
-            opacity: 0.15; /* Efeito quase transparente */
-            z-index: 0;
-            pointer-events: none;
-        }
-
         .names-title {
             position: relative;
-            z-index: 1;
             font-family: 'Allura', cursive;
-            font-size: 76px;
-            color: var(--sage-green);
-            line-height: 1;
+            font-size: 82px;
+            color: var(--gold-main);
+            line-height: 1.1;
             text-align: center;
+            text-shadow: 2px 4px 10px rgba(0,0,0,0.3); /* Ligeira sombra para sobressair da foto */
         }
 
-        .name-line {
-            display: block;
-        }
+        .name-line { display: block; }
 
         .elegant-divider {
             border: none;
-            border-bottom: 1px solid var(--sage-green);
-            width: 60px;
-            margin: 15px auto 30px auto;
+            border-bottom: 1px solid var(--gold-main);
+            width: 50px;
+            margin: 20px auto 35px auto;
+            opacity: 0.7;
         }
 
         @media (min-width: 768px) {
-            .names-title {
-                font-size: 96px;
-            }
+            .names-title { font-size: 100px; }
         }
 
         /* =========================================================
@@ -326,77 +288,54 @@
            ========================================================= */
 
         .quote-phrase {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 16px;
-            font-weight: 400;
-            color: var(--sage-green);
-            line-height: 1.7;
-            text-align: center;
-            max-width: 540px;
-            margin: 0 auto 45px;
+            font-size: 15px;
+            font-weight: 300;
+            color: var(--gold-light);
+            line-height: 1.8;
+            max-width: 480px;
+            margin: 0 auto 60px;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
         }
 
         /* =========================================================
-           SLIDER DE FOTOS (Formato 4:5 Editorial)
-           ========================================================= */
-
-        .photo-frame-wrapper {
-            position: relative;
-            width: min(340px, 80vw);
-            aspect-ratio: 4 / 5; /* Formato Retrato 4:5 */
-            margin: 0 auto 75px; /* Mais espaço vazio para respirar (Look Premium) */
-            border-radius: 12px; /* Cantos ligeiramente arredondados */
-            border: 1px solid var(--sage-green); /* Borda fina */
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: var(--cream);
-        }
-
-        .couple-photo {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0;
-            transition: opacity 1.5s ease-in-out; /* Transição Fade Suave */
-            z-index: 1;
-        }
-
-        .couple-photo.active {
-            opacity: 1;
-        }
-
-        /* =========================================================
-           DATA E LOCALIZAÇÃO
+           DATA, HORA E LOCALIZAÇÃO
            ========================================================= */
 
         .event-details {
-            margin-bottom: 35px;
+            margin-bottom: 45px;
         }
 
         .date-text {
-            font-size: 32px;
-            font-weight: 700;
+            font-size: 34px;
+            font-weight: 600;
+            letter-spacing: 4px;
+            color: var(--gold-main);
+            margin-bottom: 8px;
+            text-shadow: 1px 2px 5px rgba(0,0,0,0.3);
+        }
+
+        .time-text {
+            font-size: 16px;
+            font-weight: 400;
             letter-spacing: 3px;
-            color: var(--sage-green);
-            text-transform: uppercase;
-            margin-bottom: 15px;
+            color: var(--gold-light);
+            margin-bottom: 30px;
         }
 
         .location-info {
-            font-size: 17px;
+            font-size: 16px;
             font-weight: 300;
             line-height: 1.7;
-            color: #3b4239;
+            color: var(--gold-light);
             margin-bottom: 25px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
         }
 
         .location-info strong {
-            font-weight: 600;
+            font-weight: 500;
+            color: var(--gold-main);
+            letter-spacing: 1px;
+            font-size: 17px;
         }
 
         /* =========================================================
@@ -404,26 +343,37 @@
            ========================================================= */
 
         .map-link {
-            display: inline-block;
-            margin-top: -12px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
             margin-bottom: 35px;
-            color: var(--sage-green);
+            color: var(--gold-main);
             font-size: 10px;
-            font-weight: 600;
+            font-weight: 500;
             letter-spacing: 1.6px;
             text-transform: uppercase;
             text-decoration: none;
-            border-bottom: 1px solid rgba(116, 139, 104, 0.45);
-            padding-bottom: 3px;
-            transition: opacity 0.2s ease;
+            transition: opacity 0.3s ease;
         }
 
         .map-link:hover {
-            opacity: 0.65;
+            opacity: 0.7;
+        }
+
+        /* Ícone Mapa (SVG) */
+        .map-icon {
+            width: 14px;
+            height: 14px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 1.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
         }
 
         /* =========================================================
-           BOTÕES GHOST ELEGANTES
+           BOTÕES GHOST ELEGANTES (Nova alteração)
            ========================================================= */
 
         .buttons-group {
@@ -432,7 +382,7 @@
             justify-content: center;
             gap: 15px;
             margin-bottom: 40px;
-            align-items: center;
+            width: 100%;
         }
 
         .action-btn {
@@ -442,22 +392,22 @@
             font-weight: 500;
             letter-spacing: 2px;
             text-transform: uppercase;
-            padding: 16px 32px;
-            border-radius: 6px; /* Cantos só ligeiramente arredondados */
-            width: auto;
+            padding: 16px 20px;
+            border-radius: 4px; /* Cantos Ligeiramente arredondados (Retangular Elegante) */
             flex: 1 1 0;
-            max-width: 280px;
-            background-color: transparent; /* Ghost button */
-            border: 1px solid var(--sage-green); /* Linha à volta */
-            color: var(--sage-green); /* Texto na mesma cor */
-            transition: all 0.3s ease;
+            max-width: 200px;
+            background-color: transparent; /* Efeito Ghost */
+            border: 1px solid var(--gold-main); /* Borda Dourada */
+            color: var(--gold-main); /* Texto Dourado */
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
+            transition: all 0.4s ease;
         }
 
         .action-btn:hover {
-            background-color: var(--sage-green);
-            color: var(--cream);
+            background-color: var(--gold-main);
+            color: #1A1A1A; /* Texto escuro ao passar o rato para alto contraste */
         }
-
 
         /* =========================================================
            IBAN
@@ -467,34 +417,34 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 15px; /* Mais espaço entre os elementos */
+            gap: 15px;
             font-family: monospace;
-            font-size: 14px; /* Letra maior */
-            color: var(--text-dark);
+            font-size: 15px;
+            color: var(--gold-light);
             margin-top: 20px;
-            padding-top: 30px; /* Mais destaque e espaço na base */
-            border-top: 1px solid rgba(116, 139, 104, 0.22);
+            padding-top: 30px;
+            border-top: 1px solid rgba(212, 175, 55, 0.3); /* Linha divisória suave */
+            width: 100%;
         }
 
         .copy-link {
             background: none;
-            border: 1px solid var(--sage-green); /* Destaque visual tipo mini-botão */
+            border: 1px solid var(--gold-main);
             border-radius: 4px;
-            color: var(--sage-green);
-            font-weight: 600;
+            color: var(--gold-main);
+            font-weight: 500;
             cursor: pointer;
-            font-size: 10px; /* Maior e mais legível */
+            font-size: 10px;
             text-transform: uppercase;
-            letter-spacing: 0.8px;
-            padding: 4px 10px;
-            transition: all 0.2s ease;
+            letter-spacing: 1px;
+            padding: 6px 12px;
+            transition: all 0.3s ease;
         }
 
         .copy-link:hover {
-            background-color: var(--sage-green);
-            color: var(--cream);
+            background-color: var(--gold-main);
+            color: #1A1A1A;
         }
-
 
         /* =========================================================
            MOBILE
@@ -502,152 +452,49 @@
 
         @media (max-width: 600px) {
 
-            #envelope-screen {
-                position: fixed;
-                inset: 0;
-                width: 100vw;
-                height: 100dvh;
-                min-height: 100svh;
-                overflow: hidden;
-                background: #596B4D;
-            }
+            #envelope-screen { background: #1a1e16; } /* Fundo mais escuro no carregamento mobile */
+            .env-corpo-img { width: 150vw; height: 147.84dvh; max-width: none; max-height: none; left: -25vw; top: -29.2dvh; object-fit: fill; }
+            .env-aba-container { overflow: hidden; }
+            .env-aba-img { height: 120dvh; width: auto; max-width: none; max-height: none; left: 50%; top: -14.18dvh; transform: translateX(-50%); object-fit: contain; object-position: center top; }
+            .selo-img { width: clamp(150px, 42vw, 195px); top: 65%; }
 
-            .env-corpo-img {
-                position: absolute;
-                width: 150vw;
-                height: 147.84dvh;
-                max-width: none;
-                max-height: none;
-                left: -25vw;
-                top: -29.2dvh;
-                transform: none;
-                object-fit: fill;
-                z-index: 2;
-            }
-
-            .env-aba-container {
-                position: absolute;
-                inset: 0;
-                z-index: 4;
-                overflow: hidden;
-                transform: translateY(0);
-                transition: transform 1.15s cubic-bezier(0.65, 0, 0.35, 1);
-            }
-
-            .env-aba-img {
-                position: absolute;
-                height: 120dvh;
-                width: auto;
-                max-width: none;
-                max-height: none;
-                left: 50%;
-                top: -14.18dvh;
-                transform: translateX(-50%);
-                object-fit: contain;
-                object-position: center top;
-                z-index: 4;
-            }
-
-            #envelope-screen.opening .env-aba-container {
-                transform: translateY(-110vh);
-            }
-
-            #envelope-screen.opening .env-corpo-img {
-                transform: translateY(110vh);
-            }
-
-            .selo-img {
-                width: clamp(150px, 42vw, 195px);
-                top: 65%;
-            }
-
-            .open-hint-text {
-                bottom: 5%;
-                font-size: 9px;
-                letter-spacing: 3px;
-            }
-
-            #main-site {
-                min-height: 100dvh;
-                padding: 20px 12px;
-                background-attachment: scroll;
-                align-items: center;
-            }
+            #main-site { padding: 15px; }
 
             .content-wrapper {
-                width: 100%;
-                max-width: 100%;
-                padding: 42px 20px;
-                border-radius: 18px;
-                background: rgba(250, 233, 194, 0.40);
-                backdrop-filter: blur(7px);
-                -webkit-backdrop-filter: blur(7px);
-                border: 1px solid rgba(255,255,255,0.45);
-                box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+                min-height: 90dvh; /* Ocupa quase todo o ecrã */
+                border-width: 1px;
             }
 
-            .lang-bar {
-                margin-bottom: 28px;
-                gap: 18px;
+            .card-content {
+                padding: 60px 20px;
             }
 
-            .welcome-text {
-                font-size: 8px;
-                letter-spacing: 3px;
-            }
-
-            .names-title {
-                font-size: clamp(58px, 17vw, 76px);
-            }
-
-            .quote-phrase {
-                font-size: 15px;
-                line-height: 1.65;
-                margin-bottom: 35px;
-            }
-
-            .photo-frame-wrapper {
-                width: min(300px, 88vw);
-                margin-bottom: 55px; /* Espaçamento premium */
-            }
-
-            .date-text {
-                font-size: 29px;
-                font-weight: 700;
-                letter-spacing: 2.5px;
-                margin-bottom: 13px;
-            }
-
-            .location-info {
-                font-size: 15px;
-                line-height: 1.7;
-            }
-
-            .map-link {
-                font-size: 9px;
-                margin-bottom: 28px;
-            }
+            .lang-bar { margin-bottom: 35px; gap: 15px; }
+            .welcome-text { font-size: 9px; letter-spacing: 4px; }
+            .names-title { font-size: 64px; }
+            .quote-phrase { font-size: 14px; margin-bottom: 45px; }
+            .date-text { font-size: 28px; }
+            .time-text { font-size: 14px; margin-bottom: 25px; }
+            .location-info { font-size: 15px; }
 
             .buttons-group {
                 flex-direction: column;
                 gap: 12px;
+                align-items: center;
             }
 
             .action-btn {
                 width: 100%;
-                max-width: 280px;
+                max-width: 250px;
                 flex: none;
+                padding: 14px 20px;
             }
 
             .iban-container {
-                font-size: 11px;
+                font-size: 12px;
+                flex-direction: column;
                 gap: 10px;
-                overflow: hidden;
-            }
-
-            .copy-link {
-                font-size: 9px;
-                padding: 4px 8px;
+                padding-top: 25px;
             }
         }
 
@@ -660,21 +507,13 @@
          1. ENVELOPE
          ========================================================= -->
 
-    <div
-        id="envelope-screen"
-        onclick="openEnvelope()"
-    >
+    <div id="envelope-screen" onclick="openEnvelope()">
         <img src="envelope-corpo.png" alt="Corpo do Envelope" class="env-corpo-img">
-
         <div class="env-aba-container">
             <img src="envelope-aba.png" alt="Aba do Envelope" class="env-aba-img">
         </div>
-
         <img src="selo.png" alt="Selo de Cera" class="selo-img" onerror="this.style.display='none';">
-
-        <p class="open-hint-text" id="txt-hint">
-            Clique para abrir
-        </p>
+        <p class="open-hint-text" id="txt-hint">Clique para abrir</p>
     </div>
 
     <!-- =========================================================
@@ -684,78 +523,81 @@
     <div id="main-site">
 
         <div class="content-wrapper">
-
-            <div class="lang-bar">
-                <button class="lang-btn" onclick="setLang('pt')" id="btn-pt">PT</button>
-                <button class="lang-btn" onclick="setLang('en')" id="btn-en">EN</button>
-                <button class="lang-btn" onclick="setLang('it')" id="btn-it">IT</button>
-            </div>
-
-            <!-- TÍTULOS E NOMES COM AGUARELA -->
-            <div class="welcome-text" id="txt-welcome">BEM-VINDOS AO CASAMENTO DE</div>
             
-            <div class="names-wrapper">
-                <img src="water.png" alt="Mancha Aguarela" class="watercolor-splash" onerror="this.style.display='none';">
-                <h1 class="names-title">
-                    <span class="name-line">Mariana</span>
-                    <span class="name-line">&amp; Filippo</span>
-                </h1>
+            <!-- SLIDER DE FOTOS NO FUNDO -->
+            <div class="card-bg-slider">
+                <!-- Adiciona aqui as vossas fotos. A class 'active' faz a primeira aparecer -->
+                <img src="foto-praia-1.jpg" alt="Fundo Praia 1" class="bg-photo active" onerror="this.src='https://i.pinimg.com/236x/9b/7c/14/9b7c145e25c4265bbffc61648509b196.jpg'">
+                <img src="foto-praia-2.jpg" alt="Fundo Praia 2" class="bg-photo" onerror="this.src='https://i.pinimg.com/564x/4b/32/38/4b32389176395b4588e30b65f3334ca0.jpg'">
+                <img src="foto-praia-3.jpg" alt="Fundo Praia 3" class="bg-photo" onerror="this.src='https://i.pinimg.com/564x/87/4a/c7/874ac7d2dcf84a3c3e2eb887f54c30c3.jpg'">
+                <!-- Overlay escuro -->
+                <div class="bg-overlay"></div>
             </div>
 
-            <!-- DIVISÓRIA ELEGANTE -->
-            <hr class="elegant-divider">
+            <!-- CONTEÚDO SOBRE A FOTO -->
+            <div class="card-content">
 
-            <p class="quote-phrase" id="txt-phrase">
-                Com imensa alegria, convidamo-vos a celebrar connosco a união do nosso amor.
-            </p>
-
-            <!-- SLIDER DE FOTOS (EDITORIAL) -->
-            <div class="photo-frame-wrapper">
-                <!-- Adiciona aqui as tuas fotos da praia -->
-                <img src="foto-praia-1.jpg" alt="Sessão Praia 1" class="couple-photo active" onerror="this.src='https://i.pinimg.com/236x/9b/7c/14/9b7c145e25c4265bbffc61648509b196.jpg'">
-                <img src="foto-praia-2.jpg" alt="Sessão Praia 2" class="couple-photo" onerror="this.src='https://i.pinimg.com/564x/4b/32/38/4b32389176395b4588e30b65f3334ca0.jpg'">
-                <img src="foto-praia-3.jpg" alt="Sessão Praia 3" class="couple-photo" onerror="this.src='https://i.pinimg.com/564x/87/4a/c7/874ac7d2dcf84a3c3e2eb887f54c30c3.jpg'">
-            </div>
-
-            <div class="event-details">
-                <div class="date-text" id="txt-date">
-                    07 . 08 . 2027
-                </div>
-                <div class="time-text">
-    15H00
-</div>
-
-                <div class="location-info" id="txt-location">
-                    <strong>Ca' Salva</strong><br>Teolo, Itália
+                <div class="lang-bar">
+                    <button class="lang-btn active" onclick="setLang('pt')" id="btn-pt">PT</button>
+                    <button class="lang-btn" onclick="setLang('en')" id="btn-en">EN</button>
+                    <button class="lang-btn" onclick="setLang('it')" id="btn-it">IT</button>
                 </div>
 
-                <a href="https://maps.app.goo.gl/WTEPBw1iE51htJrn6" target="_blank" rel="noopener noreferrer" class="map-link" id="txt-map">
-                    Ver no mapa
-                </a>
+                <div class="welcome-text" id="txt-welcome">BEM-VINDOS AO CASAMENTO DE</div>
+                
+                <div class="names-wrapper">
+                    <h1 class="names-title">
+                        <span class="name-line">Mariana</span>
+                        <span class="name-line">&amp; Filippo</span>
+                    </h1>
+                </div>
+
+                <hr class="elegant-divider">
+
+                <p class="quote-phrase" id="txt-phrase">
+                    Com imensa alegria, convidamo-vos a celebrar connosco a união do nosso amor.
+                </p>
+
+                <div class="event-details">
+                    <div class="date-text" id="txt-date">
+                        07 . 08 . 2027
+                    </div>
+                    <!-- NOVA HORA -->
+                    <div class="time-text" id="txt-time">
+                        15:00
+                    </div>
+
+                    <div class="location-info" id="txt-location">
+                        <strong>Ca' Salva</strong><br>Teolo, Itália
+                    </div>
+
+                    <a href="https://maps.app.goo.gl/WTEPBw1iE51htJrn6" target="_blank" rel="noopener noreferrer" class="map-link">
+                        <!-- Ícone Mapa SVG -->
+                        <svg class="map-icon" viewBox="0 0 24 24">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                        <span id="txt-map">Ver no mapa</span>
+                    </a>
+                </div>
+
+                <div class="buttons-group">
+                    <a href="https://marianafilippo.pt" target="_blank" rel="noopener noreferrer" class="action-btn" id="txt-btn-site">
+                        Website
+                    </a>
+
+                    <a href="https://marianafilippo.pt/gifts" target="_blank" rel="noopener noreferrer" class="action-btn" id="txt-btn-gifts">
+                        Presentes
+                    </a>
+                </div>
+
+                <div class="iban-container">
+                    <span id="iban-code">PT50003300004572499102105</span>
+                    <button class="copy-link" onclick="copyIBAN()" id="txt-copy">Copiar</button>
+                </div>
+
             </div>
-
-            <div class="buttons-group">
-                <a href="https://marianafilippo.pt" target="_blank" rel="noopener noreferrer" class="action-btn btn-site" id="txt-btn-site">
-                    Website
-                </a>
-
-                <a href="https://marianafilippo.pt/gifts" target="_blank" rel="noopener noreferrer" class="action-btn btn-gifts" id="txt-btn-gifts">
-                    Presentes
-                </a>
-            </div>
-
-            <div class="iban-container">
-                <span id="iban-code">
-                    PT50003300004572499102105
-                </span>
-
-                <button class="copy-link" onclick="copyIBAN()" id="txt-copy">
-                    Copiar
-                </button>
-            </div>
-
         </div>
-
     </div>
 
     <!-- =========================================================
@@ -805,10 +647,6 @@
 
         let currentLang = 'pt';
 
-        /* =========================================================
-           IDIOMA AUTOMÁTICO
-           ========================================================= */
-
         window.addEventListener('DOMContentLoaded', () => {
             const browserLang = (navigator.language || navigator.userLanguage).slice(0, 2).toLowerCase();
             const supportedLangs = ['pt', 'en', 'it'];
@@ -818,15 +656,14 @@
                 setLang('pt');
             }
             
-            // Iniciar o slider de fotos
-            startPhotoSlider();
+            // Iniciar o novo slider de fotos de fundo
+            startBackgroundSlider();
         });
 
-        /* =========================================================
-           SLIDER DE FOTOS
-           ========================================================= */
-        function startPhotoSlider() {
-            const photos = document.querySelectorAll('.couple-photo');
+        /* SLIDER DE FOTOS DE FUNDO */
+        function startBackgroundSlider() {
+            // A classe mudou para bg-photo para refletir a nova estrutura
+            const photos = document.querySelectorAll('.bg-photo'); 
             let currentIndex = 0;
             
             if (photos.length > 1) {
@@ -834,21 +671,15 @@
                     photos[currentIndex].classList.remove('active');
                     currentIndex = (currentIndex + 1) % photos.length;
                     photos[currentIndex].classList.add('active');
-                }, 3500); // Muda de foto a cada 3.5 segundos
+                }, 4000); // Mudei para 4 segundos para a transição ser mais calma e chique
             }
         }
-
-        /* =========================================================
-           ABRIR ENVELOPE
-           ========================================================= */
 
         function openEnvelope() {
             const screen = document.getElementById('envelope-screen');
             const mainSite = document.getElementById('main-site');
 
-            if (screen.classList.contains('opening')) {
-                return;
-            }
+            if (screen.classList.contains('opening')) return;
 
             mainSite.classList.add('visible');
             screen.classList.add('opening');
@@ -857,10 +688,6 @@
                 screen.classList.add('opened');
             }, 1250);
         }
-
-        /* =========================================================
-           IDIOMAS
-           ========================================================= */
 
         function setLang(lang) {
             currentLang = lang;
@@ -879,10 +706,6 @@
             document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
             document.getElementById(`btn-${lang}`).classList.add('active');
         }
-
-        /* =========================================================
-           COPIAR IBAN
-           ========================================================= */
 
         function copyIBAN() {
             navigator.clipboard.writeText(document.getElementById('iban-code').innerText.trim())
