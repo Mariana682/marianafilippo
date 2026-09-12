@@ -11,11 +11,11 @@
 
     <style>
         :root {
-            /* Dourado Champanhe - Muito mais elegante e menos "amarelo" */
+            /* Dourado Champanhe elegante */
             --gold-main: #C8B48D; 
-            /* Um creme quase branco para os textos secundários lerem-se bem */
+            /* Creme claro para leitura */
             --gold-light: #F9F6F0; 
-            --dark-overlay: rgba(20, 20, 20, 0.65); /* Ligeiramente mais escuro para destacar o champanhe */
+            --dark-overlay: rgba(20, 20, 20, 0.65);
             --bg-outside: #3A4432;
         }
 
@@ -137,7 +137,6 @@
             max-width: 850px;
             margin: 0 auto;
             border-radius: 12px;
-            /* AQUI ESTÁ A BORDA: garantida com 2px de espessura e a cor nova */
             border: 2px solid var(--gold-main); 
             box-shadow: 0 25px 60px rgba(0,0,0,0.5);
             overflow: hidden; 
@@ -145,7 +144,7 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            background-color: #1a1a1a; /* Fundo base para o caso de a foto falhar */
+            background-color: #1a1a1a;
         }
 
         .card-bg-slider {
@@ -154,16 +153,14 @@
             z-index: 0;
         }
 
+        /* Foto de Fundo Única */
         .bg-photo {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
             object-fit: cover;
             object-position: center;
-            opacity: 0;
-            transition: opacity 2s ease-in-out;
+            opacity: 1; /* Sempre visível */
         }
-
-        .bg-photo.active { opacity: 1; }
 
         .bg-overlay {
             position: absolute;
@@ -363,7 +360,7 @@
             color: var(--gold-light);
             margin-top: 20px;
             padding-top: 30px;
-            border-top: 1px solid rgba(200, 180, 141, 0.3); /* Linha divisória adaptada à nova cor */
+            border-top: 1px solid rgba(200, 180, 141, 0.3);
             width: 100%;
         }
 
@@ -386,7 +383,6 @@
             color: #1A1A1A;
         }
 
-        /* AJUSTES PARA TELEMÓVEL */
         @media (max-width: 600px) {
             #envelope-screen { background: #1a1e16; } 
             .env-corpo-img { width: 150vw; height: 147.84dvh; max-width: none; max-height: none; left: -25vw; top: -29.2dvh; object-fit: fill; }
@@ -397,9 +393,7 @@
             #main-site { padding: 15px; }
 
             .content-wrapper {
-                /* Altura mínima ajustada para caber no telemóvel sem cortar a borda */
                 min-height: calc(100dvh - 30px); 
-                /* Garantir que a borda tem 2px no telemóvel (antes estava 1px e desaparecia) */
                 border: 2px solid var(--gold-main);
             }
 
@@ -449,10 +443,9 @@
     <div id="main-site">
         <div class="content-wrapper">
             
+            <!-- APENAS UMA FOTO DE FUNDO -->
             <div class="card-bg-slider">
-                <img src="foto1.jpg" alt="Fundo 1" class="bg-photo active" onerror="this.src='https://i.pinimg.com/236x/9b/7c/14/9b7c145e25c4265bbffc61648509b196.jpg'">
-                <img src="foto2.jpg" alt="Fundo 2" class="bg-photo" onerror="this.src='https://i.pinimg.com/564x/4b/32/38/4b32389176395b4588e30b65f3334ca0.jpg'">
-                <img src="foto3.jpg" alt="Fundo 3" class="bg-photo" onerror="this.src='https://i.pinimg.com/564x/87/4a/c7/874ac7d2dcf84a3c3e2eb887f54c30c3.jpg'">
+                <img src="foto1.jpg" alt="Fundo" class="bg-photo" onerror="this.src='https://i.pinimg.com/236x/9b/7c/14/9b7c145e25c4265bbffc61648509b196.jpg'">
                 <div class="bg-overlay"></div>
             </div>
 
@@ -556,22 +549,7 @@
             } else {
                 setLang('pt');
             }
-            
-            startBackgroundSlider();
         });
-
-        function startBackgroundSlider() {
-            const photos = document.querySelectorAll('.bg-photo'); 
-            let currentIndex = 0;
-            
-            if (photos.length > 1) {
-                setInterval(() => {
-                    photos[currentIndex].classList.remove('active');
-                    currentIndex = (currentIndex + 1) % photos.length;
-                    photos[currentIndex].classList.add('active');
-                }, 4000); 
-            }
-        }
 
         function openEnvelope() {
             const screen = document.getElementById('envelope-screen');
