@@ -3,26 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-
     <title>Mariana & Filippo — Convite</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Allura&family=Montserrat:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet"
-    >
+    <link href="https://fonts.googleapis.com/css2?family=Allura&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
-
         :root {
-            /* Novas Cores Elegantes */
-            --gold-main: #D4AF37;      /* Dourado Clássico */
-            --gold-light: #FDF6E3;     /* Creme / Dourado muito claro para textos */
-            --dark-overlay: rgba(15, 15, 15, 0.55); /* Filtro escuro sobre a foto */
-            --sage-green: #748B68;     /* Mantido apenas para o envelope se necessário */
-            --bg-outside: #3A4432;     /* Fundo fora do convite */
+            --gold-main: #D4AF37;
+            --gold-light: #FDF6E3;
+            --dark-overlay: rgba(15, 15, 15, 0.55);
+            --sage-green: #748B68;
+            --bg-outside: #3A4432;
         }
 
         * {
@@ -32,8 +25,7 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        html,
-        body {
+        html, body {
             width: 100%;
             min-height: 100%;
         }
@@ -44,10 +36,6 @@
             background-color: var(--bg-outside);
         }
         
-        /* =========================================================
-           1. ENVELOPE
-           ========================================================= */
-
         #envelope-screen {
             position: fixed;
             inset: 0;
@@ -60,8 +48,7 @@
             transition: background-color 0.85s ease, opacity 0.35s ease, visibility 0.35s ease;
         }
 
-        .env-corpo-img,
-        .env-aba-img {
+        .env-corpo-img, .env-aba-img {
             position: absolute;
             width: 150%;
             height: 150%;
@@ -127,10 +114,6 @@
         #envelope-screen.opening .open-hint-text { opacity: 0; }
         #envelope-screen.opened { opacity: 0; visibility: hidden; pointer-events: none; }
 
-        /* =========================================================
-           2. SITE PRINCIPAL
-           ========================================================= */
-
         #main-site {
             position: relative;
             width: 100vw;
@@ -148,18 +131,12 @@
             transition: opacity 0.35s ease;
         }
 
-        #main-site.visible {
-            opacity: 1;
-        }
-
-        /* =========================================================
-           PAINEL CENTRAL
-           ========================================================= */
+        #main-site.visible { opacity: 1; }
 
         .content-wrapper {
             position: relative;
             width: 100%;
-            max-width: 850px; /* <--- AUMENTADO DE 600px PARA 850px */
+            max-width: 850px;
             margin: 0 auto;
             border-radius: 12px;
             border: 2px solid var(--gold-main); 
@@ -171,7 +148,6 @@
             justify-content: center;
         }
 
-        /* Slider de Fotos no Fundo */
         .card-bg-slider {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -189,7 +165,6 @@
 
         .bg-photo.active { opacity: 1; }
 
-        /* Filtro escuro para leitura do texto */
         .bg-overlay {
             position: absolute;
             inset: 0;
@@ -197,21 +172,16 @@
             z-index: 1;
         }
 
-        /* Container do Texto que fica por cima da foto */
         .card-content {
             position: relative;
             z-index: 2;
             width: 100%;
-            padding: 70px 40px; /* Um pouco mais de espaço nas laterais no PC */
+            padding: 70px 40px;
             text-align: center;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
-
-        /* =========================================================
-           IDIOMAS
-           ========================================================= */
 
         .lang-bar {
             display: flex;
@@ -239,10 +209,6 @@
             color: var(--gold-main);
         }
 
-        /* =========================================================
-           TÍTULOS E NOMES
-           ========================================================= */
-
         .welcome-text {
             font-size: 10px;
             letter-spacing: 5px;
@@ -268,7 +234,7 @@
             text-shadow: 2px 4px 10px rgba(0,0,0,0.3); 
         }
 
-        .name-line { display: inline-block; } /* Pode ficar na mesma linha se o ecrã for muito largo, ou quebrar se preferir 'block' */
+        .name-line { display: inline-block; }
 
         .elegant-divider {
             border: none;
@@ -279,30 +245,20 @@
         }
 
         @media (min-width: 768px) {
-            .names-title { font-size: 110px; } /* Nomes um pouco maiores no PC já que o convite é mais largo */
+            .names-title { font-size: 110px; }
         }
-
-        /* =========================================================
-           FRASE
-           ========================================================= */
 
         .quote-phrase {
             font-size: 15px;
             font-weight: 300;
             color: var(--gold-light);
             line-height: 1.8;
-            max-width: 650px; /* <--- AUMENTADO PARA ACOMPANHAR A LARGURA DO CARTÃO (Era 480px) */
+            max-width: 650px;
             margin: 0 auto 60px;
             text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
         }
 
-        /* =========================================================
-           DATA, HORA E LOCALIZAÇÃO
-           ========================================================= */
-
-        .event-details {
-            margin-bottom: 45px;
-        }
+        .event-details { margin-bottom: 45px; }
 
         .date-text {
             font-size: 34px;
@@ -337,10 +293,6 @@
             font-size: 17px;
         }
 
-        /* =========================================================
-           MAPA
-           ========================================================= */
-
         .map-link {
             display: inline-flex;
             align-items: center;
@@ -356,9 +308,7 @@
             transition: opacity 0.3s ease;
         }
 
-        .map-link:hover {
-            opacity: 0.7;
-        }
+        .map-link:hover { opacity: 0.7; }
 
         .map-icon {
             width: 14px;
@@ -369,10 +319,6 @@
             stroke-linecap: round;
             stroke-linejoin: round;
         }
-
-        /* =========================================================
-           BOTÕES GHOST
-           ========================================================= */
 
         .buttons-group {
             display: flex;
@@ -407,10 +353,6 @@
             color: #1A1A1A; 
         }
 
-        /* =========================================================
-           IBAN
-           ========================================================= */
-
         .iban-container {
             display: flex;
             align-items: center;
@@ -444,12 +386,7 @@
             color: #1A1A1A;
         }
 
-        /* =========================================================
-           MOBILE
-           ========================================================= */
-
         @media (max-width: 600px) {
-
             #envelope-screen { background: #1a1e16; } 
             .env-corpo-img { width: 150vw; height: 147.84dvh; max-width: none; max-height: none; left: -25vw; top: -29.2dvh; object-fit: fill; }
             .env-aba-container { overflow: hidden; }
@@ -463,14 +400,11 @@
                 border-width: 1px;
             }
 
-            .card-content {
-                padding: 60px 20px;
-            }
-
+            .card-content { padding: 60px 20px; }
             .lang-bar { margin-bottom: 35px; gap: 15px; }
             .welcome-text { font-size: 9px; letter-spacing: 4px; }
             .names-title { font-size: 64px; }
-            .name-line { display: block; } /* Força os nomes a quebrar linha no mobile */
+            .name-line { display: block; }
             .quote-phrase { font-size: 14px; margin-bottom: 45px; }
             .date-text { font-size: 28px; }
             .time-text { font-size: 14px; margin-bottom: 25px; }
@@ -496,15 +430,9 @@
                 padding-top: 25px;
             }
         }
-
     </style>
 </head>
-
 <body>
-
-    <!-- =========================================================
-         1. ENVELOPE
-         ========================================================= -->
 
     <div id="envelope-screen" onclick="openEnvelope()">
         <img src="envelope-corpo.png" alt="Corpo do Envelope" class="env-corpo-img">
@@ -515,15 +443,9 @@
         <p class="open-hint-text" id="txt-hint">Clique para abrir</p>
     </div>
 
-    <!-- =========================================================
-         2. CONVITE
-         ========================================================= -->
-
     <div id="main-site">
-
         <div class="content-wrapper">
             
-            <!-- SLIDER DE FOTOS NO FUNDO -->
             <div class="card-bg-slider">
                 <img src="foto1.jpg" alt="Fundo 1" class="bg-photo active" onerror="this.src='https://i.pinimg.com/236x/9b/7c/14/9b7c145e25c4265bbffc61648509b196.jpg'">
                 <img src="foto2.jpg" alt="Fundo 2" class="bg-photo" onerror="this.src='https://i.pinimg.com/564x/4b/32/38/4b32389176395b4588e30b65f3334ca0.jpg'">
@@ -531,9 +453,7 @@
                 <div class="bg-overlay"></div>
             </div>
 
-            <!-- CONTEÚDO SOBRE A FOTO -->
             <div class="card-content">
-
                 <div class="lang-bar">
                     <button class="lang-btn active" onclick="setLang('pt')" id="btn-pt">PT</button>
                     <button class="lang-btn" onclick="setLang('en')" id="btn-en">EN</button>
@@ -556,17 +476,11 @@
                 </p>
 
                 <div class="event-details">
-                    <div class="date-text" id="txt-date">
-                        07 . 08 . 2027
-                    </div>
-                    <div class="time-text" id="txt-time">
-                        15:00
-                    </div>
-
+                    <div class="date-text" id="txt-date">07 . 08 . 2027</div>
+                    <div class="time-text" id="txt-time">15:00</div>
                     <div class="location-info" id="txt-location">
                         <strong>Ca' Salva</strong><br>Teolo, Itália
                     </div>
-
                     <a href="https://maps.app.goo.gl/WTEPBw1iE51htJrn6" target="_blank" rel="noopener noreferrer" class="map-link">
                         <svg class="map-icon" viewBox="0 0 24 24">
                             <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
@@ -577,30 +491,19 @@
                 </div>
 
                 <div class="buttons-group">
-                    <a href="https://marianafilippo.pt" target="_blank" rel="noopener noreferrer" class="action-btn" id="txt-btn-site">
-                        Website
-                    </a>
-
-                    <a href="https://marianafilippo.pt/gifts" target="_blank" rel="noopener noreferrer" class="action-btn" id="txt-btn-gifts">
-                        Presentes
-                    </a>
+                    <a href="https://marianafilippo.pt" target="_blank" rel="noopener noreferrer" class="action-btn" id="txt-btn-site">Website</a>
+                    <a href="https://marianafilippo.pt/gifts" target="_blank" rel="noopener noreferrer" class="action-btn" id="txt-btn-gifts">Presentes</a>
                 </div>
 
                 <div class="iban-container">
                     <span id="iban-code">PT50003300004572499102105</span>
                     <button class="copy-link" onclick="copyIBAN()" id="txt-copy">Copiar</button>
                 </div>
-
             </div>
         </div>
     </div>
 
-    <!-- =========================================================
-         JAVASCRIPT
-         ========================================================= -->
-
     <script>
-
         const texts = {
             pt: {
                 hint: "Clique para abrir",
@@ -709,7 +612,6 @@
                     }, 2000);
                 });
         }
-
     </script>
 </body>
 </html>
