@@ -11,10 +11,11 @@
 
     <style>
         :root {
-            --gold-main: #D4AF37;
-            --gold-light: #FDF6E3;
-            --dark-overlay: rgba(15, 15, 15, 0.55);
-            --sage-green: #748B68;
+            /* Dourado Champanhe - Muito mais elegante e menos "amarelo" */
+            --gold-main: #C8B48D; 
+            /* Um creme quase branco para os textos secundários lerem-se bem */
+            --gold-light: #F9F6F0; 
+            --dark-overlay: rgba(20, 20, 20, 0.65); /* Ligeiramente mais escuro para destacar o champanhe */
             --bg-outside: #3A4432;
         }
 
@@ -118,10 +119,7 @@
             position: relative;
             width: 100vw;
             min-height: 100vh;
-            background-image: url('background.jpg'); 
-            background-size: cover;
-            background-position: center bottom;
-            background-attachment: fixed;
+            background-color: var(--bg-outside);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -139,6 +137,7 @@
             max-width: 850px;
             margin: 0 auto;
             border-radius: 12px;
+            /* AQUI ESTÁ A BORDA: garantida com 2px de espessura e a cor nova */
             border: 2px solid var(--gold-main); 
             box-shadow: 0 25px 60px rgba(0,0,0,0.5);
             overflow: hidden; 
@@ -146,6 +145,7 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
+            background-color: #1a1a1a; /* Fundo base para o caso de a foto falhar */
         }
 
         .card-bg-slider {
@@ -231,7 +231,7 @@
             color: var(--gold-main);
             line-height: 1.1;
             text-align: center;
-            text-shadow: 2px 4px 10px rgba(0,0,0,0.3); 
+            text-shadow: 2px 4px 10px rgba(0,0,0,0.4); 
         }
 
         .name-line { display: inline-block; }
@@ -363,7 +363,7 @@
             color: var(--gold-light);
             margin-top: 20px;
             padding-top: 30px;
-            border-top: 1px solid rgba(212, 175, 55, 0.3); 
+            border-top: 1px solid rgba(200, 180, 141, 0.3); /* Linha divisória adaptada à nova cor */
             width: 100%;
         }
 
@@ -386,6 +386,7 @@
             color: #1A1A1A;
         }
 
+        /* AJUSTES PARA TELEMÓVEL */
         @media (max-width: 600px) {
             #envelope-screen { background: #1a1e16; } 
             .env-corpo-img { width: 150vw; height: 147.84dvh; max-width: none; max-height: none; left: -25vw; top: -29.2dvh; object-fit: fill; }
@@ -396,11 +397,13 @@
             #main-site { padding: 15px; }
 
             .content-wrapper {
-                min-height: 90dvh; 
-                border-width: 1px;
+                /* Altura mínima ajustada para caber no telemóvel sem cortar a borda */
+                min-height: calc(100dvh - 30px); 
+                /* Garantir que a borda tem 2px no telemóvel (antes estava 1px e desaparecia) */
+                border: 2px solid var(--gold-main);
             }
 
-            .card-content { padding: 60px 20px; }
+            .card-content { padding: 50px 20px; }
             .lang-bar { margin-bottom: 35px; gap: 15px; }
             .welcome-text { font-size: 9px; letter-spacing: 4px; }
             .names-title { font-size: 64px; }
