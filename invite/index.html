@@ -553,10 +553,15 @@
             document.getElementById('txt-btn-site').innerText = t.btnSite;
             document.getElementById('txt-btn-gifts').innerText = t.btnGifts;
             document.getElementById('txt-map').innerText = t.map;
-            document.getElementById('txt-copy').innerText = t.copy;
 
+            // Remove a classe 'active' de TODOS os botões de idioma
             document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-            document.getElementById(`btn-${lang}`).classList.add('active');
+            
+            // Adiciona a classe 'active' APENAS ao botão correspondente à linguagem selecionada
+            const activeBtn = document.getElementById(`btn-${lang}`);
+            if (activeBtn) {
+                activeBtn.classList.add('active');
+            }
         }
     </script>
 </body>
