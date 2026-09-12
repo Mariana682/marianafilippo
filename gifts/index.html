@@ -6,7 +6,6 @@
 
     <title>Lista de Casamento - Mariana & Filippo</title>
 
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Allura&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -16,14 +15,11 @@
         :root {
             --sage: #748B68;
             --sage-dark: #3A4432;
-            --sage-soft: #9BAB91;
-
             --gold: #C8B48D;
             --gold-soft: #DED1B5;
 
             --cream: #F7F3EB;
             --cream-dark: #EFE8DA;
-
             --white: #FFFDF9;
 
             --text: #394035;
@@ -31,11 +27,6 @@
 
             --shadow: rgba(39, 46, 36, 0.10);
         }
-
-
-        /* =========================================================
-           BASE
-        ========================================================= */
 
         * {
             box-sizing: border-box;
@@ -57,8 +48,16 @@
             font-family: 'Montserrat', sans-serif;
 
             background:
-                radial-gradient(circle at top left, rgba(200,180,141,0.08), transparent 32%),
-                radial-gradient(circle at bottom right, rgba(116,139,104,0.06), transparent 32%),
+                radial-gradient(
+                    circle at top left,
+                    rgba(200,180,141,0.08),
+                    transparent 32%
+                ),
+                radial-gradient(
+                    circle at bottom right,
+                    rgba(116,139,104,0.06),
+                    transparent 32%
+                ),
                 var(--cream);
 
             color: var(--text);
@@ -67,29 +66,6 @@
             padding: 0;
 
             text-align: center;
-
-            top: 0 !important;
-        }
-
-
-        /* =========================================================
-           GOOGLE TRANSLATE
-        ========================================================= */
-
-        .goog-te-banner-frame,
-        .skiptranslate,
-        #goog-gt-tt {
-            display: none !important;
-        }
-
-        .goog-tooltip,
-        .goog-tooltip:hover {
-            display: none !important;
-        }
-
-        .goog-text-highlight {
-            background-color: transparent !important;
-            box-shadow: none !important;
         }
 
 
@@ -100,7 +76,7 @@
         header {
             position: relative;
 
-            padding: 90px 25px 70px;
+            padding: 70px 25px 68px;
 
             background:
                 linear-gradient(
@@ -114,14 +90,10 @@
             overflow: hidden;
         }
 
-        /*
-         Pequenos elementos decorativos para aproximar o look
-         do convite principal.
-        */
-
         header::before,
         header::after {
             content: "";
+
             position: absolute;
 
             width: 180px;
@@ -146,18 +118,21 @@
 
 
         /* =========================================================
-           LANGUAGE SWITCH
+           LANGUAGE
         ========================================================= */
 
         .lang-switch {
-            position: absolute;
-
-            top: 24px;
-            right: 28px;
+            position: relative;
 
             display: flex;
             align-items: center;
-            gap: 16px;
+            justify-content: center;
+
+            gap: 22px;
+
+            width: fit-content;
+
+            margin: 0 auto 48px;
 
             z-index: 10;
         }
@@ -181,7 +156,7 @@
 
             cursor: pointer;
 
-            opacity: 0.42;
+            opacity: 0.38;
 
             transition:
                 opacity 0.3s ease,
@@ -194,7 +169,7 @@
             position: absolute;
 
             left: 50%;
-            bottom: -5px;
+            bottom: -6px;
 
             width: 0;
             height: 1px;
@@ -206,8 +181,7 @@
             transition: width 0.3s ease;
         }
 
-        .lang-btn.active,
-        .lang-btn:hover {
+        .lang-btn.active {
             opacity: 1;
             color: var(--gold);
         }
@@ -216,31 +190,21 @@
             width: 100%;
         }
 
+        .lang-btn:hover {
+            opacity: 1;
+        }
+
 
         /* =========================================================
-           HEADER CONTENT
+           HEADER TEXT
         ========================================================= */
-
-        .eyebrow {
-            margin-bottom: 12px;
-
-            font-size: 10px;
-            font-weight: 500;
-
-            letter-spacing: 4px;
-            text-transform: uppercase;
-
-            color: var(--sage);
-
-            opacity: 0.85;
-        }
 
         h1 {
             margin: 0 0 18px;
 
             font-family: 'Allura', cursive;
 
-            font-size: clamp(56px, 8vw, 92px);
+            font-size: clamp(58px, 8vw, 92px);
 
             line-height: 0.95;
 
@@ -253,9 +217,7 @@
             width: 55px;
             height: 1px;
 
-            margin: 24px auto 28px;
-
-            border: none;
+            margin: 24px auto 30px;
 
             background: var(--gold);
 
@@ -263,8 +225,6 @@
         }
 
         p.subtitle {
-            position: relative;
-
             max-width: 700px;
 
             margin: 0 auto 20px;
@@ -285,7 +245,7 @@
 
 
         /* =========================================================
-           SECTIONS
+           MAIN AREA
         ========================================================= */
 
         .gifts-area {
@@ -293,67 +253,7 @@
 
             margin: 0 auto;
 
-            padding: 20px 25px 80px;
-        }
-
-
-        /* =========================================================
-           SECTION DIVIDER
-        ========================================================= */
-
-        .section-divider {
-            text-align: center;
-
-            max-width: 900px;
-
-            margin: 75px auto 15px;
-
-            padding: 0 20px;
-
-            display: none;
-        }
-
-        .section-divider h2 {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            gap: 18px;
-
-            margin-bottom: 10px;
-
-            font-family: 'Allura', cursive;
-
-            font-size: 45px;
-            font-weight: normal;
-
-            line-height: 1;
-
-            color: var(--sage-dark);
-        }
-
-        .section-divider h2::before,
-        .section-divider h2::after {
-            content: "";
-
-            height: 1px;
-
-            background: var(--gold-soft);
-
-            flex: 1;
-
-            max-width: 180px;
-        }
-
-        .section-divider p {
-            color: var(--text-soft);
-
-            font-size: 11px;
-            font-weight: 300;
-
-            letter-spacing: 0.4px;
-
-            line-height: 1.7;
+            padding: 25px 25px 75px;
         }
 
 
@@ -369,14 +269,14 @@
 
             gap: 26px;
 
-            padding: 35px 0 15px;
+            padding: 30px 0 15px;
 
             margin: 0 auto;
         }
 
 
         /* =========================================================
-           GIFT CARD
+           CARD
         ========================================================= */
 
         .card {
@@ -410,12 +310,13 @@
 
             height: 1px;
 
-            background: linear-gradient(
-                to right,
-                transparent,
-                rgba(200,180,141,0.25),
-                transparent
-            );
+            background:
+                linear-gradient(
+                    to right,
+                    transparent,
+                    rgba(200,180,141,0.25),
+                    transparent
+                );
 
             z-index: 2;
         }
@@ -428,11 +329,6 @@
             box-shadow:
                 0 18px 40px rgba(58,68,50,0.13);
         }
-
-
-        /* =========================================================
-           SOLD OUT
-        ========================================================= */
 
         .card.sold-out {
             opacity: 0.62;
@@ -475,12 +371,12 @@
         }
 
         .card img {
+            display: block;
+
             width: 100%;
             height: 100%;
 
             object-fit: cover;
-
-            display: block;
 
             transition: transform 0.7s ease;
         }
@@ -504,6 +400,7 @@
             font-family: 'Allura', cursive;
 
             font-size: 34px;
+
             font-weight: normal;
 
             line-height: 1.1;
@@ -514,14 +411,13 @@
         .card .price {
             margin: 0 0 20px;
 
-            font-family: 'Montserrat', sans-serif;
+            color: var(--gold);
 
             font-size: 12px;
+
             font-weight: 500;
 
             letter-spacing: 2px;
-
-            color: var(--gold);
         }
 
 
@@ -545,6 +441,7 @@
             font-family: 'Montserrat', sans-serif;
 
             font-size: 10px;
+
             font-weight: 500;
 
             letter-spacing: 2px;
@@ -564,7 +461,7 @@
 
             border-color: var(--sage-dark);
 
-            color: var(--white);
+            color: white;
         }
 
         .offer-btn:disabled {
@@ -575,6 +472,68 @@
             color: var(--sage);
 
             cursor: default;
+        }
+
+
+        /* =========================================================
+           FUNNY SECTION
+        ========================================================= */
+
+        .section-divider {
+            text-align: center;
+
+            max-width: 900px;
+
+            margin: 75px auto 15px;
+
+            padding: 0 20px;
+
+            display: none;
+        }
+
+        .section-divider h2 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            gap: 18px;
+
+            margin-bottom: 10px;
+
+            font-family: 'Allura', cursive;
+
+            font-size: 45px;
+
+            font-weight: normal;
+
+            line-height: 1;
+
+            color: var(--sage-dark);
+        }
+
+        .section-divider h2::before,
+        .section-divider h2::after {
+            content: "";
+
+            height: 1px;
+
+            flex: 1;
+
+            max-width: 180px;
+
+            background: var(--gold-soft);
+        }
+
+        .section-divider p {
+            color: var(--text-soft);
+
+            font-size: 11px;
+
+            font-weight: 300;
+
+            letter-spacing: 0.4px;
+
+            line-height: 1.7;
         }
 
 
@@ -728,7 +687,7 @@
 
 
         /* =========================================================
-           PAYMENT INFO
+           PAYMENT
         ========================================================= */
 
         .payment-info {
@@ -736,7 +695,7 @@
 
             margin-bottom: 24px;
 
-            padding: 18px 18px 17px;
+            padding: 18px;
 
             background: rgba(255,253,249,0.85);
 
@@ -766,15 +725,9 @@
 
             color: var(--text);
 
-            font-family: 'Montserrat', sans-serif;
-
             font-size: 12px;
 
             word-break: break-word;
-        }
-
-        .payment-info p:last-of-type {
-            margin-bottom: 0;
         }
 
 
@@ -801,6 +754,7 @@
             font-family: 'Montserrat', sans-serif;
 
             font-size: 9px;
+
             font-weight: 500;
 
             letter-spacing: 1.5px;
@@ -813,12 +767,12 @@
         .copy-btn:hover {
             background: var(--gold);
 
-            color: #fff;
+            color: white;
         }
 
 
         /* =========================================================
-           FORM
+           INPUT
         ========================================================= */
 
         .input-group {
@@ -835,6 +789,7 @@
             color: var(--sage-dark);
 
             font-size: 10px;
+
             font-weight: 500;
 
             letter-spacing: 1px;
@@ -858,16 +813,13 @@
             font-size: 12px;
 
             outline: none;
-
-            transition:
-                border-color 0.25s ease,
-                box-shadow 0.25s ease;
         }
 
         .input-group input[type="text"]:focus {
             border-color: var(--gold);
 
-            box-shadow: 0 0 0 3px rgba(200,180,141,0.11);
+            box-shadow:
+                0 0 0 3px rgba(200,180,141,0.11);
         }
 
         .anonymous-row {
@@ -887,8 +839,6 @@
 
             letter-spacing: 0 !important;
 
-            text-transform: none !important;
-
             cursor: pointer;
         }
 
@@ -906,8 +856,6 @@
         ========================================================= */
 
         .confirm-btn {
-            position: relative;
-
             width: 100%;
 
             padding: 14px 20px;
@@ -943,11 +891,6 @@
             border-color: var(--sage);
         }
 
-
-        /* =========================================================
-           LOADING
-        ========================================================= */
-
         .loading {
             display: none;
 
@@ -958,24 +901,25 @@
             font-size: 10px;
 
             letter-spacing: 1px;
+
+            text-align: center;
         }
 
 
         /* =========================================================
-           RESPONSIVE
+           MOBILE
         ========================================================= */
 
         @media (max-width: 700px) {
 
             header {
-                padding: 85px 20px 55px;
+                padding: 45px 20px 55px;
             }
 
             .lang-switch {
-                top: 20px;
-                right: 50%;
+                gap: 20px;
 
-                transform: translateX(50%);
+                margin-bottom: 40px;
             }
 
             h1 {
@@ -984,6 +928,7 @@
 
             p.subtitle {
                 font-size: 12px;
+
                 line-height: 1.85;
             }
 
@@ -1046,6 +991,7 @@
     </style>
 </head>
 
+
 <body>
 
 
@@ -1055,17 +1001,37 @@
 
     <header>
 
-        <!-- Seletor de idioma -->
+        <!-- LANGUAGE SWITCH -->
         <div class="lang-switch notranslate" translate="no">
-            <button class="lang-btn active" data-lang="pt" onclick="changeLanguage('pt')">PT</button>
-            <button class="lang-btn" data-lang="it" onclick="changeLanguage('it')">IT</button>
-            <button class="lang-btn" data-lang="en" onclick="changeLanguage('en')">EN</button>
+
+            <button
+                class="lang-btn active"
+                data-lang="pt"
+                onclick="changeLanguage('pt')">
+                PT
+            </button>
+
+            <button
+                class="lang-btn"
+                data-lang="it"
+                onclick="changeLanguage('it')">
+                IT
+            </button>
+
+            <button
+                class="lang-btn"
+                data-lang="en"
+                onclick="changeLanguage('en')">
+                EN
+            </button>
+
         </div>
 
 
-        <div class="eyebrow">Mariana &amp; Filippo</div>
+        <h1 id="pageTitle">
+            O Próximo Capítulo
+        </h1>
 
-        <h1 id="pageTitle">O Próximo Capítulo</h1>
 
         <div class="gold-line"></div>
 
@@ -1073,6 +1039,7 @@
         <p class="subtitle" id="subtitle1">
             A vossa presença é, sem dúvida, o presente mais importante que podíamos pedir para celebrar o nosso casamento. Para assinalarem este momento connosco, optámos por não ter a tradicional lista de casamento. Receber o vosso contributo para nos ajudar a construir o nosso futuro será o presente ideal. Temos a certeza de que encontrarão a prenda que mais combina convosco!
         </p>
+
 
         <p class="subtitle" id="subtitle2">
             Para quem não puder estar presente, mas gostaria de marcar presença de alguma forma, apoiar-nos neste próximo passo, ou simplesmente deixar um miminho, deixamos abaixo uma forma simples de o fazer. O vosso carinho, de perto ou de longe, é o que torna tudo isto real.
@@ -1087,17 +1054,20 @@
 
     <main class="gifts-area">
 
-
-        <!-- Secção normal -->
-
         <div class="grid" id="grid-normal">
-            <p>A carregar a lista de experiências...</p>
+
+            <p style="padding:40px 0;color:#748B68;">
+                A carregar a lista de experiências...
+            </p>
+
         </div>
 
 
-        <!-- Divisória para presentes engraçados -->
+        <!-- FUNNY GIFTS -->
 
-        <div class="section-divider" id="funny-section">
+        <div
+            class="section-divider"
+            id="funny-section">
 
             <h2 id="funny-title">
                 Para os que se querem rir connosco
@@ -1110,9 +1080,10 @@
         </div>
 
 
-        <!-- Secção engraçada -->
-
-        <div class="grid" id="grid-funny"></div>
+        <div
+            class="grid"
+            id="grid-funny">
+        </div>
 
     </main>
 
@@ -1126,53 +1097,77 @@
         <div class="footer-line"></div>
 
         <p id="footerText">
-            Com carinho, Mariana &amp; Filippo
+            Com carinho, Mariana & Filippo
         </p>
 
     </footer>
 
 
     <!-- =========================================================
-         MODAL DE PAGAMENTO
+         PAYMENT MODAL
     ========================================================= -->
 
-    <div class="modal-overlay" id="modalOverlay">
+    <div
+        class="modal-overlay"
+        id="modalOverlay">
 
         <div class="modal">
 
-            <button class="close-btn" onclick="closeModal()">&times;</button>
+            <button
+                class="close-btn"
+                onclick="closeModal()">
+                &times;
+            </button>
 
-            <h2 id="modalTitle">Oferecer Experiência</h2>
+
+            <h2 id="modalTitle">
+                Oferecer Experiência
+            </h2>
 
 
             <div class="payment-info">
 
-                <strong>MB WAY</strong>
+                <strong id="mbwayLabel">
+                    MB WAY
+                </strong>
 
-                <p>+351 912 345 678</p>
+                <p>
+                    +351 912 345 678
+                </p>
 
 
-                <strong>IBAN</strong>
+                <strong id="ibanLabel">
+                    IBAN
+                </strong>
 
                 <p id="ibanText">
                     PT50 0000 0000 0000 0000 0000 0
                 </p>
 
-                <button class="copy-btn" onclick="copyIban()">
+                <button
+                    class="copy-btn"
+                    onclick="copyIban()"
+                    id="copyIbanBtn">
                     Copiar IBAN
                 </button>
 
 
-                <strong>Revolut</strong>
+                <strong>
+                    Revolut
+                </strong>
 
-                <p>@marianarevolut</p>
+                <p>
+                    @marianarevolut
+                </p>
 
             </div>
 
 
             <div class="input-group">
 
-                <label for="buyerName">
+                <label
+                    for="buyerName"
+                    id="buyerLabel">
                     O vosso nome
                 </label>
 
@@ -1184,14 +1179,18 @@
                 >
 
 
-                <label class="anonymous-row">
+                <label
+                    class="anonymous-row"
+                    for="isAnonymous">
 
                     <input
                         type="checkbox"
                         id="isAnonymous"
                     >
 
-                    Quero permanecer anónimo publicamente no site
+                    <span id="anonymousText">
+                        Quero permanecer anónimo publicamente no site
+                    </span>
 
                 </label>
 
@@ -1201,24 +1200,25 @@
             <button
                 onclick="confirmPayment()"
                 id="confirmBtn"
-                class="confirm-btn"
-            >
+                class="confirm-btn">
+
                 Já fiz a transferência!
+
             </button>
 
 
-            <p class="loading" id="loadingMsg">
+            <p
+                class="loading"
+                id="loadingMsg">
+
                 A confirmar... aguarde um momento.
+
             </p>
 
         </div>
 
     </div>
 
-
-    <!-- =========================================================
-         DATABASE SCRIPT
-    ========================================================= -->
 
     <script>
 
@@ -1232,15 +1232,19 @@
 
         let currentGiftId = null;
 
+        let currentGiftsData = [];
+
 
         /* =========================================================
-           TRADUÇÕES DA PÁGINA
+           TRANSLATIONS
         ========================================================= */
 
         const translations = {
 
             pt: {
-                pageTitle: "O Próximo Capítulo",
+
+                pageTitle:
+                    "O Próximo Capítulo",
 
                 subtitle1:
                     "A vossa presença é, sem dúvida, o presente mais importante que podíamos pedir para celebrar o nosso casamento. Para assinalarem este momento connosco, optámos por não ter a tradicional lista de casamento. Receber o vosso contributo para nos ajudar a construir o nosso futuro será o presente ideal. Temos a certeza de que encontrarão a prenda que mais combina convosco!",
@@ -1264,15 +1268,36 @@
                     "Oferecido",
 
                 modal:
-                    "Oferecer: "
+                    "Oferecer: ",
+
+                buyerLabel:
+                    "O vosso nome",
+
+                placeholder:
+                    "Ex: Joana e Tiago",
+
+                anonymous:
+                    "Quero permanecer anónimo publicamente no site",
+
+                confirm:
+                    "Já fiz a transferência!",
+
+                loading:
+                    "A confirmar... aguarde um momento.",
+
+                copy:
+                    "Copiar IBAN"
+
             },
 
 
             it: {
-                pageTitle: "Il Nostro Prossimo Capitolo",
+
+                pageTitle:
+                    "Il Nostro Prossimo Capitolo",
 
                 subtitle1:
-                    "La vostra presenza è, senza dubbio, il regalo più importante che potessimo desiderare per celebrare il nostro matrimonio. Per condividere questo momento con noi, abbiamo scelto di non creare una lista nozze tradizionale. Il vostro contributo per aiutarci a costruire il nostro futuro sarebbe il regalo ideale. Siamo sicuri che troverete quello che fa più per voi!",
+                    "La vostra presenza è, senza dubbio, il regalo più importante che potessimo desiderare per celebrare il nostro matrimonio. Per condividere questo momento con noi, abbiamo scelto di non creare una lista nozze tradizionale. Il vostro contributo per aiutarci a costruire il nostro futuro sarebbe il regalo ideale. Siamo sicuri che troverete il regalo che più vi rappresenta!",
 
                 subtitle2:
                     "Per chi non potrà essere presente, ma desidera partecipare in qualche modo, sostenerci in questo prossimo passo, o semplicemente lasciarci un piccolo pensiero, abbiamo lasciato qui sotto un modo semplice per farlo. Il vostro affetto, da vicino o da lontano, è ciò che rende tutto questo reale.",
@@ -1293,12 +1318,33 @@
                     "Regalato",
 
                 modal:
-                    "Offrire: "
+                    "Offrire: ",
+
+                buyerLabel:
+                    "Il vostro nome",
+
+                placeholder:
+                    "Es: Giulia e Marco",
+
+                anonymous:
+                    "Voglio rimanere anonimo pubblicamente sul sito",
+
+                confirm:
+                    "Ho effettuato il bonifico!",
+
+                loading:
+                    "Conferma in corso...",
+
+                copy:
+                    "Copia IBAN"
+
             },
 
 
             en: {
-                pageTitle: "The Next Chapter",
+
+                pageTitle:
+                    "The Next Chapter",
 
                 subtitle1:
                     "Your presence is undoubtedly the most meaningful gift we could ask for to celebrate our wedding. Rather than having a traditional wedding registry, we have chosen to let you contribute towards building our future together. We are sure you will find the gift that feels most like you!",
@@ -1322,108 +1368,226 @@
                     "Gifted",
 
                 modal:
-                    "Offer: "
+                    "Offer: ",
+
+                buyerLabel:
+                    "Your name",
+
+                placeholder:
+                    "E.g. Joana and Tiago",
+
+                anonymous:
+                    "I would like to remain anonymous publicly on the website",
+
+                confirm:
+                    "I have made the transfer!",
+
+                loading:
+                    "Confirming...",
+
+                copy:
+                    "Copy IBAN"
+
             }
 
         };
 
 
-        let currentLang = 'pt';
-
-
         /* =========================================================
-           DETEÇÃO AUTOMÁTICA DE IDIOMA
+           LANGUAGE DETECTION
         ========================================================= */
 
-        window.addEventListener('DOMContentLoaded', () => {
+        function detectLanguage() {
 
-            const browserLang =
-                (navigator.language || navigator.userLanguage)
-                    .slice(0, 2)
-                    .toLowerCase();
-
-            if (['pt', 'it', 'en'].includes(browserLang)) {
-
-                currentLang = browserLang;
-
-            } else {
-
-                currentLang = 'pt';
-
-            }
-
-            applyLanguage(currentLang);
-
-            loadGifts();
-
-        });
+            const browserLanguage =
+                (
+                    navigator.languages &&
+                    navigator.languages.length
+                )
+                    ? navigator.languages[0]
+                    : navigator.language;
 
 
-        /* =========================================================
-           APLICAR IDIOMA
-        ========================================================= */
-
-        function applyLanguage(lang) {
-
-            currentLang = lang;
-
-            const t = translations[lang];
-
-            document.getElementById('pageTitle').innerText =
-                t.pageTitle;
-
-            document.getElementById('subtitle1').innerText =
-                t.subtitle1;
-
-            document.getElementById('subtitle2').innerText =
-                t.subtitle2;
-
-            document.getElementById('funny-title').innerText =
-                t.funnyTitle;
-
-            document.getElementById('funny-subtitle').innerText =
-                t.funnySubtitle;
-
-            document.getElementById('footerText').innerText =
-                t.footer;
-
-
-            document
-                .querySelectorAll('.lang-btn')
-                .forEach(btn => btn.classList.remove('active'));
-
-
-            const activeButton =
-                document.querySelector(
-                    `.lang-btn[data-lang="${lang}"]`
-                );
-
-            if (activeButton) {
-                activeButton.classList.add('active');
+            if (!browserLanguage) {
+                return 'pt';
             }
 
 
-            /*
-             Re-render para atualizar os textos dos botões
-             dos cartões já carregados.
-            */
+            const language =
+                browserLanguage
+                    .toLowerCase()
+                    .split('-')[0];
 
-            if (window.currentGiftsData) {
-                renderGifts(window.currentGiftsData);
+
+            if (language === 'it') {
+                return 'it';
             }
+
+            if (language === 'en') {
+                return 'en';
+            }
+
+            return 'pt';
 
         }
 
 
+        /* =========================================================
+           LANGUAGE CHANGE
+        ========================================================= */
+
         function changeLanguage(lang) {
+
+            if (!translations[lang]) {
+                lang = 'pt';
+            }
 
             applyLanguage(lang);
 
         }
 
 
+        function applyLanguage(lang) {
+
+            currentLang = lang;
+
+            const t =
+                translations[lang];
+
+
+            document.documentElement.lang =
+                lang;
+
+
+            document.getElementById('pageTitle')
+                .innerText = t.pageTitle;
+
+
+            document.getElementById('subtitle1')
+                .innerText = t.subtitle1;
+
+
+            document.getElementById('subtitle2')
+                .innerText = t.subtitle2;
+
+
+            document.getElementById('funny-title')
+                .innerText = t.funnyTitle;
+
+
+            document.getElementById('funny-subtitle')
+                .innerText = t.funnySubtitle;
+
+
+            document.getElementById('footerText')
+                .innerText = t.footer;
+
+
+            document.getElementById('buyerLabel')
+                .innerText = t.buyerLabel;
+
+
+            document.getElementById('buyerName')
+                .placeholder = t.placeholder;
+
+
+            document.getElementById('anonymousText')
+                .innerText = t.anonymous;
+
+
+            document.getElementById('confirmBtn')
+                .innerText = t.confirm;
+
+
+            document.getElementById('loadingMsg')
+                .innerText = t.loading;
+
+
+            document.getElementById('copyIbanBtn')
+                .innerText = t.copy;
+
+
+            document
+                .querySelectorAll('.lang-btn')
+                .forEach(btn => {
+
+                    btn.classList.remove('active');
+
+                    if (
+                        btn.dataset.lang === lang
+                    ) {
+                        btn.classList.add('active');
+                    }
+
+                });
+
+
+            /*
+             Guardar a escolha manual.
+             Assim, ao fazer refresh, mantém a língua escolhida.
+            */
+
+            localStorage.setItem(
+                'weddingGiftLanguage',
+                lang
+            );
+
+
+            /*
+             Volta a desenhar os cartões para atualizar
+             os textos dos botões.
+            */
+
+            if (currentGiftsData.length) {
+                renderGifts(currentGiftsData);
+            }
+
+        }
+
+
         /* =========================================================
-           CARREGAR DADOS
+           INITIAL LOAD
+        ========================================================= */
+
+        window.addEventListener(
+            'DOMContentLoaded',
+            () => {
+
+                /*
+                 Primeiro procura uma língua que o utilizador
+                 tenha escolhido anteriormente.
+                */
+
+                const savedLanguage =
+                    localStorage.getItem(
+                        'weddingGiftLanguage'
+                    );
+
+
+                /*
+                 Se não existir escolha guardada,
+                 usa a língua do browser.
+                */
+
+                const initialLanguage =
+                    (
+                        savedLanguage &&
+                        translations[savedLanguage]
+                    )
+                        ? savedLanguage
+                        : detectLanguage();
+
+
+                applyLanguage(initialLanguage);
+
+                loadGifts();
+
+            }
+        );
+
+
+        /* =========================================================
+           LOAD GIFTS
         ========================================================= */
 
         async function loadGifts() {
@@ -1433,17 +1597,34 @@
                 const response =
                     await fetch(SCRIPT_URL);
 
+
                 const gifts =
                     await response.json();
 
-                window.currentGiftsData = gifts;
+
+                currentGiftsData = gifts;
+
 
                 renderGifts(gifts);
 
+
             } catch (e) {
 
-                document.getElementById('grid-normal').innerHTML =
-                    '<p style="padding:40px 0;color:#748B68;">Erro ao carregar as experiências. Por favor, atualize a página.</p>';
+                document.getElementById('grid-normal')
+                    .innerHTML = `
+                        <p style="
+                            padding:40px 0;
+                            color:#748B68;
+                            font-size:12px;
+                        ">
+                            ${currentLang === 'pt'
+                                ? 'Erro ao carregar as experiências. Por favor, atualize a página.'
+                                : currentLang === 'it'
+                                    ? 'Errore nel caricamento dei regali. Ricaricate la pagina.'
+                                    : 'Error loading the gifts. Please refresh the page.'
+                            }
+                        </p>
+                    `;
 
             }
 
@@ -1451,19 +1632,27 @@
 
 
         /* =========================================================
-           RENDER DOS PRESENTES
+           RENDER GIFTS
         ========================================================= */
 
         function renderGifts(gifts) {
 
             const gridNormal =
-                document.getElementById('grid-normal');
+                document.getElementById(
+                    'grid-normal'
+                );
+
 
             const gridFunny =
-                document.getElementById('grid-funny');
+                document.getElementById(
+                    'grid-funny'
+                );
+
 
             const funnySection =
-                document.getElementById('funny-section');
+                document.getElementById(
+                    'funny-section'
+                );
 
 
             gridNormal.innerHTML = '';
@@ -1478,15 +1667,21 @@
 
                 const isSoldOut =
                     gift.status &&
-                    gift.status.toLowerCase() === 'esgotado';
+                    gift.status
+                        .toLowerCase() === 'esgotado';
 
 
                 const card =
                     document.createElement('div');
 
+
                 card.className =
                     'card ' +
-                    (isSoldOut ? 'sold-out' : '');
+                    (
+                        isSoldOut
+                            ? 'sold-out'
+                            : ''
+                    );
 
 
                 let buyerText = '';
@@ -1499,10 +1694,15 @@
                     buyerText =
                         gift.buyer.trim();
 
+
                     if (
-                        buyerText.includes('(Anónimo)')
+                        buyerText.includes(
+                            '(Anónimo)'
+                        )
                     ) {
+
                         isAnon = true;
+
                     }
 
                 }
@@ -1513,36 +1713,43 @@
 
                 if (isSoldOut) {
 
-                    buttonHtml = isAnon
+                    buttonHtml = `
 
-                        ? `
-                            <button
-                                class="offer-btn"
-                                disabled
-                            >
-                                ${translations[currentLang].offered}
-                            </button>
-                          `
+                        <button
+                            class="offer-btn"
+                            disabled
+                        >
+                            ${
+                                isAnon
+                                    ? translations[currentLang].offered
+                                    : translations[currentLang].offered +
+                                      ' ' +
+                                      buyerText.replace(
+                                          ' (Anónimo)',
+                                          ''
+                                      )
+                            }
+                        </button>
 
-                        : `
-                            <button
-                                class="offer-btn"
-                                disabled
-                            >
-                                ${translations[currentLang].offered}
-                                ${buyerText.replace(' (Anónimo)', '')}
-                            </button>
-                          `;
+                    `;
 
                 } else {
 
                     buttonHtml = `
+
                         <button
                             class="offer-btn"
-                            onclick="openModal('${gift.id}', '${gift.title.replace(/'/g, "\\'")}')"
+                            onclick="openModal(
+                                '${gift.id}',
+                                '${gift.title.replace(
+                                    /'/g,
+                                    "\\'"
+                                )}'
+                            )"
                         >
                             ${translations[currentLang].offer}
                         </button>
+
                     `;
 
                 }
@@ -1598,89 +1805,108 @@
             });
 
 
-            if (hasFunny) {
-
-                funnySection.style.display = 'block';
-
-            } else {
-
-                funnySection.style.display = 'none';
-
-            }
+            funnySection.style.display =
+                hasFunny
+                    ? 'block'
+                    : 'none';
 
         }
 
 
         /* =========================================================
-           MODAL
+           OPEN MODAL
         ========================================================= */
 
         function openModal(id, title) {
 
             currentGiftId = id;
 
-            document.getElementById('modalTitle').innerText =
-                translations[currentLang].modal + title;
 
-            document.getElementById('modalOverlay').style.display =
-                'flex';
-
-        }
+            document.getElementById('modalTitle')
+                .innerText =
+                    translations[currentLang].modal +
+                    title;
 
 
-        function closeModal() {
-
-            document.getElementById('modalOverlay').style.display =
-                'none';
-
-            document.getElementById('buyerName').value =
-                '';
-
-            document.getElementById('isAnonymous').checked =
-                false;
-
-            document.getElementById('loadingMsg').style.display =
-                'none';
-
-            document.getElementById('confirmBtn').style.display =
-                'block';
+            document.getElementById('modalOverlay')
+                .style.display = 'flex';
 
         }
 
 
         /* =========================================================
-           COPIAR IBAN
+           CLOSE MODAL
+        ========================================================= */
+
+        function closeModal() {
+
+            document.getElementById('modalOverlay')
+                .style.display = 'none';
+
+
+            document.getElementById('buyerName')
+                .value = '';
+
+
+            document.getElementById('isAnonymous')
+                .checked = false;
+
+
+            document.getElementById('loadingMsg')
+                .style.display = 'none';
+
+
+            document.getElementById('confirmBtn')
+                .style.display = 'block';
+
+        }
+
+
+        /* =========================================================
+           COPY IBAN
         ========================================================= */
 
         function copyIban() {
 
             const iban =
-                document.getElementById('ibanText').innerText;
+                document.getElementById(
+                    'ibanText'
+                ).innerText;
 
-            navigator.clipboard.writeText(iban);
 
-            alert(
-                currentLang === 'pt'
-                    ? 'IBAN copiado!'
-                    : currentLang === 'it'
-                        ? 'IBAN copiato!'
-                        : 'IBAN copied!'
-            );
+            navigator.clipboard
+                .writeText(iban)
+                .then(() => {
+
+                    alert(
+                        currentLang === 'pt'
+                            ? 'IBAN copiado!'
+                            : currentLang === 'it'
+                                ? 'IBAN copiato!'
+                                : 'IBAN copied!'
+                    );
+
+                });
 
         }
 
 
         /* =========================================================
-           CONFIRMAR PAGAMENTO
+           CONFIRM PAYMENT
         ========================================================= */
 
         async function confirmPayment() {
 
             let name =
-                document.getElementById('buyerName').value.trim();
+                document.getElementById(
+                    'buyerName'
+                ).value.trim();
+
 
             const isAnon =
-                document.getElementById('isAnonymous').checked;
+                document.getElementById(
+                    'isAnonymous'
+                ).checked;
 
 
             if (!name) {
@@ -1706,18 +1932,22 @@
             }
 
 
-            document.getElementById('confirmBtn').style.display =
-                'none';
+            document.getElementById(
+                'confirmBtn'
+            ).style.display = 'none';
 
-            document.getElementById('loadingMsg').style.display =
-                'block';
+
+            document.getElementById(
+                'loadingMsg'
+            ).style.display = 'block';
 
 
             try {
 
-                const response = await fetch(
-                    `${SCRIPT_URL}?action=buy&id=${currentGiftId}&name=${encodeURIComponent(name)}`
-                );
+                const response =
+                    await fetch(
+                        `${SCRIPT_URL}?action=buy&id=${currentGiftId}&name=${encodeURIComponent(name)}`
+                    );
 
 
                 const result =
@@ -1734,6 +1964,7 @@
                                 : 'Thank you so much for your gift!'
                     );
 
+
                     closeModal();
 
                     loadGifts();
@@ -1747,6 +1978,7 @@
                                 ? 'Si è verificato un errore. Riprova.'
                                 : 'Something went wrong. Please try again.'
                     );
+
 
                     closeModal();
 
@@ -1763,6 +1995,7 @@
                             : 'A connection error occurred.'
                 );
 
+
                 closeModal();
 
             }
@@ -1771,62 +2004,25 @@
 
 
         /* =========================================================
-           FECHAR MODAL AO CLICAR FORA
+           CLOSE MODAL CLICKING OUTSIDE
         ========================================================= */
 
-        document.getElementById('modalOverlay')
-            .addEventListener('click', function(e) {
+        document.getElementById(
+            'modalOverlay'
+        ).addEventListener(
+            'click',
+            function(event) {
 
-                if (e.target === this) {
+                if (
+                    event.target === this
+                ) {
                     closeModal();
                 }
 
-            });
+            }
+        );
 
     </script>
-
-
-    <!-- =========================================================
-         GOOGLE TRANSLATE
-         Mantido para compatibilidade com o sistema anterior.
-    ========================================================= -->
-
-    <div
-        id="google_translate_element"
-        style="
-            opacity:0;
-            width:0;
-            height:0;
-            position:absolute;
-            left:-9999px;
-        "
-    ></div>
-
-
-    <script type="text/javascript">
-
-        function googleTranslateElementInit() {
-
-            new google.translate.TranslateElement({
-
-                pageLanguage: 'pt',
-
-                includedLanguages: 'pt,it,en',
-
-                autoDisplay: false
-
-            }, 'google_translate_element');
-
-        }
-
-    </script>
-
-
-    <script
-        type="text/javascript"
-        src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
-    </script>
-
 
 </body>
 </html>
