@@ -508,23 +508,29 @@ gridFunny.innerHTML='';
 let hasFunny=false;
 
 gifts.forEach(gift=>{
-const isSoldOut=gift.status.toLowerCase()==='esgotado';
+const isSoldOut=gift.status && gift.status.toLowerCase()==='esgotado';
 const card=document.createElement('div');
-card.className='card '+(isSoldOut?'sold-out':''));
+card.className='card '+(isSoldOut?'sold-out':'');
 
 let buyerText='';
 let isAnon=false;
 
 if(gift.buyer){
 buyerText=gift.buyer.trim();
-if(buyerText.includes('(Anónimo)'))isAnon=true;
+if(buyerText.includes('(Anónimo)')) isAnon=true;
 }
 
-const buttonHtml=isSoldOut
-?(isAnon
-?'<button class="offer-btn" disabled>Oferecido ❤️</button>'
-:`<button class="offer-btn" disabled>Oferecido por ${buyerText.replace(' (Anónimo)','')} ❤️</button>`)
-:`<button class="offer-btn" onclick="openModal('${gift.id}','${gift.title.replace(/'/g,"\\'")}')">Oferecer Experiência</button>`;
+let buttonHtml = '';
+if(isSoldOut){
+    if(isAnon){
+        buttonHtml = '<button class="offer-btn" disabled>Oferecido ❤️</button>';
+    } else {
+        buttonHtml = `<button class="offer-btn" disabled>Oferecido por ${buyerText.replace(' (Anónimo)','')} ❤️</button>`;
+    }
+} else {
+    const titleEscaped = (gift.title || '').replace(/'/g, "\\'");
+    buttonHtml = `<button class="offer-btn" onclick="openModal('${gift.id}','${titleEscaped}')">Oferecer Experiência</button>`;
+}
 
 card.innerHTML=`
 <div class="card-image-wrapper">
@@ -536,7 +542,7 @@ card.innerHTML=`
 ${buttonHtml}
 </div>`;
 
-if(gift.category&&gift.category.toLowerCase().includes('engraçad')){
+if(gift.category && gift.category.toLowerCase().includes('engraçad')){
 gridFunny.appendChild(card);
 hasFunny=true;
 }else{
@@ -562,8 +568,12 @@ document.getElementById('confirmBtn').style.display='block';
 }
 
 function copyIban(){
-navigator.clipboard.writeText(document.getElementById('ibanText').innerText);
-alert('IBAN copiado!');
+const iban = document.getElementById('ibanText').innerText;
+navigator.clipboard.writeText(iban).then(()=>{
+    alert('IBAN copiado!');
+}).catch(()=>{
+    alert('Erro ao copiar IBAN.');
+});
 }
 
 async function confirmPayment(){
@@ -581,17 +591,15 @@ document.getElementById('confirmBtn').style.display='none';
 document.getElementById('loadingMsg').style.display='block';
 
 try{
-const response=await fetch(`${SCRIPT_URL}?action=buy&id=${currentGiftId}&name=${encodeURIComponent(name)}`);
-const result=await response.json();
+// Utilização de mode: 'no-cors' para contornar restrições de resposta do Google Apps Script
+await fetch(`${SCRIPT_URL}?action=buy&id=${currentGiftId}&name=${encodeURIComponent(name)}`, {
+    mode: 'no-cors'
+});
 
-if(result.success){
 alert('Muito obrigado pela vossa oferta! ❤️');
 closeModal();
-loadGifts();
-}else{
-alert('Houve um erro. Tente novamente.');
-closeModal();
-}
+setTimeout(loadGifts, 1000); // Aguarda 1s para dar tempo ao Google Sheets de atualizar
+
 }catch(e){
 alert('Ocorreu um erro de ligação.');
 closeModal();
@@ -633,6 +641,7 @@ btn.classList.toggle('active',btn.getAttribute('data-lang')===lang);
 }
 
 function setGoogleLanguage(lang){
+let attempts = 0;
 const interval=setInterval(()=>{
 const selectField=document.querySelector('.goog-te-combo');
 
@@ -641,6 +650,8 @@ selectField.value=lang;
 selectField.dispatchEvent(new Event('change'));
 clearInterval(interval);
 }
+attempts++;
+if(attempts > 20) clearInterval(interval);
 },300);
 }
 
