@@ -45,7 +45,15 @@
     .lang{font-size:10px;letter-spacing:.18em;opacity:.7}
     .menu-btn{display:none;background:none;border:0;color:var(--cream);font-size:12px;letter-spacing:.2em;text-transform:uppercase}
 
-    .hero{min-height:92vh;position:relative;display:grid;place-items:center;overflow:hidden;background:linear-gradient(180deg,rgba(20,32,28,.6),rgba(20,32,28,.84)),url('https://images.unsplash.com/photo-1470813740244-df37b8c1edcb?auto=format&fit=crop&w=2200&q=85') center/cover no-repeat;}
+    /* GitHub image setup:
+       Put these files in an /images folder next to this HTML:
+       images/hero.jpg
+       images/couple.jpg
+       images/venue.jpg
+       images/travel.jpg
+       GitHub Pages loads them automatically via these relative paths.
+    */
+    .hero{min-height:92vh;position:relative;display:grid;place-items:center;overflow:hidden;background:linear-gradient(180deg,rgba(20,32,28,.6),rgba(20,32,28,.84)),url('images/hero.jpg') center/cover no-repeat;}
     .hero:after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 40%,transparent 0,rgba(7,17,13,.15) 45%,rgba(7,17,13,.6) 100%)}
     .hero-content{position:relative;z-index:2;text-align:center;padding:150px 24px 100px;animation:fadeUp 1.2s cubic-bezier(.2,.7,.2,1) both}
     .eyebrow{font-size:10px;letter-spacing:.42em;text-transform:uppercase;color:var(--champagne);margin-bottom:18px}
@@ -194,7 +202,7 @@
             </div>
             <figure class="polaroid reveal">
               <!-- Replace with your real couple photo -->
-              <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1000&q=85" alt="Couple overlooking the Italian countryside" loading="lazy">
+              <img src="images/couple.jpg" alt="Mariana and Filippo" loading="lazy">
               <figcaption>Mariana &amp; Filippo</figcaption>
             </figure>
             <div class="date-stack reveal" aria-label="Wedding date">
@@ -219,7 +227,7 @@
             </div>
             <div class="venue-img reveal">
               <!-- Replace with venue photo -->
-              <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1000&q=85" alt="Italian villa" loading="lazy">
+              <img src="images/venue.jpg" alt="Wedding venue in Teolo, Italy" loading="lazy">
             </div>
             <div class="venue reveal">
               <div class="label">The venue</div>
@@ -239,7 +247,7 @@
         <div class="section-pad">
           <div class="travel-grid">
             <div class="travel-photo reveal">
-              <img src="https://images.unsplash.com/photo-1530789253388-582c481c54b0?auto=format&fit=crop&w=1000&q=85" alt="Italian hills and olive trees" loading="lazy">
+              <img src="images/travel.jpg" alt="Teolo and the Euganean Hills" loading="lazy">
             </div>
             <div class="reveal">
               <div class="label">Travel &amp; stay</div>
@@ -305,5 +313,18 @@
       document.querySelectorAll('.navlinks a').forEach(link=>link.addEventListener('click',()=>document.querySelector('.navlinks').classList.remove('open'),{once:true}));
     });
   </script>
+
+    <!--
+      IMAGE SETUP FOR GITHUB
+      Keep this exact structure:
+        mariana-filippo-wedding.html
+        images/
+          hero.jpg
+          couple.jpg
+          venue.jpg
+          travel.jpg
+      Filenames are case-sensitive on GitHub Pages.
+    -->
+
 </body>
 </html>
