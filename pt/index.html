@@ -329,14 +329,123 @@
     .body-copy{font-size:14px;line-height:1.9;color:rgba(243,232,202,.76);max-width:500px}
     .btn{display:inline-flex;align-items:center;justify-content:center;gap:14px;border:1px solid rgba(232,215,170,.75);padding:13px 20px;margin-top:25px;text-transform:uppercase;letter-spacing:.2em;font-size:10px;transition:.3s ease;background:transparent;color:var(--cream)}
     .btn:hover{background:var(--cream);color:var(--forest);transform:translateY(-2px)}
+    /* =========================================================
+       COUPLE PHOTO + DECORATIVE FRAME
+       ========================================================= */
+    
+    /* Container for the photo and transparent PNG frame */
+    .polaroid{
+      position:relative;
+      width:min(430px,100%);
+      aspect-ratio:4/4.8;
+      justify-self:center;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    
+      /* No white polaroid background anymore */
+      background:transparent;
+    
+      /* Remove the old rotation */
+      transform:none;
+    
+      /* Optional subtle shadow */
+      filter:drop-shadow(0 22px 35px rgba(0,0,0,.18));
+    }
+    
+    /* Your actual photograph */
+    .polaroid img.couple-photo{
+      position:absolute;
+      width:78%;
+      height:78%;
+      object-fit:cover;
+      z-index:1;
+    
+      /* Small colour adjustment */
+      filter:saturate(.88) contrast(.98);
+    }
+    
+    /* Your transparent PNG frame */
+    .polaroid img.story-frame{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      z-index:2;
+      pointer-events:none;
+    }
+    
+    /* Name underneath / inside the frame */
+    .polaroid figcaption{
+      position:absolute;
+      z-index:3;
+    
+      bottom:7%;
+      left:15%;
+      right:15%;
+    
+      text-align:center;
+    
+      color:#5a554c;
+      font-family:"Allura", cursive;
+      font-size:22px;
+    }
+    /* =========================================================
+       BIG WEDDING DATE
+       ========================================================= */
 
-    .polaroid{position:relative;background:#eee5d0;padding:15px 15px 45px;box-shadow:var(--shadow);transform:rotate(-1.5deg);max-width:430px;justify-self:center}
-    .polaroid img{aspect-ratio:4/4.6;object-fit:cover;filter:saturate(.86) contrast(.98)}
-    .polaroid figcaption{position:absolute;bottom:10px;left:0;right:0;text-align:center;color:#5a554c;font:italic 19px var(--serif)}
-    .date-stack{border-left:1px solid var(--line);padding-left:38px;text-align:left}
-    .date-stack .date{font:500 96px/.72 var(--serif);letter-spacing:-.05em;color:var(--cream)}
-    .date-stack .date + .date{margin-top:7px}
-    .date-stack .mini{margin-top:20px;font-size:10px;letter-spacing:.34em;text-transform:uppercase;color:var(--champagne)}
+    .date-stack{
+      position:relative;
+      border-left:none;
+      padding-left:0;
+      text-align:left;
+      display:flex;
+      flex-direction:column;
+      align-items:flex-start;
+      padding-top:22px;
+      padding-bottom:22px;
+    }
+
+    /* BLUE LINE ABOVE THE DATE */
+    .date-stack::before{
+      content:"";
+      width:54px;
+      height:2px;
+      background:var(--blue);
+      margin-bottom:28px;
+    }
+
+    /* BLUE LINE BELOW THE DATE */
+    .date-stack::after{
+      content:"";
+      width:54px;
+      height:2px;
+      background:var(--blue);
+      margin-top:30px;
+    }
+
+    .date-stack .date{
+      font-family:var(--serif);
+      font-weight:500;
+      font-size:88px;
+      line-height:.92;
+      letter-spacing:-.04em;
+      color:var(--cream);
+      margin:0;
+    }
+
+    .date-stack .date + .date{
+      margin-top:10px;
+    }
+
+    .date-stack .mini{
+      margin-top:28px;
+      font-size:10px;
+      letter-spacing:.34em;
+      text-transform:uppercase;
+      color:var(--champagne);
+    }
 
     .day{background:linear-gradient(135deg,var(--sage) 0%,#687c60 100%);color:#f8f0dd}
     .day .section-pad{padding-top:95px;padding-bottom:95px}
@@ -384,6 +493,38 @@
     footer strong{font:26px var(--serif);letter-spacing:0;color:var(--champagne)}
     .socials{display:flex;gap:18px}
 
+    /* =========================================================
+       STORY DECORATIONS
+       ========================================================= */
+
+    .story-decoration{
+      position:absolute;
+      pointer-events:none;
+      z-index:1;
+    }
+
+    .story-decoration-left{
+      left:0;
+      top:50%;
+      transform:translateY(-50%);
+      width:150px;
+      opacity:.85;
+    }
+
+    .story-decoration-right{
+      right:0;
+      top:50%;
+      transform:translateY(-50%);
+      width:150px;
+      opacity:.85;
+    }
+
+    .story .section-pad{
+      position:relative;
+      z-index:2;
+    }
+
+    /* Older botanical helpers, kept for other sections */
     .botanical{position:absolute;pointer-events:none;opacity:.5}
     .botanical.left{left:-20px;top:100px;width:145px;transform:rotate(-8deg)}
     .botanical.right{right:-18px;bottom:70px;width:150px;transform:rotate(12deg)}
@@ -420,8 +561,18 @@
       }
       .hero-meta{font-size:15px;letter-spacing:.28em}.hero-place{font-size:11px}.hero-tag{font-size:21px}
       .section-pad{padding:78px 24px}.story-grid,.travel-grid,.rsvp-grid,.day-grid{grid-template-columns:1fr;gap:36px}
-      .story-grid .date-stack{grid-column:auto}.date-stack{border-left:0;border-top:1px solid var(--line);padding:30px 0 0;display:flex;justify-content:space-between}
-      .date-stack .date{font-size:66px}.date-stack .mini{margin-top:15px;align-self:flex-end}.polaroid{max-width:340px}.story-grid>div:first-child{order:1}.polaroid{order:2}.date-stack{order:3}
+      .story-grid .date-stack{grid-column:auto}
+      .date-stack{
+        align-items:flex-start;
+        padding-top:25px;
+        padding-bottom:25px;
+        border-top:none;
+      }
+      .date-stack .date{font-size:66px}
+      .date-stack::before,.date-stack::after{width:42px}
+      .date-stack .mini{margin-top:22px;align-self:flex-start}
+      .polaroid{max-width:340px}
+      .story-grid>div:first-child{order:1}.polaroid{order:2}.date-stack{order:3}
       .day-grid{grid-template-columns:1fr}.venue-img{max-width:320px}.map{min-height:170px}
       .trip-list{padding-left:0;border-left:0}.travel-photo{max-width:350px}
       .rsvp .section-pad{padding:70px 22px}.rsvp h2{font-size:58px}.rsvp form{grid-template-columns:1fr!important}.rsvp form input,.rsvp form select,.rsvp form textarea{grid-column:1/-1!important}
@@ -459,8 +610,22 @@
       </section>
 
       <section id="story" class="story">
-        <svg class="botanical left" viewBox="0 0 150 260" fill="none" aria-hidden="true"><path d="M76 256C73 200 67 139 36 67" stroke="#e8d7aa"/><path d="M72 186C51 171 40 151 35 126M68 162c30-14 41-33 48-58M56 121C35 110 26 93 24 74M86 114c22-16 33-33 37-51M48 95c-11-13-15-27-14-40M102 78c14-10 21-21 24-34" stroke="#e8d7aa"/>
-        </svg>
+        <!-- Shared PNG decorations: /images/story-left.png + /images/story-right.png -->
+        <!-- LEFT DECORATIVE BOTANICAL -->
+        <img
+          class="story-decoration story-decoration-left"
+          src="../images/story-left.png"
+          alt=""
+          aria-hidden="true"
+        >
+
+        <!-- RIGHT DECORATIVE BOTANICAL -->
+        <img
+          class="story-decoration story-decoration-right"
+          src="../images/story-right.png"
+          alt=""
+          aria-hidden="true"
+        >
         <div class="section-pad">
           <div class="story-grid">
             <div class="reveal">
@@ -471,10 +636,21 @@
               <a class="btn" href="#rsvp">Our story <span>→</span></a>
             </div>
             <figure class="polaroid reveal">
-              <!-- Replace with your real couple photo -->
-              <img src="../images/couple.jpg" alt="Mariana and Filippo" loading="lazy">
-              <figcaption>Mariana &amp; Filippo</figcaption>
-            </figure>
+                <!-- PHOTO -->
+                <img
+                  class="couple-photo"
+                  src="../images/couple.jpg"
+                  alt="Mariana and Filippo"
+                  loading="lazy"
+                >
+                <!-- TRANSPARENT DECORATIVE FRAME -->
+                <img
+                  class="story-frame"
+                  src="../images/story-frame.png"
+                  alt=""
+                  aria-hidden="true"
+                >
+              </figure>
             <div class="date-stack reveal" aria-label="Wedding date">
               <div><div class="date">07</div><div class="date">08</div><div class="date">27</div></div>
               <div class="mini">Teolo, Italia</div>
@@ -513,8 +689,8 @@
       </section>
 
       <section id="travel" class="travel">
-        <svg class="botanical right" viewBox="0 0 150 250" fill="none" aria-hidden="true"><path d="M72 246C75 190 79 138 112 63" stroke="#e8d7aa"/><path d="M76 184c-26-10-40-26-47-47M77 157c25-13 39-28 44-49M63 127C42 118 29 100 24 83M92 110c20-12 29-29 33-45M53 93C39 84 29 69 27 51M103 80c13-12 20-24 20-39" stroke="#e8d7aa"/></svg>
         <div class="section-pad">
+          
           <div class="travel-grid">
             <div class="travel-photo reveal">
               <img src="../images/travel.jpg" alt="Teolo and the Euganean Hills" loading="lazy">
@@ -592,6 +768,9 @@
           couple.jpg
           venue.jpg
           travel.jpg
+          story-left.png
+          story-right.png
+          story-frame.png
         /pt/
           mariana-filippo-wedding.html
       Filenames are case-sensitive on GitHub Pages.
