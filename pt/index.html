@@ -8,7 +8,7 @@
   <title>Mariana & Filippo — 7 · 8 · 2027</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root{
       --forest:#20342d;
@@ -38,10 +38,47 @@
 
     .nav{position:absolute;top:0;left:0;right:0;z-index:10;padding:28px 5vw;display:flex;align-items:center;justify-content:space-between}
     .monogram{font-family:var(--serif);font-size:28px;letter-spacing:.06em;color:var(--champagne)}
-    .navlinks{display:flex;gap:34px;align-items:center;font-size:10px;text-transform:uppercase;letter-spacing:.28em}
-    .navlinks.open{display:flex}
-    .navlinks a{opacity:.88;transition:.25s ease}
-    .navlinks a:hover{opacity:1;color:var(--champagne)}
+   .navlinks{
+  display:flex;
+  gap:34px;
+  align-items:center;
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:.28em;
+}
+
+.navlinks.open{
+  display:flex;
+}
+
+.navlinks a{
+  position:relative;
+  opacity:.9;
+  padding:8px 0;
+  transition:color .25s ease, opacity .25s ease;
+}
+    /* Champagne line appears when hovering */
+.navlinks a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:-4px;
+  height:2px;
+  background:var(--champagne);
+  transform:scaleX(0);
+  transform-origin:center;
+  transition:transform .3s ease;
+}
+
+.navlinks a:hover{
+  opacity:1;
+  color:var(--cream);
+}
+
+.navlinks a:hover::after{
+  transform:scaleX(1);
+}
     .lang{font-size:10px;letter-spacing:.18em;opacity:.7}
     .menu-btn{display:none;background:none;border:0;color:var(--cream);font-size:12px;letter-spacing:.2em;text-transform:uppercase}
 
@@ -53,19 +90,185 @@
        images/travel.jpg
        GitHub Pages loads them automatically via these relative paths.
     */
-    .hero{min-height:92vh;position:relative;display:grid;place-items:center;overflow:hidden;background:linear-gradient(180deg,rgba(20,32,28,.6),rgba(20,32,28,.84)),url('../images/hero.jpg') center/cover no-repeat;}
-    .hero:after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 40%,transparent 0,rgba(7,17,13,.15) 45%,rgba(7,17,13,.6) 100%)}
-    .hero-content{position:relative;z-index:2;text-align:center;padding:150px 24px 100px;animation:fadeUp 1.2s cubic-bezier(.2,.7,.2,1) both}
-    .eyebrow{font-size:10px;letter-spacing:.42em;text-transform:uppercase;color:var(--champagne);margin-bottom:18px}
-    .hero h1{font:500 clamp(54px,9vw,118px)/.84 var(--serif);letter-spacing:.025em;margin:0 0 30px;text-shadow:0 5px 30px rgba(0,0,0,.35)}
-    .hero-meta{font-size:12px;letter-spacing:.42em;text-transform:uppercase;margin-bottom:24px}
-    .hero-place{font-size:13px;letter-spacing:.35em;text-transform:uppercase}
-    .ornament{display:flex;align-items:center;justify-content:center;gap:18px;margin:28px 0 14px;color:var(--champagne)}
-    .ornament:before,.ornament:after{content:"";width:60px;height:1px;background:currentColor;opacity:.7}
-    .olive-sprig{width:34px;height:34px}
-    .hero-tag{font:italic 24px var(--serif);margin-top:8px;color:var(--cream)}
-    .scroll-cue{position:absolute;right:4vw;bottom:26px;z-index:3;writing-mode:vertical-rl;text-transform:uppercase;letter-spacing:.32em;font-size:9px;opacity:.7;display:flex;align-items:center;gap:10px}
-    .scroll-cue:after{content:"";height:42px;width:1px;background:var(--champagne);opacity:.75}
+   /* =========================================================
+   HERO / HEADER
+   ========================================================= */
+
+.hero{
+  min-height:92vh;
+  position:relative;
+  display:grid;
+  place-items:center;
+  overflow:hidden;
+
+  /* IMAGE + DARK OVERLAY
+     The image itself is NOT being made darker.
+     The gradient is simply placed over it. */
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(20,32,28,.28),
+      rgba(20,32,28,.52)
+    ),
+    url('../images/hero.jpg') center/cover no-repeat;
+}
+
+/* Soft vignette around the edges */
+.hero:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+
+  background:
+    radial-gradient(
+      circle at 50% 42%,
+      transparent 0%,
+      rgba(7,17,13,.04) 45%,
+      rgba(7,17,13,.38) 100%
+    );
+}
+
+/* Main hero content */
+.hero-content{
+  position:relative;
+  z-index:2;
+  text-align:center;
+  padding:150px 24px 100px;
+  animation:fadeUp 1.2s cubic-bezier(.2,.7,.2,1) both;
+}
+
+/* Small text above names */
+.eyebrow{
+  font-size:10px;
+  letter-spacing:.42em;
+  text-transform:uppercase;
+  color:var(--champagne);
+  margin-bottom:24px;
+}
+
+/* =========================================================
+   YOUR NAMES
+   Trying Allura here
+   ========================================================= */
+
+.hero h1{
+  font-family:"Allura", cursive;
+  font-weight:400;
+
+  /* Increase/decrease this to change name size */
+  font-size:clamp(82px,11vw,150px);
+
+  line-height:.9;
+  letter-spacing:.01em;
+
+  margin:0 0 34px;
+
+  color:var(--cream);
+
+  text-shadow:
+    0 4px 25px rgba(0,0,0,.28);
+}
+
+/* =========================================================
+   DATE
+   ========================================================= */
+
+.hero-meta{
+  font-family:var(--serif);
+
+  /* Bigger date */
+  font-size:24px;
+
+  /* Space between characters */
+  letter-spacing:.42em;
+
+  text-transform:uppercase;
+
+  margin-bottom:26px;
+
+  color:var(--champagne);
+}
+
+/* LOCATION */
+.hero-place{
+  font-size:13px;
+  letter-spacing:.38em;
+  text-transform:uppercase;
+  color:var(--cream);
+}
+
+/* Decorative olive branch + lines */
+.ornament{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:18px;
+  margin:28px 0 12px;
+  color:var(--champagne);
+}
+
+.ornament:before,
+.ornament:after{
+  content:"";
+  width:60px;
+  height:1px;
+  background:currentColor;
+  opacity:.75;
+}
+
+.olive-sprig{
+  width:34px;
+  height:34px;
+}
+
+/* =========================================================
+   SMALL PHRASE BELOW THE DATE
+   Also using Allura for a handwritten feeling
+   ========================================================= */
+
+.hero-tag{
+  font-family:"Allura", cursive;
+
+  font-size:34px;
+  font-weight:400;
+
+  margin-top:10px;
+
+  color:var(--cream);
+
+  text-shadow:
+    0 3px 18px rgba(0,0,0,.25);
+}
+
+/* Scroll indicator */
+.scroll-cue{
+  position:absolute;
+  right:4vw;
+  bottom:26px;
+  z-index:3;
+
+  writing-mode:vertical-rl;
+
+  text-transform:uppercase;
+  letter-spacing:.32em;
+  font-size:9px;
+
+  opacity:.7;
+
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.scroll-cue:after{
+  content:"";
+  height:42px;
+  width:1px;
+  background:var(--champagne);
+  opacity:.75;
+}
 
     section{position:relative}
     .section-pad{padding:110px 7vw}
@@ -295,7 +498,7 @@
 
     <footer>
       <strong>M &amp; F</strong>
-      <div>Mariana &amp; Filippo &nbsp; · &nbsp; 7 · 8 · 2027 &nbsp; · &nbsp; Teolo, Italia</div>
+      <div>Mariana &amp; Filippo &nbsp; · &nbsp; 07 · 08 · 2027 &nbsp; · &nbsp; Teolo, Italia</div>
       <div class="socials"><span aria-label="Instagram">◎</span><span aria-label="Email">✉</span></div>
     </footer>
   </div>
