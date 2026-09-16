@@ -321,7 +321,20 @@
     section{position:relative}
     .section-pad{padding:110px 7vw}
     .story{background:var(--forest)}
-    .story-grid{display:grid;grid-template-columns:1fr 1.05fr .48fr;gap:70px;align-items:center;max-width:1400px;margin:0 auto}
+    /* STORY LAYOUT — move text inward so the left artwork never crowds it */
+.story-grid{
+  display:grid;
+  grid-template-columns:1.08fr 1fr .52fr;
+  gap:78px;
+  align-items:center;
+  max-width:1400px;
+  margin:0 auto;
+  position:relative;
+  z-index:2;
+}
+.story-grid > div:first-child{
+  padding-left:55px;
+}
     .label{font-size:10px;text-transform:uppercase;letter-spacing:.36em;color:var(--champagne);display:flex;align-items:center;gap:12px}
     .label:after{content:"";height:1px;width:80px;background:currentColor;opacity:.55}
     h2{font:500 clamp(48px,6vw,82px)/.88 var(--serif);margin:24px 0;color:var(--cream)}
@@ -329,56 +342,87 @@
     .body-copy{font-size:14px;line-height:1.9;color:rgba(243,232,202,.76);max-width:500px}
     .btn{display:inline-flex;align-items:center;justify-content:center;gap:14px;border:1px solid rgba(232,215,170,.75);padding:13px 20px;margin-top:25px;text-transform:uppercase;letter-spacing:.2em;font-size:10px;transition:.3s ease;background:transparent;color:var(--cream)}
     .btn:hover{background:var(--cream);color:var(--forest);transform:translateY(-2px)}
-    /* =========================================================
-       COUPLE PHOTO + DECORATIVE FRAME
-       ========================================================= */
-    
-    /* Container for the photo and transparent PNG frame */
+   /* =========================================================
+   COUPLE PHOTO + FRAME
+   The photo is clipped inside the transparent opening.
+   ========================================================= */
+
     .polaroid{
       position:relative;
+    
       width:min(430px,100%);
-      aspect-ratio:4/4.8;
+      aspect-ratio:4 / 4.8;
+    
       justify-self:center;
+    
       display:flex;
       align-items:center;
       justify-content:center;
     
-      /* No white polaroid background anymore */
       background:transparent;
     
-      /* Remove the old rotation */
-      transform:none;
-    
-      /* Optional subtle shadow */
       filter:drop-shadow(0 22px 35px rgba(0,0,0,.18));
     }
     
-    /* Your actual photograph */
-    .polaroid img.couple-photo{
-      position:absolute;
-      width:78%;
-      height:78%;
-      object-fit:cover;
-      z-index:1;
+    /* ---------------------------------------------------------
+       PHOTO WINDOW
+       This is the "hole" through which the photo is visible.
+       Anything outside it is hidden.
+       --------------------------------------------------------- */
     
-      /* Small colour adjustment */
+    .couple-photo-window{
+      position:absolute;
+    
+      /* Adjust these four values if needed */
+      width:82%;
+      height:72%;
+    
+      left:9%;
+      top:10%;
+    
+      overflow:hidden;
+    
+      z-index:1;
+    }
+    
+    /* Actual photo */
+    .couple-photo{
+      width:100%;
+      height:100%;
+    
+      object-fit:cover;
+    
+      /* Change these if you want to move the photo inside frame */
+      object-position:center center;
+    
       filter:saturate(.88) contrast(.98);
     }
     
-    /* Your transparent PNG frame */
-    .polaroid img.story-frame{
+    /* ---------------------------------------------------------
+       FRAME PNG
+       This sits ABOVE the photo.
+       Its transparent centre lets the photo show through.
+       --------------------------------------------------------- */
+    
+    .story-frame{
       position:absolute;
+    
       inset:0;
+    
       width:100%;
       height:100%;
+    
       object-fit:contain;
+    
       z-index:2;
+    
       pointer-events:none;
     }
     
-    /* Name underneath / inside the frame */
+    /* Caption */
     .polaroid figcaption{
       position:absolute;
+    
       z-index:3;
     
       bottom:7%;
@@ -388,6 +432,7 @@
       text-align:center;
     
       color:#5a554c;
+    
       font-family:"Allura", cursive;
       font-size:22px;
     }
@@ -503,25 +548,33 @@
       z-index:1;
     }
 
+    /* Push the artwork outside the content area */
     .story-decoration-left{
-      left:0;
+      left:-75px;
       top:50%;
       transform:translateY(-50%);
-      width:150px;
-      opacity:.85;
+      width:155px;
+      opacity:.88;
+      z-index:0;
     }
 
     .story-decoration-right{
-      right:0;
+      right:-75px;
       top:50%;
       transform:translateY(-50%);
-      width:150px;
-      opacity:.85;
+      width:155px;
+      opacity:.88;
+      z-index:0;
     }
 
     .story .section-pad{
       position:relative;
       z-index:2;
+      overflow:visible;
+    }
+
+    .story .story-grid{
+      overflow:visible;
     }
 
     /* Older botanical helpers, kept for other sections */
@@ -561,6 +614,9 @@
       }
       .hero-meta{font-size:15px;letter-spacing:.28em}.hero-place{font-size:11px}.hero-tag{font-size:21px}
       .section-pad{padding:78px 24px}.story-grid,.travel-grid,.rsvp-grid,.day-grid{grid-template-columns:1fr;gap:36px}
+      .story-grid > div:first-child{padding-left:0}
+      .story-decoration-left{left:-65px;width:115px}
+      .story-decoration-right{right:-65px;width:115px}
       .story-grid .date-stack{grid-column:auto}
       .date-stack{
         align-items:flex-start;
@@ -636,21 +692,24 @@
               <a class="btn" href="#rsvp">Our story <span>→</span></a>
             </div>
             <figure class="polaroid reveal">
-                <!-- PHOTO -->
+              <!-- PHOTO IS NOW INSIDE A CLIPPING WINDOW -->
+              <div class="couple-photo-window">
                 <img
                   class="couple-photo"
                   src="../images/couple.jpg"
                   alt="Mariana and Filippo"
                   loading="lazy"
                 >
-                <!-- TRANSPARENT DECORATIVE FRAME -->
-                <img
-                  class="story-frame"
-                  src="../images/story-frame.png"
-                  alt=""
-                  aria-hidden="true"
-                >
-              </figure>
+              </div>
+              <!-- FRAME PNG GOES ABOVE THE PHOTO -->
+              <img
+                class="story-frame"
+                src="../images/story-frame.png"
+                alt=""
+                aria-hidden="true"
+              >
+              <figcaption>Mariana &amp; Filippo</figcaption>
+            </figure>
             <div class="date-stack reveal" aria-label="Wedding date">
               <div><div class="date">07</div><div class="date">08</div><div class="date">27</div></div>
               <div class="mini">Teolo, Italia</div>
