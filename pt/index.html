@@ -604,8 +604,14 @@
       .hero-meta{font-size:15px;letter-spacing:.28em}.hero-place{font-size:11px}.hero-tag{font-size:21px}
       .section-pad{padding:78px 24px}.story-grid,.travel-grid,.rsvp-grid,.day-grid{grid-template-columns:1fr;gap:36px}
       .story-grid > div:first-child{padding-left:0}
-      .story-decoration-left{left:-65px;width:115px}
-      .story-decoration-right{right:-65px;width:115px}
+      .story-decoration-left{
+        left:-40px;
+        width:115px
+      }
+      .story-decoration-right{
+        right:-40px;
+        width:115px
+      }
       .story-grid .date-stack{grid-column:auto}
       .date-stack{
         align-items:flex-start;
@@ -613,9 +619,37 @@
         padding-bottom:25px;
         border-top:none;
       }
-      .date-stack .date{font-size:66px}
-      .date-stack::before,.date-stack::after{width:42px}
-      .date-stack .mini{margin-top:22px;align-self:flex-start}
+      /* =========================================================
+         DATE — MOBILE ONLY
+         Horizontal instead of vertical
+         ========================================================= */
+      .date-stack{
+        flex-direction:column;
+        align-items:center;
+        justify-content:center;
+        text-align:center;
+        border-top:1px solid var(--line);
+        padding:25px 0 0;
+      }
+      /* Put 07 / 08 / 27 on one row */
+      .date-stack > div:first-child{
+        display:flex;
+        align-items:baseline;
+        justify-content:center;
+        gap:20px;
+      }
+      /* Date numbers */
+      .date-stack .date{
+        font-size:58px;
+        line-height:1;
+        margin:0 !important;
+        letter-spacing:-.03em;
+      }
+      /* Teolo underneath */
+      .date-stack .mini{
+        margin-top:18px;
+        align-self:center;
+      }
       .polaroid{max-width:340px}
       .story-grid>div:first-child{order:1}.polaroid{order:2}.date-stack{order:3}
       .day-grid{grid-template-columns:1fr}.venue-img{max-width:320px}.map{min-height:170px}
@@ -623,6 +657,7 @@
       .rsvp .section-pad{padding:70px 22px}.rsvp h2{font-size:58px}.rsvp form{grid-template-columns:1fr!important}.rsvp form input,.rsvp form select,.rsvp form textarea{grid-column:1/-1!important}
       footer{padding:25px 22px;flex-direction:column;text-align:center}.socials{margin-top:4px}
       .botanical{opacity:.28}
+      
     }
   </style>
 </head>
