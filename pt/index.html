@@ -466,106 +466,24 @@
     }
     .day{background:linear-gradient(135deg,var(--sage) 0%,#687c60 100%);color:#f8f0dd}
     .day .section-pad{padding-top:95px;padding-bottom:95px}
-    /*
-       THE DAY — desktop proportions
-       The photo gets more horizontal room, the text sits closer to it,
-       and the map column is intentionally smaller.
-    */
-    .day-grid{
-      display:grid;
-      grid-template-columns:.78fr 1.08fr 1fr .62fr;
-      gap:28px;
-      align-items:center;
-      max-width:1400px;
-      margin:0 auto;
-    }
-
+    .day-grid{display:grid;grid-template-columns:.8fr .78fr 1fr 1fr;gap:40px;align-items:center;max-width:1400px;margin:0 auto}
     .timeline{position:relative;padding-left:34px}
-    .timeline:before{
-      content:"";
-      position:absolute;
-      left:7px;
-      top:6px;
-      bottom:7px;
-      width:1px;
-      background:rgba(246,237,216,.7)
-    }
+    .timeline:before{content:"";position:absolute;left:7px;top:6px;bottom:7px;width:1px;background:rgba(246,237,216,.7)}
     .event{position:relative;margin:0 0 28px}
-    .event:before{
-      content:"";
-      position:absolute;
-      left:-31px;
-      top:8px;
-      width:9px;
-      height:9px;
-      border:1px solid #f6edd8;
-      border-radius:50%;
-      background:var(--sage)
-    }
+    .event:before{content:"";position:absolute;left:-31px;top:8px;width:9px;height:9px;border:1px solid #f6edd8;border-radius:50%;background:var(--sage)}
     .event-time{font-size:12px;letter-spacing:.2em;color:var(--cream)}
     .event-name{font:20px var(--serif);margin-top:3px;color:#f9f0dd}
-
-    /* Landscape photo — shows the whole image without aggressive cropping */
-    .venue-img{
-      width:100%;
-      aspect-ratio:3 / 2;
-      overflow:hidden;
-      box-shadow:0 18px 45px rgba(38,53,45,.22);
-    }
-    .venue-img img{
-      width:100%;
-      height:100%;
-      object-fit:contain;
-      object-position:center;
-    }
-
+    .venue-img{aspect-ratio:4/5;overflow:hidden;box-shadow:0 18px 45px rgba(38,53,45,.22)}
+    .venue-img img{width:100%;height:100%;object-fit:cover}
     .venue h3{font:italic 48px/.95 var(--serif);margin:14px 0 16px}
     .venue p{font-size:13px;line-height:1.8;opacity:.88;max-width:390px}
-
-    /* Smaller right-hand map area */
-    .map{
-      position:relative;
-      min-height:240px;
-      display:grid;
-      place-items:center;
-    }
-    .map img{
-      width:100%;
-      max-width:250px;
-      max-height:240px;
-      object-fit:contain;
-      opacity:1
-    }
+    .map{position:relative;min-height:280px;display:grid;place-items:center}
+    .map img{width:100%;max-width:330px;max-height:300px;object-fit:contain;opacity:1}
     .travel{background:var(--forest-2)}
-
-    /*
-       TRAVEL — make the photo the main visual.
-       The two right-hand columns together are roughly one third smaller
-       than before, giving their saved space to the image.
-    */
-    .travel-grid{
-      display:grid;
-      grid-template-columns:1.55fr .9fr .55fr;
-      gap:45px;
-      align-items:center;
-      max-width:1400px;
-      margin:0 auto;
-    }
-
-    /* Same landscape language as the venue image */
-    .travel-photo{
-      width:100%;
-      aspect-ratio:3 / 2;
-      overflow:hidden;
-    }
-    .travel-photo img{
-      width:100%;
-      height:100%;
-      object-fit:contain;
-      object-position:center;
-    }
-
-    .trip-list{border-left:1px solid var(--line);padding-left:28px}
+    .travel-grid{display:grid;grid-template-columns:.9fr 1.1fr 1fr;gap:65px;align-items:center;max-width:1400px;margin:0 auto}
+    .travel-photo{aspect-ratio:1/1.08;overflow:hidden}
+    .travel-photo img{width:100%;height:100%;object-fit:cover}
+    .trip-list{border-left:1px solid var(--line);padding-left:35px}
     .trip-item{padding:18px 0 22px;border-bottom:1px solid rgba(243,232,202,.14);display:grid;grid-template-columns:40px 1fr;gap:15px}
     .trip-item:last-child{border-bottom:0}
     .trip-icon{width:24px;height:24px;color:var(--blue)}
@@ -691,8 +609,8 @@
       }
       .polaroid{max-width:340px}
       .story-grid>div:first-child{order:1}.polaroid{order:2}.date-stack{order:3}
-      .day-grid{grid-template-columns:1fr}.venue-img{max-width:100%;aspect-ratio:3 / 2}.map{min-height:170px}
-      .trip-list{padding-left:0;border-left:0}.travel-photo{max-width:100%;aspect-ratio:3 / 2}
+      .day-grid{grid-template-columns:1fr}.venue-img{max-width:320px}.map{min-height:170px}
+      .trip-list{padding-left:0;border-left:0}.travel-photo{max-width:350px}
       .rsvp .section-pad{padding:70px 22px}.rsvp h2{font-size:58px}.rsvp form{grid-template-columns:1fr!important}.rsvp form input,.rsvp form select,.rsvp form textarea{grid-column:1/-1!important}
       footer{padding:25px 22px;flex-direction:column;text-align:center}.socials{margin-top:4px}
       .botanical{opacity:.28}
