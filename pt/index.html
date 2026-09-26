@@ -616,14 +616,13 @@
 
     /* Deadline text */
     .rsvp-note{
-      font-size:16px;
-      line-height:1.45;
+      font-family:var(--serif);
+      font-size:20px;
+      font-style:italic;
+      line-height:1.25;
       color:#667066;
       max-width:190px;
       justify-self:center;
-      text-align:left;
-      position:relative;
-      z-index:1;
     }
     .rsvp-note strong{
       font-weight:500;
@@ -690,14 +689,44 @@
       .navlinks{display:none}.navlinks.open{position:absolute;top:68px;left:18px;right:18px;display:flex;flex-direction:column;gap:18px;padding:24px;background:rgba(20,35,30,.96);border:1px solid rgba(232,215,170,.18);backdrop-filter:blur(12px);box-shadow:0 18px 45px rgba(0,0,0,.25)}.menu-btn{display:block}
       .hero{min-height:85vh}
       .story-grid,.travel-grid{grid-template-columns:1fr 1fr;gap:20px}
-      .rsvp-grid{grid-template-columns:1fr 1fr;gap:22px;min-height:250px}
+      .rsvp-grid{
+        position:relative;
+        display:flex;
+        justify-content:flex-end;
+        align-items:center;
+        gap:24px;
+        max-width:1600px;
+        margin:0 auto;
+      }
       .rsvp-grid > div[aria-hidden="true"]{display:none}
       .story-grid .date-stack{grid-column:2}
       .day-grid{grid-template-columns:1fr 1fr}
       .map{grid-column:1/-1;min-height:220px}
-      .rsvp-copy{grid-column:1/-1;order:1}
-      .rsvp-note{justify-self:end;order:2}
-      .rsvp-stamp{justify-self:start;order:3;width:145px;height:145px}
+      .rsvp-copy{
+        position:absolute;
+        left:50%;
+        transform:translateX(-50%);
+        width:max-content;
+        max-width:55%;
+        text-align:center;
+      }
+      .rsvp-note{
+        font-family:var(--serif);
+        font-size:20px;
+        font-style:italic;
+        line-height:1.25;
+        color:#667066;
+        width:145px;
+        max-width:145px;
+        justify-self:auto;
+      }
+      .rsvp-stamp{
+        width:125px;
+        height:125px;
+        object-fit:contain;
+        flex-shrink:0;
+        transform:rotate(-8deg);
+      }
     }
     @media(max-width:640px){
       .nav{
@@ -721,7 +750,14 @@
       .rsvp .section-pad{padding:64px 18px 74px}
       .rsvp-grid{grid-template-columns:1fr;gap:0;min-height:0;padding-top:92px;text-align:center}
       .rsvp-grid > div[aria-hidden="true"]{display:none}
-      .rsvp-copy{grid-column:1;order:1;padding:0 6px}
+      .rsvp-copy{
+          position:relative;
+          left:auto;
+          transform:none;
+          width:auto;
+          max-width:100%;
+          grid-column:1;
+        }
       .rsvp .label{gap:9px;font-size:9px;letter-spacing:.30em}
       .rsvp .label:before,.rsvp .label:after{width:34px}
       .rsvp h2{font-size:54px;line-height:.95;margin:12px 0 8px}
