@@ -472,7 +472,7 @@
     .day-grid{
       display:grid;
       grid-template-columns:.72fr 1.00fr 1fr .78fr;
-      gap:24px;
+      gap:12px;
       align-items:center;
       max-width:1400px;
       margin:0 auto
@@ -505,7 +505,12 @@
 
     /* mapa.png keeps the exact same maximum visual size as before */
     .map{position:relative;min-height:280px;display:grid;place-items:center}
-    .map img{width:100%;max-width:330px;max-height:300px;object-fit:contain;opacity:1}
+    .map img{
+      width:100%;
+      max-width:450px;
+      max-height:400px;
+      object-fit:contain;
+      opacity:1}
 
     /* =========================================================
        TRAVEL — shift more horizontal space to the photo
