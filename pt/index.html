@@ -562,7 +562,7 @@
     }
     .rsvp-grid{
       display:grid;
-      grid-template-columns:minmax(160px,.7fr) minmax(420px,1.45fr) minmax(155px,.65fr) minmax(145px,.7fr);
+      grid-template-columns:minmax(0,1fr) auto auto;
       gap:28px;
       align-items:center;
       max-width:1600px;
@@ -587,8 +587,13 @@
     /* Central heading */
     .rsvp-copy{
       text-align:center;
-      position:relative;
+      position:absolute;
+      left:50%;
+      top:50%;
+      transform:translate(-50%,-50%);
       z-index:1;
+      width:max-content;
+      max-width:min(52vw,620px);
     }
     .rsvp .label{
       justify-content:center;
@@ -670,6 +675,26 @@
       opacity:.88;
       z-index:0;
     }
+    .travel-story-left{
+      right:-34px;
+      top:50%;
+      transform:translateY(-50%);
+      width:190px;
+      opacity:.82;
+      z-index:0;
+    }
+
+    .travel .section-pad{
+      position:relative;
+      z-index:2;
+      overflow:visible;
+    }
+
+    .travel .travel-grid{
+      position:relative;
+      z-index:2;
+    }
+
     .story .section-pad{
       position:relative;
       z-index:2;
@@ -767,6 +792,7 @@
       .rsvp-lemons{width:155px;max-width:none;left:-24px;top:-16px;opacity:.9}
       .story-grid > div:first-child{padding-left:0}
       .story-decoration-left{left:-46px;top:56%;width:115px}.story-decoration-right{right:-40px;top:56%;width:115px}
+      .travel-story-left{right:-55px;top:52%;width:130px;opacity:.72}
       .story-grid .date-stack{grid-column:auto}
       /* =========================================================
          DATE — MOBILE ONLY
@@ -932,6 +958,12 @@
               <div class="label">The venue</div>
               <h3>Teolo, Italia</h3>
               <p>A charming villa in the heart of the Venetian hills, surrounded by olive trees, vineyards and timeless beauty.</p>
+              <a
+                class="btn"
+                href="https://www.google.com/maps/search/?api=1&query=Teolo%2C%20Italia"
+                target="_blank"
+                rel="noopener"
+              >Get directions <span>→</span></a>
             </div>
             <!-- MAP -->
             <div class="map reveal" aria-label="Map of Italy">
@@ -941,6 +973,12 @@
         </div>
       </section>
       <section id="travel" class="travel">
+        <img
+          class="story-decoration travel-story-left"
+          src="../images/story-left.png"
+          alt=""
+          aria-hidden="true"
+        >
         <div class="section-pad">
           <div class="travel-grid">
             <div class="travel-photo reveal">
