@@ -507,8 +507,8 @@
     .map{position:relative;min-height:280px;display:grid;place-items:center}
     .map img{
       width:100%;
-      max-width:450px;
-      max-height:400px;
+      max-width:550px;
+      max-height:auto;
       object-fit:contain;
       opacity:1}
 
@@ -539,7 +539,12 @@
     .trip-list{border-left:1px solid var(--line);padding-left:28px}
     .trip-item{padding:18px 0 22px;border-bottom:1px solid rgba(243,232,202,.14);display:grid;grid-template-columns:40px 1fr;gap:15px}
     .trip-item:last-child{border-bottom:0}
-    .trip-icon{width:24px;height:24px;color:var(--blue)}
+    .trip-icon{
+        width:28px;
+        height:28px;
+        object-fit:contain;
+        display:block;
+      }
     .trip-title{font-size:12px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:4px}
     .trip-copy{font-size:13px;color:rgba(243,232,202,.72)}
     .rsvp{background:var(--paper);color:var(--ink);overflow:hidden}
@@ -812,9 +817,29 @@
               <a class="btn" href="#rsvp">Travel &amp; stay <span>→</span></a>
             </div>
             <div class="trip-list reveal">
-              <div class="trip-item"><div class="trip-icon">✦</div><div><div class="trip-title">How to get there</div><div class="trip-copy">Flights, trains, transfers and driving notes.</div></div></div>
-              <div class="trip-item"><div class="trip-icon">⌂</div><div><div class="trip-title">Where to stay</div><div class="trip-copy">Our favourite nearby hotels and agriturismi.</div></div></div>
-              <div class="trip-item"><div class="trip-icon">◌</div><div><div class="trip-title">Things to do</div><div class="trip-copy">Wine, villages, thermal spas and the Veneto.</div></div></div>
+              <div class="trip-item">
+                <img class="trip-icon" src="../images/travel-icon.png" alt="">
+                <div>
+                  <div class="trip-title">How to get there</div>
+                  <div class="trip-copy">Flights, trains, transfers and driving notes.</div>
+                </div>
+              </div>
+              
+              <div class="trip-item">
+                <img class="trip-icon" src="../images/stay-icon.png" alt="">
+                <div>
+                  <div class="trip-title">Where to stay</div>
+                  <div class="trip-copy">Our favourite nearby hotels and agriturismi.</div>
+                </div>
+              </div>
+              
+              <div class="trip-item">
+                <img class="trip-icon" src="../images/things-icon.png" alt="">
+                <div>
+                  <div class="trip-title">Things to do</div>
+                  <div class="trip-copy">Wine, villages, thermal spas and the Veneto.</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
