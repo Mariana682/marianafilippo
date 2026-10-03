@@ -430,7 +430,11 @@
       will-change:transform,opacity;
       cursor:pointer;
       filter:drop-shadow(0 20px 32px rgba(0,0,0,.18));
-      transition:transform .72s cubic-bezier(.22,1,.36,1),opacity .55s cubic-bezier(.22,1,.36,1),filter .55s ease;
+      transition:transform .72s cubic-bezier(.22,1,.36,1),opacity .28s ease,filter .55s ease;
+    }
+    .carousel-card.is-preparing{
+      opacity:0 !important;
+      pointer-events:none;
     }
     .carousel-card.is-active{
       z-index:3;
@@ -526,6 +530,19 @@
       font:28px "Allura",cursive;
       color:var(--ink);
       pointer-events:none;
+      opacity:0;
+      transition:opacity .22s ease;
+    }
+    .carousel-card.is-active .carousel-caption{
+      opacity:1;
+    }
+    .photo-carousel.is-moving-next .carousel-card.is-active .carousel-caption,
+    .photo-carousel.is-moving-prev .carousel-card.is-active .carousel-caption{
+      opacity:0;
+    }
+    .photo-carousel.is-moving-next .carousel-card.is-next .carousel-caption,
+    .photo-carousel.is-moving-prev .carousel-card.is-prev .carousel-caption{
+      opacity:1;
     }
     .carousel-arrow{
       position:absolute;
@@ -1402,9 +1419,7 @@
   </style>
 </head>
 <body class="grain">
-  <a class="fixed-rsvp" href="#rsvp" aria-label="Confirm your presence">
-    CONFIRM<br>YOUR<br>PRESENCE
-  </a>
+  <a class="fixed-rsvp" href="#rsvp" aria-label="Confirm your presence">CONFIRM<br>YOUR<br>PRESENCE</a>
   <div class="site">
     <header class="nav">
       <a class="monogram" href="#top" aria-label="Mariana and Filippo home">M &amp; F</a>
@@ -1459,24 +1474,26 @@
             <div class="photo-carousel reveal" aria-label="Photos of Mariana and Filippo">
               <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous photo">‹</button>
               <div class="carousel-track">
-                <figure class="carousel-card is-prev">
-                  <div class="carousel-photo-window">
-                    <img class="carousel-image" src="" alt="" draggable="false">
-                  </div>
-                  <img class="carousel-frame" src="../images/story-frame.png" alt="" aria-hidden="true">
-                </figure>
-                <figure class="carousel-card is-active">
+                <figure class="carousel-card is-prev is-preparing">
                   <div class="carousel-photo-window">
                     <img class="carousel-image" src="" alt="" draggable="false">
                   </div>
                   <img class="carousel-frame" src="../images/story-frame.png" alt="" aria-hidden="true">
                   <figcaption class="carousel-caption">Mariana &amp; Filippo</figcaption>
                 </figure>
-                <figure class="carousel-card is-next">
+                <figure class="carousel-card is-active is-preparing">
                   <div class="carousel-photo-window">
                     <img class="carousel-image" src="" alt="" draggable="false">
                   </div>
                   <img class="carousel-frame" src="../images/story-frame.png" alt="" aria-hidden="true">
+                  <figcaption class="carousel-caption">Mariana &amp; Filippo</figcaption>
+                </figure>
+                <figure class="carousel-card is-next is-preparing">
+                  <div class="carousel-photo-window">
+                    <img class="carousel-image" src="" alt="" draggable="false">
+                  </div>
+                  <img class="carousel-frame" src="../images/story-frame.png" alt="" aria-hidden="true">
+                  <figcaption class="carousel-caption">Mariana &amp; Filippo</figcaption>
                 </figure>
               </div>
               <button class="carousel-arrow carousel-next" type="button" aria-label="Next photo">›</button>
@@ -1557,9 +1574,7 @@
               <div class="label">The venue</div>
               <h3>Teolo, Italia</h3>
               <p>A charming villa in the heart of the Venetian hills, surrounded by olive trees, vineyards and timeless beauty.</p>
-              <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Teolo%2C%20Italia" target="_blank" rel="noopener">
-                Get directions <span>→</span>
-              </a>
+              <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Teolo%2C%20Italia" target="_blank" rel="noopener">Get directions <span>→</span></a>
             </div>
             <div class="map reveal" aria-label="Map of Italy">
               <img src="../images/mapa.png" alt="Map of Italy" loading="lazy">
@@ -1634,12 +1649,8 @@
               </select>
               <input name="dietary" placeholder="Dietary requirements" style="grid-column:1/-1;padding:15px;border:1px solid #bfc5b7;background:#fbf5e6;font:14px var(--sans);color:#20342d">
               <textarea name="message" placeholder="A note for Mariana & Filippo" rows="4" style="grid-column:1/-1;padding:15px;border:1px solid #bfc5b7;background:#fbf5e6;font:14px var(--sans);color:#20342d;resize:vertical"></textarea>
-              <button class="btn rsvp-btn" type="submit" style="grid-column:1/-1;justify-self:center;cursor:pointer">
-                Submit <span>→</span>
-              </button>
-              <div id="rsvp-thanks" style="display:none;grid-column:1/-1;text-align:center;font:italic 20px var(--serif);color:#486050">
-                Submission confirmed — thank you!
-              </div>
+              <button class="btn rsvp-btn" type="submit" style="grid-column:1/-1;justify-self:center;cursor:pointer">Submit <span>→</span></button>
+              <div id="rsvp-thanks" style="display:none;grid-column:1/-1;text-align:center;font:italic 20px var(--serif);color:#486050">Submission confirmed — thank you!</div>
             </form>
           </div>
         </div>
@@ -1671,111 +1682,105 @@
       {src:'../images/couple12.jpg',alt:'Mariana and Filippo'}
     ];
     const carousel=document.querySelector('.photo-carousel');
-    const previousCard=document.querySelector('.carousel-card.is-prev');
-    const activeCard=document.querySelector('.carousel-card.is-active');
-    const nextCard=document.querySelector('.carousel-card.is-next');
-    const previousImage=previousCard?.querySelector('.carousel-image');
-    const activeImage=activeCard?.querySelector('.carousel-image');
-    const nextImage=nextCard?.querySelector('.carousel-image');
-    const caption=activeCard?.querySelector('.carousel-caption');
+    let previousCard=document.querySelector('.carousel-card.is-prev');
+    let activeCard=document.querySelector('.carousel-card.is-active');
+    let nextCard=document.querySelector('.carousel-card.is-next');
     const previousButton=document.querySelector('.carousel-prev');
     const nextButton=document.querySelector('.carousel-next');
     const dotsContainer=document.querySelector('.carousel-dots');
     const carouselReducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const photoCache=new Map();
     const CAROUSEL_DURATION=720;
     let currentSlide=0;
     let carouselAnimating=false;
+    let carouselDragging=false;
     let suppressCarouselClick=false;
+    let touchStartX=0;
+    let touchStartY=0;
     function getPhotoIndex(index){
       return (index+couplePhotos.length)%couplePhotos.length;
     }
-    function setCard(image,photo){
-      if(!image||!photo)return;
-      image.src=photo.src;
+    function getCardImage(card){
+      return card?.querySelector('.carousel-image');
+    }
+    function getPhotoUrl(src){
+      return new URL(src,document.baseURI).href;
+    }
+    function waitForPaint(){
+      return new Promise(resolve=>{
+        requestAnimationFrame(()=>{
+          requestAnimationFrame(resolve);
+        });
+      });
+    }
+    function loadPhoto(src,priority='low'){
+      if(photoCache.has(src)){
+        return photoCache.get(src);
+      }
+      const promise=new Promise(resolve=>{
+        const image=new Image();
+        let finished=false;
+        image.decoding='async';
+        try{
+          image.fetchPriority=priority;
+        }catch(error){}
+        const finish=async success=>{
+          if(finished)return;
+          finished=true;
+          if(success&&image.decode){
+            try{
+              await image.decode();
+            }catch(error){}
+          }
+          resolve(success);
+        };
+        image.onload=()=>{
+          finish(true);
+        };
+        image.onerror=()=>{
+          finish(false);
+        };
+        image.src=src;
+        if(image.complete&&image.naturalWidth>0){
+          finish(true);
+        }
+      });
+      photoCache.set(src,promise);
+      return promise;
+    }
+    async function prepareCard(card,photo,priority='low'){
+      if(!card||!photo)return false;
+      const image=getCardImage(card);
+      if(!image)return false;
+      const absoluteUrl=getPhotoUrl(photo.src);
+      if(image.src===absoluteUrl&&image.complete&&image.naturalWidth>0){
+        card.classList.remove('is-preparing');
+        return true;
+      }
+      card.classList.add('is-preparing');
+      const loaded=await loadPhoto(photo.src,priority);
+      if(!loaded){
+        card.classList.remove('is-preparing');
+        return false;
+      }
       image.alt=photo.alt;
+      image.src=photo.src;
+      try{
+        if(image.decode){
+          await image.decode();
+        }
+      }catch(error){}
+      card.dataset.photoIndex=String(couplePhotos.indexOf(photo));
+      card.classList.remove('is-preparing');
+      await waitForPaint();
+      return true;
     }
-    function updateCarousel(){
-      if(!couplePhotos.length)return;
-      const previousPhoto=couplePhotos[getPhotoIndex(currentSlide-1)];
-      const activePhoto=couplePhotos[getPhotoIndex(currentSlide)];
-      const nextPhoto=couplePhotos[getPhotoIndex(currentSlide+1)];
-      setCard(previousImage,previousPhoto);
-      setCard(activeImage,activePhoto);
-      setCard(nextImage,nextPhoto);
-      if(caption)caption.textContent=activePhoto.caption||'';
-      updateDots();
-    }
-    function finishCarouselMove(direction){
-      if(!carousel)return;
-      carousel.classList.add('is-resetting');
-      currentSlide=getPhotoIndex(currentSlide+(direction==='next'?1:-1));
-      updateCarousel();
-      carousel.classList.remove(direction==='next'?'is-moving-next':'is-moving-prev');
-      requestAnimationFrame(()=>{
-        requestAnimationFrame(()=>{
-          carousel.classList.remove('is-resetting');
-          carouselAnimating=false;
-        });
+    function updateDots(){
+      if(!dotsContainer)return;
+      dotsContainer.querySelectorAll('.carousel-dot').forEach((dot,index)=>{
+        dot.classList.toggle('active',index===currentSlide);
       });
     }
-    function moveCarousel(direction){
-      if(couplePhotos.length<2||carouselAnimating)return;
-      if(carouselReducedMotion||!carousel){
-        currentSlide=getPhotoIndex(currentSlide+(direction==='next'?1:-1));
-        updateCarousel();
-        return;
-      }
-      carouselAnimating=true;
-      carousel.classList.add(direction==='next'?'is-moving-next':'is-moving-prev');
-      window.setTimeout(()=>finishCarouselMove(direction),CAROUSEL_DURATION);
-    }
-    function nextSlide(){
-      moveCarousel('next');
-    }
-    function previousSlide(){
-      moveCarousel('prev');
-    }
-    function goToSlide(index){
-      if(carouselAnimating)return;
-      const target=getPhotoIndex(index);
-      if(target===currentSlide)return;
-      if(target===getPhotoIndex(currentSlide+1)){
-        nextSlide();
-        return;
-      }
-      if(target===getPhotoIndex(currentSlide-1)){
-        previousSlide();
-        return;
-      }
-      if(!carousel)return;
-      carousel.classList.add('is-resetting');
-      currentSlide=target;
-      updateCarousel();
-      requestAnimationFrame(()=>{
-        requestAnimationFrame(()=>{
-          carousel.classList.remove('is-resetting');
-        });
-      });
-    }
-    document.addEventListener('keydown',event=>{
-      if(event.key==='ArrowRight')nextSlide();
-      if(event.key==='ArrowLeft')previousSlide();
-    });
-    nextButton?.addEventListener('click',event=>{
-      event.stopPropagation();
-      nextSlide();
-    });
-    previousButton?.addEventListener('click',event=>{
-      event.stopPropagation();
-      previousSlide();
-    });
-    activeCard?.addEventListener('click',()=>{
-      if(suppressCarouselClick){
-        suppressCarouselClick=false;
-        return;
-      }
-      nextSlide();
-    });
     function createDots(){
       if(!dotsContainer)return;
       dotsContainer.innerHTML='';
@@ -1791,15 +1796,192 @@
         dotsContainer.appendChild(dot);
       });
     }
-    function updateDots(){
-      if(!dotsContainer)return;
-      dotsContainer.querySelectorAll('.carousel-dot').forEach((dot,index)=>{
-        dot.classList.toggle('active',index===currentSlide);
+    function setRoleClasses(){
+      [previousCard,activeCard,nextCard].forEach(card=>{
+        card?.classList.remove('is-prev','is-active','is-next');
+      });
+      previousCard?.classList.add('is-prev');
+      activeCard?.classList.add('is-active');
+      nextCard?.classList.add('is-next');
+    }
+    async function prepareInitialCarousel(){
+      if(!couplePhotos.length)return;
+      const activePhoto=couplePhotos[currentSlide];
+      const previousPhoto=couplePhotos[getPhotoIndex(currentSlide-1)];
+      const nextPhoto=couplePhotos[getPhotoIndex(currentSlide+1)];
+      prepareCard(previousCard,previousPhoto,'high');
+      prepareCard(nextCard,nextPhoto,'high');
+      await prepareCard(activeCard,activePhoto,'high');
+      updateDots();
+      warmNearbyPhotos();
+      scheduleBackgroundPreload();
+    }
+    function warmNearbyPhotos(){
+      if(couplePhotos.length<4)return;
+      const nearbyIndexes=[
+        getPhotoIndex(currentSlide+2),
+        getPhotoIndex(currentSlide-2),
+        getPhotoIndex(currentSlide+3),
+        getPhotoIndex(currentSlide-3)
+      ];
+      const uniqueIndexes=[...new Set(nearbyIndexes)];
+      uniqueIndexes.forEach((index,position)=>{
+        window.setTimeout(()=>{
+          loadPhoto(couplePhotos[index].src,'low');
+        },position*180);
       });
     }
-    let touchStartX=0;
-    let touchStartY=0;
-    let carouselDragging=false;
+    function scheduleBackgroundPreload(){
+      const immediateIndexes=new Set([
+        getPhotoIndex(currentSlide-3),
+        getPhotoIndex(currentSlide-2),
+        getPhotoIndex(currentSlide-1),
+        currentSlide,
+        getPhotoIndex(currentSlide+1),
+        getPhotoIndex(currentSlide+2),
+        getPhotoIndex(currentSlide+3)
+      ]);
+      const remaining=couplePhotos.filter((photo,index)=>{
+        return !immediateIndexes.has(index);
+      });
+      let index=0;
+      const loadNext=async()=>{
+        if(index>=remaining.length)return;
+        await loadPhoto(remaining[index].src,'low');
+        index++;
+        window.setTimeout(loadNext,220);
+      };
+      const start=()=>{
+        if('requestIdleCallback' in window){
+          requestIdleCallback(()=>{
+            loadNext();
+          },{
+            timeout:2500
+          });
+        }else{
+          window.setTimeout(loadNext,1200);
+        }
+      };
+      if(document.readyState==='complete'){
+        start();
+      }else{
+        window.addEventListener('load',start,{once:true});
+      }
+    }
+    async function moveCarousel(direction){
+      if(couplePhotos.length<2||carouselAnimating)return;
+      const delta=direction==='next'?1:-1;
+      const incomingCard=direction==='next'?nextCard:previousCard;
+      const incomingPhoto=couplePhotos[getPhotoIndex(currentSlide+delta)];
+      carouselAnimating=true;
+      const ready=await prepareCard(incomingCard,incomingPhoto,'high');
+      if(!ready){
+        carouselAnimating=false;
+        return;
+      }
+      if(carouselReducedMotion||!carousel){
+        finishCarouselMove(direction,true);
+        return;
+      }
+      carousel.classList.add(direction==='next'?'is-moving-next':'is-moving-prev');
+      window.setTimeout(()=>{
+        finishCarouselMove(direction,false);
+      },CAROUSEL_DURATION);
+    }
+    function finishCarouselMove(direction,instant=false){
+      if(!carousel)return;
+      const oldPrevious=previousCard;
+      const oldActive=activeCard;
+      const oldNext=nextCard;
+      const recycledCard=direction==='next'?oldPrevious:oldNext;
+      recycledCard.classList.add('is-preparing');
+      carousel.classList.add('is-resetting');
+      carousel.classList.remove('is-moving-next','is-moving-prev');
+      if(direction==='next'){
+        currentSlide=getPhotoIndex(currentSlide+1);
+        previousCard=oldActive;
+        activeCard=oldNext;
+        nextCard=oldPrevious;
+      }else{
+        currentSlide=getPhotoIndex(currentSlide-1);
+        previousCard=oldNext;
+        activeCard=oldPrevious;
+        nextCard=oldActive;
+      }
+      setRoleClasses();
+      updateDots();
+      requestAnimationFrame(()=>{
+        requestAnimationFrame(()=>{
+          carousel.classList.remove('is-resetting');
+          carouselAnimating=false;
+          const recycledPhoto=direction==='next'
+            ? couplePhotos[getPhotoIndex(currentSlide+1)]
+            : couplePhotos[getPhotoIndex(currentSlide-1)];
+          prepareCard(recycledCard,recycledPhoto,'high');
+          warmNearbyPhotos();
+        });
+      });
+    }
+    function nextSlide(){
+      moveCarousel('next');
+    }
+    function previousSlide(){
+      moveCarousel('prev');
+    }
+    async function goToSlide(index){
+      const target=getPhotoIndex(index);
+      if(target===currentSlide||carouselAnimating)return;
+      if(target===getPhotoIndex(currentSlide+1)){
+        nextSlide();
+        return;
+      }
+      if(target===getPhotoIndex(currentSlide-1)){
+        previousSlide();
+        return;
+      }
+      carouselAnimating=true;
+      carousel?.classList.add('is-resetting');
+      previousCard?.classList.add('is-preparing');
+      activeCard?.classList.add('is-preparing');
+      nextCard?.classList.add('is-preparing');
+      currentSlide=target;
+      updateDots();
+      const previousPhoto=couplePhotos[getPhotoIndex(currentSlide-1)];
+      const activePhoto=couplePhotos[currentSlide];
+      const nextPhoto=couplePhotos[getPhotoIndex(currentSlide+1)];
+      await Promise.all([
+        prepareCard(previousCard,previousPhoto,'high'),
+        prepareCard(activeCard,activePhoto,'high'),
+        prepareCard(nextCard,nextPhoto,'high')
+      ]);
+      carousel?.classList.remove('is-resetting');
+      carouselAnimating=false;
+      warmNearbyPhotos();
+    }
+    previousButton?.addEventListener('click',event=>{
+      event.stopPropagation();
+      previousSlide();
+    });
+    nextButton?.addEventListener('click',event=>{
+      event.stopPropagation();
+      nextSlide();
+    });
+    carousel?.addEventListener('click',event=>{
+      if(suppressCarouselClick){
+        suppressCarouselClick=false;
+        return;
+      }
+      if(event.target.closest('.carousel-arrow')||event.target.closest('.carousel-dot')){
+        return;
+      }
+      if(event.target.closest('.carousel-card.is-active')){
+        nextSlide();
+      }
+    });
+    document.addEventListener('keydown',event=>{
+      if(event.key==='ArrowRight')nextSlide();
+      if(event.key==='ArrowLeft')previousSlide();
+    });
     function resetCarouselDrag(){
       if(!carousel)return;
       carousel.classList.remove('is-dragging');
@@ -1841,21 +2023,14 @@
         suppressCarouselClick=true;
         window.setTimeout(()=>{
           suppressCarouselClick=false;
-        },500);
+        },450);
       }
       if(differenceX>0)nextSlide();
       else previousSlide();
     },{passive:true});
     carousel?.addEventListener('touchcancel',resetCarouselDrag,{passive:true});
-    function preloadPhotos(){
-      couplePhotos.forEach(photo=>{
-        const image=new Image();
-        image.src=photo.src;
-      });
-    }
     createDots();
-    updateCarousel();
-    preloadPhotos();
+    prepareInitialCarousel();
     const observer=new IntersectionObserver(entries=>{
       entries.forEach(entry=>{
         if(entry.isIntersecting){
@@ -1870,11 +2045,7 @@
     });
     const parallaxSection=document.querySelector('.parallax-photo');
     const parallaxImage=document.querySelector('.parallax-image');
-    if(
-      parallaxSection &&
-      parallaxImage &&
-      !window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    ){
+    if(parallaxSection&&parallaxImage&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
       let ticking=false;
       const updateParallax=()=>{
         const rect=parallaxSection.getBoundingClientRect();
