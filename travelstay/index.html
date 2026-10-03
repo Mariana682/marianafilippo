@@ -30,7 +30,18 @@
     }
     *{box-sizing:border-box;}
     html{scroll-behavior:smooth;width:100%;max-width:100%;overflow-x:hidden;}
-    body{margin:0;width:100%;max-width:100%;overflow-x:hidden;background:var(--forest);color:var(--cream);font-family:var(--sans);font-weight:400;line-height:1.6;}
+    body{
+      margin:0;
+      width:100%;
+      max-width:100%;
+      overflow-x:hidden;
+      background:var(--forest);
+      color:var(--cream);
+      font-family:var(--sans);
+      font-size:16px;
+      font-weight:400;
+      line-height:1.7;
+    }
     a{color:inherit;text-decoration:none;}
     img{max-width:100%;display:block;}
     button{font:inherit;}
@@ -197,7 +208,7 @@
       animation:fadeUp 1.1s cubic-bezier(.2,.7,.2,1) both;
     }
     .eyebrow{
-      font-size:10px;
+      font-size:11px;
       letter-spacing:.42em;
       text-transform:uppercase;
       color:var(--champagne);
@@ -218,10 +229,10 @@
       letter-spacing:0;
     }
     .hero-copy{
-      max-width:600px;
+      max-width:650px;
       margin:30px auto 0;
-      font:21px/1.5 var(--serif);
-      color:rgba(246,237,216,.92);
+      font:23px/1.5 var(--serif);
+      color:rgba(246,237,216,.94);
     }
     .hero-tabs{
       display:inline-flex;
@@ -237,7 +248,7 @@
     .hero-tabs a{
       padding:10px 18px;
       border-radius:999px;
-      font-size:9px;
+      font-size:10px;
       letter-spacing:.22em;
       text-transform:uppercase;
       transition:.25s ease;
@@ -249,9 +260,9 @@
     .section-pad{padding:110px 7vw;}
     .section-inner{max-width:1400px;margin:0 auto;}
     .label{
-      font-size:10px;
+      font-size:11px;
       text-transform:uppercase;
-      letter-spacing:.36em;
+      letter-spacing:.34em;
       color:var(--champagne);
       display:flex;
       align-items:center;
@@ -271,9 +282,9 @@
       color:var(--cream);
     }
     .section-lead{
-      max-width:690px;
-      font:19px/1.55 var(--serif);
-      color:rgba(243,232,202,.84);
+      max-width:720px;
+      font:21px/1.6 var(--serif);
+      color:rgba(243,232,202,.88);
       margin:0;
     }
     .travel-section{
@@ -301,10 +312,10 @@
       margin-bottom:60px;
     }
     .personal-note{
-      padding:24px 28px;
+      padding:26px 30px;
       border-left:2px solid var(--blue);
       background:rgba(134,169,204,.07);
-      font:italic 18px/1.5 var(--serif);
+      font:italic 20px/1.55 var(--serif);
       color:#e9e4d4;
     }
     .personal-note strong{
@@ -320,8 +331,8 @@
     }
     .airport-card{
       position:relative;
-      min-height:235px;
-      padding:26px 22px;
+      min-height:255px;
+      padding:27px 23px;
       border:1px solid rgba(232,215,170,.18);
       background:linear-gradient(145deg,rgba(255,255,255,.035),rgba(255,255,255,.012));
       overflow:hidden;
@@ -339,16 +350,16 @@
     }
     .airport-city{
       margin-top:16px;
-      font-size:11px;
+      font-size:12px;
       letter-spacing:.18em;
       text-transform:uppercase;
       color:var(--cream);
     }
     .airport-copy{
-      margin-top:12px;
-      font-size:12px;
-      line-height:1.65;
-      color:rgba(243,232,202,.66);
+      margin-top:13px;
+      font-size:15px;
+      line-height:1.7;
+      color:rgba(243,232,202,.76);
     }
     .airport-card.recommended::after{
       content:attr(data-pick-label);
@@ -363,7 +374,7 @@
       color:var(--forest);
       font-size:8px;
       font-weight:600;
-      letter-spacing:.16em;
+      letter-spacing:.14em;
       text-transform:uppercase;
     }
     .transport-grid{
@@ -374,7 +385,7 @@
     }
     .transport-panel{
       border:1px solid rgba(232,215,170,.18);
-      padding:34px;
+      padding:36px;
       background:rgba(255,255,255,.025);
     }
     .transport-panel.light{
@@ -383,42 +394,72 @@
       color:#fff;
     }
     .transport-kicker{
-      font-size:9px;
+      font-size:10px;
       letter-spacing:.28em;
       text-transform:uppercase;
       color:var(--champagne);
-      margin-bottom:18px;
+      margin-bottom:19px;
     }
     .transport-panel.light .transport-kicker{color:#f8efd8;}
     .transport-list{display:grid;gap:0;}
     .transport-row{
       display:grid;
-      grid-template-columns:130px 1fr;
-      gap:22px;
-      padding:18px 0;
+      grid-template-columns:145px 1fr;
+      gap:24px;
+      padding:20px 0;
       border-top:1px solid rgba(232,215,170,.14);
     }
-    .transport-row:first-child{border-top:0;padding-top:0;}
+    .transport-row:first-child{
+      border-top:0;
+      padding-top:0;
+    }
     .transport-name{
-      font:500 21px/1.1 var(--serif);
+      font:500 23px/1.1 var(--serif);
       color:var(--cream);
     }
     .transport-copy{
-      font-size:12px;
-      line-height:1.7;
-      color:rgba(243,232,202,.68);
+      font-size:15px;
+      line-height:1.75;
+      color:rgba(243,232,202,.76);
     }
     .transport-panel.light .transport-name,
     .transport-panel.light .transport-copy{color:#fff;}
-    .transport-panel.light .transport-copy{opacity:.82;}
+    .transport-panel.light .transport-copy{opacity:.9;}
+    .no-car-card{
+      position:relative;
+      overflow:hidden;
+      isolation:isolate;
+    }
+    .no-car-card::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:url('../images/walking.jpg') center/cover no-repeat;
+      opacity:.20;
+      filter:saturate(.75) contrast(.9);
+      z-index:0;
+      pointer-events:none;
+    }
+    .no-car-card::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(135deg,rgba(116,139,104,.68),rgba(78,104,77,.78));
+      z-index:0;
+      pointer-events:none;
+    }
+    .no-car-card > *{
+      position:relative;
+      z-index:1;
+    }
     .big-advice{
-      font:italic 28px/1.2 var(--serif);
-      margin:4px 0 18px;
+      font:italic 32px/1.2 var(--serif);
+      margin:4px 0 19px;
     }
     .small-copy{
-      font-size:12px;
-      line-height:1.75;
-      opacity:.82;
+      font-size:15px;
+      line-height:1.8;
+      opacity:.94;
     }
     .explore{margin-top:120px;}
     .explore-head{
@@ -429,8 +470,8 @@
       margin-bottom:44px;
     }
     .explore-tip{
-      font:italic 19px/1.45 var(--serif);
-      color:rgba(243,232,202,.74);
+      font:italic 20px/1.5 var(--serif);
+      color:rgba(243,232,202,.8);
       padding-bottom:8px;
     }
     .destination-grid{
@@ -440,8 +481,8 @@
     }
     .destination-card{
       position:relative;
-      min-height:330px;
-      padding:30px;
+      min-height:350px;
+      padding:32px;
       display:flex;
       flex-direction:column;
       justify-content:space-between;
@@ -450,14 +491,14 @@
       isolation:isolate;
       transition:transform .35s cubic-bezier(.2,.7,.2,1),border-color .35s ease;
     }
-    .destination-card:hover{
-      transform:translateY(-5px);
-      border-color:rgba(232,215,170,.44);
+    .destination-card > *{
+      position:relative;
+      z-index:2;
     }
     .destination-card::before{
       content:"";
       position:absolute;
-      z-index:-1;
+      z-index:1;
       width:240px;
       height:240px;
       border:1px solid rgba(232,215,170,.07);
@@ -465,49 +506,98 @@
       right:-120px;
       bottom:-120px;
       box-shadow:0 0 0 48px rgba(232,215,170,.018),0 0 0 96px rgba(232,215,170,.012);
+      pointer-events:none;
+    }
+    .destination-card::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      z-index:0;
+      background-image:
+        linear-gradient(135deg,rgba(32,52,45,.54),rgba(32,52,45,.68)),
+        var(--place-image);
+      background-position:center;
+      background-size:cover;
+      background-repeat:no-repeat;
+      opacity:.26;
+      filter:saturate(.72);
+      pointer-events:none;
+    }
+    .destination-card.paper::after{
+      background-image:
+        linear-gradient(135deg,rgba(246,237,216,.72),rgba(246,237,216,.82)),
+        var(--place-image);
+      opacity:.30;
+      filter:saturate(.55);
+    }
+    .destination-card.sage::after{
+      background-image:
+        linear-gradient(135deg,rgba(116,139,104,.62),rgba(85,111,80,.76)),
+        var(--place-image);
+      opacity:.32;
+    }
+    .destination-card.blue::after{
+      background-image:
+        linear-gradient(135deg,rgba(113,143,171,.60),rgba(73,104,132,.74)),
+        var(--place-image);
+      opacity:.32;
+    }
+    .destination-card:hover{
+      transform:translateY(-5px);
+      border-color:rgba(232,215,170,.44);
     }
     .destination-card.wide{grid-column:span 7;}
     .destination-card.narrow{grid-column:span 5;}
     .destination-card.third{grid-column:span 4;}
-    .destination-card.sage{background:var(--sage);border-color:transparent;}
-    .destination-card.paper{background:var(--paper);border-color:transparent;color:var(--ink);}
-    .destination-card.blue{background:#718fab;border-color:transparent;}
+    .destination-card.sage{
+      background:var(--sage);
+      border-color:transparent;
+    }
+    .destination-card.paper{
+      background:var(--paper);
+      border-color:transparent;
+      color:var(--ink);
+    }
+    .destination-card.blue{
+      background:#718fab;
+      border-color:transparent;
+    }
     .destination-no{
-      font-size:9px;
-      letter-spacing:.24em;
+      font-size:10px;
+      letter-spacing:.22em;
       text-transform:uppercase;
       color:var(--champagne);
     }
-    .destination-card.paper .destination-no{color:#667966;}
+    .destination-card.paper .destination-no{color:#536a57;}
     .destination-card h3{
-      font:500 clamp(34px,4vw,58px)/.9 var(--serif);
+      font:500 clamp(36px,4vw,58px)/.9 var(--serif);
       letter-spacing:-.02em;
-      margin:0 0 14px;
+      margin:0 0 15px;
     }
     .destination-card p{
-      max-width:520px;
+      max-width:540px;
       margin:0;
-      font-size:13px;
-      line-height:1.72;
-      color:rgba(243,232,202,.72);
+      font-size:15.5px;
+      line-height:1.75;
+      color:rgba(243,232,202,.87);
     }
     .destination-card.sage p,
-    .destination-card.blue p{color:rgba(255,255,255,.82);}
-    .destination-card.paper p{color:rgba(23,36,31,.72);}
+    .destination-card.blue p{color:rgba(255,255,255,.93);}
+    .destination-card.paper p{color:rgba(23,36,31,.82);}
     .destination-tag{
       display:inline-flex;
       align-self:flex-start;
-      margin-top:25px;
-      padding:7px 10px;
-      border:1px solid rgba(232,215,170,.3);
-      font-size:8px;
+      margin-top:26px;
+      padding:8px 11px;
+      border:1px solid rgba(232,215,170,.35);
+      font-size:9px;
       letter-spacing:.18em;
       text-transform:uppercase;
     }
-    .destination-card.paper .destination-tag{border-color:rgba(23,36,31,.2);}
+    .destination-card.paper .destination-tag{border-color:rgba(23,36,31,.24);}
     .food-strip{
       margin-top:18px;
-      padding:46px;
+      padding:48px;
       background:var(--forest-2);
       display:grid;
       grid-template-columns:.7fr 1fr 1fr 1fr;
@@ -515,25 +605,25 @@
       align-items:start;
     }
     .food-title{
-      font:500 38px/.95 var(--serif);
+      font:500 40px/.95 var(--serif);
       color:var(--cream);
       margin:0;
     }
     .food-item{
-      padding-left:20px;
+      padding-left:22px;
       border-left:1px solid rgba(232,215,170,.2);
     }
     .food-item strong{
       display:block;
-      font:500 22px/1.05 var(--serif);
-      margin-bottom:9px;
+      font:500 24px/1.05 var(--serif);
+      margin-bottom:10px;
       color:var(--champagne);
     }
     .food-item p{
       margin:0;
-      font-size:12px;
-      line-height:1.7;
-      color:rgba(243,232,202,.68);
+      font-size:14.5px;
+      line-height:1.75;
+      color:rgba(243,232,202,.78);
     }
     .stay-section{
       background:var(--paper);
@@ -566,7 +656,7 @@
       z-index:1;
     }
     .stay-note{
-      font:italic 19px/1.5 var(--serif);
+      font:italic 20px/1.55 var(--serif);
       color:#667066;
       border-left:2px solid var(--blue);
       padding-left:24px;
@@ -580,8 +670,8 @@
     }
     .stay-card{
       position:relative;
-      min-height:380px;
-      padding:42px;
+      min-height:390px;
+      padding:44px;
       border:1px solid rgba(23,36,31,.14);
       display:flex;
       flex-direction:column;
@@ -607,10 +697,10 @@
       box-shadow:0 0 0 50px currentColor;
     }
     .stay-card-kicker{
-      font-size:9px;
-      letter-spacing:.28em;
+      font-size:10px;
+      letter-spacing:.27em;
       text-transform:uppercase;
-      opacity:.65;
+      opacity:.68;
     }
     .stay-card h3{
       font:500 clamp(40px,4.5vw,64px)/.9 var(--serif);
@@ -618,10 +708,10 @@
       margin:16px 0;
     }
     .stay-card p{
-      max-width:560px;
-      font-size:13px;
-      line-height:1.75;
-      opacity:.76;
+      max-width:580px;
+      font-size:15.5px;
+      line-height:1.78;
+      opacity:.84;
       margin:0;
     }
     .stay-btn{
@@ -633,10 +723,10 @@
       gap:12px;
       align-self:flex-start;
       margin-top:32px;
-      padding:13px 18px;
+      padding:14px 19px;
       border:1px solid currentColor;
-      font-size:9px;
-      letter-spacing:.19em;
+      font-size:10px;
+      letter-spacing:.18em;
       text-transform:uppercase;
       transition:.28s ease;
     }
@@ -657,7 +747,7 @@
       z-index:1;
     }
     .area-guide h3{
-      font:500 38px/1 var(--serif);
+      font:500 40px/1 var(--serif);
       margin:0 0 24px;
       color:#263a31;
     }
@@ -668,25 +758,25 @@
       border-bottom:1px solid var(--line-dark);
     }
     .area{
-      padding:28px 28px 30px;
+      padding:30px 30px 32px;
       border-right:1px solid var(--line-dark);
     }
     .area:last-child{border-right:0;}
     .area strong{
       display:block;
-      font:500 24px/1.05 var(--serif);
+      font:500 26px/1.05 var(--serif);
       color:#2e4439;
-      margin-bottom:10px;
+      margin-bottom:11px;
     }
     .area p{
       margin:0;
-      font-size:12px;
-      line-height:1.7;
-      color:#667066;
+      font-size:14.5px;
+      line-height:1.75;
+      color:#5b685e;
     }
     .wedding-transport{
       margin-top:50px;
-      padding:34px 36px;
+      padding:36px 38px;
       background:#dfe6dc;
       display:grid;
       grid-template-columns:auto 1fr;
@@ -694,8 +784,8 @@
       align-items:center;
     }
     .wedding-transport .icon{
-      width:56px;
-      height:56px;
+      width:58px;
+      height:58px;
       border:1px solid rgba(23,36,31,.2);
       border-radius:50%;
       display:grid;
@@ -705,38 +795,38 @@
     }
     .wedding-transport strong{
       display:block;
-      font:500 23px/1.1 var(--serif);
-      margin-bottom:7px;
+      font:500 25px/1.1 var(--serif);
+      margin-bottom:8px;
     }
     .wedding-transport p{
       margin:0;
-      font-size:12px;
-      line-height:1.7;
-      color:#5d695f;
+      font-size:14.5px;
+      line-height:1.75;
+      color:#526056;
     }
     .closing{
       background:var(--sage);
-      padding:85px 7vw;
+      padding:90px 7vw;
       text-align:center;
       color:#fff;
     }
     .closing small{
       display:block;
-      font-size:9px;
+      font-size:10px;
       letter-spacing:.34em;
       text-transform:uppercase;
       margin-bottom:14px;
-      opacity:.8;
+      opacity:.82;
     }
     .closing h2{
-      font:400 clamp(46px,6vw,78px)/.95 var(--script);
+      font:400 clamp(48px,6vw,80px)/.95 var(--script);
       margin:0;
     }
     .closing p{
-      font:18px/1.5 var(--serif);
-      margin:18px auto 0;
-      max-width:580px;
-      opacity:.88;
+      font:20px/1.55 var(--serif);
+      margin:20px auto 0;
+      max-width:690px;
+      opacity:.92;
     }
     footer{
       padding:28px 7vw;
@@ -765,13 +855,19 @@
       transform:none;
     }
     @keyframes fadeUp{
-      from{opacity:0;transform:translateY(22px);}
-      to{opacity:1;transform:none;}
+      from{
+        opacity:0;
+        transform:translateY(22px);
+      }
+      to{
+        opacity:1;
+        transform:none;
+      }
     }
     @media(max-width:1080px){
       .airport-grid{grid-template-columns:repeat(3,1fr);}
       .airport-card:nth-child(4),
-      .airport-card:nth-child(5){min-height:210px;}
+      .airport-card:nth-child(5){min-height:220px;}
       .destination-card.third{grid-column:span 6;}
       .food-strip{grid-template-columns:1fr 1fr;}
       .food-title{grid-column:1/-1;}
@@ -812,6 +908,7 @@
       .area:last-child{border-bottom:0;}
     }
     @media(max-width:640px){
+      body{font-size:16px;}
       .nav{padding:20px;}
       .monogram{font-size:25px;}
       .lang{
@@ -832,44 +929,63 @@
       .hero{min-height:72vh;}
       .hero-content{padding:130px 18px 90px;}
       .hero h1{font-size:clamp(56px,18vw,78px);}
-      .hero-copy{font-size:18px;}
+      .hero-copy{font-size:20px;}
       .hero-tabs{margin-top:28px;}
-      .hero-tabs a{padding:9px 13px;font-size:8px;}
+      .hero-tabs a{padding:9px 13px;font-size:9px;}
       .section-pad{padding:78px 20px;}
       .section-title{font-size:52px;}
+      .section-lead{font-size:19px;}
+      .personal-note{font-size:18px;}
       .airport-grid{grid-template-columns:1fr;}
       .airport-card,
       .airport-card:nth-child(4),
-      .airport-card:nth-child(5){min-height:190px;}
+      .airport-card:nth-child(5){
+        min-height:205px;
+      }
       .airport-code{font-size:46px;}
-      .transport-panel{padding:26px 22px;}
-      .transport-row{grid-template-columns:1fr;gap:7px;}
+      .airport-copy{font-size:15px;}
+      .transport-panel{padding:28px 23px;}
+      .transport-row{
+        grid-template-columns:1fr;
+        gap:8px;
+      }
+      .transport-copy{font-size:15px;}
+      .small-copy{font-size:15px;}
       .explore{margin-top:85px;}
       .destination-grid{grid-template-columns:1fr;}
       .destination-card.wide,
       .destination-card.narrow,
       .destination-card.third{
         grid-column:auto;
-        min-height:290px;
+        min-height:315px;
       }
-      .destination-card{padding:25px;}
-      .destination-card h3{font-size:43px;}
+      .destination-card{padding:27px;}
+      .destination-card h3{font-size:44px;}
+      .destination-card p{font-size:15px;}
       .food-strip{
         grid-template-columns:1fr;
-        padding:30px 24px;
+        padding:32px 25px;
       }
       .food-title{grid-column:auto;}
       .food-item{
-        padding:17px 0 0;
+        padding:19px 0 0;
         border-left:0;
         border-top:1px solid rgba(232,215,170,.18);
       }
-      .stay-card{min-height:340px;padding:30px 25px;}
+      .food-item p{font-size:14.5px;}
+      .stay-card{
+        min-height:350px;
+        padding:32px 26px;
+      }
       .stay-card h3{font-size:48px;}
+      .stay-card p{font-size:15px;}
+      .area p{font-size:14.5px;}
       .wedding-transport{
         grid-template-columns:1fr;
-        padding:28px 24px;
+        padding:30px 25px;
       }
+      .wedding-transport p{font-size:14.5px;}
+      .closing p{font-size:19px;}
       footer{
         padding:25px 22px 115px;
         flex-direction:column;
@@ -877,7 +993,9 @@
       }
     }
     @media(prefers-reduced-motion:reduce){
-      *,*::before,*::after{
+      *,
+      *::before,
+      *::after{
         scroll-behavior:auto !important;
         transition:none !important;
         animation:none !important;
@@ -935,9 +1053,9 @@
                 <div class="airport-copy" data-i18n="tsf">A very practical option for Padova. There are public bus connections towards Padova and the Euganean area.</div>
               </article>
               <article class="airport-card recommended" data-pick-label="our pick">
-                <div class="airport-code">VCE</div>
-                <div class="airport-city" data-i18n="vceCity">Venice</div>
-                <div class="airport-copy" data-i18n="vce">Easy to combine with Venice or Mestre, then continue towards Padova by train or coach.</div>
+                <div class="airport-code">VRN</div>
+                <div class="airport-city">Verona</div>
+                <div class="airport-copy" data-i18n="vrn">AirLink takes you to Verona Porta Nuova; from there, trains make the rest of the journey straightforward.</div>
               </article>
               <article class="airport-card">
                 <div class="airport-code">BLQ</div>
@@ -945,9 +1063,9 @@
                 <div class="airport-copy" data-i18n="blq">Often worth checking for good flights. The airport-city transfer is convenient, although surprisingly pricey for such a short hop.</div>
               </article>
               <article class="airport-card">
-                <div class="airport-code">VRN</div>
-                <div class="airport-city">Verona</div>
-                <div class="airport-copy" data-i18n="vrn">AirLink takes you to Verona Porta Nuova; from there, trains make the rest of the journey straightforward.</div>
+                <div class="airport-code">VCE</div>
+                <div class="airport-city" data-i18n="vceCity">Venice</div>
+                <div class="airport-copy" data-i18n="vce">Easy to combine with Venice or Mestre, then continue towards Padova by train or coach.</div>
               </article>
               <article class="airport-card">
                 <div class="airport-code">BGY</div>
@@ -977,7 +1095,7 @@
                   </div>
                 </div>
               </div>
-              <aside class="transport-panel light">
+              <aside class="transport-panel light no-car-card">
                 <div class="transport-kicker" data-i18n="weddingDay">Wedding day</div>
                 <div class="big-advice" data-i18n="noCar">No car? Please tell us.</div>
                 <div class="small-copy" data-i18n="noCarCopy">Do not rent a car just for the wedding if you do not need one. We can try to organise lifts with other guests. Just write to us in advance so nobody has to spend the evening studying rural bus timetables.</div>
@@ -991,16 +1109,33 @@
                 </div>
                 <div class="explore-tip" data-i18n="exploreTip">These are not a definitive guide to northern Italy. They are simply the places — and the food — we would genuinely tell our friends not to miss.</div>
               </div>
+
+              <!--
+                OPTIONAL BACKGROUND IMAGES
+                Put these files inside your /images folder:
+
+                veneza.jpg
+                dolomitas.jpg
+                verona.jpg
+                bologna.jpg
+                colli.jpg
+                padova.jpg
+                teolo.jpg
+
+                The cards still work if a photo is missing.
+                You can replace any image later while keeping the same filename.
+              -->
+
               <div class="destination-grid">
-                <article class="destination-card wide paper reveal">
+                <article class="destination-card wide paper reveal" style="--place-image:url('../images/veneza.jpg')">
                   <div class="destination-no" data-i18n="d1">01 · day trip</div>
                   <div>
-                    <h3>Venezia</h3>
+                    <h3 data-i18n="veniceName">Venice</h3>
                     <p data-i18n="veniceCopy">Take the train from Padova, arrive early and let yourself get lost. Walk away from the busiest streets, stop for cicchetti, and stay until the light starts to change. Before going, check the official Venice website to see whether the 2027 Access Fee applies to your date.</p>
                     <span class="destination-tag" data-i18n="trainFriendly">train friendly</span>
                   </div>
                 </article>
-                <article class="destination-card narrow blue reveal">
+                <article class="destination-card narrow blue reveal" style="--place-image:url('../images/dolomitas.jpg')">
                   <div class="destination-no" data-i18n="d2">02 · if you have a car</div>
                   <div>
                     <h3>Dolomiti</h3>
@@ -1008,7 +1143,7 @@
                     <span class="destination-tag" data-i18n="bestCar">best with a car</span>
                   </div>
                 </article>
-                <article class="destination-card third reveal">
+                <article class="destination-card third reveal" style="--place-image:url('../images/couple1.jpg')">
                   <div class="destination-no" data-i18n="d3">03 · classic</div>
                   <div>
                     <h3>Verona</h3>
@@ -1016,7 +1151,7 @@
                     <span class="destination-tag" data-i18n="easyTrain">easy by train</span>
                   </div>
                 </article>
-                <article class="destination-card third sage reveal">
+                <article class="destination-card third sage reveal" style="--place-image:url('../images/bologna.jpg')">
                   <div class="destination-no" data-i18n="d4">04 · eat first</div>
                   <div>
                     <h3>Bologna</h3>
@@ -1024,7 +1159,7 @@
                     <span class="destination-tag" data-i18n="pastaMandatory">pasta mandatory</span>
                   </div>
                 </article>
-                <article class="destination-card third paper reveal">
+                <article class="destination-card third paper reveal" style="--place-image:url('../images/colli.jpg')">
                   <div class="destination-no" data-i18n="d5">05 · right here</div>
                   <div>
                     <h3>Colli Euganei</h3>
@@ -1032,7 +1167,7 @@
                     <span class="destination-tag" data-i18n="slowTravel">slow travel</span>
                   </div>
                 </article>
-                <article class="destination-card wide sage reveal">
+                <article class="destination-card wide sage reveal" style="--place-image:url('../images/padova.jpg')">
                   <div class="destination-no" data-i18n="d6">06 · closest city</div>
                   <div>
                     <h3>Padova</h3>
@@ -1040,7 +1175,7 @@
                     <span class="destination-tag" data-i18n="spritz">spritz territory</span>
                   </div>
                 </article>
-                <article class="destination-card narrow reveal">
+                <article class="destination-card narrow reveal" style="--place-image:url('../images/teolo.jpg')">
                   <div class="destination-no" data-i18n="d7">07 · extra idea</div>
                   <div>
                     <h3 data-i18n="stayLocal">Stay local</h3>
@@ -1053,15 +1188,15 @@
                 <h3 class="food-title" data-i18n-html="foodTitle">Eat &amp;<br>drink well.</h3>
                 <div class="food-item">
                   <strong data-i18n="spritzTitle">Spritz in Padova</strong>
-                  <p data-i18n="spritzCopy">Aperol is pleasantly affordable around Padova. Fly Bar is our cheap-and-cheerful option, but you will find plenty of good aperitivo spots around the centre.</p>
+                  <p data-i18n="spritzCopy">Aperol is pleasantly affordable around Padova. Fly Bar is (Mariana's) cheap-and-cheerful option, but you will find plenty of good aperitivo spots around the centre.</p>
                 </div>
                 <div class="food-item">
                   <strong>Pizza</strong>
-                  <p data-i18n="pizzaCopy">La Mafaldina is our Padova favourite. Rossopomodoro is another easy option and is useful when someone in the group needs gluten-free choices — check the branch when booking.</p>
+                  <p data-i18n="pizzaCopy">La Mafaldina is a Padova favourite. Rossopomodoro is another easy option and is useful when someone in the group needs gluten-free choices — check the branch when booking.</p>
                 </div>
                 <div class="food-item">
                   <strong>Pasta</strong>
-                  <p data-i18n="pastaCopy">Non-negotiable. In Bologna, Osteria dell'Orsa is our ragù stop. In Venice, add cicchetti. In the hills, look out for local wine and whatever is seasonal.</p>
+                  <p data-i18n="pastaCopy">Non-negotiable. In Bologna, Osteria dell'Orsa is THE ragù stop. In Venice, add cicchetti. In the hills, look out for local wine and whatever is seasonal.</p>
                 </div>
               </div>
             </div>
@@ -1126,8 +1261,8 @@
       </section>
       <section class="closing">
         <small>07 · 08 · 2027 · Teolo</small>
-        <h2 data-i18n="closingTitle">Come hungry. Stay a little longer.</h2>
-        <p data-i18n="closingCopy">We hope this helps turn the trip into more than just one very good party.</p>
+        <h2 data-i18n="closingTitle">Come for the party. Stay for the journey.</h2>
+        <p data-i18n="closingCopy">We hope this helps you build a beautiful trip through the country where our story began.</p>
       </section>
     </main>
     <footer>
@@ -1179,6 +1314,7 @@
         holiday:'Make a little holiday of it.',
         exploreTip:'These are not a definitive guide to northern Italy. They are simply the places — and the food — we would genuinely tell our friends not to miss.',
         d1:'01 · day trip',
+        veniceName:'Venice',
         veniceCopy:'Take the train from Padova, arrive early and let yourself get lost. Walk away from the busiest streets, stop for cicchetti, and stay until the light starts to change. Before going, check the official Venice website to see whether the 2027 Access Fee applies to your date.',
         trainFriendly:'train friendly',
         d2:'02 · if you have a car',
@@ -1223,8 +1359,8 @@
         padovaAreaCopy:'Our easiest choice without a car. Great train connections for Venice, Verona and Bologna, plus restaurants, bars and aperitivo on your doorstep.',
         liftTitle:'Need a lift to the wedding?',
         liftCopy:'Tell Mariana &amp; Filippo before the day. We will coordinate guests as much as possible, especially for anyone staying in Padova or nearby and not renting a car.',
-        closingTitle:'Come hungry. Stay a little longer.',
-        closingCopy:'We hope this helps turn the trip into more than just one very good party.',
+        closingTitle:'Come for the party. Stay for the journey.',
+        closingCopy:'We hope this helps you build a beautiful trip through the country where our story began.',
         footer:'Travel &amp; stay'
       },
       pt:{
@@ -1268,6 +1404,7 @@
         holiday:'Aproveitem para fazer umas mini-férias.',
         exploreTip:'Isto não pretende ser um guia definitivo do norte de Itália. São simplesmente os lugares — e a comida — que nós realmente diríamos aos nossos amigos para não perderem.',
         d1:'01 · passeio de um dia',
+        veniceName:'Veneza',
         veniceCopy:'Apanhem o comboio a partir de Padova, cheguem cedo e deixem-se perder. Fujam um pouco das ruas mais cheias, parem para cicchetti e fiquem até a luz começar a mudar. Antes de ir, confirmem no site oficial de Veneza se a taxa de acesso de 2027 se aplica à vossa data.',
         trainFriendly:'fácil de comboio',
         d2:'02 · se tiverem carro',
@@ -1312,8 +1449,8 @@
         padovaAreaCopy:'A nossa opção mais fácil sem carro. Ótimas ligações de comboio para Veneza, Verona e Bologna, além de restaurantes, bares e aperitivo à porta.',
         liftTitle:'Precisam de boleia para o casamento?',
         liftCopy:'Digam à Mariana &amp; ao Filippo antes do dia. Vamos tentar coordenar os convidados o melhor possível, sobretudo para quem ficar em Padova ou por perto e não alugar carro.',
-        closingTitle:'Venham com fome. Fiquem mais um bocadinho.',
-        closingCopy:'Esperamos que isto ajude a transformar a viagem em mais do que apenas uma festa muito boa.',
+        closingTitle:'Venham pela festa. Fiquem pela viagem.',
+        closingCopy:'Esperamos ajudar-vos a construir uma viagem bonita no país onde começou a nossa história.',
         footer:'Viagem &amp; estadia'
       }
     };
