@@ -218,10 +218,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-
-            /* FOTO SEMPRE CENTRADA */
             object-position: 50% 50%;
-
             opacity: 0;
             transition: opacity 2s ease-in-out;
         }
@@ -564,7 +561,6 @@
                 border: 2px solid var(--gold-border);
             }
 
-            /* GARANTE FOTO1 CENTRADA TAMBÉM NO TELEMÓVEL */
             .bg-photo {
                 object-position: 50% 50%;
             }
@@ -749,7 +745,7 @@
                 <div class="buttons-group">
 
                     <a
-                        href="https://marianafilippo.pt"
+                        href="https://marianafilippo.pt/pt"
                         target="_blank"
                         rel="noopener noreferrer"
                         class="action-btn"
@@ -791,6 +787,7 @@
                 date: "07 . 08 . 2027",
                 location: "<strong>Ca' Salva</strong><br>Teolo, Itália",
                 btnSite: "Website",
+                siteLink: "https://marianafilippo.pt/pt",
                 btnGifts: "Presentes",
                 map: "Ver no mapa",
                 rsvp: "CONFIRME A SUA PRESENÇA",
@@ -804,6 +801,7 @@
                 date: "07 . 08 . 2027",
                 location: "<strong>Ca' Salva</strong><br>Teolo, Italy",
                 btnSite: "Website",
+                siteLink: "https://marianafilippo.pt/en",
                 btnGifts: "Gift Registry",
                 map: "View on map",
                 rsvp: "CONFIRM YOUR ATTENDANCE",
@@ -817,6 +815,7 @@
                 date: "07 . 08 . 2027",
                 location: "<strong>Ca' Salva</strong><br>Teolo, Italia",
                 btnSite: "Il nostro sito",
+                siteLink: "https://marianafilippo.pt/it",
                 btnGifts: "Lista Nozze",
                 map: "Vedi sulla mappa",
                 rsvp: "CONFERMATE LA VOSTRA PRESENZA",
@@ -856,6 +855,7 @@
 
         function setLang(lang) {
             currentLang = lang;
+
             const t = texts[lang];
 
             document.getElementById('txt-hint').innerText = t.hint;
@@ -863,9 +863,13 @@
             document.getElementById('txt-phrase').innerText = t.phrase;
             document.getElementById('txt-date').innerText = t.date;
             document.getElementById('txt-location').innerHTML = t.location;
+
             document.getElementById('txt-btn-site').innerText = t.btnSite;
+            document.getElementById('txt-btn-site').href = t.siteLink;
+
             document.getElementById('txt-btn-gifts').innerText = t.btnGifts;
             document.getElementById('txt-map').innerText = t.map;
+
             document.getElementById('txt-rsvp').innerText = t.rsvp;
             document.getElementById('txt-rsvp').href = t.rsvpLink;
 
