@@ -9,9 +9,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Allura&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --gold-main: #C9A257;
-            --gold-soft: #E7D2A7;
-            --gold-light: #F5EEE4;
+            --gold-title: #C9A055;
+            --gold-details: #C79A43;
+            --gold-soft: #EAD8B4;
+            --gold-light: #F8F2E9;
             --gold-border: #C7AA7B;
             --brown-main: #6F4E37;
             --brown-light: #8C6A4D;
@@ -297,14 +298,14 @@
             position: relative;
             font-family: 'Allura', cursive;
             font-size: 82px;
-            color: var(--gold-main);
+            color: var(--gold-title);
             line-height: 1.1;
             text-align: center;
             text-shadow:
-                0 2px 0 rgba(244,232,208,0.35),
-                0 5px 12px rgba(101,74,42,0.20),
-                0 10px 24px rgba(120,92,55,0.28),
-                0 0 20px rgba(231,210,167,0.22);
+                0 1px 0 rgba(249,241,224,0.46),
+                0 4px 10px rgba(103,75,40,0.18),
+                0 10px 20px rgba(103,75,40,0.20),
+                0 0 20px rgba(234,216,180,0.18);
         }
 
         .name-line {
@@ -313,7 +314,7 @@
 
         .elegant-divider {
             border: none;
-            border-bottom: 1px solid var(--gold-main);
+            border-bottom: 1px solid var(--gold-title);
             width: 50px;
             margin: 20px auto 35px auto;
             opacity: 0.7;
@@ -336,48 +337,72 @@
         }
 
         .event-details {
+            position: relative;
+            isolation: isolate;
+            padding: 20px 34px 16px;
             margin-bottom: 45px;
         }
 
+        .event-details::before {
+            content: '';
+            position: absolute;
+            inset: -18px -30px -12px;
+            z-index: -1;
+            pointer-events: none;
+            background:
+                radial-gradient(
+                    ellipse at center,
+                    rgba(255,248,236,0.50) 0%,
+                    rgba(255,248,236,0.26) 34%,
+                    rgba(255,248,236,0.10) 52%,
+                    rgba(255,248,236,0.00) 76%
+                );
+            filter: blur(12px);
+        }
+
         .date-text {
-            font-size: 34px;
-            font-weight: 600;
+            display: inline-block;
+            font-size: 36px;
+            font-weight: 700;
             letter-spacing: 4px;
-            color: var(--gold-main);
-            margin-bottom: 8px;
+            color: var(--gold-details);
+            margin-bottom: 10px;
             text-shadow:
-                0 2px 0 rgba(244,232,208,0.26),
-                0 3px 8px rgba(79,56,31,0.38),
-                0 0 12px rgba(231,210,167,0.12);
+                0 1px 0 rgba(250,242,227,0.48),
+                0 3px 10px rgba(78,55,28,0.34),
+                0 0 14px rgba(234,216,180,0.12);
         }
 
         .time-text {
             font-size: 16px;
-            font-weight: 400;
+            font-weight: 500;
             letter-spacing: 3px;
-            color: var(--gold-light);
+            color: rgba(248,242,233,0.97);
             margin-bottom: 30px;
-            text-shadow: 0 2px 6px rgba(70,50,32,0.34);
+            text-shadow:
+                0 2px 8px rgba(70,50,32,0.36);
         }
 
         .location-info {
             font-size: 16px;
-            font-weight: 300;
+            font-weight: 400;
             line-height: 1.7;
-            color: var(--gold-light);
+            color: rgba(248,242,233,0.98);
             margin-bottom: 25px;
-            text-shadow: 0 2px 6px rgba(70,50,32,0.42);
+            text-shadow:
+                0 2px 8px rgba(70,50,32,0.40);
         }
 
         .location-info strong {
+            display: inline-block;
             font-weight: 700;
-            color: var(--gold-main);
+            color: var(--gold-details);
             letter-spacing: 1px;
             font-size: 17px;
             text-shadow:
-                0 2px 0 rgba(244,232,208,0.24),
-                0 3px 8px rgba(79,56,31,0.42),
-                0 0 12px rgba(231,210,167,0.10);
+                0 1px 0 rgba(250,242,227,0.42),
+                0 3px 10px rgba(78,55,28,0.38),
+                0 0 12px rgba(234,216,180,0.10);
         }
 
         .map-link {
@@ -385,22 +410,22 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
-            margin-bottom: 35px;
-            color: var(--gold-main);
-            font-size: 10px;
+            margin-bottom: 0;
+            color: var(--gold-details);
+            font-size: 11px;
             font-weight: 700;
-            letter-spacing: 1.8px;
+            letter-spacing: 2px;
             text-transform: uppercase;
             text-decoration: none;
             text-shadow:
-                0 2px 0 rgba(244,232,208,0.22),
-                0 3px 8px rgba(79,56,31,0.48),
-                0 0 10px rgba(231,210,167,0.10);
+                0 1px 0 rgba(250,242,227,0.38),
+                0 3px 9px rgba(78,55,28,0.44),
+                0 0 10px rgba(234,216,180,0.08);
             transition: opacity 0.3s ease, transform 0.3s ease;
         }
 
         .map-link:hover {
-            opacity: 0.8;
+            opacity: 0.82;
             transform: translateY(-1px);
         }
 
@@ -412,7 +437,7 @@
             stroke-width: 1.8;
             stroke-linecap: round;
             stroke-linejoin: round;
-            filter: drop-shadow(0 2px 6px rgba(79,56,31,0.35));
+            filter: drop-shadow(0 2px 7px rgba(78,55,28,0.36));
         }
 
         .buttons-group {
@@ -455,28 +480,42 @@
 
         .rsvp-text {
             display: inline-block;
+            position: relative;
             margin-bottom: 40px;
+            padding: 4px 2px 8px;
             color: var(--brown-dark);
-            font-size: 12px;
+            font-size: 13px;
             font-weight: 700;
-            letter-spacing: 2.4px;
+            letter-spacing: 2.6px;
             line-height: 1.4;
             text-transform: uppercase;
             text-decoration: none;
             text-shadow:
-                0 2px 0 rgba(248,238,219,0.30),
-                0 3px 8px rgba(76,54,33,0.35),
-                0 0 10px rgba(244,232,208,0.18);
-            transition: color 0.3s ease, transform 0.3s ease, text-shadow 0.3s ease;
+                0 1px 0 rgba(255,249,240,0.52),
+                0 3px 10px rgba(77,55,34,0.30),
+                0 0 10px rgba(248,242,233,0.18);
+            transition: color 0.3s ease, transform 0.3s ease, text-shadow 0.3s ease, opacity 0.3s ease;
+        }
+
+        .rsvp-text::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(111,78,55,0.45), transparent);
+            opacity: 0.9;
         }
 
         .rsvp-text:hover {
             color: var(--brown-main);
             transform: translateY(-1px);
             text-shadow:
-                0 2px 0 rgba(248,238,219,0.34),
-                0 4px 10px rgba(76,54,33,0.42),
-                0 0 12px rgba(244,232,208,0.22);
+                0 1px 0 rgba(255,249,240,0.56),
+                0 4px 11px rgba(77,55,34,0.38),
+                0 0 12px rgba(248,242,233,0.22);
+            opacity: 0.92;
         }
 
         @media (min-width: 768px) {
@@ -559,6 +598,16 @@
             .quote-phrase {
                 font-size: 14px;
                 margin-bottom: 45px;
+            }
+
+            .event-details {
+                padding: 18px 20px 12px;
+                margin-bottom: 40px;
+            }
+
+            .event-details::before {
+                inset: -14px -18px -10px;
+                filter: blur(10px);
             }
 
             .date-text {
