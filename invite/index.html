@@ -14,13 +14,10 @@
             --champagne-detail: #B88D4D;
             --champagne-light: #F5E8CF;
             --cream: #FFF8EC;
-
             --gold-border: #C7AA7B;
-
             --brown-main: #735238;
             --brown-light: #8C6A4D;
             --brown-dark: #563C2B;
-
             --bg-outside: #3A4432;
             --background-opacity: 0.78;
         }
@@ -42,8 +39,6 @@
             overflow-x: hidden;
             background-color: var(--bg-outside);
         }
-
-        /* ENVELOPE */
 
         #envelope-screen {
             position: fixed;
@@ -146,8 +141,6 @@
             pointer-events: none;
         }
 
-        /* FUNDO EXTERIOR */
-
         #main-site {
             position: relative;
             width: 100vw;
@@ -178,8 +171,6 @@
         #main-site.visible {
             opacity: 1;
         }
-
-        /* CARTÃO */
 
         .content-wrapper {
             position: relative;
@@ -227,7 +218,10 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: center;
+
+            /* FOTO SEMPRE CENTRADA */
+            object-position: 50% 50%;
+
             opacity: 0;
             transition: opacity 2s ease-in-out;
         }
@@ -254,8 +248,6 @@
             flex-direction: column;
             align-items: center;
         }
-
-        /* IDIOMAS */
 
         .lang-bar {
             display: flex;
@@ -289,8 +281,6 @@
             font-weight: 700;
         }
 
-        /* INTRO */
-
         .welcome-text {
             font-size: 10px;
             letter-spacing: 5px;
@@ -299,8 +289,6 @@
             margin-bottom: 15px;
             text-shadow: 0 2px 8px rgba(111,78,55,0.18);
         }
-
-        /* NOMES */
 
         .names-wrapper {
             position: relative;
@@ -316,7 +304,6 @@
             color: var(--champagne-title);
             line-height: 1.1;
             text-align: center;
-
             text-shadow:
                 0 1px 0 rgba(255,248,235,0.55),
                 0 3px 7px rgba(255,244,221,0.34),
@@ -327,8 +314,6 @@
         .name-line {
             display: inline-block;
         }
-
-        /* ESPAÇO ORIGINAL INVISÍVEL */
 
         .elegant-divider {
             border: none;
@@ -352,8 +337,6 @@
             pointer-events: none;
         }
 
-        /* BLOCO DATA / LOCAL */
-
         .event-details {
             position: relative;
             isolation: isolate;
@@ -361,18 +344,12 @@
             margin-bottom: 42px;
         }
 
-        /*
-           Halo muito subtil por trás da informação.
-           Não tem bordas nem aparência de caixa.
-        */
-
         .event-details::before {
             content: '';
             position: absolute;
             inset: -28px -48px -25px;
             z-index: -1;
             pointer-events: none;
-
             background:
                 radial-gradient(
                     ellipse at center,
@@ -381,11 +358,8 @@
                     rgba(255,245,225,0.11) 50%,
                     rgba(255,245,225,0.00) 76%
                 );
-
             filter: blur(15px);
         }
-
-        /* DATA */
 
         .date-text {
             font-size: 36px;
@@ -393,7 +367,6 @@
             letter-spacing: 4px;
             color: var(--champagne-detail);
             margin-bottom: 10px;
-
             text-shadow:
                 0 1px 0 rgba(255,248,234,0.64),
                 0 3px 8px rgba(255,242,215,0.28),
@@ -407,13 +380,10 @@
             letter-spacing: 3px;
             color: var(--cream);
             margin-bottom: 30px;
-
             text-shadow:
                 0 2px 5px rgba(70,47,28,0.38),
                 0 0 8px rgba(255,244,224,0.14);
         }
-
-        /* LOCAL */
 
         .location-info {
             font-size: 16px;
@@ -421,7 +391,6 @@
             line-height: 1.7;
             color: var(--cream);
             margin-bottom: 25px;
-
             text-shadow:
                 0 2px 5px rgba(68,47,29,0.40),
                 0 0 9px rgba(255,244,224,0.14);
@@ -433,7 +402,6 @@
             font-weight: 700;
             letter-spacing: 0.7px;
             color: var(--champagne-detail);
-
             text-shadow:
                 0 1px 0 rgba(255,249,236,0.68),
                 0 3px 7px rgba(255,240,211,0.26),
@@ -441,41 +409,23 @@
                 0 0 13px rgba(255,243,218,0.22);
         }
 
-        /* MAPA */
-
         .map-link {
             display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: 7px;
             margin-bottom: 0;
-
-            /*
-               Castanho em vez de dourado.
-               Contrasta muito melhor nesta zona da fotografia.
-            */
             color: var(--brown-main);
-
             font-size: 10px;
             font-weight: 700;
-
-            /*
-               Menos espaçamento: deixa de parecer "espalhado".
-            */
             letter-spacing: 1.35px;
-
             text-transform: uppercase;
             text-decoration: none;
-
-            /*
-               Halo claro à volta das letras.
-            */
             text-shadow:
                 0 0 4px rgba(255,250,240,0.98),
                 0 0 8px rgba(255,246,228,0.92),
                 0 0 15px rgba(255,242,218,0.62),
                 0 2px 5px rgba(79,55,33,0.18);
-
             transition: opacity 0.3s ease, transform 0.3s ease;
         }
 
@@ -492,13 +442,10 @@
             stroke-width: 1.8;
             stroke-linecap: round;
             stroke-linejoin: round;
-
             filter:
                 drop-shadow(0 0 3px rgba(255,250,240,1))
                 drop-shadow(0 0 6px rgba(255,244,222,0.8));
         }
-
-        /* BOTÕES */
 
         .buttons-group {
             display: flex;
@@ -516,24 +463,16 @@
             font-weight: 600;
             letter-spacing: 2px;
             text-transform: uppercase;
-
             padding: 16px 20px;
             border-radius: 4px;
-
             flex: 1 1 0;
             max-width: 200px;
-
             background-color: rgba(255,248,238,0.60);
             border: 1px solid rgba(111,78,55,0.68);
-
             color: var(--brown-dark);
-
             backdrop-filter: blur(4px);
             -webkit-backdrop-filter: blur(4px);
-
-            box-shadow:
-                0 7px 18px rgba(68,48,29,0.10);
-
+            box-shadow: 0 7px 18px rgba(68,48,29,0.10);
             transition: all 0.35s ease;
         }
 
@@ -544,28 +483,17 @@
             transform: translateY(-1px);
         }
 
-        /* RSVP */
-
         .rsvp-text {
             display: inline-block;
-
             margin-bottom: 40px;
             padding: 6px 8px;
-
             color: var(--brown-dark);
-
             font-size: 13px;
             font-weight: 700;
             letter-spacing: 2.5px;
             line-height: 1.4;
-
             text-transform: uppercase;
             text-decoration: none;
-
-            /*
-               Halo maior, mas SEM linha, SEM contorno,
-               SEM caixa e SEM background.
-            */
             text-shadow:
                 0 0 4px rgba(255,251,244,1),
                 0 0 8px rgba(255,248,236,1),
@@ -573,7 +501,6 @@
                 0 0 24px rgba(255,238,210,0.72),
                 0 0 34px rgba(255,236,205,0.46),
                 0 2px 6px rgba(75,52,31,0.16);
-
             transition: color 0.3s ease, transform 0.3s ease;
         }
 
@@ -635,6 +562,11 @@
             .content-wrapper {
                 min-height: calc(100dvh - 30px);
                 border: 2px solid var(--gold-border);
+            }
+
+            /* GARANTE FOTO1 CENTRADA TAMBÉM NO TELEMÓVEL */
+            .bg-photo {
+                object-position: 50% 50%;
             }
 
             .card-content {
@@ -716,7 +648,6 @@
                 font-size: 10px;
                 letter-spacing: 1.9px;
                 margin-bottom: 30px;
-
                 text-shadow:
                     0 0 4px rgba(255,251,244,1),
                     0 0 8px rgba(255,248,236,1),
@@ -925,7 +856,6 @@
 
         function setLang(lang) {
             currentLang = lang;
-
             const t = texts[lang];
 
             document.getElementById('txt-hint').innerText = t.hint;
