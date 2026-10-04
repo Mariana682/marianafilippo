@@ -1745,7 +1745,8 @@
         "Revolut":"Revolut",
         "Contribuição Pensão Completa na Lua de Mel":"Contributo Pensione Completa in Luna di Miele",
         "Vale Movéis Casa":"Voucher Arredamento",
-        "Escolher o nome do próximo gato":"Scegliere il nome del prossimo gato"
+        "Escolher o nome do próximo gato":"Scegliere il nome del prossimo gato",
+         "Noiva canta musica à escolha":"Sposa canta una canzone a tua scelta"
       },
 
       en:{
@@ -2453,22 +2454,10 @@
           ? 'block'
           : 'none';
 
-      if(
-        currentLang!=='pt'
-      ){
-
-        window.setTimeout(
-          ()=>{
-
-            setGoogleLanguage(
-              currentLang
-            );
-
-          },
-          120
-        );
-
-      }
+      window.setTimeout(
+        translateGiftTitles,
+        180
+      );
 
     }
 
@@ -2780,125 +2769,180 @@
 
     }
 
-    function changeLanguage(
-      lang
-    ){
+   function changeLanguage(lang){
 
-      currentLang=
-        lang;
+  currentLang=lang;
 
-      applyManualTexts(
-        lang
-      );
+  /*
+    Os textos que estão escritos no código
+    são traduzidos pelas nossas versões PT / IT / EN.
+  */
+  applyManualTexts(lang);
 
-      if(
-        cachedGifts.length
-      ){
+  /*
+    Recriamos os presentes a partir dos dados originais
+    do Excel.
 
-        renderGifts(
-          cachedGifts
-        );
+    Depois, no final de renderGifts(),
+    translateGiftTitles() traduz automaticamente
+    os títulos que não tenham override manual.
+  */
+  if(cachedGifts.length){
 
-      }
+    renderGifts(
+      cachedGifts
+    );
 
-      setGoogleLanguage(
-        lang
-      );
+  }
 
-      document
-        .querySelector(
-          '.navlinks'
-        )
-        ?.classList
-        .remove(
-          'open'
-        );
+  document
+    .querySelector('.navlinks')
+    ?.classList
+    .remove('open');
 
-    }
+}
 
     function googleTranslateElementInit(){
+        new google.translate.TranslateElement(
+          {
+            pageLanguage:'pt',
+            includedLanguages:'pt,it,en',
+            autoDisplay:false
+          },
+          'google_translate_element'
+        );    
+      }
 
-      new google.translate.TranslateElement(
-        {
-          pageLanguage:'pt',
-          includedLanguages:'pt,it,en',
-          autoDisplay:false
-        },
-        'google_translate_element'
-      );
+function setGoogleLanguage(lang){
 
-      if(
-        currentLang!=='pt'
-      ){
+  let attempts=0;
 
-        setGoogleLanguage(
-          currentLang
+  const interval=
+    window.setInterval(()=>{
+
+      const selectField=
+        document.querySelector(
+          '.goog-te-combo'
+        );
+
+      if(selectField){
+
+        selectField.value=lang;
+
+        selectField.dispatchEvent(
+          new Event('change')
+        );
+
+        window.clearInterval(
+          interval
+        );
+
+        return;
+      }
+
+      attempts++;
+
+      if(attempts>30){
+
+        window.clearInterval(
+          interval
         );
 
       }
 
-    }
+    },250);
 
-    function setGoogleLanguage(
-      lang
-    ){
+}
 
-      let attempts=0;
 
-      const interval=
-        window.setInterval(
+/* =========================================================
+   TRADUZIR NOMES QUE VÊM DO EXCEL
+   =========================================================
 
-          ()=>{
+   Esta função é chamada DEPOIS de os presentes existirem.
 
-            const selectField=
-              document
-                .querySelector(
-                  '.goog-te-combo'
-                );
+   Se o Google já estiver, por exemplo, em italiano,
+   fazemos PT -> IT rapidamente para obrigar o Google
+   a processar os novos títulos inseridos pelo JavaScript.
+========================================================= */
 
-            if(
-              selectField
-            ){
+function translateGiftTitles(){
 
-              selectField.value=
-                lang;
+  if(currentLang==='pt'){
 
-              selectField
-                .dispatchEvent(
-                  new Event(
-                    'change'
-                  )
-                );
+    setGoogleLanguage('pt');
 
-              window
-                .clearInterval(
-                  interval
-                );
+    return;
+  }
 
-              return;
+  let attempts=0;
 
-            }
+  const interval=
+    window.setInterval(()=>{
 
-            attempts++;
-
-            if(
-              attempts>25
-            ){
-
-              window
-                .clearInterval(
-                  interval
-                );
-
-            }
-
-          },
-
-          250
-
+      const selectField=
+        document.querySelector(
+          '.goog-te-combo'
         );
 
-    }
+      if(!selectField){
+
+        attempts++;
+
+        if(attempts>30){
+
+          window.clearInterval(
+            interval
+          );
+
+        }
+
+        return;
+      }
+
+      window.clearInterval(
+        interval
+      );
+
+      /*
+        Se o Google já está na língua pedida,
+        é necessário forçar uma nova tradução porque
+        os títulos do Excel foram inseridos depois.
+      */
+
+      if(selectField.value===currentLang){
+
+        selectField.value='pt';
+
+        selectField.dispatchEvent(
+          new Event('change')
+        );
+
+        window.setTimeout(()=>{
+
+          selectField.value=
+            currentLang;
+
+          selectField.dispatchEvent(
+            new Event('change')
+          );
+
+        },350);
+
+      }else{
+
+        selectField.value=
+          currentLang;
+
+        selectField.dispatchEvent(
+          new Event('change')
+        );
+
+      }
+
+    },250);
+
+}
 
     document
       .getElementById(
