@@ -9,7 +9,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
   <style>
+
     :root{
       --forest:#20342d;
       --forest-2:#2b443b;
@@ -27,18 +29,21 @@
       --serif:"Cormorant Garamond",Georgia,serif;
       --sans:"DM Sans",system-ui,sans-serif;
     }
+
     *{
       box-sizing:border-box;
       margin:0;
       padding:0;
       -webkit-tap-highlight-color:transparent;
     }
+
     html{
       width:100%;
       min-height:100%;
       scroll-behavior:smooth;
       overflow-x:hidden;
     }
+
     body{
       width:100%;
       min-height:100vh;
@@ -51,31 +56,59 @@
       overflow-x:hidden;
       top:0!important;
     }
+
     a{
       color:inherit;
       text-decoration:none;
     }
+
     img{
       display:block;
       max-width:100%;
     }
+
     button,
     input{
       font:inherit;
     }
+
     .goog-te-banner-frame,
+    .goog-te-banner-frame.skiptranslate,
+    .goog-te-balloon-frame,
+    .goog-te-gadget,
+    .goog-te-gadget-icon,
+    .goog-te-spinner-pos,
+    iframe.goog-te-menu-frame,
+    body > .skiptranslate,
     .skiptranslate,
-    #goog-gt-tt{
+    #goog-gt-tt,
+    .VIpgJd-ZVi9od-ORHb-OEVmcd,
+    .VIpgJd-ZVi9od-aZ2wEe-wOHMyf,
+    .VIpgJd-suEOdc,
+    .VIpgJd-yAWNEb-L7lbkb,
+    .VIpgJd-ZVi9od-xl07Ob-OEVmcd{
       display:none!important;
+      visibility:hidden!important;
+      opacity:0!important;
+      pointer-events:none!important;
     }
+
+    html,
+    body{
+      margin-top:0!important;
+      top:0!important;
+    }
+
     .goog-tooltip,
     .goog-tooltip:hover{
       display:none!important;
     }
+
     .goog-text-highlight{
       background:transparent!important;
       box-shadow:none!important;
     }
+
     .grain:before{
       content:"";
       position:fixed;
@@ -86,13 +119,16 @@
       background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.32'/%3E%3C/svg%3E");
       mix-blend-mode:soft-light;
     }
+
     .site{
       position:relative;
       min-height:100vh;
     }
+
     /* =========================================================
        NAV
     ========================================================= */
+
     .nav{
       position:absolute;
       top:0;
@@ -105,6 +141,7 @@
       justify-content:space-between;
       color:var(--cream);
     }
+
     .monogram{
       flex-shrink:0;
       font-family:var(--serif);
@@ -112,6 +149,7 @@
       letter-spacing:.06em;
       color:var(--champagne);
     }
+
     .navlinks{
       display:flex;
       align-items:center;
@@ -120,12 +158,14 @@
       text-transform:uppercase;
       letter-spacing:.25em;
     }
+
     .navlinks a{
       position:relative;
       padding:8px 0;
       opacity:.85;
       transition:opacity .25s ease,color .25s ease;
     }
+
     .navlinks a::after{
       content:"";
       position:absolute;
@@ -138,24 +178,29 @@
       transform-origin:center;
       transition:transform .3s ease;
     }
+
     .navlinks a:hover{
       opacity:1;
       color:var(--cream);
     }
+
     .navlinks a:hover::after,
     .navlinks a.active-page::after{
       transform:scaleX(1);
     }
+
     .nav-actions{
       display:flex;
       align-items:center;
       gap:22px;
     }
+
     .lang-switch{
       display:flex;
       align-items:center;
       gap:8px;
     }
+
     .lang-btn{
       position:relative;
       border:0;
@@ -169,15 +214,18 @@
       opacity:.48;
       transition:opacity .25s ease,color .25s ease;
     }
+
     .lang-btn:hover,
     .lang-btn.active{
       color:var(--champagne);
       opacity:1;
     }
+
     .lang-divider{
       font-size:10px;
       color:rgba(243,232,202,.4);
     }
+
     .menu-btn{
       display:none;
       border:0;
@@ -188,9 +236,11 @@
       text-transform:uppercase;
       cursor:pointer;
     }
+
     /* =========================================================
        FIXED RSVP
     ========================================================= */
+
     .fixed-rsvp{
       position:fixed;
       right:26px;
@@ -216,6 +266,7 @@
       box-shadow:0 14px 38px rgba(0,0,0,.24);
       transition:transform .4s cubic-bezier(.2,.7,.2,1),background .3s ease,color .3s ease;
     }
+
     .fixed-rsvp::before{
       content:"";
       position:absolute;
@@ -224,14 +275,17 @@
       border-radius:50%;
       pointer-events:none;
     }
+
     .fixed-rsvp:hover{
       transform:translateY(-4px);
       background:var(--champagne);
       color:var(--forest);
     }
+
     /* =========================================================
        HERO
     ========================================================= */
+
     .gift-hero{
       position:relative;
       overflow:hidden;
@@ -246,6 +300,7 @@
         var(--gift-hero-image) center 48%/cover no-repeat;
       color:var(--cream);
     }
+
     .gift-hero::before{
       content:"";
       position:absolute;
@@ -257,6 +312,7 @@
       border-radius:50%;
       pointer-events:none;
     }
+
     .gift-hero::after{
       content:"";
       position:absolute;
@@ -268,6 +324,7 @@
       border-radius:50%;
       pointer-events:none;
     }
+
     .hero-copy{
       position:relative;
       z-index:2;
@@ -275,6 +332,7 @@
       margin:0 auto;
       text-align:center;
     }
+
     .hero-eyebrow{
       margin-bottom:18px;
       color:var(--champagne);
@@ -282,6 +340,7 @@
       text-transform:uppercase;
       letter-spacing:.42em;
     }
+
     .hero-title{
       margin:0;
       color:var(--cream);
@@ -290,6 +349,7 @@
       font-weight:400;
       line-height:.95;
     }
+
     .hero-line{
       width:58px;
       height:1px;
@@ -297,6 +357,7 @@
       background:var(--champagne);
       opacity:.78;
     }
+
     .hero-subtitle{
       max-width:760px;
       margin:0 auto 17px;
@@ -305,39 +366,47 @@
       font-size:17px;
       line-height:1.7;
     }
+
     .hero-subtitle:last-of-type{
       margin-bottom:0;
     }
+
     /* =========================================================
        GIFTS AREA
     ========================================================= */
+
     .gifts-area{
       max-width:1200px;
       margin:0 auto;
       padding:70px 28px 105px;
     }
+
     .gifts-intro{
       margin:0 auto 18px;
       text-align:center;
     }
+
     .gifts-intro-label{
       color:var(--sage);
       font-size:10px;
       letter-spacing:.34em;
       text-transform:uppercase;
     }
+
     .gifts-intro-line{
       width:42px;
       height:1px;
       margin:19px auto 0;
       background:var(--blue);
     }
+
     .grid{
       display:grid;
       grid-template-columns:repeat(3,minmax(0,1fr));
       gap:28px;
       padding:35px 0 10px;
     }
+
     .loading-list,
     .load-error{
       grid-column:1/-1;
@@ -348,9 +417,11 @@
       font-size:18px;
       font-style:italic;
     }
+
     /* =========================================================
        GIFT CARD
     ========================================================= */
+
     .card{
       position:relative;
       overflow:hidden;
@@ -362,6 +433,7 @@
       box-shadow:0 16px 42px rgba(23,36,31,.09);
       transition:transform .45s cubic-bezier(.2,.7,.2,1),box-shadow .45s ease,border-color .3s ease;
     }
+
     .card::before{
       content:"";
       position:absolute;
@@ -373,15 +445,18 @@
       background:linear-gradient(90deg,transparent,rgba(232,215,170,.7),transparent);
       pointer-events:none;
     }
+
     .card:hover{
       transform:translateY(-6px);
       border-color:rgba(116,139,104,.35);
       box-shadow:0 26px 58px rgba(23,36,31,.14);
     }
+
     .card.sold-out{
       opacity:.64;
       filter:grayscale(18%);
     }
+
     .card-image-wrapper{
       position:relative;
       width:100%;
@@ -389,6 +464,7 @@
       overflow:hidden;
       background:#e4dcc8;
     }
+
     .card-image-wrapper::after{
       content:"";
       position:absolute;
@@ -396,6 +472,7 @@
       pointer-events:none;
       background:linear-gradient(180deg,transparent 56%,rgba(32,52,45,.12));
     }
+
     .card img{
       width:100%;
       height:100%;
@@ -403,9 +480,11 @@
       object-position:center;
       transition:transform .8s cubic-bezier(.2,.7,.2,1);
     }
+
     .card:not(.sold-out):hover img{
       transform:scale(1.035);
     }
+
     .card-content{
       flex:1;
       display:flex;
@@ -413,6 +492,7 @@
       align-items:center;
       padding:28px 25px 25px;
     }
+
     .card h3{
       margin:0 0 7px;
       color:var(--forest);
@@ -422,6 +502,7 @@
       line-height:1.04;
       text-align:center;
     }
+
     .card .price{
       margin:4px 0 22px;
       color:var(--sage);
@@ -429,6 +510,7 @@
       font-weight:600;
       letter-spacing:.18em;
     }
+
     .offer-btn{
       width:100%;
       margin-top:auto;
@@ -445,20 +527,24 @@
       cursor:pointer;
       transition:background .3s ease,color .3s ease,border-color .3s ease;
     }
+
     .offer-btn:hover{
       background:var(--forest);
       border-color:var(--forest);
       color:var(--cream);
     }
+
     .offer-btn:disabled{
       background:rgba(116,139,104,.08);
       border-color:rgba(116,139,104,.25);
       color:var(--sage);
       cursor:default;
     }
+
     /* =========================================================
        FUNNY GIFTS
     ========================================================= */
+
     .section-divider{
       display:none;
       position:relative;
@@ -467,6 +553,7 @@
       padding:0 20px;
       text-align:center;
     }
+
     .section-divider::before{
       content:"";
       display:block;
@@ -475,6 +562,7 @@
       margin:0 auto 25px;
       background:var(--blue);
     }
+
     .section-divider h2{
       margin:0 0 11px;
       color:var(--forest);
@@ -483,6 +571,7 @@
       font-weight:400;
       line-height:1;
     }
+
     .section-divider p{
       max-width:590px;
       margin:0 auto;
@@ -491,12 +580,15 @@
       font-size:16px;
       line-height:1.55;
     }
+
     #grid-funny .card{
       background:rgba(243,232,202,.58);
     }
+
     /* =========================================================
        FOOTER
     ========================================================= */
+
     .page-footer{
       padding:35px 7vw;
       background:#14231e;
@@ -509,6 +601,7 @@
       letter-spacing:.13em;
       text-transform:uppercase;
     }
+
     .footer-monogram{
       color:var(--champagne);
       font-family:var(--serif);
@@ -516,6 +609,7 @@
       letter-spacing:0;
       text-transform:none;
     }
+
     .footer-love{
       color:rgba(243,232,202,.72);
       font-family:"Allura",cursive;
@@ -523,9 +617,11 @@
       letter-spacing:0;
       text-transform:none;
     }
+
     /* =========================================================
        MODAL
     ========================================================= */
+
     .modal-overlay{
       position:fixed;
       inset:0;
@@ -540,6 +636,7 @@
       backdrop-filter:blur(7px);
       -webkit-backdrop-filter:blur(7px);
     }
+
     .modal{
       position:relative;
       width:100%;
@@ -553,6 +650,7 @@
       color:var(--ink);
       text-align:left;
     }
+
     .modal::before{
       content:"";
       position:absolute;
@@ -560,6 +658,7 @@
       border:1px solid rgba(116,139,104,.18);
       pointer-events:none;
     }
+
     #modalTitle{
       position:relative;
       margin:0 38px 28px 0;
@@ -569,6 +668,7 @@
       font-weight:500;
       line-height:1.05;
     }
+
     .modal-prefix{
       display:block;
       margin-bottom:5px;
@@ -579,6 +679,7 @@
       letter-spacing:.2em;
       text-transform:uppercase;
     }
+
     .close-btn{
       position:absolute;
       top:16px;
@@ -596,10 +697,12 @@
       cursor:pointer;
       transition:color .25s ease,transform .25s ease;
     }
+
     .close-btn:hover{
       color:var(--forest);
       transform:rotate(4deg);
     }
+
     .payment-info{
       position:relative;
       margin-bottom:27px;
@@ -607,6 +710,7 @@
       background:rgba(255,255,255,.35);
       border:1px solid rgba(116,139,104,.2);
     }
+
     .payment-info strong{
       display:block;
       margin-bottom:4px;
@@ -616,6 +720,7 @@
       letter-spacing:.19em;
       text-transform:uppercase;
     }
+
     .payment-info p{
       margin:0 0 16px;
       color:var(--forest);
@@ -623,6 +728,38 @@
       font-size:16px;
       word-break:break-word;
     }
+
+    .iban-list{
+      margin:2px 0 17px;
+      display:grid;
+      gap:13px;
+    }
+
+    .iban-account{
+      padding:14px 14px 5px;
+      border:1px solid rgba(116,139,104,.16);
+      background:rgba(255,255,255,.24);
+    }
+
+    .iban-account-name{
+      display:block;
+      margin-bottom:5px;
+      color:var(--forest);
+      font-family:var(--serif);
+      font-size:18px;
+      font-weight:500;
+      line-height:1.1;
+    }
+
+    .iban-account p{
+      margin-bottom:10px;
+      font-size:15px;
+    }
+
+    .iban-account .copy-btn{
+      margin:0 0 10px;
+    }
+
     .copy-btn{
       width:auto;
       margin:-7px 0 15px;
@@ -638,15 +775,18 @@
       cursor:pointer;
       transition:.25s ease;
     }
+
     .copy-btn:hover{
       background:var(--forest);
       border-color:var(--forest);
       color:var(--cream);
     }
+
     .input-group{
       position:relative;
       margin-bottom:24px;
     }
+
     .input-group > label:not(.anonymous-row){
       display:block;
       margin-bottom:8px;
@@ -655,6 +795,7 @@
       font-weight:600;
       letter-spacing:.08em;
     }
+
     .input-group input[type="text"]{
       width:100%;
       padding:13px 14px;
@@ -666,10 +807,12 @@
       font-family:var(--sans);
       font-size:12px;
     }
+
     .input-group input[type="text"]:focus{
       border-color:var(--sage);
       box-shadow:0 0 0 3px rgba(116,139,104,.08);
     }
+
     .anonymous-row{
       display:flex!important;
       align-items:flex-start;
@@ -681,12 +824,14 @@
       line-height:1.5;
       cursor:pointer;
     }
+
     .anonymous-row input{
       flex-shrink:0;
       width:auto!important;
       margin:2px 0 0;
       accent-color:var(--forest);
     }
+
     .confirm-btn{
       width:100%;
       padding:14px 20px;
@@ -702,10 +847,12 @@
       cursor:pointer;
       transition:background .3s ease,color .3s ease;
     }
+
     .confirm-btn:hover{
       background:var(--sage);
       border-color:var(--sage);
     }
+
     .loading{
       display:none;
       margin-top:13px;
@@ -715,26 +862,35 @@
       font-style:italic;
       text-align:center;
     }
+
     /* =========================================================
        TABLET
     ========================================================= */
+
     @media(max-width:1000px){
+
       .navlinks{
         gap:17px;
         font-size:9px;
         letter-spacing:.16em;
       }
+
       .grid{
         grid-template-columns:repeat(2,minmax(0,1fr));
       }
+
     }
+
     @media(max-width:820px){
+
       .nav{
         padding:22px;
       }
+
       .navlinks{
         display:none;
       }
+
       .navlinks.open{
         position:absolute;
         top:68px;
@@ -750,76 +906,100 @@
         backdrop-filter:blur(13px);
         box-shadow:0 20px 50px rgba(0,0,0,.25);
       }
+
       .menu-btn{
         display:block;
       }
+
       .gift-hero{
         padding-top:135px;
       }
+
     }
+
     /* =========================================================
        MOBILE
     ========================================================= */
+
     @media(max-width:640px){
+
       .nav{
         padding:19px 18px;
       }
+
       .monogram{
         font-size:25px;
       }
+
       .nav-actions{
         gap:14px;
       }
+
       .lang-switch{
         gap:5px;
       }
+
       .lang-btn{
         font-size:9px;
       }
+
       .gift-hero{
         padding:125px 18px 58px;
       }
+
       .hero-eyebrow{
         margin-bottom:15px;
         font-size:9px;
         letter-spacing:.34em;
       }
+
       .hero-title{
         font-size:59px;
       }
+
       .hero-line{
         margin:20px auto 24px;
       }
+
       .hero-subtitle{
         font-size:15px;
         line-height:1.6;
       }
+
       .gifts-area{
         padding:45px 18px 75px;
       }
+
       .grid{
         grid-template-columns:1fr;
         gap:22px;
         padding-top:28px;
       }
+
       .card-image-wrapper{
         height:230px;
       }
+
       .card-content{
         padding:25px 22px 23px;
       }
+
       .card h3{
         font-size:29px;
       }
+
       .section-divider{
         margin-top:70px;
       }
+
       .section-divider h2{
         font-size:43px;
       }
+
       .section-divider p{
         font-size:15px;
       }
+
       .fixed-rsvp{
         right:16px;
         bottom:16px;
@@ -828,34 +1008,46 @@
         padding:17px;
         font-size:11px;
       }
+
       .page-footer{
         flex-direction:column;
         padding:28px 18px 125px;
         text-align:center;
       }
+
       .footer-love{
         font-size:26px;
       }
+
       .modal-overlay{
         padding:14px;
       }
+
       .modal{
         max-width:100%;
         padding:43px 24px 28px;
       }
+
       #modalTitle{
         font-size:31px;
       }
+
     }
+
     @media(max-width:380px){
+
       .hero-title{
         font-size:53px;
       }
+
       .card-image-wrapper{
         height:215px;
       }
+
     }
+
     @media(prefers-reduced-motion:reduce){
+
       *,
       *::before,
       *::after{
@@ -863,17 +1055,45 @@
         transition:none!important;
         animation:none!important;
       }
+
     }
+
   </style>
 </head>
+
 <body class="grain">
+
   <div class="site">
-    <a id="fixedRsvp" class="fixed-rsvp manual-translation notranslate" translate="no" href="../pt#rsvp">
-      <span id="fixedRsvpText">CONFIRMA<br>A TUA<br>PRESENÇA</span>
+
+    <a
+      id="fixedRsvp"
+      class="fixed-rsvp manual-translation notranslate"
+      translate="no"
+      href="../pt#rsvp"
+    >
+      <span id="fixedRsvpText">
+        CONFIRMA<br>
+        A TUA<br>
+        PRESENÇA
+      </span>
     </a>
+
     <header class="nav">
-      <a id="homeLogo" class="monogram notranslate" translate="no" href="../pt">M &amp; F</a>
-      <nav class="navlinks manual-translation notranslate" translate="no" aria-label="Navegação principal">
+
+      <a
+        id="homeLogo"
+        class="monogram notranslate"
+        translate="no"
+        href="../pt"
+      >
+        M &amp; F
+      </a>
+
+      <nav
+        class="navlinks manual-translation notranslate"
+        translate="no"
+        aria-label="Navegação principal"
+      >
         <a id="navHome" href="../pt">Início</a>
         <a id="navStory" href="../pt#story">A Nossa História</a>
         <a id="navDay" href="../pt#day">O dia</a>
@@ -882,131 +1102,454 @@
         <a id="navGifts" class="active-page" href="../gifts">Presentes</a>
         <a id="navFaq" href="../faq">FAQ</a>
       </nav>
+
       <div class="nav-actions">
-        <div class="lang-switch notranslate" translate="no" aria-label="Selecionar idioma">
-          <button class="lang-btn active" type="button" data-lang="pt" onclick="changeLanguage('pt')">PT</button>
+
+        <div
+          class="lang-switch notranslate"
+          translate="no"
+          aria-label="Selecionar idioma"
+        >
+          <button
+            class="lang-btn active"
+            type="button"
+            data-lang="pt"
+            onclick="changeLanguage('pt')"
+          >
+            PT
+          </button>
+
           <span class="lang-divider">/</span>
-          <button class="lang-btn" type="button" data-lang="it" onclick="changeLanguage('it')">IT</button>
+
+          <button
+            class="lang-btn"
+            type="button"
+            data-lang="it"
+            onclick="changeLanguage('it')"
+          >
+            IT
+          </button>
+
           <span class="lang-divider">/</span>
-          <button class="lang-btn" type="button" data-lang="en" onclick="changeLanguage('en')">EN</button>
+
+          <button
+            class="lang-btn"
+            type="button"
+            data-lang="en"
+            onclick="changeLanguage('en')"
+          >
+            EN
+          </button>
         </div>
-        <button id="menuBtn" class="menu-btn manual-translation notranslate" translate="no" type="button">Menu</button>
+
+        <button
+          id="menuBtn"
+          class="menu-btn manual-translation notranslate"
+          translate="no"
+          type="button"
+        >
+          Menu
+        </button>
+
       </div>
+
     </header>
+
     <section class="gift-hero">
-      <div class="hero-copy manual-translation notranslate" translate="no">
-        <div id="heroEyebrow" class="hero-eyebrow">PRESENTES</div>
-        <h1 id="heroTitle" class="hero-title">O Próximo Capítulo</h1>
+
+      <div
+        class="hero-copy manual-translation notranslate"
+        translate="no"
+      >
+
+        <div
+          id="heroEyebrow"
+          class="hero-eyebrow"
+        >
+          PRESENTES
+        </div>
+
+        <h1
+          id="heroTitle"
+          class="hero-title"
+        >
+          O Próximo Capítulo
+        </h1>
+
         <div class="hero-line"></div>
-        <p id="heroIntro1" class="hero-subtitle">
+
+        <p
+          id="heroIntro1"
+          class="hero-subtitle"
+        >
           A vossa presença é, sem dúvida, o presente mais importante que podíamos pedir para celebrar o nosso casamento. Para assinalarem este momento connosco, optámos por não ter a tradicional lista de casamento. Receber o vosso contributo para nos ajudar a construir o nosso futuro será o presente ideal. Temos a certeza de que encontrarão a prenda que mais combina convosco!
         </p>
-        <p id="heroIntro2" class="hero-subtitle">
+
+        <p
+          id="heroIntro2"
+          class="hero-subtitle"
+        >
           Para quem não puder estar presente, mas gostaria de marcar presença de alguma forma, apoiar-nos neste próximo passo, ou simplesmente deixar um miminho, deixamos abaixo uma forma simples de o fazer. O vosso carinho, de perto ou de longe, é o que torna tudo isto real.
         </p>
+
       </div>
+
     </section>
+
     <main class="gifts-area">
+
       <div class="gifts-intro">
-        <div class="gifts-intro-label">Mariana &amp; Filippo · 07 · 08 · 2027</div>
+        <div class="gifts-intro-label">
+          Mariana &amp; Filippo · 07 · 08 · 2027
+        </div>
         <div class="gifts-intro-line"></div>
       </div>
-      <div class="grid" id="grid-normal">
-        <p class="loading-list">A carregar a lista de experiências...</p>
+
+      <div
+        class="grid"
+        id="grid-normal"
+      >
+        <p class="loading-list">
+          A carregar a lista de experiências...
+        </p>
       </div>
-      <div class="section-divider" id="funny-section">
-        <h2>Para os que se querem rir connosco</h2>
-        <p>Porque nem só de romance se faz o casamento! Presentes reservados a amigos com muito sentido de humor!</p>
+
+      <div
+        class="section-divider"
+        id="funny-section"
+      >
+
+        <h2>
+          Para os que se querem rir connosco
+        </h2>
+
+        <p>
+          Porque nem só de romance se faz o casamento! Presentes reservados a amigos com muito sentido de humor!
+        </p>
+
       </div>
-      <div class="grid" id="grid-funny"></div>
+
+      <div
+        class="grid"
+        id="grid-funny"
+      ></div>
+
     </main>
+
     <footer class="page-footer">
-      <div class="footer-monogram notranslate" translate="no">M &amp; F</div>
-      <div>07 · 08 · 2027 &nbsp; · &nbsp; Teolo, Italia</div>
-      <div class="footer-love">Com carinho, Mariana &amp; Filippo</div>
+
+      <div
+        class="footer-monogram notranslate"
+        translate="no"
+      >
+        M &amp; F
+      </div>
+
+      <div>
+        07 · 08 · 2027
+        &nbsp; · &nbsp;
+        Teolo, Italia
+      </div>
+
+      <div class="footer-love">
+        Com carinho, Mariana &amp; Filippo
+      </div>
+
     </footer>
+
   </div>
-  <div class="modal-overlay" id="modalOverlay">
+
+  <div
+    class="modal-overlay"
+    id="modalOverlay"
+  >
+
     <div class="modal">
-      <button class="close-btn" type="button" onclick="closeModal()" aria-label="Fechar">&times;</button>
+
+      <button
+        class="close-btn"
+        type="button"
+        onclick="closeModal()"
+        aria-label="Fechar"
+      >
+        &times;
+      </button>
+
       <h2 id="modalTitle">
-        <span id="modalPrefix" class="modal-prefix manual-translation notranslate" translate="no">Oferecer</span>
+
+        <span
+          id="modalPrefix"
+          class="modal-prefix manual-translation notranslate"
+          translate="no"
+        >
+          Oferecer
+        </span>
+
         <span id="modalGiftTitle"></span>
+
       </h2>
+
       <div class="payment-info">
-        <strong>MB WAY:</strong>
-        <p class="notranslate" translate="no">+351 935 546 718</p>
-        <strong>IBAN:</strong>
-        <p id="ibanText" class="notranslate" translate="no">PT50 0033 0000 45724991021 05</p>
-        <button class="copy-btn" type="button" onclick="copyIban()">Copiar IBAN</button>
-        <strong>Revolut:</strong>
-        <p class="notranslate" translate="no">@marianapedrosa</p>
+
+        <strong>
+          MB WAY:
+        </strong>
+
+        <p
+          class="notranslate"
+          translate="no"
+        >
+          +351 935 546 718
+        </p>
+
+        <strong>
+          IBAN:
+        </strong>
+
+        <div class="iban-list">
+
+          <div class="iban-account">
+
+            <span
+              class="iban-account-name notranslate"
+              translate="no"
+            >
+              Mariana Pedrosa
+            </span>
+
+            <p
+              id="ibanMariana"
+              class="notranslate"
+              translate="no"
+            >
+              PT50003300004572499102105
+            </p>
+
+            <p
+                class="notranslate"
+                translate="no"
+              >
+                BIC: BCOMPTPL
+              </p>
+
+            <button
+              class="copy-btn"
+              type="button"
+              onclick="copyIban('ibanMariana')"
+            >
+              Copiar IBAN
+            </button>
+
+          </div>
+
+          <div class="iban-account">
+
+            <span
+              class="iban-account-name notranslate"
+              translate="no"
+            >
+              Filippo Munari
+            </span>
+
+            <p
+              id="ibanFilippo"
+              class="notranslate"
+              translate="no"
+            >
+              PT50356000019001863176638
+            </p>
+
+            <p
+                class="notranslate"
+                translate="no"
+              >
+                BIC: REVOPTP2
+              </p>
+
+            <button
+              class="copy-btn"
+              type="button"
+              onclick="copyIban('ibanFilippo')"
+            >
+              Copiar IBAN
+            </button>
+
+          </div>
+
+        </div>
+
+        <strong>
+          Revolut:
+        </strong>
+
+        <p
+          class="notranslate"
+          translate="no"
+        >
+          @marianapedrosa
+        </p>
+
       </div>
+
       <div class="input-group">
-        <label for="buyerName">O vosso nome</label>
-        <input type="text" id="buyerName" placeholder="Ex: Joana e Tiago" required>
-        <label class="anonymous-row">
-          <input type="checkbox" id="isAnonymous">
-          <span>Quero permanecer anónimo publicamente no site</span>
+
+        <label for="buyerName">
+          O vosso nome
         </label>
+
+        <input
+          type="text"
+          id="buyerName"
+          placeholder="Ex: Joana e Tiago"
+          required
+        >
+
+        <label class="anonymous-row">
+
+          <input
+            type="checkbox"
+            id="isAnonymous"
+          >
+
+          <span>
+            Quero permanecer anónimo publicamente no site
+          </span>
+
+        </label>
+
       </div>
-      <button type="button" onclick="confirmPayment()" id="confirmBtn" class="confirm-btn">Já fiz a transferência!</button>
-      <p class="loading" id="loadingMsg">A confirmar... aguarde um momento.</p>
+
+      <button
+        type="button"
+        onclick="confirmPayment()"
+        id="confirmBtn"
+        class="confirm-btn"
+      >
+        Já fiz a transferência!
+      </button>
+
+      <p
+        class="loading"
+        id="loadingMsg"
+      >
+        A confirmar... aguarde um momento.
+      </p>
+
     </div>
+
   </div>
-  <div id="google_translate_element" style="opacity:0;width:0;height:0;position:absolute;left:-9999px;"></div>
+
+  <div
+    id="google_translate_element"
+    style="
+      opacity:0;
+      width:0;
+      height:0;
+      position:absolute;
+      left:-9999px;
+    "
+  ></div>
+
   <script>
-    const SCRIPT_URL='https://script.google.com/macros/s/AKfycbx1bzQA6juCMUru-C2L3NOedd2sZs8zif3GcBivau7TfidvGo5NcdTFHrju2cLLm8sW/exec';
+
+    const SCRIPT_URL=
+      'https://script.google.com/macros/s/AKfycbx1bzQA6juCMUru-C2L3NOedd2sZs8zif3GcBivau7TfidvGo5NcdTFHrju2cLLm8sW/exec';
+
     /* =========================================================
-           RANDOM HEADER IMAGE
-        ========================================================= */
-        const GIFT_HERO_IMAGES=[
-          '../images/gifts1.jpg',
-          '../images/gifts2.jpg',
-          '../images/gifts3.jpg',
-          '../images/gifts4.jpg',
-          '../images/gifts5.jpg'
-        ];
-        
-        const randomGiftHero=
-          GIFT_HERO_IMAGES[
-            Math.floor(Math.random()*GIFT_HERO_IMAGES.length)
-          ];
-        
-        document.documentElement.style.setProperty(
-          '--gift-hero-image',
-          `url("${randomGiftHero}")`
-        );
+       RANDOM HEADER IMAGE
+    ========================================================= */
+
+    const GIFT_HERO_IMAGES=[
+      '../images/gifts1.jpg',
+      '../images/gifts2.jpg',
+      '../images/gifts3.jpg',
+      '../images/gifts4.jpg',
+      '../images/gifts5.jpg'
+    ];
+
+    const randomGiftHero=
+      GIFT_HERO_IMAGES[
+        Math.floor(
+          Math.random()
+          *
+          GIFT_HERO_IMAGES.length
+        )
+      ];
+
+    document
+      .documentElement
+      .style
+      .setProperty(
+        '--gift-hero-image',
+        `url("${randomGiftHero}")`
+      );
+
     let currentGiftId=null;
     let currentGiftTitle='';
     let currentLang='pt';
     let cachedGifts=[];
+
     /* =========================================================
        TEXTOS ESCRITOS MANUALMENTE
        O Google Translate NÃO mexe nestes textos.
     ========================================================= */
+
     const HEADER_TEXTS={
+
       pt:{
-        eyebrow:'PRESENTES',
-        title:'O Próximo Capítulo',
-        intro1:'A vossa presença é, sem dúvida, o presente mais importante que podíamos pedir para celebrar o nosso casamento. Para assinalarem este momento connosco, optámos por não ter a tradicional lista de casamento. Receber o vosso contributo para nos ajudar a construir o nosso futuro será o presente ideal. Temos a certeza de que encontrarão a prenda que mais combina convosco!',
-        intro2:'Para quem não puder estar presente, mas gostaria de marcar presença de alguma forma, apoiar-nos neste próximo passo, ou simplesmente deixar um miminho, deixamos abaixo uma forma simples de o fazer. O vosso carinho, de perto ou de longe, é o que torna tudo isto real.'
+
+        eyebrow:
+          'PRESENTES',
+
+        title:
+          'O Próximo Capítulo',
+
+        intro1:
+          'A vossa presença é, sem dúvida, o presente mais importante que podíamos pedir para celebrar o nosso casamento. Para assinalarem este momento connosco, optámos por não ter a tradicional lista de casamento. Receber o vosso contributo para nos ajudar a construir o nosso futuro será o presente ideal. Temos a certeza de que encontrarão a prenda que mais combina convosco!',
+
+        intro2:
+          'Para quem não puder estar presente, mas gostaria de marcar presença de alguma forma, apoiar-nos neste próximo passo, ou simplesmente deixar um miminho, deixamos abaixo uma forma simples de o fazer. O vosso carinho, de perto ou de longe, é o que torna tudo isto real.'
+
       },
+
       it:{
-        eyebrow:'REGALI',
-        title:'Il Prossimo Capitolo',
-        intro1:'La vostra presenza è, senza dubbio, il regalo più importante che potessimo desiderare per celebrare il nostro matrimonio. Per questo abbiamo scelto di non avere una tradizionale lista nozze. Se desiderate farci un regalo, un contributo per aiutarci a costruire il nostro futuro sarà per noi il pensiero più bello. Siamo sicuri che troverete qualcosa che vi rappresenta!',
-        intro2:'Per chi non potrà essere con noi ma desidera comunque partecipare in qualche modo, accompagnarci in questo nuovo passo o semplicemente lasciarci un piccolo pensiero, qui sotto trovate un modo semplice per farlo. Il vostro affetto, da vicino o da lontano, è ciò che rende tutto questo ancora più speciale.'
+
+        eyebrow:
+          'REGALI',
+
+        title:
+          'Il Prossimo Capitolo',
+
+        intro1:
+          'La vostra presenza è, senza dubbio, il regalo più importante che potessimo desiderare per celebrare il nostro matrimonio. Per questo abbiamo scelto di non avere una tradizionale lista nozze. Se desiderate farci un regalo, un contributo per aiutarci a costruire il nostro futuro sarà per noi il pensiero più bello. Siamo sicuri che troverete qualcosa che vi rappresenta!',
+
+        intro2:
+          'Per chi non potrà essere con noi ma desidera comunque partecipare in qualche modo, accompagnarci in questo nuovo passo o semplicemente lasciarci un piccolo pensiero, qui sotto trovate un modo semplice per farlo. Il vostro affetto, da vicino o da lontano, è ciò che rende tutto questo ancora più speciale.'
+
       },
+
       en:{
-        eyebrow:'GIFTS',
-        title:'The Next Chapter',
-        intro1:'Your presence is, without a doubt, the most important gift we could ask for as we celebrate our wedding. We have chosen not to have a traditional wedding registry. If you would like to give us something, a contribution towards the future we are building together would be the perfect gift. We are sure you will find something that feels just right for you!',
-        intro2:'For those who cannot be there with us but would still like to be part of this moment, support us in this next step, or simply leave us a little something, we have included an easy way to do so below. Your love, whether from near or far, is what makes all of this feel real.'
+
+        eyebrow:
+          'GIFTS',
+
+        title:
+          'The Next Chapter',
+
+        intro1:
+          'Your presence is, without a doubt, the most important gift we could ask for as we celebrate our wedding. We have chosen not to have a traditional wedding registry. If you would like to give us something, a contribution towards the future we are building together would be the perfect gift. We are sure you will find something that feels just right for you!',
+
+        intro2:
+          'For those who cannot be there with us but would still like to be part of this moment, support us in this next step, or simply leave us a little something, we have included an easy way to do so below. Your love, whether from near or far, is what makes all of this feel real.'
+
       }
+
     };
+
     const NAV_TEXTS={
+
       pt:{
+
         home:'Início',
         story:'A Nossa História',
         day:'O dia',
@@ -1015,9 +1558,14 @@
         gifts:'Presentes',
         faq:'FAQ',
         menu:'Menu',
-        fixed:'CONFIRMA<br>A TUA<br>PRESENÇA'
+
+        fixed:
+          'CONFIRMA<br>A TUA<br>PRESENÇA'
+
       },
+
       it:{
+
         home:'Home',
         story:'La Nostra Storia',
         day:'Il giorno',
@@ -1026,9 +1574,14 @@
         gifts:'Regali',
         faq:'FAQ',
         menu:'Menu',
-        fixed:'CONFERMA<br>LA TUA<br>PRESENZA'
+
+        fixed:
+          'CONFERMA<br>LA TUA<br>PRESENZA'
+
       },
+
       en:{
+
         home:'Home',
         story:'Our Story',
         day:'The day',
@@ -1037,383 +1590,1419 @@
         gifts:'Gifts',
         faq:'FAQ',
         menu:'Menu',
-        fixed:'CONFIRM<br>YOUR<br>ATTENDANCE'
+
+        fixed:
+          'CONFIRM<br>YOUR<br>ATTENDANCE'
+
       }
+
     };
+
     /*
       Estes textos são gerados pelo JavaScript.
-      Como o Google Translate não consegue traduzir alerts e alguns botões
-      gerados dinamicamente, ficam aqui as versões PT / IT / EN.
+
+      Como o Google Translate não consegue traduzir
+      alerts e alguns botões gerados dinamicamente,
+      ficam aqui as versões PT / IT / EN.
     */
+
     const UI_TEXTS={
+
       pt:{
-        loading:'A carregar a lista de experiências...',
-        loadError:'Erro ao carregar as experiências. Por favor, atualize a página.',
-        offered:'Oferecido ❤️',
-        offeredBy:'Oferecido por',
-        offerGift:'Oferecer Experiência',
-        offerPrefix:'Oferecer',
-        ibanCopied:'IBAN copiado!',
-        copyError:'Erro ao copiar IBAN.',
-        missingName:'Por favor, indique o seu nome!',
-        thankYou:'Muito obrigado pela vossa oferta! ❤️',
-        connectionError:'Ocorreu um erro de ligação.'
+
+        loading:
+          'A carregar a lista de experiências...',
+
+        loadError:
+          'Erro ao carregar as experiências. Por favor, atualize a página.',
+
+        offered:
+          'Oferecido ❤️',
+
+        offeredBy:
+          'Oferecido por',
+
+        offerGift:
+          'Oferecer',
+
+        offerPrefix:
+          'Oferecer',
+
+        ibanCopied:
+          'IBAN copiado!',
+
+        copyError:
+          'Erro ao copiar IBAN.',
+
+        missingName:
+          'Por favor, indique o seu nome!',
+
+        thankYou:
+          'Muito obrigado pela vossa oferta! ❤️',
+
+        connectionError:
+          'Ocorreu um erro de ligação.'
+
       },
+
       it:{
-        loading:'Caricamento della lista delle esperienze...',
-        loadError:'Errore durante il caricamento delle esperienze. Aggiornate la pagina.',
-        offered:'Regalato ❤️',
-        offeredBy:'Regalato da',
-        offerGift:'Regala questa esperienza',
-        offerPrefix:'Regala',
-        ibanCopied:'IBAN copiato!',
-        copyError:'Errore durante la copia dell’IBAN.',
-        missingName:'Per favore, inserite il vostro nome!',
-        thankYou:'Grazie di cuore per il vostro regalo! ❤️',
-        connectionError:'Si è verificato un errore di connessione.'
+
+        loading:
+          'Caricamento della lista delle esperienze...',
+
+        loadError:
+          'Errore durante il caricamento delle esperienze. Aggiornate la pagina.',
+
+        offered:
+          'Regalato ❤️',
+
+        offeredBy:
+          'Regalato da',
+
+        offerGift:
+          'Regala',
+
+        offerPrefix:
+          'Regala',
+
+        ibanCopied:
+          'IBAN copiato!',
+
+        copyError:
+          'Errore durante la copia dell’IBAN.',
+
+        missingName:
+          'Per favore, inserite il vostro nome!',
+
+        thankYou:
+          'Grazie di cuore per il vostro regalo! ❤️',
+
+        connectionError:
+          'Si è verificato un errore di connessione.'
+
       },
+
       en:{
-        loading:'Loading the list of experiences...',
-        loadError:'There was a problem loading the experiences. Please refresh the page.',
-        offered:'Gifted ❤️',
-        offeredBy:'Gifted by',
-        offerGift:'Gift this experience',
-        offerPrefix:'Gift',
-        ibanCopied:'IBAN copied!',
-        copyError:'Unable to copy the IBAN.',
-        missingName:'Please enter your name!',
-        thankYou:'Thank you so much for your gift! ❤️',
-        connectionError:'There was a connection error.'
+
+        loading:
+          'Loading the list of experiences...',
+
+        loadError:
+          'There was a problem loading the experiences. Please refresh the page.',
+
+        offered:
+          'Gifted ❤️',
+
+        offeredBy:
+          'Gifted by',
+
+        offerGift:
+          'Gift',
+
+        offerPrefix:
+          'Gift',
+
+        ibanCopied:
+          'IBAN copied!',
+
+        copyError:
+          'Unable to copy the IBAN.',
+
+        missingName:
+          'Please enter your name!',
+
+        thankYou:
+          'Thank you so much for your gift! ❤️',
+
+        connectionError:
+          'There was a connection error.'
+
       }
+
     };
+
     /* =========================================================
        TRADUÇÕES EXATAS DOS TEXTOS DO EXCEL
        ---------------------------------------------------------
        Só funciona se a frase for EXATAMENTE igual.
        Não faz substituições dentro de frases maiores.
        ---------------------------------------------------------
+
        Exemplo:
+
        "Blue" -> "Azzurro"
+
        NÃO altera "Blue Power".
     ========================================================= */
+
     const EXACT_GIFT_TRANSLATIONS={
+
       pt:{
+
       },
+
       it:{
+
         // "Blue":"Azzurro",
-        // "Frase exatamente como está no Excel":"Traduzione italiana"
+
+        // Exemplo:
+        // "Passeio de barco":"Giro in barca"
+
       },
+
       en:{
-        // "Frase exatamente como está no Excel":"English translation"
+
+        // Exemplo:
+        // "Passeio de barco":"Boat trip"
+
       }
+
     };
+
     function detectPreferredLanguage(){
+
       const userLang=(
-        navigator.languages&&navigator.languages.length
+
+        navigator.languages
+        &&
+        navigator.languages.length
+
           ? navigator.languages[0]
-          : navigator.language||navigator.userLanguage||'en'
+
+          : navigator.language
+            ||
+            navigator.userLanguage
+            ||
+            'en'
+
       ).toLowerCase();
-      if(userLang.startsWith('pt'))return 'pt';
-      if(userLang.startsWith('it'))return 'it';
+
+      if(
+        userLang.startsWith('pt')
+      ){
+        return 'pt';
+      }
+
+      if(
+        userLang.startsWith('it')
+      ){
+        return 'it';
+      }
+
       return 'en';
+
     }
+
     function getMainPagePath(lang){
-      if(lang==='it')return '../it';
-      if(lang==='en')return '../en';
+
+      if(
+        lang==='it'
+      ){
+        return '../it';
+      }
+
+      if(
+        lang==='en'
+      ){
+        return '../en';
+      }
+
       return '../pt';
+
     }
+
     function applyManualTexts(lang){
-      const header=HEADER_TEXTS[lang]||HEADER_TEXTS.en;
-      const nav=NAV_TEXTS[lang]||NAV_TEXTS.en;
-      const mainPage=getMainPagePath(lang);
-      document.documentElement.lang=lang==='pt'?'pt-PT':lang;
-      document.getElementById('heroEyebrow').textContent=header.eyebrow;
-      document.getElementById('heroTitle').textContent=header.title;
-      document.getElementById('heroIntro1').textContent=header.intro1;
-      document.getElementById('heroIntro2').textContent=header.intro2;
-      document.getElementById('navHome').textContent=nav.home;
-      document.getElementById('navStory').textContent=nav.story;
-      document.getElementById('navDay').textContent=nav.day;
-      document.getElementById('navTravel').textContent=nav.travel;
-      document.getElementById('navRsvp').textContent=nav.rsvp;
-      document.getElementById('navGifts').textContent=nav.gifts;
-      document.getElementById('navFaq').textContent=nav.faq;
-      document.getElementById('menuBtn').textContent=nav.menu;
-      document.getElementById('fixedRsvpText').innerHTML=nav.fixed;
-      document.getElementById('homeLogo').href=mainPage;
-      document.getElementById('navHome').href=mainPage;
-      document.getElementById('navStory').href=mainPage+'#story';
-      document.getElementById('navDay').href=mainPage+'#day';
-      document.getElementById('navTravel').href='../travelstay';
-      document.getElementById('navRsvp').href=mainPage+'#rsvp';
-      document.getElementById('navGifts').href='../gifts';
-      document.getElementById('navFaq').href='../faq';
-      document.getElementById('fixedRsvp').href=mainPage+'#rsvp';
-      document.getElementById('modalPrefix').textContent=(UI_TEXTS[lang]||UI_TEXTS.en).offerPrefix;
-      updateActiveButton(lang);
+
+      const header=
+        HEADER_TEXTS[lang]
+        ||
+        HEADER_TEXTS.en;
+
+      const nav=
+        NAV_TEXTS[lang]
+        ||
+        NAV_TEXTS.en;
+
+      const mainPage=
+        getMainPagePath(lang);
+
+      document.documentElement.lang=
+        lang==='pt'
+          ? 'pt-PT'
+          : lang;
+
+      document
+        .getElementById('heroEyebrow')
+        .textContent=
+          header.eyebrow;
+
+      document
+        .getElementById('heroTitle')
+        .textContent=
+          header.title;
+
+      document
+        .getElementById('heroIntro1')
+        .textContent=
+          header.intro1;
+
+      document
+        .getElementById('heroIntro2')
+        .textContent=
+          header.intro2;
+
+      document
+        .getElementById('navHome')
+        .textContent=
+          nav.home;
+
+      document
+        .getElementById('navStory')
+        .textContent=
+          nav.story;
+
+      document
+        .getElementById('navDay')
+        .textContent=
+          nav.day;
+
+      document
+        .getElementById('navTravel')
+        .textContent=
+          nav.travel;
+
+      document
+        .getElementById('navRsvp')
+        .textContent=
+          nav.rsvp;
+
+      document
+        .getElementById('navGifts')
+        .textContent=
+          nav.gifts;
+
+      document
+        .getElementById('navFaq')
+        .textContent=
+          nav.faq;
+
+      document
+        .getElementById('menuBtn')
+        .textContent=
+          nav.menu;
+
+      document
+        .getElementById('fixedRsvpText')
+        .innerHTML=
+          nav.fixed;
+
+      document
+        .getElementById('homeLogo')
+        .href=
+          mainPage;
+
+      document
+        .getElementById('navHome')
+        .href=
+          mainPage;
+
+      document
+        .getElementById('navStory')
+        .href=
+          mainPage+'#story';
+
+      document
+        .getElementById('navDay')
+        .href=
+          mainPage+'#day';
+
+      document
+        .getElementById('navTravel')
+        .href=
+          '../travelstay';
+
+      document
+        .getElementById('navRsvp')
+        .href=
+          mainPage+'#rsvp';
+
+      document
+        .getElementById('navGifts')
+        .href=
+          '../gifts';
+
+      document
+        .getElementById('navFaq')
+        .href=
+          '../faq';
+
+      document
+        .getElementById('fixedRsvp')
+        .href=
+          mainPage+'#rsvp';
+
+      document
+        .getElementById('modalPrefix')
+        .textContent=
+          (
+            UI_TEXTS[lang]
+            ||
+            UI_TEXTS.en
+          ).offerPrefix;
+
+      updateActiveButton(
+        lang
+      );
+
     }
-    function getExactGiftTranslation(text,lang){
-      const source=String(text??'').trim();
-      const dictionary=EXACT_GIFT_TRANSLATIONS[lang]||{};
-      if(Object.prototype.hasOwnProperty.call(dictionary,source)){
+
+    function getExactGiftTranslation(
+      text,
+      lang
+    ){
+
+      const source=
+        String(
+          text??''
+        ).trim();
+
+      const dictionary=
+        EXACT_GIFT_TRANSLATIONS[lang]
+        ||
+        {};
+
+      if(
+        Object
+          .prototype
+          .hasOwnProperty
+          .call(
+            dictionary,
+            source
+          )
+      ){
+
         return{
-          text:dictionary[source],
+          text:
+            dictionary[source],
           manual:true
         };
+
       }
+
       return{
         text:source,
         manual:false
       };
+
     }
-    function protectFromTranslation(element){
-      element.classList.add('notranslate');
-      element.setAttribute('translate','no');
-    }
-    function createGiftButton(gift,isSoldOut,isAnon,buyerText){
-      const text=UI_TEXTS[currentLang]||UI_TEXTS.en;
-      const button=document.createElement('button');
-      button.type='button';
-      button.className='offer-btn';
-      protectFromTranslation(button);
-      if(isSoldOut){
-        button.disabled=true;
-        if(isAnon){
-          button.textContent=text.offered;
-        }else{
-          const buyerName=buyerText.replace(' (Anónimo)','');
-          button.textContent=`${text.offeredBy} ${buyerName} ❤️`;
-        }
-      }else{
-        button.textContent=text.offerGift;
-        button.addEventListener('click',()=>{
-          openModal(gift.id,gift.title||'');
-        });
-      }
-      return button;
-    }
-    async function loadGifts(){
-      const gridNormal=document.getElementById('grid-normal');
-      const ui=UI_TEXTS[currentLang]||UI_TEXTS.en;
-      gridNormal.innerHTML=`<p class="loading-list notranslate" translate="no">${ui.loading}</p>`;
-      try{
-        const response=await fetch(SCRIPT_URL);
-        if(!response.ok)throw new Error('HTTP '+response.status);
-        const gifts=await response.json();
-        cachedGifts=Array.isArray(gifts)?gifts:[];
-        renderGifts(cachedGifts);
-      }catch(error){
-        console.error('Erro ao carregar presentes:',error);
-        gridNormal.innerHTML='';
-        const errorMessage=document.createElement('p');
-        errorMessage.className='load-error';
-        errorMessage.textContent=ui.loadError;
-        protectFromTranslation(errorMessage);
-        gridNormal.appendChild(errorMessage);
-      }
-    }
-    function renderGifts(gifts){
-      const gridNormal=document.getElementById('grid-normal');
-      const gridFunny=document.getElementById('grid-funny');
-      const funnySection=document.getElementById('funny-section');
-      gridNormal.innerHTML='';
-      gridFunny.innerHTML='';
-      let hasFunny=false;
-      gifts.forEach(gift=>{
-        const rawStatus=String(gift.status||'').trim().toLowerCase();
-        const isSoldOut=rawStatus==='esgotado';
-        const card=document.createElement('article');
-        card.className='card'+(isSoldOut?' sold-out':'');
-        const imageWrapper=document.createElement('div');
-        imageWrapper.className='card-image-wrapper';
-        const image=document.createElement('img');
-        const titleTranslation=getExactGiftTranslation(gift.title,currentLang);
-        image.src=gift.image||'';
-        image.alt=titleTranslation.text;
-        image.loading='lazy';
-        image.decoding='async';
-        imageWrapper.appendChild(image);
-        const content=document.createElement('div');
-        content.className='card-content';
-        const title=document.createElement('h3');
-        title.textContent=titleTranslation.text;
-        if(titleTranslation.manual){
-          protectFromTranslation(title);
-        }
-        const price=document.createElement('p');
-        price.className='price notranslate';
-        price.setAttribute('translate','no');
-        price.textContent=`${gift.price} €`;
-        let buyerText='';
-        let isAnon=false;
-        if(gift.buyer){
-          buyerText=String(gift.buyer).trim();
-          if(buyerText.includes('(Anónimo)')){
-            isAnon=true;
-          }
-        }
-        content.appendChild(title);
-        content.appendChild(price);
-        content.appendChild(
-          createGiftButton(
-            gift,
-            isSoldOut,
-            isAnon,
-            buyerText
-          )
+
+    function protectFromTranslation(
+      element
+    ){
+
+      element
+        .classList
+        .add(
+          'notranslate'
         );
-        card.appendChild(imageWrapper);
-        card.appendChild(content);
-        const category=String(gift.category||'').toLowerCase();
-        if(category.includes('engraçad')){
-          gridFunny.appendChild(card);
-          hasFunny=true;
+
+      element
+        .setAttribute(
+          'translate',
+          'no'
+        );
+
+    }
+
+    function createGiftButton(
+      gift,
+      isSoldOut,
+      isAnon,
+      buyerText,
+      titleElement
+    ){
+
+      const text=
+        UI_TEXTS[currentLang]
+        ||
+        UI_TEXTS.en;
+
+      const button=
+        document
+          .createElement(
+            'button'
+          );
+
+      button.type='button';
+
+      button.className=
+        'offer-btn';
+
+      protectFromTranslation(
+        button
+      );
+
+      if(
+        isSoldOut
+      ){
+
+        button.disabled=true;
+
+        if(
+          isAnon
+        ){
+
+          button.textContent=
+            text.offered;
+
         }else{
-          gridNormal.appendChild(card);
+
+          const buyerName=
+            buyerText
+              .replace(
+                ' (Anónimo)',
+                ''
+              );
+
+          button.textContent=
+            `${text.offeredBy} ${buyerName} ❤️`;
+
         }
-      });
-      funnySection.style.display=hasFunny?'block':'none';
-      if(currentLang!=='pt'){
-        window.setTimeout(()=>{
-          setGoogleLanguage(currentLang);
-        },120);
+
+      }else{
+
+        button.textContent=
+          text.offerGift;
+
+        button
+          .addEventListener(
+            'click',
+            ()=>{
+
+              const displayedTitle=
+                titleElement
+                  ?.textContent
+                  ?.trim()
+                ||
+                gift.title
+                ||
+                '';
+
+              openModal(
+                gift.id,
+                gift.title||'',
+                displayedTitle
+              );
+
+            }
+          );
+
       }
+
+      return button;
+
     }
-    function openModal(id,rawTitle){
+
+    async function loadGifts(){
+
+      const gridNormal=
+        document
+          .getElementById(
+            'grid-normal'
+          );
+
+      const ui=
+        UI_TEXTS[currentLang]
+        ||
+        UI_TEXTS.en;
+
+      gridNormal.innerHTML=
+        `
+          <p
+            class="loading-list notranslate"
+            translate="no"
+          >
+            ${ui.loading}
+          </p>
+        `;
+
+      try{
+
+        const response=
+          await fetch(
+            SCRIPT_URL
+          );
+
+        if(
+          !response.ok
+        ){
+
+          throw new Error(
+            'HTTP '
+            +
+            response.status
+          );
+
+        }
+
+        const gifts=
+          await response.json();
+
+        cachedGifts=
+          Array.isArray(gifts)
+            ? gifts
+            : [];
+
+        renderGifts(
+          cachedGifts
+        );
+
+      }catch(error){
+
+        console.error(
+          'Erro ao carregar presentes:',
+          error
+        );
+
+        gridNormal.innerHTML='';
+
+        const errorMessage=
+          document
+            .createElement(
+              'p'
+            );
+
+        errorMessage.className=
+          'load-error';
+
+        errorMessage.textContent=
+          ui.loadError;
+
+        protectFromTranslation(
+          errorMessage
+        );
+
+        gridNormal.appendChild(
+          errorMessage
+        );
+
+      }
+
+    }
+
+    function renderGifts(
+      gifts
+    ){
+
+      const gridNormal=
+        document
+          .getElementById(
+            'grid-normal'
+          );
+
+      const gridFunny=
+        document
+          .getElementById(
+            'grid-funny'
+          );
+
+      const funnySection=
+        document
+          .getElementById(
+            'funny-section'
+          );
+
+      gridNormal.innerHTML='';
+
+      gridFunny.innerHTML='';
+
+      let hasFunny=false;
+
+      gifts.forEach(
+        gift=>{
+
+          const rawStatus=
+            String(
+              gift.status||''
+            )
+            .trim()
+            .toLowerCase();
+
+          const isSoldOut=
+            rawStatus==='esgotado';
+
+          const card=
+            document
+              .createElement(
+                'article'
+              );
+
+          card.className=
+            'card'
+            +
+            (
+              isSoldOut
+                ? ' sold-out'
+                : ''
+            );
+
+          const imageWrapper=
+            document
+              .createElement(
+                'div'
+              );
+
+          imageWrapper.className=
+            'card-image-wrapper';
+
+          const image=
+            document
+              .createElement(
+                'img'
+              );
+
+          const titleTranslation=
+            getExactGiftTranslation(
+              gift.title,
+              currentLang
+            );
+
+          image.src=
+            gift.image||'';
+
+          image.alt=
+            titleTranslation.text;
+
+          image.loading=
+            'lazy';
+
+          image.decoding=
+            'async';
+
+          imageWrapper
+            .appendChild(
+              image
+            );
+
+          const content=
+            document
+              .createElement(
+                'div'
+              );
+
+          content.className=
+            'card-content';
+
+          const title=
+            document
+              .createElement(
+                'h3'
+              );
+
+          title.textContent=
+            titleTranslation.text;
+
+          if(
+            titleTranslation.manual
+          ){
+
+            protectFromTranslation(
+              title
+            );
+
+          }
+
+          const rawPrice=
+            String(
+              gift.price??''
+            )
+            .trim();
+
+          const hasPrice=
+
+            rawPrice!==''
+
+            &&
+
+            rawPrice
+              .toLowerCase()
+              !==
+              'null'
+
+            &&
+
+            rawPrice
+              .toLowerCase()
+              !==
+              'undefined';
+
+          let buyerText='';
+
+          let isAnon=false;
+
+          if(
+            gift.buyer
+          ){
+
+            buyerText=
+              String(
+                gift.buyer
+              ).trim();
+
+            if(
+              buyerText
+                .includes(
+                  '(Anónimo)'
+                )
+            ){
+
+              isAnon=true;
+
+            }
+
+          }
+
+          content.appendChild(
+            title
+          );
+
+          if(
+            hasPrice
+          ){
+
+            const price=
+              document
+                .createElement(
+                  'p'
+                );
+
+            price.className=
+              'price notranslate';
+
+            price
+              .setAttribute(
+                'translate',
+                'no'
+              );
+
+            price.textContent=
+              `${rawPrice} €`;
+
+            content.appendChild(
+              price
+            );
+
+          }
+
+          content.appendChild(
+
+            createGiftButton(
+
+              gift,
+
+              isSoldOut,
+
+              isAnon,
+
+              buyerText,
+
+              title
+
+            )
+
+          );
+
+          card.appendChild(
+            imageWrapper
+          );
+
+          card.appendChild(
+            content
+          );
+
+          const category=
+            String(
+              gift.category||''
+            )
+            .toLowerCase();
+
+          if(
+            category
+              .includes(
+                'engraçad'
+              )
+          ){
+
+            gridFunny
+              .appendChild(
+                card
+              );
+
+            hasFunny=true;
+
+          }else{
+
+            gridNormal
+              .appendChild(
+                card
+              );
+
+          }
+
+        }
+      );
+
+      funnySection.style.display=
+        hasFunny
+          ? 'block'
+          : 'none';
+
+      if(
+        currentLang!=='pt'
+      ){
+
+        window.setTimeout(
+          ()=>{
+
+            setGoogleLanguage(
+              currentLang
+            );
+
+          },
+          120
+        );
+
+      }
+
+    }
+
+    function openModal(
+      id,
+      rawTitle,
+      displayedTitle=''
+    ){
+
       currentGiftId=id;
-      currentGiftTitle=rawTitle;
-      const titleInfo=getExactGiftTranslation(rawTitle,currentLang);
-      const modalGiftTitle=document.getElementById('modalGiftTitle');
-      document.getElementById('modalPrefix').textContent=(UI_TEXTS[currentLang]||UI_TEXTS.en).offerPrefix;
-      modalGiftTitle.textContent=titleInfo.text;
-      modalGiftTitle.classList.remove('notranslate');
-      modalGiftTitle.removeAttribute('translate');
-      if(titleInfo.manual){
-        protectFromTranslation(modalGiftTitle);
+
+      currentGiftTitle=
+        rawTitle;
+
+      const titleInfo=
+        getExactGiftTranslation(
+          rawTitle,
+          currentLang
+        );
+
+      const modalGiftTitle=
+        document
+          .getElementById(
+            'modalGiftTitle'
+          );
+
+      document
+        .getElementById(
+          'modalPrefix'
+        )
+        .textContent=
+          (
+            UI_TEXTS[currentLang]
+            ||
+            UI_TEXTS.en
+          ).offerPrefix;
+
+      modalGiftTitle
+        .classList
+        .remove(
+          'notranslate'
+        );
+
+      modalGiftTitle
+        .removeAttribute(
+          'translate'
+        );
+
+      if(
+        titleInfo.manual
+      ){
+
+        modalGiftTitle.textContent=
+          titleInfo.text;
+
+      }else{
+
+        modalGiftTitle.textContent=
+          displayedTitle
+          ||
+          rawTitle;
+
       }
-      document.getElementById('modalOverlay').style.display='flex';
-      document.body.style.overflow='hidden';
-      if(currentLang!=='pt'&&!titleInfo.manual){
-        window.setTimeout(()=>{
-          setGoogleLanguage(currentLang);
-        },80);
-      }
+
+      protectFromTranslation(
+        modalGiftTitle
+      );
+
+      document
+        .getElementById(
+          'modalOverlay'
+        )
+        .style
+        .display=
+          'flex';
+
+      document.body.style.overflow=
+        'hidden';
+
     }
+
     function closeModal(){
-      document.getElementById('modalOverlay').style.display='none';
-      document.getElementById('buyerName').value='';
-      document.getElementById('isAnonymous').checked=false;
-      document.getElementById('loadingMsg').style.display='none';
-      document.getElementById('confirmBtn').style.display='block';
+
+      document
+        .getElementById(
+          'modalOverlay'
+        )
+        .style
+        .display=
+          'none';
+
+      document
+        .getElementById(
+          'buyerName'
+        )
+        .value='';
+
+      document
+        .getElementById(
+          'isAnonymous'
+        )
+        .checked=false;
+
+      document
+        .getElementById(
+          'loadingMsg'
+        )
+        .style
+        .display=
+          'none';
+
+      document
+        .getElementById(
+          'confirmBtn'
+        )
+        .style
+        .display=
+          'block';
+
       document.body.style.overflow='';
+
       currentGiftId=null;
+
       currentGiftTitle='';
+
     }
-    function copyIban(){
-      const iban=document.getElementById('ibanText').innerText;
-      const ui=UI_TEXTS[currentLang]||UI_TEXTS.en;
-      navigator.clipboard.writeText(iban).then(()=>{
-        alert(ui.ibanCopied);
-      }).catch(()=>{
-        alert(ui.copyError);
-      });
-    }
-    async function confirmPayment(){
-      let name=document.getElementById('buyerName').value.trim();
-      const isAnon=document.getElementById('isAnonymous').checked;
-      const ui=UI_TEXTS[currentLang]||UI_TEXTS.en;
-      if(!name){
-        alert(ui.missingName);
+
+    function copyIban(
+      elementId
+    ){
+
+      const ibanElement=
+        document
+          .getElementById(
+            elementId
+          );
+
+      const iban=
+        ibanElement
+          ?.innerText
+          ?.trim()
+        ||
+        '';
+
+      const ui=
+        UI_TEXTS[currentLang]
+        ||
+        UI_TEXTS.en;
+
+      if(
+        !iban
+      ){
         return;
       }
-      if(isAnon){
-        name+=' (Anónimo)';
+
+      navigator
+        .clipboard
+        .writeText(
+          iban
+        )
+        .then(
+          ()=>{
+
+            alert(
+              ui.ibanCopied
+            );
+
+          }
+        )
+        .catch(
+          ()=>{
+
+            alert(
+              ui.copyError
+            );
+
+          }
+        );
+
+    }
+
+    async function confirmPayment(){
+
+      let name=
+        document
+          .getElementById(
+            'buyerName'
+          )
+          .value
+          .trim();
+
+      const isAnon=
+        document
+          .getElementById(
+            'isAnonymous'
+          )
+          .checked;
+
+      const ui=
+        UI_TEXTS[currentLang]
+        ||
+        UI_TEXTS.en;
+
+      if(
+        !name
+      ){
+
+        alert(
+          ui.missingName
+        );
+
+        return;
+
       }
-      document.getElementById('confirmBtn').style.display='none';
-      document.getElementById('loadingMsg').style.display='block';
+
+      if(
+        isAnon
+      ){
+
+        name+=
+          ' (Anónimo)';
+
+      }
+
+      document
+        .getElementById(
+          'confirmBtn'
+        )
+        .style
+        .display=
+          'none';
+
+      document
+        .getElementById(
+          'loadingMsg'
+        )
+        .style
+        .display=
+          'block';
+
       try{
+
         await fetch(
+
           `${SCRIPT_URL}?action=buy&id=${encodeURIComponent(currentGiftId)}&name=${encodeURIComponent(name)}`,
+
           {
             mode:'no-cors'
           }
+
         );
-        alert(ui.thankYou);
+
+        alert(
+          ui.thankYou
+        );
+
         closeModal();
-        window.setTimeout(loadGifts,1000);
+
+        window.setTimeout(
+          loadGifts,
+          1000
+        );
+
       }catch(error){
-        console.error('Erro ao confirmar presente:',error);
-        alert(ui.connectionError);
-        closeModal();
-      }
-    }
-    function updateActiveButton(lang){
-      document.querySelectorAll('.lang-btn').forEach(btn=>{
-        btn.classList.toggle(
-          'active',
-          btn.getAttribute('data-lang')===lang
+
+        console.error(
+          'Erro ao confirmar presente:',
+          error
         );
-      });
-    }
-    function changeLanguage(lang){
-      currentLang=lang;
-      applyManualTexts(lang);
-      if(cachedGifts.length){
-        renderGifts(cachedGifts);
+
+        alert(
+          ui.connectionError
+        );
+
+        closeModal();
+
       }
-      setGoogleLanguage(lang);
-      document.querySelector('.navlinks')?.classList.remove('open');
+
     }
+
+    function updateActiveButton(
+      lang
+    ){
+
+      document
+        .querySelectorAll(
+          '.lang-btn'
+        )
+        .forEach(
+          btn=>{
+
+            btn
+              .classList
+              .toggle(
+
+                'active',
+
+                btn
+                  .getAttribute(
+                    'data-lang'
+                  )
+                  ===
+                  lang
+
+              );
+
+          }
+        );
+
+    }
+
+    function changeLanguage(
+      lang
+    ){
+
+      currentLang=
+        lang;
+
+      applyManualTexts(
+        lang
+      );
+
+      if(
+        cachedGifts.length
+      ){
+
+        renderGifts(
+          cachedGifts
+        );
+
+      }
+
+      setGoogleLanguage(
+        lang
+      );
+
+      document
+        .querySelector(
+          '.navlinks'
+        )
+        ?.classList
+        .remove(
+          'open'
+        );
+
+    }
+
     function googleTranslateElementInit(){
-      new google.translate.TranslateElement({
-        pageLanguage:'pt',
-        includedLanguages:'pt,it,en',
-        autoDisplay:false
-      },'google_translate_element');
-      if(currentLang!=='pt'){
-        setGoogleLanguage(currentLang);
+
+      new google.translate.TranslateElement(
+        {
+          pageLanguage:'pt',
+          includedLanguages:'pt,it,en',
+          autoDisplay:false
+        },
+        'google_translate_element'
+      );
+
+      if(
+        currentLang!=='pt'
+      ){
+
+        setGoogleLanguage(
+          currentLang
+        );
+
       }
+
     }
-    function setGoogleLanguage(lang){
+
+    function setGoogleLanguage(
+      lang
+    ){
+
       let attempts=0;
-      const interval=window.setInterval(()=>{
-        const selectField=document.querySelector('.goog-te-combo');
-        if(selectField){
-          selectField.value=lang;
-          selectField.dispatchEvent(new Event('change'));
-          window.clearInterval(interval);
-          return;
-        }
-        attempts++;
-        if(attempts>25){
-          window.clearInterval(interval);
-        }
-      },250);
+
+      const interval=
+        window.setInterval(
+
+          ()=>{
+
+            const selectField=
+              document
+                .querySelector(
+                  '.goog-te-combo'
+                );
+
+            if(
+              selectField
+            ){
+
+              selectField.value=
+                lang;
+
+              selectField
+                .dispatchEvent(
+                  new Event(
+                    'change'
+                  )
+                );
+
+              window
+                .clearInterval(
+                  interval
+                );
+
+              return;
+
+            }
+
+            attempts++;
+
+            if(
+              attempts>25
+            ){
+
+              window
+                .clearInterval(
+                  interval
+                );
+
+            }
+
+          },
+
+          250
+
+        );
+
     }
-    document.getElementById('modalOverlay').addEventListener('click',function(event){
-      if(event.target===this){
-        closeModal();
-      }
-    });
-    document.addEventListener('keydown',event=>{
-      if(event.key==='Escape'){
-        closeModal();
-      }
-    });
-    const menuBtn=document.getElementById('menuBtn');
-    const navLinks=document.querySelector('.navlinks');
-    menuBtn.addEventListener('click',()=>{
-      navLinks.classList.toggle('open');
-    });
-    navLinks.querySelectorAll('a').forEach(link=>{
-      link.addEventListener('click',()=>{
-        navLinks.classList.remove('open');
-      });
-    });
-    currentLang=detectPreferredLanguage();
-    applyManualTexts(currentLang);
+
+    document
+      .getElementById(
+        'modalOverlay'
+      )
+      .addEventListener(
+        'click',
+        function(event){
+
+          if(
+            event.target===this
+          ){
+
+            closeModal();
+
+          }
+
+        }
+      );
+
+    document
+      .addEventListener(
+        'keydown',
+        event=>{
+
+          if(
+            event.key==='Escape'
+          ){
+
+            closeModal();
+
+          }
+
+        }
+      );
+
+    const menuBtn=
+      document
+        .getElementById(
+          'menuBtn'
+        );
+
+    const navLinks=
+      document
+        .querySelector(
+          '.navlinks'
+        );
+
+    menuBtn
+      .addEventListener(
+        'click',
+        ()=>{
+
+          navLinks
+            .classList
+            .toggle(
+              'open'
+            );
+
+        }
+      );
+
+    navLinks
+      .querySelectorAll(
+        'a'
+      )
+      .forEach(
+        link=>{
+
+          link
+            .addEventListener(
+              'click',
+              ()=>{
+
+                navLinks
+                  .classList
+                  .remove(
+                    'open'
+                  );
+
+              }
+            );
+
+        }
+      );
+
+    currentLang=
+      detectPreferredLanguage();
+
+    applyManualTexts(
+      currentLang
+    );
+
     loadGifts();
+
   </script>
-  <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+  <script
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+  ></script>
+
 </body>
 </html>
