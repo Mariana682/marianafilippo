@@ -1085,7 +1085,7 @@
         transform:none;
       }
     }
-    @media(max-width:980px){
+       @media(max-width:980px){
       .navlinks{
         display:none;
       }
@@ -1204,15 +1204,37 @@
         grid-template-columns:1fr;
         gap:36px;
       }
+
+      /* OUR STORY — MOBILE FIX */
+      .story-grid{
+        grid-template-columns:minmax(0,1fr);
+        width:100%;
+        max-width:100%;
+      }
+      .story-grid > *{
+        grid-column:1 !important;
+        min-width:0;
+        width:100%;
+      }
       .story-grid > div:first-child{
         padding-left:0;
         order:1;
+        width:100%;
+        max-width:none;
+      }
+      .story .lead,
+      .story .body-copy{
+        width:100%;
+        max-width:none;
       }
       .photo-carousel{
         order:2;
-        width:calc(100vw - 30px);
-        margin-left:50%;
-        transform:translateX(-50%);
+        grid-column:1 !important;
+        width:100vw;
+        max-width:none;
+        margin-left:calc(50% - 50vw);
+        margin-right:0;
+        transform:none;
         height:430px;
         --carousel-side-x:112px;
         --carousel-side-x-neg:-112px;
@@ -1225,7 +1247,9 @@
       }
       .date-stack{
         order:3;
+        grid-column:1 !important;
       }
+
       .carousel-card{
         width:285px;
       }
