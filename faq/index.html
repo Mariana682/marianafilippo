@@ -109,6 +109,8 @@
     }
 
     .monogram{
+      position:relative;
+      z-index:32;
       justify-self:start;
       font-family:var(--serif);
       font-size:28px;
@@ -160,6 +162,8 @@
     }
 
     .nav-right{
+      position:relative;
+      z-index:32;
       justify-self:end;
       display:flex;
       align-items:center;
@@ -274,20 +278,14 @@
       display:flex;
       align-items:center;
       justify-content:center;
-
       background:
         linear-gradient(
           180deg,
-          rgba(32,52,45,.74) 0%,
-          rgba(32,52,45,.80) 45%,
-          rgba(32,52,45,.90) 100%
+          rgba(32,52,45,.62) 0%,
+          rgba(32,52,45,.68) 45%,
+          rgba(32,52,45,.82) 100%
         ),
-        radial-gradient(
-          circle at 50% 34%,
-          rgba(116,139,104,.16),
-          transparent 42%
-        ),
-        url('./images/faq.jpg') center center / cover no-repeat;
+        url('/images/faq.jpg') center center / cover no-repeat;
     }
 
     .faq-hero::before{
@@ -314,10 +312,10 @@
       background:
         linear-gradient(
           180deg,
-          rgba(8,20,15,.10) 0%,
-          transparent 32%,
-          transparent 68%,
-          rgba(10,22,17,.28) 100%
+          rgba(8,20,15,.14) 0%,
+          transparent 28%,
+          transparent 65%,
+          rgba(10,22,17,.34) 100%
         );
     }
 
@@ -325,7 +323,7 @@
       position:absolute;
       z-index:1;
       width:190px;
-      opacity:.64;
+      opacity:.55;
       pointer-events:none;
       filter:saturate(.85);
     }
@@ -395,7 +393,7 @@
     .hero-intro{
       max-width:620px;
       margin:30px auto 0;
-      color:rgba(243,232,202,.78);
+      color:rgba(243,232,202,.88);
       font-family:var(--serif);
       font-size:20px;
       line-height:1.55;
@@ -414,7 +412,7 @@
       font-size:8px;
       letter-spacing:.27em;
       text-transform:uppercase;
-      color:rgba(243,232,202,.48);
+      color:rgba(243,232,202,.55);
     }
 
     .hero-scroll::after{
@@ -437,7 +435,7 @@
     }
 
     /* =========================================================
-       FAQ INTRO + INDEX
+       FAQ INTRO
     ========================================================= */
 
     .faq-main{
@@ -497,6 +495,10 @@
       font-size:20px;
       line-height:1.65;
     }
+
+    /* =========================================================
+       CATEGORY NAV
+    ========================================================= */
 
     .category-nav-wrap{
       width:min(1160px,calc(100% - 14vw));
@@ -749,7 +751,6 @@
       display:inline-block;
       color:#536c54;
       font-weight:600;
-      text-decoration:none;
     }
 
     .inline-link::after{
@@ -769,7 +770,7 @@
     }
 
     /* =========================================================
-       BOTTOM CTA
+       ENDING
     ========================================================= */
 
     .faq-ending{
@@ -929,14 +930,14 @@
       .navlinks.open{
         position:fixed;
         inset:0;
-        z-index:-1;
+        z-index:29;
         display:flex;
         flex-direction:column;
         justify-content:center;
         align-items:center;
         gap:25px;
         padding:100px 35px 60px;
-        background:rgba(25,43,36,.98);
+        background:rgba(25,43,36,.985);
         backdrop-filter:blur(14px);
         font-family:var(--serif);
         font-size:28px;
@@ -1017,68 +1018,79 @@
       }
 
       .faq-hero{
-        min-height:72svh;
-
+        min-height:100svh;
+        align-items:center;
         background:
           linear-gradient(
             180deg,
-            rgba(32,52,45,.72) 0%,
-            rgba(32,52,45,.80) 48%,
-            rgba(32,52,45,.92) 100%
+            rgba(24,43,36,.52) 0%,
+            rgba(24,43,36,.62) 48%,
+            rgba(24,43,36,.82) 100%
           ),
-          radial-gradient(
-            circle at 50% 34%,
-            rgba(116,139,104,.13),
-            transparent 45%
-          ),
-          url('./images/faq.jpg') center center / cover no-repeat;
+          url('/images/faq.jpg') center center / cover no-repeat;
+      }
+
+      .faq-hero::before{
+        width:430px;
+        height:430px;
+        top:48%;
+        opacity:.45;
+      }
+
+      .faq-hero::after{
+        background:
+          linear-gradient(
+            180deg,
+            rgba(8,20,15,.12) 0%,
+            transparent 28%,
+            transparent 63%,
+            rgba(10,22,17,.34) 100%
+          );
+      }
+
+      .hero-botanical{
+        display:none;
       }
 
       .faq-hero-content{
         width:100%;
-        padding:135px 22px 94px;
+        padding:125px 25px 105px;
       }
 
       .hero-kicker{
-        font-size:8px;
-        letter-spacing:.28em;
+        font-size:7px;
+        letter-spacing:.27em;
+        gap:10px;
       }
 
       .hero-kicker::before,
       .hero-kicker::after{
-        width:26px;
+        width:24px;
       }
 
       .faq-hero h1{
-        margin-top:19px;
-        font-size:clamp(58px,18vw,84px);
+        margin:23px auto 0;
+        max-width:520px;
+        font-size:clamp(52px,15vw,72px);
+        line-height:.88;
+        letter-spacing:-.035em;
       }
 
       .hero-script{
-        margin-top:14px;
-        font-size:35px;
+        margin-top:18px;
+        font-size:34px;
       }
 
       .hero-intro{
-        max-width:330px;
-        margin-top:25px;
-        font-size:18px;
+        max-width:310px;
+        margin-top:32px;
+        font-size:17px;
         line-height:1.48;
+        color:rgba(243,232,202,.9);
       }
 
-      .hero-botanical{
-        width:118px;
-        opacity:.47;
-      }
-
-      .hero-botanical.left{
-        left:-38px;
-        bottom:7%;
-      }
-
-      .hero-botanical.right{
-        right:-38px;
-        top:21%;
+      .hero-scroll{
+        bottom:19px;
       }
 
       .faq-intro{
@@ -1202,6 +1214,10 @@
       .category-link{
         min-height:88px;
       }
+
+      .faq-hero h1{
+        font-size:52px;
+      }
     }
 
     @media(prefers-reduced-motion:reduce){
@@ -1219,7 +1235,7 @@
 <body>
 
   <header class="nav">
-    <a id="monogram-link" class="monogram" href="./pt/" aria-label="Mariana & Filippo">
+    <a id="monogram-link" class="monogram" href="/pt/" aria-label="Mariana & Filippo">
       M &amp; F
     </a>
 
@@ -1254,31 +1270,28 @@
     </div>
   </header>
 
-  <a id="fixed-rsvp" class="fixed-rsvp" href="./pt/#rsvp"></a>
+  <a id="fixed-rsvp" class="fixed-rsvp" href="/pt/#rsvp"></a>
 
   <section class="faq-hero">
 
     <img
       class="hero-botanical left"
-      src="./images/story-left.png"
+      src="/images/story-left.png"
       alt=""
       aria-hidden="true"
     >
 
     <img
       class="hero-botanical right"
-      src="./images/story-right.png"
+      src="/images/story-right.png"
       alt=""
       aria-hidden="true"
     >
 
     <div class="faq-hero-content">
       <div id="hero-kicker" class="hero-kicker"></div>
-
       <h1 id="hero-title"></h1>
-
       <span id="hero-script" class="hero-script"></span>
-
       <p id="hero-intro" class="hero-intro"></p>
     </div>
 
@@ -1296,6 +1309,7 @@
         </div>
 
         <p id="intro-copy" class="faq-intro-copy reveal"></p>
+
       </div>
     </section>
 
@@ -1315,8 +1329,8 @@
     <div id="ending-script" class="ending-script"></div>
 
     <div class="ending-actions">
-      <a id="ending-travel" class="ending-btn" href="./travelstay"></a>
-      <a id="ending-gifts" class="ending-btn" href="./gifts"></a>
+      <a id="ending-travel" class="ending-btn" href="/travelstay"></a>
+      <a id="ending-gifts" class="ending-btn" href="/gifts"></a>
     </div>
   </section>
 
@@ -1332,6 +1346,10 @@
 
   <script>
     const translations={
+
+      /* =======================================================
+         PORTUGUÊS
+      ======================================================= */
 
       pt:{
         htmlLang:'pt-PT',
@@ -1371,7 +1389,7 @@
                 q:'O que devo vestir?',
                 a:`
                   <p>Queremos que se sintam elegantes, mas confortáveis.</p>
-                  <p>Pedimos apenas que <strong>não usem branco</strong> e, no caso das senhoras, que <strong>evitem o preto</strong>, se possível.</p>
+                  <p>Pedimos às <strong>senhoras que não usem branco</strong> e, se possível, que <strong>evitem o preto</strong>. Uma camisa branca masculina é perfeitamente adequada.</p>
                   <p>O casamento decorrerá em agosto e maioritariamente no exterior, por isso pensem em roupa fresca e apropriada para um casamento de verão.</p>
                 `
               },
@@ -1402,7 +1420,7 @@
               {
                 q:'Onde devemos ficar?',
                 a:`
-                  <p>Reunimos as nossas sugestões de zonas, hotéis e outros alojamentos na página <a class="inline-link" href="./travelstay">Viagem & Estadia</a>.</p>
+                  <p>Reunimos as nossas sugestões de zonas, hotéis e outros alojamentos na página <a class="inline-link" href="/travelstay">Viagem & Estadia</a>.</p>
                 `
               }
             ]
@@ -1431,7 +1449,7 @@
                   <p>Não teremos um serviço de shuttle organizado.</p>
                   <p>No entanto, podemos ajudar a combinar <strong>boleias entre convidados</strong>, por isso falem connosco se precisarem de ajuda a organizar o transporte.</p>
                   <p>No final da noite, cada convidado deverá organizar o seu regresso. Haverá opções de transporte para o centro de Teolo.</p>
-                  <p>Para mais informações sobre aeroportos, carro, alojamento e deslocações, consultem <a class="inline-link" href="./travelstay">Viagem & Estadia</a>.</p>
+                  <p>Para mais informações sobre aeroportos, carro, alojamento e deslocações, consultem <a class="inline-link" href="/travelstay">Viagem & Estadia</a>.</p>
                 `
               },
               {
@@ -1502,7 +1520,7 @@
                 a:`
                   <p>O mais importante para nós é poder celebrar convosco.</p>
                   <p>Para quem quiser oferecer-nos algo, preferimos uma <strong>contribuição para esta nova etapa da nossa vida juntos</strong>, em vez de presentes físicos.</p>
-                  <p>Explicamos tudo com mais detalhe na página <a class="inline-link" href="./gifts">Presentes</a>.</p>
+                  <p>Explicamos tudo com mais detalhe na página <a class="inline-link" href="/gifts">Presentes</a>.</p>
                 `
               },
               {
@@ -1555,6 +1573,10 @@
         footer:'FAQ'
       },
 
+      /* =======================================================
+         ENGLISH
+      ======================================================= */
+
       en:{
         htmlLang:'en',
         title:'FAQ · Mariana & Filippo',
@@ -1593,7 +1615,7 @@
                 q:'What should I wear?',
                 a:`
                   <p>We'd love everyone to feel elegant but comfortable.</p>
-                  <p>We only ask that you <strong>do not wear white</strong> and, for women, that you <strong>avoid black if possible</strong>.</p>
+                  <p>We ask <strong>women not to wear white</strong> and, if possible, to <strong>avoid black</strong>. A white shirt for men is absolutely fine.</p>
                   <p>The wedding will take place in August and mostly outdoors, so think light and comfortable summer wedding attire.</p>
                 `
               },
@@ -1624,7 +1646,7 @@
               {
                 q:'Where should we stay?',
                 a:`
-                  <p>We've put together our recommended areas, hotels and other accommodation on the <a class="inline-link" href="./travelstay">Travel & Stay</a> page.</p>
+                  <p>We've put together our recommended areas, hotels and other accommodation on the <a class="inline-link" href="/travelstay">Travel & Stay</a> page.</p>
                 `
               }
             ]
@@ -1653,7 +1675,7 @@
                   <p>There will not be an organised shuttle service.</p>
                   <p>However, we're happy to help coordinate <strong>lifts between guests</strong>, so please get in touch if you need help arranging transport.</p>
                   <p>At the end of the night, guests should organise their own journey back. Transport options to central Teolo will be available.</p>
-                  <p>For airports, driving, accommodation and travel information, please visit our <a class="inline-link" href="./travelstay">Travel & Stay</a> page.</p>
+                  <p>For airports, driving, accommodation and travel information, please visit our <a class="inline-link" href="/travelstay">Travel & Stay</a> page.</p>
                 `
               },
               {
@@ -1724,7 +1746,7 @@
                 a:`
                   <p>The most important gift for us is being able to celebrate with you.</p>
                   <p>For anyone who would still like to give us something, we would prefer a <strong>contribution towards this new chapter of our life together</strong> rather than physical gifts.</p>
-                  <p>You'll find all the details on our <a class="inline-link" href="./gifts">Gifts</a> page.</p>
+                  <p>You'll find all the details on our <a class="inline-link" href="/gifts">Gifts</a> page.</p>
                 `
               },
               {
@@ -1777,6 +1799,10 @@
         footer:'FAQ'
       },
 
+      /* =======================================================
+         ITALIANO
+      ======================================================= */
+
       it:{
         htmlLang:'it',
         title:'FAQ · Mariana & Filippo',
@@ -1815,7 +1841,7 @@
                 q:'Come ci si deve vestire?',
                 a:`
                   <p>Ci piacerebbe che foste eleganti, ma soprattutto a vostro agio.</p>
-                  <p>Vi chiediamo solamente di <strong>non indossare il bianco</strong> e, per le signore, di <strong>evitare il nero se possibile</strong>.</p>
+                  <p>Chiediamo alle <strong>signore di non indossare il bianco</strong> e, se possibile, di <strong>evitare il nero</strong>. Una camicia bianca da uomo va benissimo.</p>
                   <p>Il matrimonio sarà ad agosto e si svolgerà principalmente all'aperto, quindi consigliamo un abbigliamento fresco e adatto a un matrimonio estivo.</p>
                 `
               },
@@ -1846,7 +1872,7 @@
               {
                 q:'Dove possiamo alloggiare?',
                 a:`
-                  <p>Abbiamo raccolto le zone, gli hotel e le altre sistemazioni che consigliamo nella pagina <a class="inline-link" href="./travelstay">Viaggio & Soggiorno</a>.</p>
+                  <p>Abbiamo raccolto le zone, gli hotel e le altre sistemazioni che consigliamo nella pagina <a class="inline-link" href="/travelstay">Viaggio & Soggiorno</a>.</p>
                 `
               }
             ]
@@ -1875,7 +1901,7 @@
                   <p>Non sarà previsto un servizio navetta organizzato.</p>
                   <p>Possiamo però aiutarvi a organizzare <strong>passaggi tra gli invitati</strong>, quindi contattateci se avete bisogno di una mano con gli spostamenti.</p>
                   <p>Alla fine della serata, ogni invitato dovrà organizzare autonomamente il proprio rientro. Saranno disponibili opzioni di trasporto verso il centro di Teolo.</p>
-                  <p>Per informazioni su aeroporti, auto, alloggi e spostamenti, consultate la pagina <a class="inline-link" href="./travelstay">Viaggio & Soggiorno</a>.</p>
+                  <p>Per informazioni su aeroporti, auto, alloggi e spostamenti, consultate la pagina <a class="inline-link" href="/travelstay">Viaggio & Soggiorno</a>.</p>
                 `
               },
               {
@@ -1946,7 +1972,7 @@
                 a:`
                   <p>Il regalo più importante per noi è poter festeggiare questo giorno insieme a voi.</p>
                   <p>Per chi desiderasse comunque farci un regalo, preferiamo un <strong>contributo per questo nuovo capitolo della nostra vita insieme</strong> piuttosto che regali materiali.</p>
-                  <p>Trovate tutti i dettagli nella pagina <a class="inline-link" href="./gifts">Regali</a>.</p>
+                  <p>Trovate tutti i dettagli nella pagina <a class="inline-link" href="/gifts">Regali</a>.</p>
                 `
               },
               {
@@ -2000,6 +2026,10 @@
       }
     };
 
+    /* =========================================================
+       LANGUAGE
+    ========================================================= */
+
     const supportedLanguages=['pt','it','en'];
     let currentLanguage='en';
 
@@ -2023,10 +2053,14 @@
       return 'en';
     }
 
+    /* =========================================================
+       MAIN PAGE LINKS
+    ========================================================= */
+
     function getHomePath(language){
-      if(language==='pt')return './pt/';
-      if(language==='it')return './it/';
-      return './en/';
+      if(language==='pt') return '/pt/';
+      if(language==='it') return '/it/';
+      return '/en/';
     }
 
     function updateNavigationLinks(language){
@@ -2039,6 +2073,10 @@
       document.getElementById('nav-rsvp').href=`${home}#rsvp`;
       document.getElementById('fixed-rsvp').href=`${home}#rsvp`;
     }
+
+    /* =========================================================
+       RENDER
+    ========================================================= */
 
     function renderFAQ(language){
       const data=translations[language];
@@ -2077,13 +2115,8 @@
         button.className='category-link';
 
         button.innerHTML=`
-          <span class="category-number">
-            ${String(index+1).padStart(2,'0')}
-          </span>
-
-          <span class="category-name">
-            ${group.title}
-          </span>
+          <span class="category-number">${String(index+1).padStart(2,'0')}</span>
+          <span class="category-name">${group.title}</span>
         `;
 
         button.addEventListener('click',()=>{
@@ -2111,14 +2144,8 @@
         heading.className='group-heading';
 
         heading.innerHTML=`
-          <span class="group-number">
-            ${String(groupIndex+1).padStart(2,'0')}
-          </span>
-
-          <h3>
-            ${group.title}
-          </h3>
-
+          <span class="group-number">${String(groupIndex+1).padStart(2,'0')}</span>
+          <h3>${group.title}</h3>
           <div class="group-line"></div>
         `;
 
@@ -2191,10 +2218,12 @@
       });
     }
 
+    /* =========================================================
+       ACCORDIONS
+    ========================================================= */
+
     function setupAccordions(){
-      const buttons=[
-        ...document.querySelectorAll('.faq-question')
-      ];
+      const buttons=[...document.querySelectorAll('.faq-question')];
 
       buttons.forEach(button=>{
         button.addEventListener('click',()=>{
@@ -2203,7 +2232,7 @@
           const isOpen=button.getAttribute('aria-expanded')==='true';
 
           buttons.forEach(otherButton=>{
-            if(otherButton===button)return;
+            if(otherButton===button) return;
 
             otherButton.setAttribute('aria-expanded','false');
 
@@ -2227,6 +2256,10 @@
       });
     }
 
+    /* =========================================================
+       LANGUAGE SWITCH
+    ========================================================= */
+
     function setLanguage(language,saveChoice=false){
       if(!supportedLanguages.includes(language)){
         language='en';
@@ -2235,10 +2268,7 @@
       currentLanguage=language;
 
       if(saveChoice){
-        localStorage.setItem(
-          'mf-language',
-          language
-        );
+        localStorage.setItem('mf-language',language);
       }
 
       document
@@ -2265,21 +2295,26 @@
         });
       });
 
+    /* =========================================================
+       MOBILE MENU
+    ========================================================= */
+
     const menuButton=document.getElementById('menu-btn');
     const navLinks=document.getElementById('navlinks');
 
     function closeMobileMenu(){
       navLinks.classList.remove('open');
+
       menuButton.setAttribute(
         'aria-expanded',
         'false'
       );
+
       document.body.classList.remove('menu-open');
     }
 
     menuButton.addEventListener('click',()=>{
-      const willOpen=
-        !navLinks.classList.contains('open');
+      const willOpen=!navLinks.classList.contains('open');
 
       navLinks.classList.toggle(
         'open',
@@ -2309,6 +2344,10 @@
       }
     });
 
+    /* =========================================================
+       REVEAL
+    ========================================================= */
+
     let revealObserver=null;
 
     function setupRevealAnimations(){
@@ -2337,6 +2376,10 @@
           revealObserver.observe(element);
         });
     }
+
+    /* =========================================================
+       INITIALISE
+    ========================================================= */
 
     setLanguage(
       detectLanguage(),
