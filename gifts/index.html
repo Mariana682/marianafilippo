@@ -235,11 +235,15 @@
     .gift-hero{
       position:relative;
       overflow:hidden;
-      padding:155px 6vw 90px;
+      padding:155px 6vw 105px;
       background:
-        radial-gradient(circle at 15% 20%,rgba(232,215,170,.08),transparent 28%),
-        radial-gradient(circle at 88% 75%,rgba(116,139,104,.14),transparent 30%),
-        var(--forest);
+        linear-gradient(
+          180deg,
+          rgba(32,52,45,.76) 0%,
+          rgba(32,52,45,.82) 55%,
+          rgba(32,52,45,.9) 100%
+        ),
+        url('../images/gifts.jpg') center 48%/cover no-repeat;
       color:var(--cream);
     }
     .gift-hero::before{
@@ -303,32 +307,6 @@
     }
     .hero-subtitle:last-of-type{
       margin-bottom:0;
-    }
-    .gift-hero-image{
-      position:relative;
-      z-index:2;
-      width:min(1180px,100%);
-      height:330px;
-      margin:58px auto 0;
-      overflow:hidden;
-      box-shadow:0 28px 70px rgba(0,0,0,.22);
-    }
-    .gift-hero-image img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      object-position:center;
-      opacity:.69;
-      filter:saturate(.82) contrast(.96);
-    }
-    .gift-hero-image::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      pointer-events:none;
-      background:
-        linear-gradient(90deg,rgba(32,52,45,.32),transparent 22%,transparent 78%,rgba(32,52,45,.32)),
-        linear-gradient(180deg,rgba(32,52,45,.14),transparent 40%,rgba(32,52,45,.22));
     }
     /* =========================================================
        GIFTS AREA
@@ -816,10 +794,6 @@
         font-size:15px;
         line-height:1.6;
       }
-      .gift-hero-image{
-        height:195px;
-        margin-top:38px;
-      }
       .gifts-area{
         padding:45px 18px 75px;
       }
@@ -877,9 +851,6 @@
       .hero-title{
         font-size:53px;
       }
-      .gift-hero-image{
-        height:175px;
-      }
       .card-image-wrapper{
         height:215px;
       }
@@ -933,9 +904,6 @@
         <p id="heroIntro2" class="hero-subtitle">
           Para quem não puder estar presente, mas gostaria de marcar presença de alguma forma, apoiar-nos neste próximo passo, ou simplesmente deixar um miminho, deixamos abaixo uma forma simples de o fazer. O vosso carinho, de perto ou de longe, é o que torna tudo isto real.
         </p>
-      </div>
-      <div class="gift-hero-image">
-        <img src="../images/gifts.jpg" alt="" aria-hidden="true">
       </div>
     </section>
     <main class="gifts-area">
