@@ -243,7 +243,7 @@
           rgba(32,52,45,.82) 55%,
           rgba(32,52,45,.9) 100%
         ),
-        url('../images/gifts.jpg') center 48%/cover no-repeat;
+        var(--gift-hero-image) center 48%/cover no-repeat;
       color:var(--cream);
     }
     .gift-hero::before{
@@ -957,6 +957,24 @@
   <div id="google_translate_element" style="opacity:0;width:0;height:0;position:absolute;left:-9999px;"></div>
   <script>
     const SCRIPT_URL='https://script.google.com/macros/s/AKfycbx1bzQA6juCMUru-C2L3NOedd2sZs8zif3GcBivau7TfidvGo5NcdTFHrju2cLLm8sW/exec';
+    /* =========================================================
+           RANDOM HEADER IMAGE
+        ========================================================= */
+        const GIFT_HERO_IMAGES=[
+          '../images/gifts1.jpg',
+          '../images/gifts2.jpg',
+          '../images/gifts3.jpg'
+        ];
+        
+        const randomGiftHero=
+          GIFT_HERO_IMAGES[
+            Math.floor(Math.random()*GIFT_HERO_IMAGES.length)
+          ];
+        
+        document.documentElement.style.setProperty(
+          '--gift-hero-image',
+          `url("${randomGiftHero}")`
+        );
     let currentGiftId=null;
     let currentGiftTitle='';
     let currentLang='pt';
