@@ -274,17 +274,20 @@
       display:flex;
       align-items:center;
       justify-content:center;
+
       background:
-        radial-gradient(
-          circle at 50% 34%,
-          rgba(116,139,104,.20),
-          transparent 37%
-        ),
         linear-gradient(
           180deg,
-          #20342d 0%,
-          #243a32 100%
-        );
+          rgba(32,52,45,.74) 0%,
+          rgba(32,52,45,.80) 45%,
+          rgba(32,52,45,.90) 100%
+        ),
+        radial-gradient(
+          circle at 50% 34%,
+          rgba(116,139,104,.16),
+          transparent 42%
+        ),
+        url('./images/faq.jpg') center center / cover no-repeat;
     }
 
     .faq-hero::before{
@@ -311,10 +314,10 @@
       background:
         linear-gradient(
           180deg,
-          rgba(8,20,15,.15) 0%,
-          transparent 30%,
-          transparent 70%,
-          rgba(10,22,17,.18) 100%
+          rgba(8,20,15,.10) 0%,
+          transparent 32%,
+          transparent 68%,
+          rgba(10,22,17,.28) 100%
         );
     }
 
@@ -601,10 +604,9 @@
     }
 
     .group-heading{
-      position:relative;
-      align-self:start;
       position:sticky;
       top:38px;
+      align-self:start;
     }
 
     .group-number{
@@ -1016,6 +1018,20 @@
 
       .faq-hero{
         min-height:72svh;
+
+        background:
+          linear-gradient(
+            180deg,
+            rgba(32,52,45,.72) 0%,
+            rgba(32,52,45,.80) 48%,
+            rgba(32,52,45,.92) 100%
+          ),
+          radial-gradient(
+            circle at 50% 34%,
+            rgba(116,139,104,.13),
+            transparent 45%
+          ),
+          url('./images/faq.jpg') center center / cover no-repeat;
       }
 
       .faq-hero-content{
@@ -1202,10 +1218,6 @@
 
 <body>
 
-  <!-- =========================================================
-       NAV
-  ========================================================== -->
-
   <header class="nav">
     <a id="monogram-link" class="monogram" href="./pt/" aria-label="Mariana & Filippo">
       M &amp; F
@@ -1242,15 +1254,7 @@
     </div>
   </header>
 
-  <!-- =========================================================
-       FIXED RSVP
-  ========================================================== -->
-
   <a id="fixed-rsvp" class="fixed-rsvp" href="./pt/#rsvp"></a>
-
-  <!-- =========================================================
-       HERO
-  ========================================================== -->
 
   <section class="faq-hero">
 
@@ -1281,10 +1285,6 @@
     <div id="hero-scroll" class="hero-scroll"></div>
   </section>
 
-  <!-- =========================================================
-       MAIN FAQ
-  ========================================================== -->
-
   <main class="faq-main">
 
     <section class="faq-intro">
@@ -1299,21 +1299,15 @@
       </div>
     </section>
 
-    <!-- Quick category index -->
     <div class="category-nav-wrap reveal">
       <div id="category-nav" class="category-nav"></div>
     </div>
 
-    <!-- FAQ groups -->
     <section class="faq-content">
       <div id="faq-groups" class="faq-groups"></div>
     </section>
 
   </main>
-
-  <!-- =========================================================
-       ENDING
-  ========================================================== -->
 
   <section class="faq-ending">
     <div id="ending-small" class="ending-small"></div>
@@ -1326,10 +1320,6 @@
     </div>
   </section>
 
-  <!-- =========================================================
-       FOOTER
-  ========================================================== -->
-
   <footer>
     <strong>M &amp; F</strong>
 
@@ -1341,15 +1331,7 @@
   </footer>
 
   <script>
-    /* =========================================================
-       TRANSLATIONS
-    ========================================================= */
-
-    const translations = {
-
-      /* =======================================================
-         PORTUGUÊS
-      ======================================================= */
+    const translations={
 
       pt:{
         htmlLang:'pt-PT',
@@ -1573,10 +1555,6 @@
         footer:'FAQ'
       },
 
-      /* =======================================================
-         ENGLISH
-      ======================================================= */
-
       en:{
         htmlLang:'en',
         title:'FAQ · Mariana & Filippo',
@@ -1798,10 +1776,6 @@
 
         footer:'FAQ'
       },
-
-      /* =======================================================
-         ITALIANO
-      ======================================================= */
 
       it:{
         htmlLang:'it',
@@ -2026,16 +2000,8 @@
       }
     };
 
-    /* =========================================================
-       STATE
-    ========================================================= */
-
     const supportedLanguages=['pt','it','en'];
     let currentLanguage='en';
-
-    /* =========================================================
-       AUTOMATIC LANGUAGE DETECTION
-    ========================================================= */
 
     function detectLanguage(){
       const storedLanguage=localStorage.getItem('mf-language');
@@ -2057,10 +2023,6 @@
       return 'en';
     }
 
-    /* =========================================================
-       LANGUAGE-SPECIFIC MAIN SITE LINKS
-    ========================================================= */
-
     function getHomePath(language){
       if(language==='pt')return './pt/';
       if(language==='it')return './it/';
@@ -2078,10 +2040,6 @@
       document.getElementById('fixed-rsvp').href=`${home}#rsvp`;
     }
 
-    /* =========================================================
-       RENDER FAQ
-    ========================================================= */
-
     function renderFAQ(language){
       const data=translations[language];
 
@@ -2089,7 +2047,6 @@
       document.title=data.title;
       document.getElementById('meta-description').content=data.description;
 
-      /* Navigation */
       document.getElementById('nav-home').textContent=data.nav.home;
       document.getElementById('nav-story').textContent=data.nav.story;
       document.getElementById('nav-day').textContent=data.nav.day;
@@ -2100,19 +2057,16 @@
 
       updateNavigationLinks(language);
 
-      /* Hero */
       document.getElementById('hero-kicker').textContent=data.hero.kicker;
       document.getElementById('hero-title').innerHTML=data.hero.title;
       document.getElementById('hero-script').textContent=data.hero.script;
       document.getElementById('hero-intro').textContent=data.hero.intro;
       document.getElementById('hero-scroll').textContent=data.hero.scroll;
 
-      /* Intro */
       document.getElementById('intro-eyebrow').textContent=data.intro.eyebrow;
       document.getElementById('intro-title').textContent=data.intro.title;
       document.getElementById('intro-copy').textContent=data.intro.copy;
 
-      /* Categories */
       const categoryNav=document.getElementById('category-nav');
       categoryNav.innerHTML='';
 
@@ -2144,7 +2098,6 @@
         categoryNav.appendChild(button);
       });
 
-      /* FAQ Groups */
       const groupsContainer=document.getElementById('faq-groups');
       groupsContainer.innerHTML='';
 
@@ -2219,7 +2172,6 @@
         groupsContainer.appendChild(section);
       });
 
-      /* Ending */
       document.getElementById('ending-small').textContent=data.ending.small;
       document.getElementById('ending-title').textContent=data.ending.title;
       document.getElementById('ending-script').textContent=data.ending.script;
@@ -2239,10 +2191,6 @@
       });
     }
 
-    /* =========================================================
-       ACCORDION
-    ========================================================= */
-
     function setupAccordions(){
       const buttons=[
         ...document.querySelectorAll('.faq-question')
@@ -2254,7 +2202,6 @@
           const answer=document.getElementById(answerId);
           const isOpen=button.getAttribute('aria-expanded')==='true';
 
-          /* Close all other questions */
           buttons.forEach(otherButton=>{
             if(otherButton===button)return;
 
@@ -2279,10 +2226,6 @@
         });
       });
     }
-
-    /* =========================================================
-       LANGUAGE SWITCHING
-    ========================================================= */
 
     function setLanguage(language,saveChoice=false){
       if(!supportedLanguages.includes(language)){
@@ -2321,10 +2264,6 @@
           );
         });
       });
-
-    /* =========================================================
-       MOBILE MENU
-    ========================================================= */
 
     const menuButton=document.getElementById('menu-btn');
     const navLinks=document.getElementById('navlinks');
@@ -2370,10 +2309,6 @@
       }
     });
 
-    /* =========================================================
-       REVEAL ON SCROLL
-    ========================================================= */
-
     let revealObserver=null;
 
     function setupRevealAnimations(){
@@ -2402,10 +2337,6 @@
           revealObserver.observe(element);
         });
     }
-
-    /* =========================================================
-       INITIALISE
-    ========================================================= */
 
     setLanguage(
       detectLanguage(),
