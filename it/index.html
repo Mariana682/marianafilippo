@@ -1165,7 +1165,7 @@
       }
     }
     @media(max-width:640px){
-      @media(max-width:640px){
+@media(max-width:640px){
   .nav{
     padding:20px;
   }
@@ -1199,35 +1199,66 @@
   .section-pad{
     padding:78px 24px;
   }
+
+  /* =========================================================
+     LA NOSTRA STORIA — MOBILE
+  ========================================================= */
   .story-grid,
-  .travel-grid,
   .day-grid{
     grid-template-columns:1fr;
     gap:36px;
   }
+
   .story-grid{
     grid-template-columns:minmax(0,1fr);
     width:100%;
     max-width:100%;
   }
+
   .story-grid > *{
     grid-column:1 !important;
     min-width:0;
     width:100%;
   }
+
   .story-grid > div:first-child{
     padding-left:0;
     order:1;
     width:100%;
     max-width:none;
   }
+
   .story .lead,
   .story .body-copy{
     width:100%;
     max-width:none;
   }
-  .photo-carousel{
+
+  /* esconder as decorações laterais da versão desktop */
+  .story-decoration-left,
+  .story-decoration-right{
+    display:none;
+  }
+
+  /* decoração única centrada entre texto e carrossel */
+  .story-grid::before{
+    content:"";
+    display:block;
+    grid-column:1;
     order:2;
+    justify-self:center;
+    width:115px;
+    height:115px;
+    margin:-10px 0 -18px;
+    background:url('../images/story-right.png') center/contain no-repeat;
+    transform:rotate(180deg);
+    opacity:.80;
+    pointer-events:none;
+  }
+
+  /* carrossel */
+  .photo-carousel{
+    order:3;
     grid-column:1 !important;
     width:100vw;
     max-width:none;
@@ -1244,81 +1275,80 @@
     --carousel-far-x:180px;
     --carousel-far-x-neg:-180px;
   }
-  .date-stack{
-    order:3;
-    grid-column:1 !important;
+
+  /* sem legendas nas molduras no telefone */
+  .carousel-caption{
+    display:none !important;
   }
+
   .carousel-card{
     width:285px;
   }
+
   .carousel-arrow{
     width:38px;
     height:38px;
     font-size:36px;
   }
+
   .carousel-prev{
     left:5px;
   }
+
   .carousel-next{
     right:5px;
   }
-  .carousel-caption{
-    font-size:25px;
-  }
+
   .carousel-dots{
     bottom:-2px;
   }
+
+  /* data por baixo do carrossel */
   .date-stack{
+    order:4;
+    grid-column:1 !important;
     align-items:center;
     text-align:center;
     padding:5px 0 0;
   }
+
   .date-stack > div:first-child{
     display:flex;
     align-items:baseline;
     justify-content:center;
     gap:35px;
   }
+
   .date-stack .date{
     font-size:58px;
     line-height:1;
     margin:0 !important;
   }
+
   .date-stack .mini{
     margin-top:18px;
     align-self:center;
   }
-  .story-decoration-left{
-    left:-46px;
-    top:56%;
-    width:115px;
-  }
-  .story-decoration-right{
-    right:-40px;
-    top:56%;
-    width:115px;
-  }
-  .travel-story-left{
-    right:-32px;
-    top:67%;
-    width:88px;
-    opacity:.68;
-  }
-  .venue-img,
-  .travel-photo{
+
+  /* =========================================================
+     IL GIORNO
+  ========================================================= */
+  .venue-img{
     max-width:100%;
     aspect-ratio:3 / 2;
   }
+
   .map{
     min-height:170px;
   }
-  .trip-list{
-    padding-left:0;
-    border-left:0;
-  }
+
+  /* =========================================================
+     RSVP
+  ========================================================= */
   .rsvp .section-pad{
     padding:64px 18px 74px;
   }
+
   .rsvp-grid{
     grid-template-columns:1fr;
     gap:0;
@@ -1326,32 +1356,39 @@
     padding-top:92px;
     text-align:center;
   }
+
   .rsvp-grid > div[aria-hidden="true"]{
     display:none;
   }
+
   .rsvp-copy{
     width:auto;
     max-width:100%;
     grid-column:1;
   }
+
   .rsvp .label{
     gap:9px;
     font-size:9px;
     letter-spacing:.30em;
   }
+
   .rsvp .label:before,
   .rsvp .label:after{
     width:34px;
   }
+
   .rsvp h2{
     font-size:54px;
     line-height:.95;
     margin:12px 0 8px;
   }
+
   .rsvp-sub{
     font-size:19px;
     line-height:1.35;
   }
+
   .rsvp-note{
     grid-column:1;
     order:2;
@@ -1363,6 +1400,7 @@
     font-size:17px;
     line-height:1.45;
   }
+
   .rsvp-stamp{
     grid-column:1;
     order:3;
@@ -1371,58 +1409,75 @@
     height:145px;
     margin-top:26px;
   }
+
   .rsvp-lemons{
     width:200px;
     left:-30px;
     top:-20px;
   }
+
   .rsvp form{
     grid-template-columns:1fr !important;
     padding:22px !important;
   }
+
   .rsvp form input,
   .rsvp form select,
   .rsvp form textarea{
     grid-column:1/-1 !important;
   }
+
   .rsvp .section-pad > #rsvp-form{
     margin-top:42px !important;
   }
+
+  /* =========================================================
+     COUNTDOWN
+  ========================================================= */
   .countdown-overlay{
     width:94vw;
   }
+
   .countdown-title{
     font-size:9px;
     letter-spacing:.34em;
     margin-bottom:25px;
   }
+
   .countdown-value{
     font-size:clamp(29px,8vw,42px);
   }
+
   .countdown-label{
     margin-top:11px;
     font-size:7px;
     letter-spacing:.16em;
   }
+
   .countdown-divider{
     height:36px;
     margin:0 7px;
   }
+
   .countdown-ornament{
     margin-top:18px;
   }
+
   .countdown-ornament svg{
     width:36px;
     height:36px;
   }
+
   .parallax-photo{
     height:340px;
   }
+
   .parallax-photo .parallax-image{
     inset:-10%;
     width:120%;
     height:120%;
   }
+
   footer{
     padding:25px 22px;
     flex-direction:column;
