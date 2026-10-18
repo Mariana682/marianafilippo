@@ -960,7 +960,7 @@
 
     .day-grid{
       display:grid;
-      grid-template-columns:minmax(145px,.6fr) minmax(0,2.4fr) minmax(175px,.9fr);
+      grid-template-columns:minmax(145px,.6fr) minmax(0,2.4fr) minmax(210px,1.3fr);
       gap:30px;
       align-items:center;
       max-width:1400px;
@@ -1082,6 +1082,10 @@
       margin-top:12px;
     }
 
+    /* =========================================================
+       MAP
+    ========================================================= */
+
     .map{
       position:relative;
       min-height:280px;
@@ -1144,13 +1148,6 @@
       border-bottom:0;
     }
 
-    .trip-icon{
-      width:40px;
-      height:40px;
-      object-fit:contain;
-      display:block;
-    }
-
     .trip-title{
       font-size:12px;
       letter-spacing:.16em;
@@ -1161,6 +1158,13 @@
     .trip-copy{
       font-size:13px;
       color:rgba(243,232,202,.72);
+    }
+
+    .trip-icon{
+      width:40px;
+      height:40px;
+      object-fit:contain;
+      display:block;
     }
 
     /* =========================================================
@@ -1997,22 +2001,9 @@
               </div>
             </div>
 
-            <!-- LOCATION AND CHURCH -->
+            <!-- CHURCH FIRST, LOCATION BELOW -->
 
             <div class="places-stack reveal">
-              <div class="place-row">
-                <div class="venue-img">
-                  <img src="../images/venue.jpg" alt="Ca' Salva, Teolo" loading="lazy">
-                </div>
-
-                <div class="venue">
-                  <div class="label">La Location</div>
-                  <h3>Ca' Salva, Teolo</h3>
-                  <p>Una splendida villa in cima ai Colli Euganei, circondata da ulivi, vigneti e dalla bellezza senza tempo del paesaggio veneto.</p>
-                  <a class="btn" href="https://maps.app.goo.gl/kpoHAQzXZDjXFJds8?g_st=ic" target="_blank" rel="noopener">Indicazioni <span>→</span></a>
-                </div>
-              </div>
-
               <div class="place-row church-row">
                 <div class="venue-img">
                   <img src="../images/igreja.jpg" alt="Chiesa di San Biagio, Castelnuovo di Teolo" loading="lazy">
@@ -2022,7 +2013,24 @@
                   <div class="label">La Chiesa</div>
                   <h3>Chiesa di San Biagio</h3>
                   <p>Il nostro matrimonio sarà celebrato presso la Chiesa di San Biagio, a Castelnuovo di Teolo, a pochi passi da Ca’ Salva.</p>
-                  <a class="btn" href="https://www.google.com/maps/dir/?api=1&amp;destination=45.330928%2C11.687197" target="_blank" rel="noopener">Indicazioni <span>→</span></a>
+                  <a class="btn" href="https://maps.app.goo.gl/7TP5uroV7Ddh8bK88?g_st=ic" target="_blank" rel="noopener">
+                    Indicazioni <span>→</span>
+                  </a>
+                </div>
+              </div>
+
+              <div class="place-row">
+                <div class="venue-img">
+                  <img src="../images/venue.jpg" alt="Ca' Salva, Teolo" loading="lazy">
+                </div>
+
+                <div class="venue">
+                  <div class="label">La Location</div>
+                  <h3>Ca' Salva, Teolo</h3>
+                  <p>Una splendida villa in cima ai Colli Euganei, circondata da ulivi, vigneti e dalla bellezza senza tempo del paesaggio veneto.</p>
+                  <a class="btn" href="https://maps.app.goo.gl/kpoHAQzXZDjXFJds8?g_st=ic" target="_blank" rel="noopener">
+                    Indicazioni <span>→</span>
+                  </a>
                 </div>
               </div>
             </div>
