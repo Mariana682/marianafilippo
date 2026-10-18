@@ -946,6 +946,7 @@
 
     /* =========================================================
        IL GIORNO
+       NOVO ESPAÇAMENTO DESKTOP
     ========================================================= */
 
     .day{
@@ -956,15 +957,18 @@
     .day .section-pad{
       padding-top:95px;
       padding-bottom:95px;
+      padding-left:7vw;
+      padding-right:3vw;
     }
 
     .day-grid{
       display:grid;
-      grid-template-columns:minmax(145px,.6fr) minmax(0,2.4fr) minmax(210px,1.3fr);
-      gap:30px;
+      grid-template-columns:minmax(185px,.70fr) minmax(0,2.35fr) minmax(250px,1.22fr);
+      column-gap:clamp(38px,3.5vw,74px);
       align-items:center;
-      max-width:1400px;
-      margin:0 auto;
+      width:100%;
+      max-width:none;
+      margin:0;
     }
 
     .ceremony-name .religious{
@@ -1016,7 +1020,7 @@
     }
 
     /* =========================================================
-       LOCATION AND CHURCH
+       CHIESA E LOCATION
     ========================================================= */
 
     .places-stack{
@@ -1083,7 +1087,7 @@
     }
 
     /* =========================================================
-       MAP
+       MAPPA
     ========================================================= */
 
     .map{
@@ -1148,6 +1152,13 @@
       border-bottom:0;
     }
 
+    .trip-icon{
+      width:40px;
+      height:40px;
+      object-fit:contain;
+      display:block;
+    }
+
     .trip-title{
       font-size:12px;
       letter-spacing:.16em;
@@ -1158,13 +1169,6 @@
     .trip-copy{
       font-size:13px;
       color:rgba(243,232,202,.72);
-    }
-
-    .trip-icon{
-      width:40px;
-      height:40px;
-      object-fit:contain;
-      display:block;
     }
 
     /* =========================================================
@@ -1292,7 +1296,7 @@
     }
 
     /* =========================================================
-       FOOTER AND ANIMATIONS
+       FOOTER E ANIMAÇÕES
     ========================================================= */
 
     footer{
@@ -1335,9 +1339,30 @@
         opacity:0;
         transform:translateY(22px);
       }
+
       to{
         opacity:1;
         transform:none;
+      }
+    }
+
+    /* =========================================================
+       DESKTOP INTERMÉDIO
+    ========================================================= */
+
+    @media(min-width:981px) and (max-width:1250px){
+      .day-grid{
+        grid-template-columns:minmax(150px,.65fr) minmax(0,2.3fr) minmax(190px,1fr);
+        column-gap:32px;
+      }
+
+      .place-row{
+        grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);
+        gap:16px;
+      }
+
+      .venue h3{
+        font-size:30px;
       }
     }
 
@@ -1383,9 +1408,15 @@
         grid-column:2;
       }
 
+      .day .section-pad{
+        padding-left:7vw;
+        padding-right:7vw;
+      }
+
       .day-grid{
         grid-template-columns:minmax(0,1fr);
         max-width:700px;
+        margin:0 auto;
         gap:34px;
       }
 
@@ -1544,7 +1575,7 @@
         pointer-events:none;
       }
 
-      /* CAROUSEL */
+      /* CARROSSEL */
 
       .photo-carousel{
         order:3;
@@ -1838,7 +1869,7 @@
 
       <section class="hero">
         <div class="hero-content">
-          <div class="eyebrow">♡</div>
+          <div class="eyebrow">CELEBRANDO</div>
 
           <h1>
             <span class="name-first">Mariana</span>
@@ -1852,7 +1883,7 @@
           <div class="ornament">
             <svg class="olive-sprig" viewBox="0 0 48 48" fill="none" aria-hidden="true">
               <path d="M7 39C18 33 29 21 40 8" stroke="currentColor" stroke-width="1.3"/>
-              <path d="M15 30c-4-5-5-9-4-13 4 1 7 4 8 8M21 25c-3-5-2-9 0-12 4 2 6 5 6 8M28 18c0-5 2-8 5-10 2 4 2 7 0 10M34 12c1-4 4-7 7-8 1 4-1 7-4 9" stroke="currentColor" stroke-width="1.2"/>
+              <path d="M15 30c-4-5-5-9-4-13 4 1 7 4 8 8M21 25c-3-5-2-9 0-12 4 2 6 5 6 8M28 18c0-5 2-8 5-10 2 4 2 7 0 10M34 12c1-4 4-7 7-8 1 4 2 7 0 10" stroke="currentColor" stroke-width="1.2"/>
             </svg>
           </div>
 
@@ -1961,7 +1992,7 @@
           <div class="countdown-ornament" aria-hidden="true">
             <svg viewBox="0 0 48 48" fill="none">
               <path d="M8 38C20 33 31 21 41 8" stroke="currentColor" stroke-width="1.3"/>
-              <path d="M15 31c-4-5-5-9-4-13 4 1 7 4 8 8M21 26c-3-5-2-9 0-12 4 2 6 5 6 8M28 19c0-5 2-8 5-10 2 4 2 7 0 10M35 13c1-4 4-7 7-8 1 4-1 7-4 9" stroke="currentColor" stroke-width="1.2"/>
+              <path d="M15 31c-4-5-5-9-4-13 4 1 7 4 8 8M21 26c-3-5-2-9-4-12 4 2 6 5 6 8M28 19c0-5 2-8 5-10 2 4 2 7 0 10M35 13c1-4 4-7 7-8 1 4-1 7-4 9" stroke="currentColor" stroke-width="1.2"/>
             </svg>
           </div>
         </div>
@@ -2001,7 +2032,7 @@
               </div>
             </div>
 
-            <!-- CHURCH FIRST, LOCATION BELOW -->
+            <!-- CHIESA E LOCATION -->
 
             <div class="places-stack reveal">
               <div class="place-row church-row">
@@ -2012,8 +2043,8 @@
                 <div class="venue">
                   <div class="label">La Chiesa</div>
                   <h3>Chiesa di San Biagio</h3>
-                  <p>Il nostro matrimonio sarà celebrato presso la Chiesa di San Biagio a Castelnuovo di Teolo, a pochi passi da Ca’ Salva.</p>
-                  <a class="btn" href="https://maps.app.goo.gl/7TP5uroV7Ddh8bK88?g_st=ic" target="_blank" rel="noopener">
+                  <p>Il nostro matrimonio sarà celebrato presso la Chiesa di San Biagio, a Castelnuovo di Teolo, a pochi passi da Ca’ Salva.</p>
+                  <a class="btn" href="https://www.google.com/maps/dir/?api=1&amp;destination=45.330928%2C11.687197" target="_blank" rel="noopener">
                     Indicazioni <span>→</span>
                   </a>
                 </div>
@@ -2034,6 +2065,8 @@
                 </div>
               </div>
             </div>
+
+            <!-- MAPPA -->
 
             <div class="map reveal" aria-label="Mappa d’Italia">
               <img src="../images/mapa.png" alt="Mappa d’Italia" loading="lazy">
@@ -2109,7 +2142,7 @@
 
   <script>
     /* =========================================================
-       PHOTO CAROUSEL
+       FOTO DO CARROSSEL
     ========================================================= */
 
     const couplePhotos=[
